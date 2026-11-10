@@ -22,6 +22,9 @@ pub fn StudioCapabilities() -> Element {
             id: "capabilities",
             class: "bg-white py-16 sm:py-24 border-t border-zinc-200 font-sans scroll-mt-20 relative overflow-hidden",
             div {
+                class: "absolute inset-0 bg-tech-dots opacity-35 pointer-events-none"
+            }
+            div {
                 class: "max-w-[1500px] mx-auto px-4 sm:px-8 relative z-10",
                 CapabilitiesHeader { strings }
                 CapabilitiesGrid { cards: strings.cards }
@@ -67,7 +70,8 @@ fn CapabilitiesGrid(cards: [CapabilityCard; 4]) -> Element {
 fn CapabilityCardItem(card: CapabilityCard) -> Element {
     rsx! {
         div {
-            class: "studio-card group p-6 sm:p-7 rounded-xs bg-[#FAFAFA] hover:bg-white border border-zinc-200/90 hover:border-zinc-400/80 flex flex-col justify-between space-y-6 shadow-2xs select-none relative overflow-hidden",
+            class: "studio-card group p-6 sm:p-7 rounded-xs bg-[#FAFAFA] hover:bg-white border border-zinc-200/90 hover:border-zinc-400 flex flex-col justify-between space-y-6 shadow-2xs hover:shadow-md select-none relative overflow-hidden border-t-2 border-t-transparent hover:border-t-[#E64A19] transition-all",
+            div { class: "absolute top-2 right-2 text-zinc-300 font-mono text-[10px] opacity-0 group-hover:opacity-100 transition-opacity select-none", "+" }
             div {
                 class: "space-y-4",
                 div {
@@ -85,9 +89,13 @@ fn CapabilityCardItem(card: CapabilityCard) -> Element {
                 }
             }
             div {
-                class: "border-t border-zinc-200/60 pt-4 flex items-center gap-2 text-[11px] font-mono text-zinc-500",
-                span { class: "w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 group-hover:scale-125 transition-transform" }
-                span { class: "truncate", "{card.metric}" }
+                class: "border-t border-zinc-200/60 pt-4 flex items-center justify-between text-[11px] font-mono text-zinc-500",
+                div {
+                    class: "flex items-center gap-2 truncate",
+                    span { class: "w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 group-hover:scale-125 transition-transform" }
+                    span { class: "truncate", "{card.metric}" }
+                }
+                span { class: "text-[9px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-1 py-0.5 rounded-2xs shrink-0", "PASS" }
             }
         }
     }

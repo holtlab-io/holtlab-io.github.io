@@ -20,10 +20,11 @@ pub fn StudioTurnkey() -> Element {
     rsx! {
         section {
             id: "studio",
-            class: "bg-[#FAFAFA] py-16 sm:py-24 border-t border-zinc-200 font-sans scroll-mt-20 relative",
+            class: "bg-[#FAFAFA] py-16 sm:py-24 border-t border-zinc-200 font-sans scroll-mt-20 relative overflow-hidden",
             div { id: "turnkey", class: "absolute -top-20" }
+            div { class: "absolute inset-0 bg-tech-dots opacity-35 pointer-events-none" }
             div {
-                class: "max-w-[1500px] mx-auto px-4 sm:px-8",
+                class: "max-w-[1500px] mx-auto px-4 sm:px-8 relative z-10",
                 div {
                     class: "flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 mb-12 gap-4",
                     div {
@@ -105,7 +106,7 @@ fn TurnkeyPipelineGrid(strings: StudioStrings) -> Element {
             for phase in strings.pipeline.iter() {
                 div {
                     key: "{phase.phase_tag}",
-                    class: "studio-card p-5 rounded-xs bg-white border border-zinc-200 hover:border-zinc-300 space-y-2 select-none",
+                    class: "studio-card p-5 rounded-xs bg-white border border-zinc-200 hover:border-zinc-400 hover:shadow-xs space-y-2 select-none border-t-2 border-t-transparent hover:border-t-[#E64A19] transition-all",
                     span { class: "text-[#E64A19] font-bold block", "{phase.phase_tag}" }
                     h4 { class: "text-sm font-bold text-zinc-950", "{phase.title}" }
                     p { class: "text-zinc-600 font-sans leading-relaxed text-xs", "{phase.desc}" }

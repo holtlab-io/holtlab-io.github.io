@@ -145,7 +145,20 @@ async def run_e2e():
 
             # Verify Studio Workbench Console
             assert await page.locator("#hero").get_by_text("SYSTEM ARCHITECTURE: UNIFIED CO-DESIGN // TAILSCALE BENCH PASS").is_visible()
-            print("✓ Studio workbench console telemetry verified.")
+            assert await page.locator("#hero").get_by_text("ELEVATION: FRONT CHASSIS").is_visible()
+            await page.locator("#hero button:has-text('01 // 3D ISO')").click()
+            await page.wait_for_timeout(200)
+            assert await page.locator("#hero").get_by_text("PERSPECTIVE: 3D PROJECTION").is_visible()
+            await page.locator("#hero button:has-text('03 // INTERNAL SECTION')").click()
+            await page.wait_for_timeout(200)
+            assert await page.locator("#hero").get_by_text("ANATOMY: CROSS-SECTION").is_visible()
+            await page.locator("#hero button:has-text('04 // CAD WIREFRAME')").click()
+            await page.wait_for_timeout(200)
+            assert await page.locator("#hero").get_by_text("ENGINEERING: 2D WIREFRAME").is_visible()
+            await page.locator("#hero button:has-text('02 // FRONT BEZEL')").click()
+            await page.wait_for_timeout(200)
+            assert await page.locator("#hero").get_by_text("ELEVATION: FRONT CHASSIS").is_visible()
+            print("✓ Studio workbench console telemetry and 4-view CAD inspection modes verified.")
 
             # Verify Capabilities Section
             cap_heading = await page.locator("#capabilities h2").inner_text()
@@ -262,7 +275,14 @@ async def run_e2e():
 
             hero_eyebrow_kr = await page.locator("#hero").get_by_text("턴키 하드웨어 엔지니어링").first.inner_text()
             assert "하드웨어 엔지니어링" in hero_eyebrow_kr
-            print("✓ Language toggle to KR: Studio hero updated dynamically to Korean.")
+            assert await page.locator("#hero button:has-text('01 // 3D 아이소')").is_visible()
+            assert await page.locator("#hero button:has-text('03 // 내부 단면')").is_visible()
+            await page.locator("#hero button:has-text('03 // 내부 단면')").click()
+            await page.wait_for_timeout(200)
+            assert await page.locator("#hero").get_by_text("해부 모드: 내부 단면 구조").is_visible()
+            await page.locator("#hero button:has-text('02 // 전면 베젤')").click()
+            await page.wait_for_timeout(200)
+            print("✓ Language toggle to KR: Studio hero and CAD workbench updated dynamically to Korean.")
 
             # Verify Capabilities updated to Korean
             cap_h2_kr = await page.locator("#capabilities h2").inner_text()

@@ -41,11 +41,15 @@ pub fn ExplodedHeroBanner() -> Element {
             }
 
             div {
-                class: "relative flex justify-center items-center py-4 select-none",
+                class: "relative flex justify-center items-center py-6 select-none bg-tech-grid rounded-xs border border-zinc-100 my-2",
+                div { class: "absolute top-2 left-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
+                div { class: "absolute top-2 right-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
+                div { class: "absolute bottom-2 left-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
+                div { class: "absolute bottom-2 right-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
                 img {
                     src: "assets/showcase/mcad_exploded.png",
                     alt: "Win95 Minesweeper Touch Keyring 3D Exploded View",
-                    class: "w-full max-h-[500px] object-contain drop-shadow-xl"
+                    class: "w-full max-h-[500px] object-contain drop-shadow-xl transition-transform duration-700 hover:scale-[1.01]"
                 }
             }
 

@@ -35,6 +35,8 @@ pub struct HeroStrings {
     pub console_status: &'static str,
     /// Console demonstrator caption.
     pub console_sub: &'static str,
+    /// Viewport inspection mode configurations (id, tab_label, telemetry, image_src).
+    pub console_modes: [(&'static str, &'static str, &'static str, &'static str); 4],
 }
 
 /// Localized string bundle for navigation bar elements.
@@ -81,6 +83,12 @@ fn hero_en() -> HeroStrings {
         cta_inquire: "inquire project // 턴키 의뢰하기",
         console_status: "SYSTEM ARCHITECTURE: UNIFIED CO-DESIGN // TAILSCALE BENCH PASS",
         console_sub: "FLAGSHIP DEMONSTRATOR // OPUS 01 TOUCH GAMING MACHINE",
+        console_modes: [
+            ("iso", "01 // 3D ISO", "PERSPECTIVE: 3D PROJECTION // PARAMETRIC B-REP", "assets/showcase/mcad_iso.png"),
+            ("front", "02 // FRONT BEZEL", "ELEVATION: FRONT CHASSIS // FLUSH 0.85mm BEZEL", "assets/showcase/mcad_front.png"),
+            ("section", "03 // INTERNAL SECTION", "ANATOMY: CROSS-SECTION // ZERO-INTERFERENCE STACKUP", "assets/showcase/mcad_section.png"),
+            ("drawing", "04 // CAD WIREFRAME", "ENGINEERING: 2D WIREFRAME // COTS 3D STEP VERIFIED", "assets/showcase/mcad_drawing.png"),
+        ],
     }
 }
 
@@ -102,6 +110,12 @@ fn hero_ko() -> HeroStrings {
         cta_inquire: "턴키 의뢰하기 // inquire",
         console_status: "시스템 아키텍처: 통합 코디자인 // 원격 벤치 검증 통과",
         console_sub: "플래그십 실증 머신 // OPUS 01 터치 게임 콘솔",
+        console_modes: [
+            ("iso", "01 // 3D 아이소", "투영 모드: 3D 입체 투시 // 파라메트릭 B-Rep 커널", "assets/showcase/mcad_iso.png"),
+            ("front", "02 // 전면 베젤", "투영 모드: 전면 외함 // 0.85mm 플러시 단차 베젤", "assets/showcase/mcad_front.png"),
+            ("section", "03 // 내부 단면", "해부 모드: 내부 단면 구조 // 무간섭 체적 적층 설계", "assets/showcase/mcad_section.png"),
+            ("drawing", "04 // CAD 도면", "도면 모드: 기구 엔지니어링 와이어프레임 // STEP 검증", "assets/showcase/mcad_drawing.png"),
+        ],
     }
 }
 

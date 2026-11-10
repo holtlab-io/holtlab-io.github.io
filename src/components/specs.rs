@@ -21,9 +21,10 @@ pub fn SpecsMatrix() -> Element {
     rsx! {
         section {
             id: "specs",
-            class: "bg-white py-16 sm:py-24 border-t border-zinc-200 font-sans scroll-mt-20",
+            class: "bg-white py-16 sm:py-24 border-t border-zinc-200 font-sans scroll-mt-20 relative overflow-hidden",
+            div { class: "absolute inset-0 bg-tech-dots opacity-30 pointer-events-none" }
             div {
-                class: "max-w-[1600px] mx-auto px-4 sm:px-8",
+                class: "max-w-[1600px] mx-auto px-4 sm:px-8 relative z-10",
 
                 // Header
                 div {
@@ -45,7 +46,7 @@ pub fn SpecsMatrix() -> Element {
                     for row in spec_rows.iter() {
                         div {
                             key: "{row.key}",
-                            class: "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-4 sm:p-5 hover:bg-zinc-50 transition-colors gap-2 select-none",
+                            class: "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-4 sm:p-5 hover:bg-zinc-50/80 transition-colors gap-2 select-none border-l-2 border-l-transparent hover:border-l-[#E64A19]",
                             div {
                                 class: "text-zinc-500 font-medium",
                                 "{row.key}"

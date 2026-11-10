@@ -39,6 +39,18 @@ async def verify_live():
         assert "HARDWARE ENGINEERING" in hero_eyebrow
         print("✓ Live hero eyebrow verified.")
 
+        # Interactive CAD workbench modes in live Hero
+        assert await page.locator("#hero").get_by_text("SYSTEM ARCHITECTURE: UNIFIED CO-DESIGN // TAILSCALE BENCH PASS").is_visible()
+        await page.locator("#hero button:has-text('01 // 3D ISO')").click()
+        await page.wait_for_timeout(300)
+        assert await page.locator("#hero").get_by_text("PERSPECTIVE: 3D PROJECTION").is_visible()
+        await page.locator("#hero button:has-text('03 // INTERNAL SECTION')").click()
+        await page.wait_for_timeout(300)
+        assert await page.locator("#hero").get_by_text("ANATOMY: CROSS-SECTION").is_visible()
+        await page.locator("#hero button:has-text('02 // FRONT BEZEL')").click()
+        await page.wait_for_timeout(300)
+        print("✓ Live studio CAD workbench 4-view inspection modes verified.")
+
         # 3. Verify Capabilities Section
         cap_h2 = await page.locator("#capabilities h2").inner_text()
         assert "4 pillars of unified turnkey hardware" in cap_h2

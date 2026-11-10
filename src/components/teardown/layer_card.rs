@@ -25,7 +25,11 @@ pub fn LayerInspector(layer: TeardownLayer) -> Element {
 
             // Visual Column (Left)
             div {
-                class: "lg:col-span-6 flex flex-col justify-between bg-zinc-50 border border-zinc-200/80 rounded-xs p-4 sm:p-6 relative overflow-hidden group min-h-[380px]",
+                class: "lg:col-span-6 flex flex-col justify-between bg-zinc-50 border border-zinc-200/80 rounded-xs p-4 sm:p-6 relative overflow-hidden group min-h-[380px] bg-tech-grid",
+                div { class: "absolute top-2 left-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
+                div { class: "absolute top-2 right-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
+                div { class: "absolute bottom-10 left-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
+                div { class: "absolute bottom-10 right-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
                 div {
                     class: "w-full flex flex-wrap items-center justify-between gap-2 z-10 mb-2",
                     div {
