@@ -38,8 +38,8 @@ pub struct HeroStrings {
 pub struct NavStrings {
     /// Studio subtitle below brand logo.
     pub descriptor: &'static str,
-    /// Verified tolerance badge indicator.
-    pub tolerance_badge: &'static str,
+    /// Verified turnkey badge indicator.
+    pub turnkey_badge: &'static str,
     /// Direct inquiry CTA button text.
     pub cta_inquire: &'static str,
     /// Desktop navigation anchor labels.
@@ -104,7 +104,7 @@ pub fn get_nav_strings(lang: Language) -> NavStrings {
     match lang {
         Language::En => NavStrings {
             descriptor: "Boutique Hardware Engineering Studio",
-            tolerance_badge: "UNIFIED TURNKEY // VERIFIED",
+            turnkey_badge: "UNIFIED TURNKEY // VERIFIED",
             cta_inquire: "inquire // 의뢰하기",
             nav_items: [
                 ("#demonstrator", "demonstrator", "01"),
@@ -123,7 +123,7 @@ pub fn get_nav_strings(lang: Language) -> NavStrings {
         },
         Language::Ko => NavStrings {
             descriptor: "부티크 하드웨어 엔지니어링 스튜디오",
-            tolerance_badge: "단일 리드 턴키 // 검증 완료",
+            turnkey_badge: "단일 리드 턴키 // 검증 완료",
             cta_inquire: "inquire // 의뢰하기",
             nav_items: [
                 ("#demonstrator", "실증 기기", "01"),

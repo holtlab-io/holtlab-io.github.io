@@ -1,5 +1,5 @@
 //! ## Overview
-//! Minimalist wireframe footer displaying brand identity, verified tolerance standards, and coordinates.
+//! Minimalist wireframe footer displaying brand identity, turnkey verification standards, and coordinates.
 //! Features links to GitHub organization, YouTube channel, and direct studio dispatch email.
 //!
 //! ## Search Tags

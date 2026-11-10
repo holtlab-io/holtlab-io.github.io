@@ -1,9 +1,9 @@
 //! ## Overview
 //! High-density Swiss engineering specification matrix table.
-//! Presents exacting tolerances, dimensions, materials, silicon specs, and firmware telemetry without marketing fluff.
+//! Presents exacting dimensional bounds, materials, silicon specs, and firmware telemetry without marketing fluff.
 //!
 //! ## Search Tags
-//! #specs, #matrix, #tolerances, #stackup, #swiss-engineering
+//! #specs, #matrix, #specifications, #stackup, #swiss-engineering
 //!
 //! ## Submodules
 //! None. This module provides atomic specification matrix layout components.

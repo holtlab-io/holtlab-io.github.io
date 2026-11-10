@@ -52,7 +52,7 @@ pub struct TeardownLayerData {
     pub verification_badge: &'static str,
     /// Primary physical or electrical dimension metric.
     pub primary_spec: &'static str,
-    /// Secondary tolerance or stackup clearance specification.
+    /// Secondary dimensional or stackup clearance specification.
     pub secondary_spec: &'static str,
     /// Bus interface or industrial material composition.
     pub bus_or_material: &'static str,

@@ -50,7 +50,7 @@ pub fn NavStudioBadge() -> Element {
         div {
             class: "hidden 2xl:flex items-center gap-2 pl-3 border-l border-zinc-200 text-[10px] font-mono text-zinc-400 select-none",
             span { class: "w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" }
-            span { "{nav_strings.tolerance_badge}" }
+            span { "{nav_strings.turnkey_badge}" }
         }
     }
 }

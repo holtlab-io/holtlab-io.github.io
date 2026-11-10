@@ -1,9 +1,9 @@
 //! ## Overview
 //! Localized data models for the 10-row Swiss engineering specification matrix table.
-//! Provides bilingual parity for exact physical tolerances, silicon parameters, and fabrication references.
+//! Provides bilingual parity for exact physical dimensions, silicon parameters, and fabrication references.
 //!
 //! ## Search Tags
-//! #i18n, #specs, #matrix, #tolerances, #stackup
+//! #i18n, #specs, #matrix, #specifications, #stackup
 //!
 //! ## Submodules
 //! None. This module provides atomic specification data models.

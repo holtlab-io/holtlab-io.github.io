@@ -6,7 +6,7 @@
 //! #navbar, #header, #navigation, #framework-style, #branding
 //!
 //! ## Submodules
-//! - [`brand`] (`brand.rs`): Brand logo lockup, studio descriptor, and tolerance badge.
+//! - [`brand`] (`brand.rs`): Brand logo lockup, studio descriptor, and turnkey badge.
 //! - [`mobile`] (`mobile.rs`): Responsive mobile navigation drawer and touch menu.
 //! - [`nav_links`] (`nav_links.rs`): Desktop navigation anchors and matte vermilion inquiry CTA.
 

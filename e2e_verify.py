@@ -197,6 +197,15 @@ async def run_e2e():
             assert await page.locator("#studio").get_by_text("01 // CO-DESIGN LOCK").is_visible()
             print("✓ Studio turnkey value proposition and 4-phase pipeline verified.")
 
+            # Verify Eradication of Forbidden Terms in EN mode
+            body_text_en = await page.inner_text("body")
+            dom_html_en = await page.content()
+            forbidden_terms = ["0.00 mm³", "0.000 mm³", "0.00mm³", "0.00 mm3", "0.000 mm3", "JLCPCB", "JLC3DP", "JLC04161H", "정밀공차"]
+            for term in forbidden_terms:
+                assert term not in body_text_en, f"Forbidden term '{term}' found in English body text"
+                assert term not in dom_html_en, f"Forbidden term '{term}' found in English DOM HTML"
+            print("✓ Eradication audit: 0 instances of low-cost vendors and boolean CAD metrics in EN.")
+
             # Capture Desktop EN Screenshot
             desktop_full_en = os.path.join(OUTPUT_DIR, "desktop_full_en.png")
             await page.screenshot(path=desktop_full_en, full_page=True)
@@ -254,6 +263,15 @@ async def run_e2e():
             saved_lang = await page.evaluate("localStorage.getItem('holtlab_lang')")
             assert saved_lang == "ko", f"Expected localStorage holtlab_lang to be 'ko', got {saved_lang}"
             print("✓ LocalStorage persistence verified: holtlab_lang = 'ko'.")
+
+            # Verify Eradication of Forbidden Terms in KR mode
+            body_text_kr = await page.inner_text("body")
+            dom_html_kr = await page.content()
+            for term in forbidden_terms:
+                assert term not in body_text_kr, f"Forbidden term '{term}' found in Korean body text"
+                assert term not in dom_html_kr, f"Forbidden term '{term}' found in Korean DOM HTML"
+            assert "공차" not in body_text_kr, "Forbidden term '공차' found in Korean body text"
+            print("✓ Eradication audit: 0 instances of low-cost vendors and boolean CAD metrics in KR.")
 
             # Capture Desktop KR Screenshot
             desktop_full_kr = os.path.join(OUTPUT_DIR, "desktop_full_kr.png")
