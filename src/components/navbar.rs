@@ -6,7 +6,7 @@ pub fn Navbar() -> Element {
 
     rsx! {
         header {
-            class: "fixed top-0 left-0 right-0 z-50 bg-[#06080C]/90 backdrop-blur-md border-b border-white/[0.08] transition-all duration-200",
+            class: "sticky top-0 left-0 right-0 z-50 bg-[#06080C]/90 backdrop-blur-md border-b border-white/[0.08] transition-all duration-200",
             div {
                 class: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between",
                 // Left Brand Logo & Title

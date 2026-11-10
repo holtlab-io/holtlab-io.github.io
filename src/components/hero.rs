@@ -4,7 +4,7 @@ use dioxus::prelude::*;
 pub fn Hero() -> Element {
     rsx! {
         section {
-            class: "relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-cad-grid",
+            class: "relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden bg-cad-grid",
             div {
                 class: "relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
                 div {
