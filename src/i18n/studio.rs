@@ -83,19 +83,19 @@ fn traditional_card(lang: Language) -> ComparisonCardStrings {
 fn turnkey_card(lang: Language) -> ComparisonCardStrings {
     match lang {
         Language::En => ComparisonCardStrings {
-            badge: "HOLT LAB 1-PERSON TURNKEY",
+            badge: "HOLT LAB UNIFIED TURNKEY",
             metric: "ZERO-REWORK GUARANTEED",
-            heading: "one closed-loop lead architect",
-            body: "every millimeter of chassis geometry, copper impedance trace, and real-time clock cycle is engineered by a single architect. COTS 3D STEP models are locked before trace freeze. Volumetric collision checks and 0 ERC/DRC verification run deterministically before manufacturing orders.",
+            heading: "unified co-design loop",
+            body: "every millimeter of chassis geometry, copper impedance trace, and real-time clock cycle is engineered within a single unified co-design loop. COTS 3D STEP models are locked before trace freeze. Volumetric collision checks and 0 ERC/DRC verification run deterministically before manufacturing orders.",
             bullet_1: "✓ Interference-free assembly: OpenCascade B-Rep Gate 1 check",
             bullet_2: "✓ Firmware-aware ECAD: GPIO strapping & RC delays solved in design",
             bullet_3: "✓ First-spin success: working hardware boots over remote Tailscale bench",
         },
         Language::Ko => ComparisonCardStrings {
-            badge: "홀트 랩 1인 턴키 솔루션",
+            badge: "홀트 랩 통합 턴키 솔루션",
             metric: "단 1회 무결 브링업",
-            heading: "단일 리드 아키텍트의 완전 폐루프",
-            body: "기구 외함의 0.1밀리미터 치수부터 회로의 임피던스 배선, 고신뢰성 펌웨어의 클록 사이클까지 단 한 명의 리드 아키텍트가 총괄합니다. 배선 확정 전 부품 3D STEP 모델을 100% 동기화하며, 발주 전 3D 체적 간섭 및 0 ERC/DRC를 결정론적으로 검증합니다.",
+            heading: "단일 통합 엔지니어링 루프",
+            body: "기구 외함의 0.1밀리미터 치수부터 회로의 임피던스 배선, 고신뢰성 펌웨어의 클록 사이클까지 기구·회로·펌웨어를 하나의 통합된 엔지니어링 아키텍처로 총괄합니다. 배선 확정 전 부품 3D STEP 모델을 100% 동기화하며, 발주 전 3D 체적 간섭 및 0 ERC/DRC를 결정론적으로 검증합니다.",
             bullet_1: "✓ 무간섭 일체형 설계: OpenCascade B-Rep 게이트 1 사전 검증",
             bullet_2: "✓ 펌웨어 연계 회로: 스트래핑 핀 및 RC 지연을 회로 설계 단에서 해결",
             bullet_3: "✓ 단 1회 생산 성공: Tailscale 원격 환경에서 즉시 펌웨어 구동 완주",
@@ -158,13 +158,13 @@ pub fn get_studio_strings(lang: Language) -> StudioStrings {
     let (eyebrow, title, subtitle, pipeline) = match lang {
         Language::En => (
             "studio turnkey model",
-            "why 1-person turnkey?",
+            "why unified turnkey?",
             "eliminating agency ping-pong // silicon to screen",
             pipeline_phases_en(),
         ),
         Language::Ko => (
             "스튜디오 턴키 모델",
-            "왜 1인 턴키인가?",
+            "왜 통합 턴키인가?",
             "외주 핑퐁 근절 // 실리콘 칩부터 화면까지",
             pipeline_phases_ko(),
         ),

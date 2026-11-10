@@ -1,5 +1,5 @@
 //! ## Overview
-//! Studio turnkey value proposition section explaining the 1-person unified hardware architecture.
+//! Studio turnkey value proposition section explaining the unified turnkey hardware architecture.
 //! Highlights the contrast between fragmented multi-agency ping-pong and Holt Lab's closed-loop co-design execution.
 //!
 //! ## Search Tags

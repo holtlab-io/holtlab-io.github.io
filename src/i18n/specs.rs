@@ -43,7 +43,7 @@ pub fn get_specs_section_strings(lang: Language) -> SpecsSectionStrings {
         Language::Ko => SpecsSectionStrings {
             eyebrow: "엔지니어링 기술 사양",
             title: "상세 기술 제원",
-            subtitle: "윈도우 95 터치 지뢰찾기 키링 // 단일 리드 턴키 하드웨어",
+            subtitle: "윈도우 95 터치 지뢰찾기 키링 // 통합 턴키 하드웨어",
         },
     }
 }

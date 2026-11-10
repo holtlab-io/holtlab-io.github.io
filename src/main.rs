@@ -50,7 +50,7 @@ fn App() -> Element {
                     if let Ok(Some(meta_desc)) = doc.query_selector("meta[name='description']") {
                         let desc = match current_lang {
                             Language::En => "Holt Lab — Hardware, Mechanical & Embedded Engineering Studio. Unified Turnkey Hardware & Embedded Execution.",
-                            Language::Ko => "Holt Lab — 하드웨어, 기구 및 임베디드 엔지니어링 랩. 단일 리드 턴키 하드웨어 개발.",
+                            Language::Ko => "Holt Lab — 하드웨어, 기구 및 임베디드 엔지니어링 랩. 통합 턴키 하드웨어 개발.",
                         };
                         let _ = meta_desc.set_attribute("content", desc);
                     }

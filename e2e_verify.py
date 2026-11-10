@@ -191,20 +191,25 @@ async def run_e2e():
 
             # Verify Studio Turnkey Section
             studio_h2 = await page.locator("#studio h2").inner_text()
-            assert "why 1-person turnkey?" in studio_h2
+            assert "why unified turnkey?" in studio_h2
             assert await page.locator("#studio").get_by_text("TRADITIONAL AGENCY FRAGMENTATION").is_visible()
-            assert await page.locator("#studio").get_by_text("HOLT LAB 1-PERSON TURNKEY").is_visible()
+            assert await page.locator("#studio").get_by_text("HOLT LAB UNIFIED TURNKEY").is_visible()
             assert await page.locator("#studio").get_by_text("01 // CO-DESIGN LOCK").is_visible()
             print("✓ Studio turnkey value proposition and 4-phase pipeline verified.")
 
             # Verify Eradication of Forbidden Terms in EN mode
             body_text_en = await page.inner_text("body")
             dom_html_en = await page.content()
-            forbidden_terms = ["0.00 mm³", "0.000 mm³", "0.00mm³", "0.00 mm3", "0.000 mm3", "JLCPCB", "JLC3DP", "JLC04161H", "정밀공차", "Boutique", "boutique", "부티크", "BOUTIQUE"]
+            forbidden_terms = [
+                "0.00 mm³", "0.000 mm³", "0.00mm³", "0.00 mm3", "0.000 mm3",
+                "JLCPCB", "JLC3DP", "JLC04161H", "정밀공차",
+                "Boutique", "boutique", "부티크", "BOUTIQUE",
+                "1인", "1-person", "1-PERSON", "single architect", "단 한 명"
+            ]
             for term in forbidden_terms:
                 assert term not in body_text_en, f"Forbidden term '{term}' found in English body text"
                 assert term not in dom_html_en, f"Forbidden term '{term}' found in English DOM HTML"
-            print("✓ Eradication audit: 0 instances of low-cost vendors, boutique, and boolean CAD metrics in EN.")
+            print("✓ Eradication audit: 0 instances of low-cost vendors, boutique, boolean CAD metrics, and 1-person solo claims in EN.")
 
             # Capture Desktop EN Screenshot
             desktop_full_en = os.path.join(OUTPUT_DIR, "desktop_full_en.png")
@@ -248,8 +253,8 @@ async def run_e2e():
 
             # Verify Studio updated to Korean
             studio_h2_kr = await page.locator("#studio h2").inner_text()
-            assert "왜 1인 턴키인가?" in studio_h2_kr
-            assert await page.locator("#studio").get_by_text("홀트 랩 1인 턴키 솔루션").first.is_visible()
+            assert "왜 통합 턴키인가?" in studio_h2_kr
+            assert await page.locator("#studio").get_by_text("홀트 랩 통합 턴키 솔루션").first.is_visible()
             assert await page.locator("#studio").get_by_text("기존 분절형 다중 외주 모델").first.is_visible()
             print("✓ Language toggle to KR: Studio turnkey updated dynamically to Korean.")
 

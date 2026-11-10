@@ -65,7 +65,7 @@ pub fn get_hero_strings(lang: Language) -> HeroStrings {
         Language::En => HeroStrings {
             eyebrow: "OPUS 01 // HARDWARE DEMONSTRATOR",
             title: "win95 minesweeper touch keyring",
-            subtitle: "Interference-free mechanical assembly, 4-layer controlled-impedance PCBA, and real-time 60Hz embedded graphics engine. A living proof of 1-person turnkey hardware execution from silicon to screen.",
+            subtitle: "Interference-free mechanical assembly, 4-layer controlled-impedance PCBA, and real-time 60Hz embedded graphics engine. A living proof of unified turnkey hardware execution from silicon to screen.",
             pills: [
                 "43.4×69.2×13.78mm",
                 "ESP32-C3 160MHz",
@@ -82,7 +82,7 @@ pub fn get_hero_strings(lang: Language) -> HeroStrings {
         Language::Ko => HeroStrings {
             eyebrow: "OPUS 01 // 하드웨어 실증 머신",
             title: "win95 minesweeper touch keyring",
-            subtitle: "무간섭 일체형 기구 설계, 4층 임피던스 제어 PCBA, 고신뢰성 실시간 60Hz 그래픽스 엔진. 실리콘 칩셋부터 외함과 화면까지 1인 턴키 하드웨어 개발의 정점을 증명합니다.",
+            subtitle: "무간섭 일체형 기구 설계, 4층 임피던스 제어 PCBA, 고신뢰성 실시간 60Hz 그래픽스 엔진. 실리콘 칩셋부터 외함과 화면까지 통합 턴키 하드웨어 엔지니어링의 정점을 증명합니다.",
             pills: [
                 "43.4×69.2×13.78mm",
                 "ESP32-C3 160MHz",
@@ -117,13 +117,13 @@ pub fn get_nav_strings(lang: Language) -> NavStrings {
                 ("#demonstrator", "demonstrator", "flagship hardware machine"),
                 ("#teardown", "teardown", "4-layer engineering teardown"),
                 ("#specs", "specs", "monospaced swiss spec matrix"),
-                ("#studio", "studio", "1-person turnkey model"),
+                ("#studio", "studio", "unified turnkey model"),
                 ("#inquire", "inquire // 의뢰하기", "direct architect dispatch"),
             ],
         },
         Language::Ko => NavStrings {
             descriptor: "하드웨어 & 임베디드 엔지니어링 랩",
-            turnkey_badge: "단일 리드 턴키 // 검증 완료",
+            turnkey_badge: "통합 턴키 // 검증 완료",
             cta_inquire: "inquire // 의뢰하기",
             nav_items: [
                 ("#demonstrator", "실증 기기", "01"),
@@ -136,7 +136,7 @@ pub fn get_nav_strings(lang: Language) -> NavStrings {
                 ("#demonstrator", "실증 기기", "플래그십 하드웨어 실증 머신"),
                 ("#teardown", "하드웨어 분해", "4계층 엔지니어링 분해 분석"),
                 ("#specs", "기술 사양", "스위스 정밀 기술 사양 매트릭스"),
-                ("#studio", "턴키 모델", "1인 턴키 코디자인 모델"),
+                ("#studio", "턴키 모델", "통합 턴키 코디자인 모델"),
                 ("#inquire", "의뢰하기", "리드 아키텍트 직통 의뢰"),
             ],
         },
