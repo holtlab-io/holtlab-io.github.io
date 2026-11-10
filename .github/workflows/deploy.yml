@@ -25,11 +25,12 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Compile Tailwind CSS
         run: |
-          npx -y @tailwindcss/cli -i input.css -o assets/tailwind.css
+          npm ci
+          npx @tailwindcss/cli -i input.css -o assets/tailwind.css
           cp assets/tailwind.css public/assets/tailwind.css
 
       - name: Install Rust
