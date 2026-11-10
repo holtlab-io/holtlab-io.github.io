@@ -1,11 +1,18 @@
-//! Holt Lab — Official Studio Landing Page
+//! ## Overview
+//! Root crate entrypoint for Holt Lab's official landing page.
+//! Configures global metadata, fonts, styles, and launches the Dioxus WebAssembly application.
 //!
-//! Built with Dioxus 0.7 WebAssembly & Tailwind CSS
+//! ## Search Tags
+//! #entrypoint, #app, #dioxus, #wasm, #main
+//!
+//! ## Submodules
+//! - [`components`] (`components/mod.rs`): Reusable UI components and section blocks.
+//! - [`views`] (`views/mod.rs`): Top-level page views.
 
 use dioxus::prelude::*;
 
-mod components;
-mod views;
+pub mod components;
+pub mod views;
 
 use views::Home;
 
@@ -15,6 +22,7 @@ fn main() {
     dioxus::launch(App);
 }
 
+/// Root application component setting document metadata and rendering the primary view.
 #[component]
 fn App() -> Element {
     rsx! {

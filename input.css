@@ -1,20 +1,21 @@
 @import "tailwindcss";
 @source "./src/**/*.{rs,html}";
 
-/* Holt Lab — Industrial Hardware Engineering System (Teenage Engineering × Linear × Dieter Rams) */
+/* Holt Lab — Industrial Hardware Engineering System (Teenage Engineering × Dieter Rams) */
 :root {
-  --holt-black: #06080C;
-  --holt-panel: #0B0E14;
-  --holt-card: #0F131C;
-  --holt-border: rgba(255, 255, 255, 0.08);
-  --holt-border-subtle: rgba(255, 255, 255, 0.04);
-  --holt-orange: #FF5722;
-  --holt-green: #00E676;
+  --holt-bg: #FAFAFA;
+  --holt-surface: #FFFFFF;
+  --holt-surface-muted: #F4F4F5;
+  --holt-ink: #09090B;
+  --holt-ink-secondary: #52525B;
+  --holt-border: #E4E4E7;
+  --holt-border-strong: #D4D4D8;
+  --holt-orange: #EA580C;
 }
 
 body {
-  background-color: #06080C;
-  color: #E2E8F0;
+  background-color: var(--holt-bg);
+  color: var(--holt-ink);
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
   overflow-x: hidden;
   letter-spacing: -0.01em;
@@ -24,75 +25,11 @@ body {
   font-family: 'JetBrains Mono', 'Space Mono', 'SF Mono', Menlo, Consolas, monospace;
 }
 
-/* Precision Mechanical Technical Grid */
-.bg-cad-grid {
-  background-color: #06080C;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
-  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+/* Subtle tactile button press */
+.tactile-button {
+  transition: transform 0.08s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 
-/* Tactile Hardware Panel */
-.hardware-panel {
-  background: #0B0E15;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  position: relative;
-}
-
-.hardware-panel::before {
-  content: "+";
-  position: absolute;
-  top: -7px;
-  left: -5px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.2);
-  pointer-events: none;
-}
-
-.hardware-panel::after {
-  content: "+";
-  position: absolute;
-  bottom: -7px;
-  right: -5px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.2);
-  pointer-events: none;
-}
-
-/* Status Indicator LED */
-.led-indicator {
-  width: 6px;
-  height: 6px;
-  border-radius: 9999px;
-  background-color: #00E676;
-  box-shadow: 0 0 8px #00E676;
-}
-
-.led-indicator-orange {
-  width: 6px;
-  height: 6px;
-  border-radius: 9999px;
-  background-color: #FF5722;
-  box-shadow: 0 0 8px #FF5722;
-}
-
-/* Mechanical Caliper Tag */
-.caliper-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.05em;
-  padding: 0.15rem 0.45rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #94A3B8;
+.tactile-button:active {
+  transform: translateY(1px);
 }
