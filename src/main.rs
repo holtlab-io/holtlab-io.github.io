@@ -33,6 +33,32 @@ pub async fn static_routes() -> Result<Vec<String>, ServerFnError> {
     Ok(routes)
 }
 
+/// Synchronizes with Dioxus CLI client bundler to ensure clean index.html template.
+#[cfg(feature = "server")]
+async fn sync_client_template(static_dir: &std::path::Path) {
+    let index_file = static_dir.join("index.html");
+    for _ in 0..100 {
+        if index_file.exists() {
+            if let Ok(content) = std::fs::read_to_string(&index_file) {
+                if content.contains("type=\"module\"") {
+                    if content.contains("data-node-hydration") {
+                        if let Some((before_main, rest)) = content.split_once("id=\"main\">") {
+                            if let Some(script_idx) = rest.find("<script type=\"module\"") {
+                                let script_part = &rest[script_idx..];
+                                let clean = format!("{}id=\"main\"></div>\n{}", before_main, script_part);
+                                let _ = std::fs::write(&index_file, clean);
+                            }
+                        }
+                    }
+                    tokio::time::sleep(std::time::Duration::from_millis(50)).await;
+                    break;
+                }
+            }
+        }
+        tokio::time::sleep(std::time::Duration::from_millis(50)).await;
+    }
+}
+
 /// Server entrypoint running Axum with Dioxus Fullstack SSR handler for SSG builds.
 #[cfg(feature = "server")]
 #[tokio::main]
@@ -46,6 +72,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .and_then(|p| p.parent().map(|parent| parent.join("public")))
         })
         .unwrap_or_else(|| std::path::PathBuf::from("./public"));
+
+    sync_client_template(&static_dir).await;
 
     let incremental_cfg = dioxus::server::IncrementalRendererConfig::new()
         .static_dir(static_dir);
