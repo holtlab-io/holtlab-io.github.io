@@ -1,0 +1,90 @@
+@import "tailwindcss";
+@source "./src/**/*.{rs,html}";
+
+/* Holt Lab Custom Engineering Styling */
+:root {
+  --holt-bg: #0b0f17;
+  --holt-card: #11151c;
+  --holt-border: rgba(255, 255, 255, 0.08);
+  --holt-orange: #f97316;
+  --holt-orange-glow: rgba(249, 115, 22, 0.25);
+  --holt-cyan: #38bdf8;
+  --holt-cyan-glow: rgba(56, 189, 248, 0.25);
+}
+
+body {
+  background-color: #0b0f17;
+  color: #f1f5f9;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+/* Subtle blueprint grid */
+.bg-blueprint-grid {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Glassmorphism Card */
+.glass-panel {
+  background: rgba(17, 21, 28, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow: 0 12px 30px -10px rgba(249, 115, 22, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Glowing text and borders */
+.glow-orange {
+  box-shadow: 0 0 20px -2px rgba(249, 115, 22, 0.35);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px -2px rgba(56, 189, 248, 0.35);
+}
+
+.text-gradient-orange {
+  background: linear-gradient(135deg, #ffffff 30%, #fb923c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-title {
+  background: linear-gradient(180deg, #ffffff 40%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Telemetry Badge */
+.telemetry-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+}
+
+.telemetry-tag.active {
+  background: rgba(249, 115, 22, 0.1);
+  border-color: rgba(249, 115, 22, 0.3);
+  color: #fb923c;
+}

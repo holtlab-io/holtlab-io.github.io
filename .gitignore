@@ -2,3 +2,4 @@
 /dist
 **/*.rs.bk
 Cargo.lock
+node_modules/
