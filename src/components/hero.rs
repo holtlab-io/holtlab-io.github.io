@@ -10,6 +10,7 @@
 
 use dioxus::prelude::*;
 use crate::i18n::{hero::get_hero_strings, HeroStrings, Language};
+use crate::routes::Route;
 
 /// Primary studio hero section rendered at `#hero`.
 #[component]
@@ -20,7 +21,7 @@ pub fn HeroDemonstrator() -> Element {
     rsx! {
         section {
             id: "hero",
-            class: "relative bg-[#FAFAFA] pt-12 sm:pt-20 pb-20 sm:pb-28 border-b border-zinc-200 overflow-hidden font-sans scroll-mt-20",
+            class: "relative bg-[#FAFAFA] pt-12 sm:pt-20 pb-16 sm:pb-24 border-b border-zinc-200 overflow-hidden font-sans scroll-mt-20",
             div {
                 class: "absolute inset-0 bg-tech-grid opacity-60 pointer-events-none"
             }
@@ -32,7 +33,7 @@ pub fn HeroDemonstrator() -> Element {
                 HeroHeaderBlock { strings }
                 HeroSpecsPills { strings }
                 HeroActionLinks { strings }
-                HeroStudioConsole { strings }
+                HeroOverviewVisual { strings }
             }
         }
     }
@@ -43,7 +44,7 @@ pub fn HeroDemonstrator() -> Element {
 fn HeroHeaderBlock(strings: HeroStrings) -> Element {
     rsx! {
         div {
-            class: "max-w-4xl flex flex-col items-center space-y-4",
+            class: "max-w-4xl flex flex-col items-center space-y-4 reveal-on-scroll",
             div {
                 class: "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-zinc-200 text-zinc-700 font-mono text-[11px] font-semibold tracking-wider uppercase shadow-2xs",
                 span { class: "w-2 h-2 rounded-full bg-[#E64A19] animate-pulse" }
@@ -66,7 +67,7 @@ fn HeroHeaderBlock(strings: HeroStrings) -> Element {
 fn HeroSpecsPills(strings: HeroStrings) -> Element {
     rsx! {
         div {
-            class: "flex flex-wrap items-center justify-center gap-2 pt-6 pb-2",
+            class: "flex flex-wrap items-center justify-center gap-2 pt-6 pb-2 reveal-on-scroll delay-100",
             for spec in strings.pills.iter() {
                 span {
                     key: "{spec}",
@@ -83,15 +84,15 @@ fn HeroSpecsPills(strings: HeroStrings) -> Element {
 fn HeroActionLinks(strings: HeroStrings) -> Element {
     rsx! {
         div {
-            class: "flex flex-col sm:flex-row items-center gap-4 pt-6 pb-10",
-            a {
-                href: "#case-study",
+            class: "flex flex-col sm:flex-row items-center gap-4 pt-6 pb-8 reveal-on-scroll delay-200",
+            Link {
+                to: Route::Demonstrator {},
                 class: "tactile-button w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xs bg-zinc-950 hover:bg-zinc-800 text-white font-mono text-xs font-semibold tracking-wider transition-colors shadow-xs",
                 span { "{strings.cta_casestudy}" }
-                span { "↓" }
+                span { "→" }
             }
-            a {
-                href: "#inquire",
+            Link {
+                to: Route::ContactPage {},
                 class: "tactile-button w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xs bg-white hover:bg-zinc-50 border border-zinc-300 text-zinc-900 font-mono text-xs font-semibold tracking-wider transition-colors shadow-2xs",
                 span { "{strings.cta_inquire}" }
                 span { "→" }
@@ -100,17 +101,14 @@ fn HeroActionLinks(strings: HeroStrings) -> Element {
     }
 }
 
-/// Studio workbench console presenting the flagship demonstrator with telemetry.
+/// Clean studio hardware visual preview with telemetry callouts and corner crosshairs.
 #[component]
-fn HeroStudioConsole(strings: HeroStrings) -> Element {
-    let mut active_mode_idx = use_signal(|| 1usize);
-    let active_mode = strings.console_modes[active_mode_idx()];
-
+fn HeroOverviewVisual(strings: HeroStrings) -> Element {
     rsx! {
         div {
-            class: "w-full max-w-4xl bg-white border border-zinc-200 rounded-xs shadow-md p-4 sm:p-6 my-2 group select-none relative overflow-hidden",
+            class: "w-full max-w-4xl bg-white border border-zinc-200 rounded-xs shadow-md p-4 sm:p-6 my-2 select-none relative overflow-hidden reveal-on-scroll delay-300",
             div {
-                class: "w-full flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-200/80 pb-3 mb-4 gap-2 text-[11px] font-mono text-zinc-500",
+                class: "w-full flex items-center justify-between border-b border-zinc-200/80 pb-3 mb-4 text-[11px] font-mono text-zinc-500",
                 div {
                     class: "flex items-center gap-2 truncate",
                     span { class: "relative flex h-2 w-2 shrink-0",
@@ -119,68 +117,33 @@ fn HeroStudioConsole(strings: HeroStrings) -> Element {
                     }
                     span { class: "font-semibold text-zinc-800 truncate", "{strings.console_status}" }
                 }
+                span {
+                    class: "hidden sm:inline-block text-[10px] text-zinc-400 font-mono tracking-wider",
+                    "OPUS 01 // HARDWARE DEMONSTRATOR"
+                }
+            }
+            div {
+                class: "relative z-10 flex flex-col items-center py-2 bg-tech-grid rounded-xs border border-zinc-100 overflow-hidden",
+                div { class: "absolute top-2 left-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
+                div { class: "absolute top-2 right-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
+                div { class: "absolute bottom-12 left-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
+                div { class: "absolute bottom-12 right-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
+
                 div {
-                    class: "inline-flex items-center gap-1 bg-zinc-100/90 p-0.5 rounded-xs border border-zinc-200/80 self-start sm:self-auto",
-                    for (idx, (mode_key, label, _, _)) in strings.console_modes.iter().enumerate() {
-                        button {
-                            key: "{mode_key}",
-                            r#type: "button",
-                            onclick: move |_| active_mode_idx.set(idx),
-                            class: if active_mode_idx() == idx {
-                                "px-2 py-1 rounded-2xs bg-zinc-950 text-white font-bold shadow-2xs text-[10px] tracking-wider transition-all"
-                            } else {
-                                "px-2 py-1 text-zinc-600 hover:text-zinc-950 text-[10px] tracking-wider transition-colors"
-                            },
-                            "{label}"
-                        }
+                    class: "w-full flex justify-center items-center py-4 min-h-[260px] sm:min-h-[340px]",
+                    img {
+                        src: "assets/showcase/mcad_iso_front.png",
+                        alt: "Holt Lab Flagship Demonstrator Showcase Model",
+                        class: "w-full max-h-[360px] object-contain drop-shadow-xl transition-transform duration-500 hover:scale-[1.015]"
                     }
                 }
-            }
-            ConsoleViewport { strings, active_mode }
-        }
-    }
-}
 
-/// CAD Viewport displaying active render, engineering grid, corner crosshairs, and metrics.
-#[component]
-fn ConsoleViewport(strings: HeroStrings, active_mode: (&'static str, &'static str, &'static str, &'static str)) -> Element {
-    let (_, _, telemetry, img_src) = active_mode;
-
-    rsx! {
-        div {
-            class: "relative z-10 flex flex-col items-center py-2 bg-tech-grid rounded-xs border border-zinc-100 overflow-hidden",
-            div { class: "absolute top-2 left-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
-            div { class: "absolute top-2 right-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
-            div { class: "absolute bottom-12 left-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
-            div { class: "absolute bottom-12 right-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
-
-            div {
-                class: "w-full px-4 pt-1 flex items-center justify-between text-[10px] font-mono text-zinc-400 select-none",
-                span {
-                    class: "px-2 py-0.5 rounded-xs bg-zinc-900/90 text-white font-medium tracking-wider backdrop-blur-xs",
-                    "{telemetry}"
+                div {
+                    class: "w-full flex items-center justify-between text-[11px] font-mono text-zinc-400 pt-3 border-t border-zinc-200/80 px-4 gap-2 bg-white/80 backdrop-blur-xs",
+                    span { class: "truncate", "{strings.width_label}" }
+                    span { class: "truncate font-medium text-zinc-600", "{strings.material_label}" }
+                    span { class: "truncate text-right", "{strings.height_label}" }
                 }
-                span {
-                    class: "hidden sm:inline-block text-[9px] text-zinc-400 uppercase tracking-widest",
-                    "{strings.console_sub}"
-                }
-            }
-
-            div {
-                key: "{img_src}",
-                class: "w-full flex justify-center items-center py-4 min-h-[300px] sm:min-h-[420px] animate-fadeIn",
-                img {
-                    src: "{img_src}",
-                    alt: "Holt Lab Engineering CAD Inspection Model",
-                    class: "w-full max-h-[440px] object-contain drop-shadow-xl transition-transform duration-500 hover:scale-[1.015]"
-                }
-            }
-
-            div {
-                class: "w-full flex items-center justify-between text-[11px] font-mono text-zinc-400 pt-3 border-t border-zinc-200/80 px-4 gap-2 bg-white/80 backdrop-blur-xs",
-                span { class: "truncate", "{strings.width_label}" }
-                span { class: "truncate font-medium text-zinc-600", "{strings.material_label}" }
-                span { class: "truncate text-right", "{strings.height_label}" }
             }
         }
     }

@@ -121,7 +121,7 @@ fn pipeline_phases_en() -> [PipelinePhaseStrings; 4] {
             desc: "factory-direct precision SMT assembly & industrial MJF PA12 fabrication with live status tracking.",
         },
         PipelinePhaseStrings {
-            phase_tag: "04 // EMBEDDED BRING-UP",
+            phase_tag: "04 // REMOTE BENCH BOOT",
             title: "zero-rework firmware",
             desc: "real-time esp-hal runtime, zero-copy DMA graphics, and Tailscale bench flashing.",
         },

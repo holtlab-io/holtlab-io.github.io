@@ -10,6 +10,16 @@
 
 use dioxus::prelude::*;
 use crate::i18n::{hero::get_nav_strings, Language};
+use crate::routes::Route;
+
+fn route_for_path(path: &str) -> Route {
+    match path {
+        "/demonstrator" => Route::Demonstrator {},
+        "/studio" => Route::StudioPage {},
+        "/contact" => Route::ContactPage {},
+        _ => Route::Home {},
+    }
+}
 
 /// Mobile drawer overlay presenting full-screen navigation anchors and language switcher.
 #[component]
@@ -75,21 +85,21 @@ fn MobileLangToggle(mut lang: Signal<Language>) -> Element {
 #[component]
 fn MobileNavList(
     mut is_open: Signal<bool>,
-    items: [(&'static str, &'static str, &'static str); 5],
+    items: [(&'static str, &'static str, &'static str); 4],
 ) -> Element {
     rsx! {
         div {
             class: "flex flex-col divide-y divide-zinc-100",
-            for (anchor, label, desc) in items.iter() {
-                a {
-                    key: "{anchor}",
-                    href: "{anchor}",
+            for (path, label, desc) in items.iter() {
+                Link {
+                    key: "{path}",
+                    to: route_for_path(path),
                     onclick: move |_| is_open.set(false),
                     class: "py-3 flex items-center justify-between group hover:text-zinc-950 transition-colors",
                     div {
                         class: "flex flex-col",
                         span {
-                            class: if *anchor == "#inquire" {
+                            class: if *path == "/contact" {
                                 "text-sm font-bold text-[#E64A19] group-hover:underline"
                             } else {
                                 "text-sm font-medium text-zinc-900 group-hover:text-[#E64A19]"
@@ -98,21 +108,21 @@ fn MobileNavList(
                         }
                         span { class: "text-[10px] text-zinc-400 font-sans pt-0.5", "{desc}" }
                     }
-                    span { class: "text-zinc-400 group-hover:translate-x-0.5 transition-transform", "→" }
+                    span { class: "text-zinc-300 font-mono text-xs group-hover:text-[#E64A19] transition-colors", "→" }
                 }
             }
         }
     }
 }
 
-/// Minimalist footer telemetry strip inside the mobile drawer.
+/// Secondary status footer inside the mobile drawer.
 #[component]
 fn MobileDrawerFooter() -> Element {
     rsx! {
         div {
-            class: "pt-4 mt-2 border-t border-zinc-200 flex items-center justify-between text-[10px] text-zinc-400",
-            span { "HOLT LAB // TURNKEY HARDWARE" }
-            span { "ESP32-C3 RISC-V @ 160MHz" }
+            class: "mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-[11px] text-zinc-400 font-mono",
+            span { "UNIFIED TURNKEY R&D" }
+            span { class: "text-emerald-600 font-semibold", "PASS" }
         }
     }
 }

@@ -1,65 +1,82 @@
 //! ## Overview
-//! Root crate entrypoint for Holt Lab's official landing page.
-//! Configures global metadata, internationalization context, and launches the Dioxus application.
+//! Root crate entrypoint for Holt Lab's official multi-page web platform.
+//! Configures global metadata, internationalization context, SSG route discovery, and launches the Dioxus router application.
 //!
 //! ## Search Tags
-//! #entrypoint, #app, #dioxus, #wasm, #main
+//! #entrypoint, #app, #dioxus, #wasm, #main, #router, #ssg
 //!
 //! ## Submodules
 //! - [`components`] (`components/mod.rs`): Reusable UI components and section blocks.
 //! - [`i18n`] (`i18n/mod.rs`): Bilingual Korean/English internationalization system.
-//! - [`views`] (`views/mod.rs`): Top-level page views.
+//! - [`routes`] (`routes.rs`): Multi-page application route definitions and route enum.
+//! - [`views`] (`views/mod.rs`): Top-level page views rendered by the router.
 
 use dioxus::prelude::*;
 
 pub mod components;
 pub mod i18n;
+pub mod routes;
 pub mod views;
 
 use i18n::Language;
-use views::Home;
+use routes::Route;
 
+/// Discovers static pre-render routes for SSG export.
+#[server(endpoint = "static_routes")]
+pub async fn static_routes() -> Result<Vec<String>, ServerFnError> {
+    let routes = vec![
+        "/".to_string(),
+        "/demonstrator".to_string(),
+        "/studio".to_string(),
+        "/contact".to_string(),
+    ];
+    Ok(routes)
+}
+
+/// Server entrypoint running Axum with Dioxus Fullstack SSR handler for SSG builds.
+#[cfg(feature = "server")]
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let static_dir = std::env::var("DIOXUS_PUBLIC_PATH")
+        .map(std::path::PathBuf::from)
+        .ok()
+        .or_else(|| {
+            std::env::current_exe()
+                .ok()
+                .and_then(|p| p.parent().map(|parent| parent.join("public")))
+        })
+        .unwrap_or_else(|| std::path::PathBuf::from("./public"));
+
+    let incremental_cfg = dioxus::server::IncrementalRendererConfig::new()
+        .static_dir(static_dir);
+
+    let serve_cfg = dioxus::server::ServeConfig::builder()
+        .incremental(incremental_cfg);
+
+    let addr = dioxus_cli_config::fullstack_address_or_localhost();
+
+    use dioxus::server::DioxusRouterExt;
+    let router = axum::Router::new()
+        .serve_dioxus_application(serve_cfg.clone(), App);
+
+    let listener = tokio::net::TcpListener::bind(addr).await?;
+    axum::serve(listener, router).await?;
+    Ok(())
+}
+
+/// Client entrypoint for browser WASM hydration.
+#[cfg(not(feature = "server"))]
 fn main() {
     dioxus::launch(App);
 }
 
-/// Root application component setting document metadata and rendering the primary view.
+/// Root application component setting document metadata and rendering the router shell.
 #[component]
 fn App() -> Element {
-    let lang = use_context_provider(|| Signal::new(Language::detect()));
-
-    use_effect(move || {
-        let _ = lang();
-        #[cfg(target_arch = "wasm32")]
-        {
-            let current_lang = lang();
-            if let Some(window) = web_sys::window() {
-                if let Some(doc) = window.document() {
-                    let title = match current_lang {
-                        Language::En => "Holt Lab — Hardware & Embedded Engineering Studio",
-                        Language::Ko => "Holt Lab — 하드웨어 & 임베디드 엔지니어링 랩",
-                    };
-                    doc.set_title(title);
-                    if let Some(html_el) = doc.document_element() {
-                        let code = match current_lang {
-                            Language::En => "en",
-                            Language::Ko => "ko",
-                        };
-                        let _ = html_el.set_attribute("lang", code);
-                    }
-                    if let Ok(Some(meta_desc)) = doc.query_selector("meta[name='description']") {
-                        let desc = match current_lang {
-                            Language::En => "Holt Lab — Hardware, Mechanical & Embedded Engineering Studio. Unified Turnkey Hardware & Embedded Execution.",
-                            Language::Ko => "Holt Lab — 하드웨어, 기구 및 임베디드 엔지니어링 랩. 통합 턴키 하드웨어 개발.",
-                        };
-                        let _ = meta_desc.set_attribute("content", desc);
-                    }
-                }
-            }
-        }
-    });
+    let _lang = use_context_provider(|| Signal::new(Language::detect()));
 
     rsx! {
-        Home {}
+        components::HeadMetadata {}
+        Router::<Route> {}
     }
 }

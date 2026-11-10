@@ -11,6 +11,7 @@
 //! - [`nav_links`] (`nav_links.rs`): Desktop navigation anchors and matte vermilion inquiry CTA.
 
 use dioxus::prelude::*;
+use crate::routes::Route;
 
 pub mod brand;
 pub mod mobile;
@@ -38,8 +39,8 @@ pub fn Navbar() -> Element {
                 NavLinks {}
                 div {
                     class: "lg:hidden flex items-center gap-2",
-                    a {
-                        href: "#inquire",
+                    Link {
+                        to: Route::ContactPage {},
                         class: "px-2.5 py-1 rounded-xs bg-[#E64A19] text-white font-mono text-[11px] font-semibold tracking-wider",
                         "inquire"
                     }

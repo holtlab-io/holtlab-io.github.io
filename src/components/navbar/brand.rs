@@ -3,13 +3,14 @@
 //! Features lowercase industrial brand typography paired with the localized hardware engineering studio descriptor.
 //!
 //! ## Search Tags
-//! #brand, #logo, #identity, #typography, #studio-mark
+//! #brand, #logo, #identity, #typography, #studio-mark, #router
 //!
 //! ## Submodules
 //! None. This module provides pure leaf brand presentation components.
 
 use dioxus::prelude::*;
 use crate::i18n::{hero::get_nav_strings, Language};
+use crate::routes::Route;
 
 /// Primary brand identity lockup rendering lowercase holt lab with the studio descriptor.
 #[component]
@@ -18,8 +19,8 @@ pub fn NavBrand() -> Element {
     let nav_strings = get_nav_strings(lang());
 
     rsx! {
-        a {
-            href: "#",
+        Link {
+            to: Route::Home {},
             class: "flex items-center gap-3 select-none group shrink-0",
             div {
                 class: "w-8 h-8 rounded-xs bg-zinc-950 flex items-center justify-center text-white font-mono font-bold text-xs shadow-2xs group-hover:bg-[#E64A19] transition-colors",

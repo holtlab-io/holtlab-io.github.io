@@ -6,6 +6,70 @@
     <title></title>
     <meta name="description" content="Holt Lab — Hardware, Mechanical & Embedded Engineering Studio. Unified Turnkey Hardware & Embedded Execution.">
 
+    <!-- GitHub Pages Single Page Apps Routing Script -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+
+    <!-- Apple-style IntersectionObserver Scroll Reveal Engine -->
+    <script type="text/javascript">
+      (function() {
+        if (typeof window === 'undefined') return;
+        
+        function initScrollReveals() {
+          if (!('IntersectionObserver' in window)) {
+            var all = document.querySelectorAll('.reveal-on-scroll');
+            for (var i = 0; i < all.length; i++) {
+              all[i].classList.add('is-revealed');
+            }
+            return;
+          }
+
+          var observer = new IntersectionObserver(function(entries) {
+            for (var i = 0; i < entries.length; i++) {
+              var entry = entries[i];
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                observer.unobserve(entry.target);
+              }
+            }
+          }, { rootMargin: '0px 0px -40px 0px', threshold: 0.08 });
+
+          function attach() {
+            var targets = document.querySelectorAll('.reveal-on-scroll:not(.is-revealed)');
+            for (var i = 0; i < targets.length; i++) {
+              observer.observe(targets[i]);
+            }
+          }
+
+          window.attachScrollReveals = attach;
+          attach();
+
+          if ('MutationObserver' in window) {
+            var mo = new MutationObserver(function() {
+              attach();
+            });
+            mo.observe(document.documentElement, { childList: true, subtree: true });
+          }
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initScrollReveals);
+        } else {
+          initScrollReveals();
+        }
+      })();
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="assets/branding/avatar.jpg">
 

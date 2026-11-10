@@ -49,9 +49,9 @@ pub struct NavStrings {
     /// Direct inquiry CTA button text.
     pub cta_inquire: &'static str,
     /// Desktop navigation anchor labels.
-    pub nav_items: [(&'static str, &'static str, &'static str); 5],
+    pub nav_items: [(&'static str, &'static str, &'static str); 4],
     /// Mobile drawer anchor items with subtitle descriptions.
-    pub mobile_items: [(&'static str, &'static str, &'static str); 5],
+    pub mobile_items: [(&'static str, &'static str, &'static str); 4],
 }
 
 /// Localized string bundle for footer credits and copyright.
@@ -135,18 +135,16 @@ pub fn get_nav_strings(lang: Language) -> NavStrings {
             turnkey_badge: "UNIFIED TURNKEY // VERIFIED",
             cta_inquire: "inquire // 의뢰하기",
             nav_items: [
-                ("#capabilities", "capabilities", "01"),
-                ("#case-study", "case study", "02"),
-                ("#specs", "specs", "03"),
-                ("#studio", "turnkey", "04"),
-                ("#inquire", "inquire", "05"),
+                ("/", "home", "01"),
+                ("/demonstrator", "demonstrator", "02"),
+                ("/studio", "studio", "03"),
+                ("/contact", "inquire", "04"),
             ],
             mobile_items: [
-                ("#capabilities", "capabilities", "4 core engineering disciplines"),
-                ("#case-study", "case study", "flagship hardware demonstrator"),
-                ("#specs", "specs", "monospaced swiss spec matrix"),
-                ("#studio", "studio", "unified turnkey model"),
-                ("#inquire", "inquire // 의뢰하기", "direct architect dispatch"),
+                ("/", "home", "studio overview & capabilities"),
+                ("/demonstrator", "demonstrator", "flagship hardware demonstrator"),
+                ("/studio", "studio", "unified turnkey model"),
+                ("/contact", "inquire // 의뢰하기", "direct architect dispatch"),
             ],
         },
         Language::Ko => NavStrings {
@@ -154,18 +152,16 @@ pub fn get_nav_strings(lang: Language) -> NavStrings {
             turnkey_badge: "통합 턴키 // 검증 완료",
             cta_inquire: "inquire // 의뢰하기",
             nav_items: [
-                ("#capabilities", "엔지니어링 역량", "01"),
-                ("#case-study", "실증 사례", "02"),
-                ("#specs", "기술 사양", "03"),
-                ("#studio", "턴키 모델", "04"),
-                ("#inquire", "의뢰하기", "05"),
+                ("/", "홈", "01"),
+                ("/demonstrator", "실증 머신", "02"),
+                ("/studio", "턴키 모델", "03"),
+                ("/contact", "의뢰하기", "04"),
             ],
             mobile_items: [
-                ("#capabilities", "엔지니어링 역량", "4대 핵심 턴키 엔지니어링 역량"),
-                ("#case-study", "실증 사례", "플래그십 하드웨어 실증 머신"),
-                ("#specs", "기술 사양", "스위스 정밀 기술 사양 매트릭스"),
-                ("#studio", "턴키 모델", "통합 턴키 코디자인 모델"),
-                ("#inquire", "의뢰하기", "리드 아키텍트 직통 의뢰"),
+                ("/", "홈", "스튜디오 개요 및 4대 역량"),
+                ("/demonstrator", "실증 머신", "플래그십 하드웨어 실증 머신"),
+                ("/studio", "턴키 모델", "통합 턴키 코디자인 모델"),
+                ("/contact", "의뢰하기", "리드 아키텍트 직통 의뢰"),
             ],
         },
     }

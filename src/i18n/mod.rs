@@ -12,6 +12,7 @@
 //! - [`specs`] (`specs.rs`): 10-row Swiss engineering specification matrix table.
 //! - [`studio`] (`studio.rs`): Studio turnkey comparison cards and 4-phase engineering pipeline.
 //! - [`teardown`] (`teardown/mod.rs`): 4-layer anatomical engineering teardown models and telemetry.
+//! - [`teasers`] (`teasers.rs`): Localized presentation strings for studio teasers and summary cards.
 
 pub mod capabilities;
 pub mod contact;
@@ -19,6 +20,7 @@ pub mod hero;
 pub mod specs;
 pub mod studio;
 pub mod teardown;
+pub mod teasers;
 
 pub use capabilities::{CapabilitiesStrings, CapabilityCard};
 pub use contact::{ContactBufferStrings, ContactFormStrings, ContactInfoStrings, ContactSelectorStrings, ContactStrings};
