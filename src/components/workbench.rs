@@ -33,7 +33,7 @@ pub fn CadWorkbench() -> Element {
                     span { class: "font-semibold text-zinc-800 truncate", "{strings.console_status}" }
                 }
                 div {
-                    class: "inline-flex items-center gap-1 bg-zinc-100/90 p-0.5 rounded-xs border border-zinc-200/80 self-start sm:self-auto",
+                    class: "flex flex-wrap sm:inline-flex items-center gap-1 bg-zinc-100/90 p-0.5 rounded-xs border border-zinc-200/80 self-start sm:self-auto max-w-full",
                     for (idx, (mode_key, label, _, _)) in strings.console_modes.iter().enumerate() {
                         button {
                             key: "{mode_key}",
@@ -90,10 +90,10 @@ fn WorkbenchViewport(strings: HeroStrings, active_mode: (&'static str, &'static 
             }
 
             div {
-                class: "w-full flex items-center justify-between text-[11px] font-mono text-zinc-400 pt-3 border-t border-zinc-200/80 px-4 gap-2 bg-white/80 backdrop-blur-xs",
-                span { class: "truncate", "{strings.width_label}" }
-                span { class: "truncate font-medium text-zinc-600", "{strings.material_label}" }
-                span { class: "truncate text-right", "{strings.height_label}" }
+                class: "w-full flex flex-col sm:flex-row items-center justify-between text-[10px] sm:text-[11px] font-mono text-zinc-500 pt-2.5 sm:pt-3 border-t border-zinc-200/80 px-3 sm:px-4 gap-1.5 sm:gap-2 bg-white/80 backdrop-blur-xs text-center sm:text-left",
+                span { class: "break-keep", "{strings.width_label}" }
+                span { class: "break-keep font-medium text-zinc-700", "{strings.material_label}" }
+                span { class: "break-keep text-right", "{strings.height_label}" }
             }
         }
     }

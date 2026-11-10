@@ -111,7 +111,7 @@ fn TeardownTabs(
                         }
                     }
                     div {
-                        class: "text-xs lg:text-sm font-bold truncate",
+                        class: "text-[11px] sm:text-xs lg:text-sm font-bold leading-tight break-keep",
                         "{layer.title}"
                     }
                 }

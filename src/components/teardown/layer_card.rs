@@ -50,9 +50,9 @@ pub fn LayerInspector(layer: TeardownLayer) -> Element {
                     }
                 }
                 div {
-                    class: "w-full pt-3 border-t border-zinc-200/60 flex items-center justify-between text-[10px] font-mono text-zinc-400 gap-2",
-                    span { class: "truncate", "{layer.bus_or_material}" }
-                    span { class: "shrink-0", "{audit_label}" }
+                    class: "w-full pt-2.5 sm:pt-3 border-t border-zinc-200/60 flex flex-col sm:flex-row sm:items-center justify-between text-[10px] font-mono text-zinc-500 gap-1 sm:gap-2",
+                    span { class: "break-keep", "{layer.bus_or_material}" }
+                    span { class: "shrink-0 font-medium text-emerald-600 sm:text-right", "{audit_label}" }
                 }
             }
 

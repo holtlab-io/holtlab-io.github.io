@@ -51,7 +51,7 @@ fn HeroHeaderBlock(strings: HeroStrings) -> Element {
                 "{strings.eyebrow}"
             }
             h1 {
-                class: "text-3xl sm:text-5xl md:text-6xl font-bold font-sans tracking-tight text-zinc-950 leading-[1.12]",
+                class: "text-2xl sm:text-5xl md:text-6xl font-bold font-sans tracking-tight text-zinc-950 leading-snug sm:leading-[1.15] break-keep",
                 "{strings.title}"
             }
             p {
@@ -139,10 +139,10 @@ fn HeroOverviewVisual(strings: HeroStrings) -> Element {
                 }
 
                 div {
-                    class: "w-full flex items-center justify-between text-[11px] font-mono text-zinc-400 pt-3 border-t border-zinc-200/80 px-4 gap-2 bg-white/80 backdrop-blur-xs",
-                    span { class: "truncate", "{strings.width_label}" }
-                    span { class: "truncate font-medium text-zinc-600", "{strings.material_label}" }
-                    span { class: "truncate text-right", "{strings.height_label}" }
+                    class: "w-full flex flex-col sm:flex-row items-center justify-between text-[10px] sm:text-[11px] font-mono text-zinc-500 pt-2.5 sm:pt-3 border-t border-zinc-200/80 px-3 sm:px-4 gap-1.5 sm:gap-2 bg-white/80 backdrop-blur-xs text-center sm:text-left",
+                    span { class: "break-keep", "{strings.width_label}" }
+                    span { class: "break-keep font-medium text-zinc-700", "{strings.material_label}" }
+                    span { class: "break-keep text-right", "{strings.height_label}" }
                 }
             }
         }
