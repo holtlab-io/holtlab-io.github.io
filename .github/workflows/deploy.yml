@@ -1,0 +1,66 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - name: Install Dioxus CLI
+        run: |
+          curl -L https://github.com/DioxusLabs/dioxus/releases/download/v0.7.10/dx-x86_64-unknown-linux-gnu.tar.gz | tar -xz
+          chmod +x dx
+          mv dx /usr/local/bin/
+
+      - name: Build Web with Dioxus
+        run: |
+          dx build --web --release
+
+      - name: Prepare GitHub Pages Distribution
+        run: |
+          mkdir -p docs
+          # Copy Dioxus build artifacts
+          if [ -d "target/dx/holtlab-landing/release/web/public" ]; then
+            cp -r target/dx/holtlab-landing/release/web/public/* docs/
+          elif [ -d "dist" ]; then
+            cp -r dist/* docs/
+          fi
+          
+          # Copy static public assets
+          cp -r assets docs/ || true
+          cp public/sitemap.xml docs/ || true
+          cp public/robots.txt docs/ || true
+          
+          # Bypass Jekyll processing
+          touch docs/.nojekyll
+          
+          # SPA Fallback
+          cp docs/index.html docs/404.html || true
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs
+          branch: gh-pages
+          clean: true
