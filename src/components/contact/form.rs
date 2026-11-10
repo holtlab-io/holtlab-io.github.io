@@ -4,9 +4,13 @@
 //!
 //! ## Search Tags
 //! #contact, #form, #rfq, #inquiry, #interactive
+//!
+//! ## Submodules
+//! None. This module provides atomic RFQ intake form components.
 
 use dioxus::prelude::*;
 use super::selectors::{ScopeButtons, TargetButtons};
+use super::submitted::SubmittedView;
 
 /// Interactive RFQ diagnostic form component with scope selector and email dispatcher.
 #[component]
@@ -15,8 +19,10 @@ pub fn ContactForm(
     selected_target: Signal<usize>,
     name: Signal<String>,
     email: Signal<String>,
-    phone: Signal<String>,
-    description: Signal<String>,
+    timeline: Signal<String>,
+    budget: Signal<String>,
+    cad_pcb_reqs: Signal<String>,
+    project_brief: Signal<String>,
     is_submitted: Signal<bool>,
 ) -> Element {
     rsx! {
@@ -25,10 +31,14 @@ pub fn ContactForm(
             if is_submitted() {
                 SubmittedView {
                     name,
-                    phone,
                     email,
+                    timeline,
+                    budget,
+                    cad_pcb_reqs,
+                    project_brief,
                     selected_scope,
-                    description,
+                    selected_target,
+                    is_submitted,
                 }
             } else {
                 FormFields {
@@ -36,51 +46,12 @@ pub fn ContactForm(
                     selected_target,
                     name,
                     email,
-                    phone,
-                    description,
+                    timeline,
+                    budget,
+                    cad_pcb_reqs,
+                    project_brief,
                     is_submitted,
                 }
-            }
-        }
-    }
-}
-
-/// Confirmation message and email mailto dispatch trigger.
-#[component]
-fn SubmittedView(
-    name: Signal<String>,
-    phone: Signal<String>,
-    email: Signal<String>,
-    selected_scope: Signal<usize>,
-    description: Signal<String>,
-) -> Element {
-    let scope_text = match selected_scope() {
-        0 => "turnkey (mcad+ecad+firmware)",
-        1 => "4-layer pcba (kicad ecad)",
-        2 => "3d enclosure (build123d mcad)",
-        _ => "bare-metal firmware (rust/c)",
-    };
-
-    rsx! {
-        div {
-            class: "p-8 border border-zinc-200 bg-zinc-50 text-center space-y-4 rounded-xs font-mono",
-            div {
-                class: "inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-200 text-zinc-900 text-xs font-bold uppercase",
-                span { class: "w-1.5 h-1.5 rounded-full bg-zinc-950" }
-                "DISPATCH BUFFER READY"
-            }
-            h3 { class: "text-lg font-bold text-zinc-950 lowercase", "inquiry ready for dispatch" }
-            p {
-                class: "text-zinc-600 text-xs font-sans leading-relaxed max-w-md mx-auto",
-                "your project specifications have been formatted. click below to open your mail client and dispatch directly to holt lab engineering."
-            }
-            a {
-                href: format!(
-                    "mailto:contact@holtlab.io?subject=[Holt Lab Commission] {}&body=organization: {}%0D%0Acontact: {}%0D%0Aemail: {}%0D%0Adiscipline: {}%0D%0Aspecifications:%0D%0A{}",
-                    name(), name(), phone(), email(), scope_text, description()
-                ),
-                class: "inline-flex items-center justify-center px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-xs font-mono tracking-wider uppercase transition-colors shadow-xs",
-                "open mail client →"
             }
         }
     }
@@ -93,8 +64,10 @@ fn FormFields(
     selected_target: Signal<usize>,
     name: Signal<String>,
     email: Signal<String>,
-    phone: Signal<String>,
-    description: Signal<String>,
+    timeline: Signal<String>,
+    budget: Signal<String>,
+    cad_pcb_reqs: Signal<String>,
+    project_brief: Signal<String>,
     mut is_submitted: Signal<bool>,
 ) -> Element {
     rsx! {
@@ -109,7 +82,8 @@ fn FormFields(
             ScopeButtons { selected: selected_scope }
             TargetButtons { selected: selected_target }
             ContactInputs { name, email }
-            ScopeTimelineInputs { phone, description }
+            IntakeParametersInputs { timeline, budget }
+            IntakeSpecsInputs { cad_pcb_reqs, project_brief }
             SubmitRow {}
         }
     }
@@ -149,32 +123,64 @@ fn ContactInputs(mut name: Signal<String>, mut email: Signal<String>) -> Element
     }
 }
 
-/// Inputs for timeline and technical specifications.
+/// Inputs for target timeline and budget envelope.
 #[component]
-fn ScopeTimelineInputs(mut phone: Signal<String>, mut description: Signal<String>) -> Element {
+fn IntakeParametersInputs(mut timeline: Signal<String>, mut budget: Signal<String>) -> Element {
     rsx! {
         div {
-            class: "space-y-4 text-xs font-mono lowercase",
+            class: "grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono lowercase",
             div {
                 class: "space-y-1.5",
-                label { class: "block text-zinc-500", "target timeline / constraints" }
+                label { class: "block text-zinc-500", "target timeline / deadline" }
                 input {
                     r#type: "text",
-                    placeholder: "e.g. 4-6 weeks to working prototype / budget envelope",
-                    value: "{phone}",
-                    oninput: move |e| phone.set(e.value()),
+                    placeholder: "e.g. 4-6 weeks to working prototype",
+                    value: "{timeline}",
+                    oninput: move |e| timeline.set(e.value()),
                     class: "w-full p-3 rounded-xs border border-zinc-200 bg-white focus:border-zinc-950 focus:outline-none text-zinc-900 transition-colors"
                 }
             }
             div {
                 class: "space-y-1.5",
-                label { class: "block text-zinc-500", "technical specifications & scope" }
+                label { class: "block text-zinc-500", "target budget envelope" }
+                input {
+                    r#type: "text",
+                    placeholder: "e.g. $5k-$15k USD / KRW 10M",
+                    value: "{budget}",
+                    oninput: move |e| budget.set(e.value()),
+                    class: "w-full p-3 rounded-xs border border-zinc-200 bg-white focus:border-zinc-950 focus:outline-none text-zinc-900 transition-colors"
+                }
+            }
+        }
+    }
+}
+
+/// Inputs for CAD/PCB requirements and project brief.
+#[component]
+fn IntakeSpecsInputs(mut cad_pcb_reqs: Signal<String>, mut project_brief: Signal<String>) -> Element {
+    rsx! {
+        div {
+            class: "space-y-4 text-xs font-mono lowercase",
+            div {
+                class: "space-y-1.5",
+                label { class: "block text-zinc-500", "cad & pcb requirements" }
+                input {
+                    r#type: "text",
+                    placeholder: "e.g. ESP32-C3 / RISC-V, 4-layer impedance control, MJF enclosure...",
+                    value: "{cad_pcb_reqs}",
+                    oninput: move |e| cad_pcb_reqs.set(e.value()),
+                    class: "w-full p-3 rounded-xs border border-zinc-200 bg-white focus:border-zinc-950 focus:outline-none text-zinc-900 transition-colors"
+                }
+            }
+            div {
+                class: "space-y-1.5",
+                label { class: "block text-zinc-500", "project brief & deliverables" }
                 textarea {
                     rows: 4,
                     required: true,
-                    placeholder: "describe dimensions, silicon choice, battery, interfaces, and deliverables...",
-                    value: "{description}",
-                    oninput: move |e| description.set(e.value()),
+                    placeholder: "describe dimensions, interfaces, sensors, battery runtime, and key deliverables...",
+                    value: "{project_brief}",
+                    oninput: move |e| project_brief.set(e.value()),
                     class: "w-full p-3 rounded-xs border border-zinc-200 bg-white focus:border-zinc-950 focus:outline-none text-zinc-900 transition-colors font-sans text-xs leading-relaxed"
                 }
             }

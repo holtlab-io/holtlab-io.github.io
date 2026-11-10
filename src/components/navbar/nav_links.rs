@@ -10,11 +10,12 @@
 
 use dioxus::prelude::*;
 
-const NAV_ITEMS: [(&str, &str, &str); 4] = [
+const NAV_ITEMS: [(&str, &str, &str); 5] = [
     ("#demonstrator", "demonstrator", "01"),
     ("#teardown", "teardown", "02"),
     ("#specs", "specs", "03"),
     ("#studio", "studio", "04"),
+    ("#inquire", "inquire", "05"),
 ];
 
 /// Desktop navigation link strip and dispatch CTA button.
@@ -22,9 +23,9 @@ const NAV_ITEMS: [(&str, &str, &str); 4] = [
 pub fn NavLinks() -> Element {
     rsx! {
         div {
-            class: "hidden md:flex items-center gap-7 lg:gap-9 select-none",
+            class: "hidden lg:flex items-center gap-6 xl:gap-8 select-none",
             nav {
-                class: "flex items-center gap-6 lg:gap-8 text-xs font-mono lowercase tracking-wide",
+                class: "flex items-center gap-5 xl:gap-7 text-xs font-mono lowercase tracking-wide",
                 for (anchor, label, idx) in NAV_ITEMS.iter() {
                     a {
                         key: "{anchor}",
@@ -37,7 +38,7 @@ pub fn NavLinks() -> Element {
             }
             a {
                 href: "#inquire",
-                class: "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xs bg-[#E64A19] hover:bg-[#c93c12] text-white font-mono text-xs font-semibold tracking-wider transition-colors shadow-2xs",
+                class: "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xs bg-[#E64A19] hover:bg-[#c93c12] text-white font-mono text-xs font-semibold tracking-wider transition-colors shadow-2xs shrink-0",
                 span { "inquire // 의뢰하기" }
                 span { class: "text-[11px]", "→" }
             }

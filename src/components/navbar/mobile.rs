@@ -23,7 +23,7 @@ const MOBILE_ITEMS: [(&str, &str, &str); 5] = [
 pub fn MobileDrawer(mut is_open: Signal<bool>) -> Element {
     rsx! {
         div {
-            class: "md:hidden bg-white/98 backdrop-blur-md border-b border-zinc-200 px-6 py-6 font-mono text-xs lowercase transition-all animate-fadeIn",
+            class: "lg:hidden bg-white/98 backdrop-blur-md border-b border-zinc-200 px-6 py-6 font-mono text-xs lowercase transition-all animate-fadeIn",
             div {
                 class: "flex flex-col divide-y divide-zinc-100",
                 for (anchor, label, desc) in MOBILE_ITEMS.iter() {

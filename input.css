@@ -1,7 +1,11 @@
 @import "tailwindcss";
 @source "./src/**/*.{rs,html}";
 
-/* Holt Lab — Industrial Hardware Engineering System (Teenage Engineering × Dieter Rams) */
+/* Holt Lab — Industrial Hardware Engineering System (Framework × Swiss Precision) */
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --holt-bg: #FAFAFA;
   --holt-surface: #FFFFFF;

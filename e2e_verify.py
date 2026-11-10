@@ -4,8 +4,9 @@ import subprocess
 import time
 from playwright.async_api import async_playwright
 
-PUBLIC_DIR = "/home/wimvm/.tuner/profiles/default/workspace/projects/holt-lab.github.io/target/dx/holtlab-landing/release/web/public"
-OUTPUT_DIR = "/home/wimvm/.gemini/antigravity-cli/brain/a2cb9c68-8e1e-4660-af5a-d7c7122a83f2/screenshots"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PUBLIC_DIR = os.path.join(BASE_DIR, "target/dx/holtlab-landing/release/web/public")
+OUTPUT_DIR = os.environ.get("SCREENSHOT_DIR", os.path.join(BASE_DIR, "screenshots"))
 PORT = 8099
 
 async def run_e2e():
@@ -42,14 +43,23 @@ async def run_e2e():
             await page.wait_for_selector("footer")
             print("✓ All 6 core structural sections mounted in DOM.")
 
-            # Verify Header Brand & Navigation
+            # Verify Header Brand & Navigation Anchors
             header_brand = await page.locator("header a[href='#']").inner_text()
             assert "holt" in header_brand and "lab" in header_brand, f"Brand missing: {header_brand}"
             assert "Boutique Hardware Engineering Studio" in header_brand, f"Descriptor missing: {header_brand}"
             
-            cta_text = await page.locator("header a[href='#inquire']").first.inner_text()
+            # Verify Desktop Navigation contains all 5 anchors
+            nav_links = await page.locator("header nav a").all_inner_texts()
+            print(f"Desktop nav links: {nav_links}")
+            assert any("demonstrator" in l for l in nav_links), "demonstrator anchor missing"
+            assert any("teardown" in l for l in nav_links), "teardown anchor missing"
+            assert any("specs" in l for l in nav_links), "specs anchor missing"
+            assert any("studio" in l for l in nav_links), "studio anchor missing"
+            assert any("inquire" in l for l in nav_links), "inquire anchor missing"
+            
+            cta_text = await page.locator("header a:has-text('inquire // 의뢰하기')").inner_text()
             assert "inquire // 의뢰하기" in cta_text, f"CTA missing: {cta_text}"
-            print("✓ Header brand lockup and CTA button verified.")
+            print("✓ Header brand lockup, all 5 navigation anchors, and CTA button verified.")
 
             # Verify Hero Demonstrator
             hero_title = await page.locator("#demonstrator h1").inner_text()
@@ -127,30 +137,7 @@ async def run_e2e():
             assert await page.locator("#studio").get_by_text("01 // CO-DESIGN LOCK").is_visible()
             print("✓ Studio turnkey value proposition and 4-phase pipeline verified.")
 
-            # Test Inquiry Form Dispatch
-            await page.locator("#inquire input[placeholder*='acme robotics']").fill("Nexus Dynamics / Dr. Vance")
-            await page.locator("#inquire input[placeholder*='domain.com']").fill("vance@nexusdynamics.io")
-            await page.locator("#inquire input[placeholder*='budget envelope']").fill("4 weeks to working bench prototype")
-            await page.locator("#inquire textarea[placeholder*='dimensions']").fill("High-density 4-layer PCBA with capacitive touch and custom MJF enclosure.")
-            
-            submit_btn = page.locator("#inquire button[type='submit']")
-            await submit_btn.click()
-            await page.wait_for_timeout(300)
-            
-            assert await page.locator("#inquire").get_by_text("DISPATCH BUFFER READY").is_visible()
-            mailto_link = await page.locator("#inquire a:has-text('open mail client')").get_attribute("href")
-            assert "contact@holtlab.io" in mailto_link
-            assert "vance@nexusdynamics.io" in mailto_link
-            print("✓ Inquiry form interactive dispatch and mailto generator verified.")
-
-            # Verify Footer
-            github_href = await page.locator("footer a:has-text('github')").get_attribute("href")
-            assert github_href == "https://github.com/holtlab-io", f"GitHub URL mismatch: {github_href}"
-            youtube_href = await page.locator("footer a:has-text('youtube')").get_attribute("href")
-            assert "youtube.com/@holt-lab" in youtube_href, f"YouTube URL mismatch: {youtube_href}"
-            print("✓ Footer organization links verified.")
-
-            # Scroll back to top before capturing full page screenshot so sticky header stays pinned at top
+            # Scroll back to top before capturing full page screenshot
             await page.evaluate("window.scrollTo(0, 0)")
             await page.wait_for_timeout(300)
 
@@ -160,7 +147,31 @@ async def run_e2e():
             print(f"✓ Desktop full page screenshot saved to {desktop_full}")
 
             # -------------------------------------------------------------
-            # 2. Test Mobile Viewport (375x812 iPhone / Modern Mobile)
+            # 2. Test Tablet Portrait Viewport (768x1024)
+            # -------------------------------------------------------------
+            page_tablet = await browser.new_page(viewport={"width": 768, "height": 1024})
+            await page_tablet.goto(url, wait_until="networkidle")
+            
+            # Verify clean responsive navigation: hamburger visible, desktop nav hidden (no brand overlap)
+            assert await page_tablet.locator("button[aria-label='Toggle Navigation Menu']").is_visible(), "Hamburger missing at 768px"
+            assert not await page_tablet.locator("header nav").is_visible(), "Desktop nav should be hidden at 768px"
+            print("✓ Tablet 768px: Clean responsive header with hamburger drawer.")
+
+            # Verify Teardown tabs at 768px: ZERO truncation
+            tablet_tabs = page_tablet.locator("#teardown button[type='button']")
+            for i in range(4):
+                title_el = tablet_tabs.nth(i).locator("div:has-text('MCAD'), div:has-text('ECAD'), div:has-text('Rust'), div:has-text('Interface')").last
+                scroll_w = await title_el.evaluate("el => el.scrollWidth")
+                client_w = await title_el.evaluate("el => el.clientWidth")
+                txt = await title_el.inner_text()
+                assert scroll_w <= client_w, f"Tab {i} ({txt}) is truncated on tablet: scrollWidth={scroll_w} > clientWidth={client_w}"
+            print("✓ Tablet 768px: All 4 teardown tab titles fit with zero truncation.")
+            
+            tablet_full = os.path.join(OUTPUT_DIR, "tablet_768_showcase.png")
+            await page_tablet.screenshot(path=tablet_full, full_page=True)
+
+            # -------------------------------------------------------------
+            # 3. Test Mobile Viewport (375x812 iPhone)
             # -------------------------------------------------------------
             mobile_page = await browser.new_page(viewport={"width": 375, "height": 812})
             await mobile_page.goto(url, wait_until="networkidle")
@@ -172,11 +183,11 @@ async def run_e2e():
             await mobile_page.wait_for_timeout(300)
             
             # Verify Mobile Drawer items
-            assert await mobile_page.locator("header .animate-fadeIn a[href='#demonstrator']").is_visible()
-            assert await mobile_page.locator("header .animate-fadeIn a[href='#teardown']").is_visible()
-            assert await mobile_page.locator("header .animate-fadeIn a[href='#specs']").is_visible()
-            assert await mobile_page.locator("header .animate-fadeIn a[href='#studio']").is_visible()
-            assert await mobile_page.locator("header .animate-fadeIn a[href='#inquire']").is_visible()
+            assert await mobile_page.locator("header a[href='#demonstrator']").last.is_visible()
+            assert await mobile_page.locator("header a[href='#teardown']").last.is_visible()
+            assert await mobile_page.locator("header a[href='#specs']").last.is_visible()
+            assert await mobile_page.locator("header a[href='#studio']").last.is_visible()
+            assert await mobile_page.locator("header a[href='#inquire']").last.is_visible()
             print("✓ Mobile navigation drawer links verified.")
 
             mobile_drawer_shot = os.path.join(OUTPUT_DIR, "mobile_drawer.png")
@@ -186,10 +197,60 @@ async def run_e2e():
             await hamburger_btn.click()
             await mobile_page.wait_for_timeout(200)
 
+            # Verify Subsystem Inspector badge non-overlapping on mobile
+            layer_tag = mobile_page.locator("#teardown div:has-text('LAYER 01')").last
+            badge_tag = mobile_page.locator("#teardown div:has-text('GATE 1')").last
+            b1 = await layer_tag.bounding_box()
+            b2 = await badge_tag.bounding_box()
+            overlap_x = max(0, min(b1['x'] + b1['width'], b2['x'] + b2['width']) - max(b1['x'], b2['x']))
+            overlap_y = max(0, min(b1['y'] + b1['height'], b2['y'] + b2['height']) - max(b1['y'], b2['y']))
+            assert overlap_x == 0 or overlap_y == 0, f"Tags overlap on mobile: overlap_x={overlap_x}, overlap_y={overlap_y}"
+            print("✓ Mobile 375px: Subsystem layer tag and verification badge zero overlap.")
+
+            # Test Inquiry Form Dispatch with full data intake
+            await mobile_page.locator("#inquire input[placeholder*='acme robotics']").fill("Nexus Dynamics / Dr. Vance")
+            await mobile_page.locator("#inquire input[placeholder*='domain.com']").fill("vance@nexusdynamics.io")
+            await mobile_page.locator("#inquire input[placeholder*='4-6 weeks']").fill("4 weeks to bench prototype")
+            await mobile_page.locator("#inquire input[placeholder*='USD']").fill("$12,000 USD envelope")
+            await mobile_page.locator("#inquire input[placeholder*='ESP32-C3']").fill("ESP32-C3 RISC-V 4-layer PCBA + MJF PA12")
+            await mobile_page.locator("#inquire textarea[placeholder*='dimensions']").fill("Windows 95 tactical console with CST816D capacitive touch and GDMA 60Hz blitting.")
+            
+            submit_btn = mobile_page.locator("#inquire button[type='submit']")
+            await submit_btn.click()
+            await mobile_page.wait_for_timeout(300)
+            
+            assert await mobile_page.locator("#inquire").get_by_text("DISPATCH BUFFER READY").is_visible()
+            assert await mobile_page.locator("#inquire").get_by_text("Nexus Dynamics").is_visible()
+            assert await mobile_page.locator("#inquire").get_by_text("4 weeks to bench prototype").is_visible()
+            assert await mobile_page.locator("#inquire").get_by_text("12,000 USD envelope").is_visible()
+            assert await mobile_page.locator("#inquire").get_by_text("ESP32-C3 RISC-V 4-layer PCBA + MJF PA12").is_visible()
+            
+            mailto_link = await mobile_page.locator("#inquire a:has-text('open mail client')").get_attribute("href")
+            assert "contact@holtlab.io" in mailto_link
+            assert "vance@nexusdynamics.io" in mailto_link
+            assert "Nexus" in mailto_link
+            assert "12%2C000" in mailto_link or "12,000" in mailto_link
+            print("✓ Inquiry form interactive dispatch, full data fidelity, and mailto generator verified.")
+
+            # Test Edit Specifications loop
+            edit_btn = mobile_page.locator("#inquire button:has-text('edit specifications')")
+            await edit_btn.click()
+            await mobile_page.wait_for_timeout(200)
+            val_name = await mobile_page.locator("#inquire input[placeholder*='acme robotics']").input_value()
+            assert "Nexus Dynamics" in val_name, f"Expected data preserved, got {val_name}"
+            print("✓ Inquiry form edit specifications loop verified: all input state preserved.")
+
             # Mobile Full Page Screenshot
             mobile_full = os.path.join(OUTPUT_DIR, "mobile_full_showcase.png")
             await mobile_page.screenshot(path=mobile_full, full_page=True)
             print(f"✓ Mobile full page screenshot saved to {mobile_full}")
+
+            # Verify Footer
+            github_href = await page.locator("footer a:has-text('github')").get_attribute("href")
+            assert github_href == "https://github.com/holtlab-io", f"GitHub URL mismatch: {github_href}"
+            youtube_href = await page.locator("footer a:has-text('youtube')").get_attribute("href")
+            assert "youtube.com/@holt-lab" in youtube_href, f"YouTube URL mismatch: {youtube_href}"
+            print("✓ Footer organization links verified.")
 
             await browser.close()
             print("\n🎉 ALL E2E AND PLAYWRIGHT TESTS PASSED 100%!")

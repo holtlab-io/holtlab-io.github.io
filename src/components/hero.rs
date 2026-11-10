@@ -24,7 +24,7 @@ pub fn HeroDemonstrator() -> Element {
     rsx! {
         section {
             id: "demonstrator",
-            class: "relative bg-gradient-to-b from-white via-zinc-50/50 to-white pt-10 sm:pt-16 pb-20 sm:pb-28 border-b border-zinc-200 overflow-hidden font-sans",
+            class: "relative bg-gradient-to-b from-white via-zinc-50/50 to-white pt-10 sm:pt-16 pb-20 sm:pb-28 border-b border-zinc-200 overflow-hidden font-sans scroll-mt-20",
             div {
                 class: "max-w-[1400px] mx-auto px-4 sm:px-8 flex flex-col items-center text-center",
                 HeroHeaderBlock {}

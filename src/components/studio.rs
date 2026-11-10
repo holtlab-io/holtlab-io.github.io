@@ -16,7 +16,7 @@ pub fn StudioTurnkey() -> Element {
     rsx! {
         section {
             id: "studio",
-            class: "bg-[#FAFAFA] py-16 sm:py-24 border-t border-zinc-200 font-sans",
+            class: "bg-[#FAFAFA] py-16 sm:py-24 border-t border-zinc-200 font-sans scroll-mt-20",
             div {
                 class: "max-w-[1500px] mx-auto px-4 sm:px-8",
                 div {

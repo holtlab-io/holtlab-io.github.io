@@ -20,24 +20,30 @@ pub fn LayerInspector(layer: TeardownLayer) -> Element {
 
             // Visual Column (Left)
             div {
-                class: "lg:col-span-6 flex flex-col items-center justify-center bg-zinc-50 border border-zinc-200/80 rounded-xs p-6 relative overflow-hidden group min-h-[380px]",
+                class: "lg:col-span-6 flex flex-col justify-between bg-zinc-50 border border-zinc-200/80 rounded-xs p-4 sm:p-6 relative overflow-hidden group min-h-[380px]",
                 div {
-                    class: "absolute top-3 left-3 px-2.5 py-1 rounded-xs bg-zinc-950 text-white font-mono text-[10px] font-bold tracking-wider",
-                    "LAYER {layer.number}"
+                    class: "w-full flex flex-wrap items-center justify-between gap-2 z-10 mb-2",
+                    div {
+                        class: "px-2.5 py-1 rounded-xs bg-zinc-950 text-white font-mono text-[10px] font-bold tracking-wider shrink-0",
+                        "LAYER {layer.number}"
+                    }
+                    div {
+                        class: "px-2.5 py-1 rounded-xs bg-emerald-50 text-emerald-700 border border-emerald-200 font-mono text-[10px] font-semibold truncate",
+                        "{layer.verification_badge}"
+                    }
                 }
                 div {
-                    class: "absolute top-3 right-3 px-2.5 py-1 rounded-xs bg-emerald-50 text-emerald-700 border border-emerald-200 font-mono text-[10px] font-semibold",
-                    "{layer.verification_badge}"
-                }
-                img {
-                    src: "{layer.image_src}",
-                    alt: "{layer.image_alt}",
-                    class: "max-h-[360px] w-full object-contain drop-shadow-md transition-transform duration-500 group-hover:scale-105"
+                    class: "flex-1 flex items-center justify-center py-2",
+                    img {
+                        src: "{layer.image_src}",
+                        alt: "{layer.image_alt}",
+                        class: "max-h-[320px] sm:max-h-[360px] w-full object-contain drop-shadow-md transition-transform duration-500 group-hover:scale-105"
+                    }
                 }
                 div {
-                    class: "w-full pt-3 mt-3 border-t border-zinc-200/60 flex items-center justify-between text-[10px] font-mono text-zinc-400",
-                    span { "{layer.bus_or_material}" }
-                    span { "HOLT LAB AUDIT PASS" }
+                    class: "w-full pt-3 border-t border-zinc-200/60 flex items-center justify-between text-[10px] font-mono text-zinc-400 gap-2",
+                    span { class: "truncate", "{layer.bus_or_material}" }
+                    span { class: "shrink-0", "HOLT LAB AUDIT PASS" }
                 }
             }
 

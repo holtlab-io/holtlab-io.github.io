@@ -37,7 +37,7 @@ pub fn Navbar() -> Element {
                 }
                 NavLinks {}
                 div {
-                    class: "md:hidden flex items-center gap-2",
+                    class: "lg:hidden flex items-center gap-2",
                     a {
                         href: "#inquire",
                         class: "px-2.5 py-1 rounded-xs bg-[#E64A19] text-white font-mono text-[11px] font-semibold tracking-wider",

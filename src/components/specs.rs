@@ -73,7 +73,7 @@ pub fn SpecsMatrix() -> Element {
     rsx! {
         section {
             id: "specs",
-            class: "bg-white py-16 sm:py-24 border-t border-zinc-200 font-sans",
+            class: "bg-white py-16 sm:py-24 border-t border-zinc-200 font-sans scroll-mt-20",
             div {
                 class: "max-w-[1600px] mx-auto px-4 sm:px-8",
 

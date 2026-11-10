@@ -34,7 +34,7 @@ pub fn TeardownSection() -> Element {
     rsx! {
         section {
             id: "teardown",
-            class: "bg-white py-16 sm:py-24 border-t border-zinc-200 font-sans",
+            class: "bg-white py-16 sm:py-24 border-t border-zinc-200 font-sans scroll-mt-20",
             div {
                 class: "max-w-[1500px] mx-auto px-4 sm:px-8",
 
@@ -57,7 +57,7 @@ pub fn TeardownSection() -> Element {
 
                 // Interactive 4-Layer Tabs Selector
                 div {
-                    class: "grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 mb-6 select-none",
+                    class: "grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-6 select-none",
                     for layer in TEARDOWN_LAYERS.iter() {
                         button {
                             key: "{layer.id}",
