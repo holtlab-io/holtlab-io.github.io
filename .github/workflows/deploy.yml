@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -37,30 +37,28 @@ jobs:
         run: |
           dx build --web --release
 
-      - name: Prepare GitHub Pages Distribution
+      - name: Prepare Pages Artifacts
         run: |
-          mkdir -p docs
-          # Copy Dioxus build artifacts
-          if [ -d "target/dx/holtlab-landing/release/web/public" ]; then
-            cp -r target/dx/holtlab-landing/release/web/public/* docs/
-          elif [ -d "dist" ]; then
-            cp -r dist/* docs/
-          fi
-          
-          # Copy static public assets
-          cp -r assets docs/ || true
-          cp public/sitemap.xml docs/ || true
-          cp public/robots.txt docs/ || true
-          
-          # Bypass Jekyll processing
-          touch docs/.nojekyll
-          
-          # SPA Fallback
-          cp docs/index.html docs/404.html || true
+          mkdir -p dist
+          cp -r target/dx/holtlab-landing/release/web/public/* dist/
+          cp -r public/assets dist/ || true
+          cp public/sitemap.xml dist/ || true
+          cp public/robots.txt dist/ || true
+          touch dist/.nojekyll
+          cp dist/index.html dist/404.html || true
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: docs
-          branch: gh-pages
-          clean: true
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
