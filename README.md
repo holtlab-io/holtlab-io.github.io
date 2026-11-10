@@ -14,7 +14,7 @@ Holt Lab is an independent hardware & embedded engineering studio specializing i
 We bridge the fatal gap between mechanical enclosures, high-density multi-layer PCBs, and low-latency embedded firmware.
 
 - **Interference-Free Assembly Guarantee**: Co-designed in OpenCascade B-Rep 3D solid kernel and KiCad 9 3D STEP models.
-- **Single-Threaded Lead Architecture**: Eliminates cross-vendor ping-pong between PCB fabricators, mechanical molders, and firmware engineers.
+- **Unified Turnkey Co-Design**: Eliminates cross-vendor ping-pong between PCB fabricators, mechanical molders, and firmware engineers.
 - **Rapid PoC Turnaround**: 3–4 weeks from initial schematic to working physical prototypes in hand.
 - **Government Grant Compliant**: 100% compliant electronic contracts, tax invoices, and milestone acceptance documentation for startup grants (예창패·청창사·초창패).
 
@@ -48,4 +48,4 @@ We bridge the fatal gap between mechanical enclosures, high-density multi-layer 
 - **GitHub**: [github.com/holtlab-io](https://github.com/holtlab-io)
 
 ---
-*© 2026 Holt Lab (Lead Architect: Wim). Built with Rust & Dioxus.*
+*© 2026 Holt Lab. Built with Rust & Dioxus.*

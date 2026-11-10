@@ -204,11 +204,20 @@ async def run_e2e():
                 "0.00 mm³", "0.000 mm³", "0.00mm³", "0.00 mm3", "0.000 mm3",
                 "JLCPCB", "JLC3DP", "JLC04161H", "정밀공차",
                 "Boutique", "boutique", "부티크", "BOUTIQUE",
-                "1인", "1-person", "1-PERSON", "single architect", "단 한 명"
+                "1인", "1-person", "1-PERSON", "single architect", "단 한 명",
+                "단 한명", "단일 리드", "1인 턴키", "1 person", "one-person", "single-threaded"
             ]
             for term in forbidden_terms:
                 assert term not in body_text_en, f"Forbidden term '{term}' found in English body text"
                 assert term not in dom_html_en, f"Forbidden term '{term}' found in English DOM HTML"
+                # Case-insensitive check for ASCII phrases
+                if term.isascii() and term.isalpha():
+                    assert term.lower() not in body_text_en.lower(), f"Forbidden term '{term}' (case-insensitive) found in English body text"
+                    assert term.lower() not in dom_html_en.lower(), f"Forbidden term '{term}' (case-insensitive) found in English DOM HTML"
+            # Explicit case-insensitive check for solo terms
+            for solo_phrase in ["1-person", "single architect", "one-person", "single-threaded"]:
+                assert solo_phrase not in body_text_en.lower(), f"Forbidden solo phrase '{solo_phrase}' (case-insensitive) found in English body text"
+                assert solo_phrase not in dom_html_en.lower(), f"Forbidden solo phrase '{solo_phrase}' (case-insensitive) found in English DOM HTML"
             print("✓ Eradication audit: 0 instances of low-cost vendors, boutique, boolean CAD metrics, and 1-person solo claims in EN.")
 
             # Capture Desktop EN Screenshot
@@ -276,8 +285,12 @@ async def run_e2e():
             for term in forbidden_terms:
                 assert term not in body_text_kr, f"Forbidden term '{term}' found in Korean body text"
                 assert term not in dom_html_kr, f"Forbidden term '{term}' found in Korean DOM HTML"
+            # Explicit case-insensitive check for solo terms
+            for solo_phrase in ["1-person", "single architect", "one-person", "single-threaded"]:
+                assert solo_phrase not in body_text_kr.lower(), f"Forbidden solo phrase '{solo_phrase}' (case-insensitive) found in Korean body text"
+                assert solo_phrase not in dom_html_kr.lower(), f"Forbidden solo phrase '{solo_phrase}' (case-insensitive) found in Korean DOM HTML"
             assert "공차" not in body_text_kr, "Forbidden term '공차' found in Korean body text"
-            print("✓ Eradication audit: 0 instances of low-cost vendors and boolean CAD metrics in KR.")
+            print("✓ Eradication audit: 0 instances of low-cost vendors, boutique, boolean CAD metrics, and 1-person solo claims in KR.")
 
             # Capture Desktop KR Screenshot
             desktop_full_kr = os.path.join(OUTPUT_DIR, "desktop_full_kr.png")
