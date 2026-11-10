@@ -1,7 +1,7 @@
 # Holt Lab — Official Studio Hub
 
 > **"From Silicon to Enclosure to Screen."**  
-> Boutique Hardware, Mechanical (MCAD), Electronics (ECAD) & Firmware Engineering Studio.
+> Hardware, Mechanical (MCAD), Electronics (ECAD) & Firmware Engineering Studio.
 
 [![GitHub Pages Deployment](https://github.com/holtlab-io/holtlab-io.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/holtlab-io/holtlab-io.github.io/actions/workflows/deploy.yml)
 [![Live Website](https://img.shields.io/badge/Live_Site-holtlab--io.github.io-orange)](https://holtlab-io.github.io)
@@ -10,7 +10,7 @@
 
 ## ⚡ What is Holt Lab?
 
-Holt Lab is an independent boutique engineering studio specializing in **Zero-Pingpong Turnkey Hardware Development**.  
+Holt Lab is an independent hardware & embedded engineering studio specializing in **Zero-Pingpong Turnkey Hardware Development**.  
 We bridge the fatal gap between mechanical enclosures, high-density multi-layer PCBs, and low-latency embedded firmware.
 
 - **Interference-Free Assembly Guarantee**: Co-designed in OpenCascade B-Rep 3D solid kernel and KiCad 9 3D STEP models.

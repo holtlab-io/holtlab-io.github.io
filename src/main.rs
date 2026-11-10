@@ -36,8 +36,8 @@ fn App() -> Element {
             if let Some(window) = web_sys::window() {
                 if let Some(doc) = window.document() {
                     let title = match current_lang {
-                        Language::En => "Holt Lab — Boutique Hardware & Embedded Engineering Studio",
-                        Language::Ko => "Holt Lab — 부티크 하드웨어 & 임베디드 엔지니어링 스튜디오",
+                        Language::En => "Holt Lab — Hardware & Embedded Engineering Studio",
+                        Language::Ko => "Holt Lab — 하드웨어 & 임베디드 엔지니어링 랩",
                     };
                     doc.set_title(title);
                     if let Some(html_el) = doc.document_element() {
@@ -49,8 +49,8 @@ fn App() -> Element {
                     }
                     if let Ok(Some(meta_desc)) = doc.query_selector("meta[name='description']") {
                         let desc = match current_lang {
-                            Language::En => "Holt Lab — Boutique Hardware, Mechanical & Embedded Engineering Studio. Unified Turnkey Hardware & Embedded Execution.",
-                            Language::Ko => "Holt Lab — 부티크 하드웨어, 기구 및 임베디드 엔지니어링 스튜디오. 단일 리드 턴키 하드웨어 개발.",
+                            Language::En => "Holt Lab — Hardware, Mechanical & Embedded Engineering Studio. Unified Turnkey Hardware & Embedded Execution.",
+                            Language::Ko => "Holt Lab — 하드웨어, 기구 및 임베디드 엔지니어링 랩. 단일 리드 턴키 하드웨어 개발.",
                         };
                         let _ = meta_desc.set_attribute("content", desc);
                     }

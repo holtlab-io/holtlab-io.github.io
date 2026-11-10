@@ -1,7 +1,7 @@
 {
   "name": "holt-lab.github.io",
   "version": "1.0.0",
-  "description": "> **\"From Silicon to Enclosure to Screen.\"**   > Boutique Hardware, Mechanical (MCAD), Electronics (ECAD) & Firmware Engineering Studio.",
+  "description": "> **\"From Silicon to Enclosure to Screen.\"**   > Hardware, Mechanical (MCAD), Electronics (ECAD) & Firmware Engineering Studio.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

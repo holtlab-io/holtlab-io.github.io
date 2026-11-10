@@ -8,7 +8,7 @@
 //! ## Submodules
 //! - [`form`] (`form.rs`): Quiet RFQ form and email dispatcher.
 //! - [`info`] (`info.rs`): Contact info and institutional coordinates.
-//! - [`selectors`] (`selectors.rs`): Engineering discipline and project profile selection buttons.
+//! - [`selectors`] (`selectors.rs`): Engineering discipline selection pill buttons.
 //! - [`submitted`] (`submitted.rs`): Dispatch buffer confirmation and mailto trigger.
 
 use dioxus::prelude::*;
@@ -26,12 +26,10 @@ pub use submitted::SubmittedView;
 #[component]
 pub fn Contact() -> Element {
     let selected_scope = use_signal(|| 0);
-    let selected_target = use_signal(|| 0);
     let name = use_signal(String::new);
     let email = use_signal(String::new);
     let timeline = use_signal(String::new);
     let budget = use_signal(String::new);
-    let cad_pcb_reqs = use_signal(String::new);
     let project_brief = use_signal(String::new);
     let is_submitted = use_signal(|| false);
 
@@ -46,12 +44,10 @@ pub fn Contact() -> Element {
                     ContactInfo {}
                     ContactForm {
                         selected_scope,
-                        selected_target,
                         name,
                         email,
                         timeline,
                         budget,
-                        cad_pcb_reqs,
                         project_brief,
                         is_submitted,
                     }

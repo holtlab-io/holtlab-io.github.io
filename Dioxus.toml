@@ -2,7 +2,7 @@
 name = "holtlab-landing"
 
 [web.app]
-title = "Holt Lab — Boutique Hardware & Embedded Engineering Studio"
+title = "Holt Lab — Hardware & Embedded Engineering Studio"
 
 [web.resource]
 style = [

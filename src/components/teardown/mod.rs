@@ -1,6 +1,6 @@
 //! ## Overview
 //! Interactive anatomical engineering teardown section modeled after Framework's core UX.
-//! Allows visitors to inspect the hardware across 4 architectural layers from enclosure to bare-metal Rust.
+//! Allows visitors to inspect the hardware across 4 architectural layers from enclosure to high-reliability embedded firmware.
 //!
 //! ## Search Tags
 //! #teardown, #subsystems, #layers, #framework-style, #hardware
@@ -84,7 +84,7 @@ pub fn TeardownSection() -> Element {
                                 }
                             }
                             div {
-                                class: "text-xs sm:text-sm font-bold truncate",
+                                class: "text-xs lg:text-sm font-bold truncate",
                                 "{layer.title}"
                             }
                         }

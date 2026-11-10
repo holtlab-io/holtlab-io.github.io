@@ -1,6 +1,6 @@
 //! ## Overview
 //! Brand logo lockup and visual identity components for the Holt Lab header.
-//! Features lowercase industrial brand typography paired with the localized boutique engineering studio descriptor.
+//! Features lowercase industrial brand typography paired with the localized hardware engineering studio descriptor.
 //!
 //! ## Search Tags
 //! #brand, #logo, #identity, #typography, #studio-mark

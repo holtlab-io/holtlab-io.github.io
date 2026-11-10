@@ -102,7 +102,7 @@ async def run_e2e():
 
             # Verify Dynamic Title & html lang in English mode
             title_en = await page.title()
-            assert "Boutique Hardware" in title_en, f"Initial title mismatch: {title_en}"
+            assert "Hardware & Embedded Engineering Studio" in title_en, f"Initial title mismatch: {title_en}"
             html_lang_en = await page.locator("html").get_attribute("lang")
             assert html_lang_en == "en", f"Expected html lang='en', got {html_lang_en}"
             en_btn = page.locator("header button:has-text('EN')").first
@@ -112,7 +112,7 @@ async def run_e2e():
             # Verify Header Brand & Navigation Anchors
             header_brand = await page.locator("header a[href='#']").inner_text()
             assert "holt" in header_brand and "lab" in header_brand, f"Brand missing: {header_brand}"
-            assert "Boutique Hardware Engineering Studio" in header_brand, f"Descriptor missing: {header_brand}"
+            assert "Hardware & Embedded Engineering Studio" in header_brand, f"Descriptor missing: {header_brand}"
 
             # Verify Desktop Navigation contains all 5 anchors
             nav_links = await page.locator("header nav a").all_inner_texts()
@@ -135,8 +135,8 @@ async def run_e2e():
             assert "OPUS 01" in hero_eyebrow
 
             # Verify 5 Quick Spec Pills
-            pill_texts = await page.locator("#demonstrator").locator("span:has-text('ESP32'), span:has-text('43.4'), span:has-text('60Hz'), span:has-text('MJF'), span:has-text('Rust')").all_inner_texts()
-            expected_pills = ["43.4×69.2×13.78mm", "ESP32-C3 160MHz", "2.0\" 60Hz IPS", "HP MJF PA12", "Bare-metal Rust"]
+            pill_texts = await page.locator("#demonstrator").locator("span:has-text('ESP32'), span:has-text('43.4'), span:has-text('60Hz'), span:has-text('MJF'), span:has-text('Firmware')").all_inner_texts()
+            expected_pills = ["43.4×69.2×13.78mm", "ESP32-C3 160MHz", "2.0\" 60Hz IPS", "HP MJF PA12", "Real-Time Firmware"]
             print(f"Pills found: {pill_texts}")
             for exp in expected_pills:
                 assert any(exp in pt for pt in pill_texts), f"Pill {exp} missing in {pill_texts}"
@@ -164,14 +164,14 @@ async def run_e2e():
             assert await page.locator("#teardown").get_by_text("GATE 2 // 0 ERC · 0 DRC VERIFIED").is_visible()
             print("✓ Layer 02 (ECAD 4-Layer PCBA) interactive switch verified.")
 
-            # Switch to Layer 03 (Bare-Metal Rust Engine)
-            tab_rust = page.locator("#teardown button:has-text('Bare-Metal Rust Engine')")
+            # Switch to Layer 03 (High-Reliability Embedded Firmware Engine)
+            tab_rust = page.locator("#teardown button:has-text('High-Reliability Embedded Firmware Engine')")
             await tab_rust.click()
             await page.wait_for_timeout(200)
             assert await page.locator("#teardown").get_by_text("LAYER 03").first.is_visible()
             assert await page.locator("#teardown").get_by_text("AHB GDMA CH0 Zero-Copy Pipeline").is_visible()
             assert await page.locator("#teardown").get_by_text("BENCH // ZERO-COPY 60Hz DMA PASS").is_visible()
-            print("✓ Layer 03 (Bare-Metal Rust Engine) interactive switch verified.")
+            print("✓ Layer 03 (High-Reliability Embedded Firmware Engine) interactive switch verified.")
 
             # Switch to Layer 04 (Human Interface & Haptics)
             tab_haptics = page.locator("#teardown button:has-text('Human Interface & Haptics')")
@@ -200,11 +200,11 @@ async def run_e2e():
             # Verify Eradication of Forbidden Terms in EN mode
             body_text_en = await page.inner_text("body")
             dom_html_en = await page.content()
-            forbidden_terms = ["0.00 mm³", "0.000 mm³", "0.00mm³", "0.00 mm3", "0.000 mm3", "JLCPCB", "JLC3DP", "JLC04161H", "정밀공차"]
+            forbidden_terms = ["0.00 mm³", "0.000 mm³", "0.00mm³", "0.00 mm3", "0.000 mm3", "JLCPCB", "JLC3DP", "JLC04161H", "정밀공차", "Boutique", "boutique", "부티크"]
             for term in forbidden_terms:
                 assert term not in body_text_en, f"Forbidden term '{term}' found in English body text"
                 assert term not in dom_html_en, f"Forbidden term '{term}' found in English DOM HTML"
-            print("✓ Eradication audit: 0 instances of low-cost vendors and boolean CAD metrics in EN.")
+            print("✓ Eradication audit: 0 instances of low-cost vendors, boutique, and boolean CAD metrics in EN.")
 
             # Capture Desktop EN Screenshot
             desktop_full_en = os.path.join(OUTPUT_DIR, "desktop_full_en.png")
@@ -219,7 +219,7 @@ async def run_e2e():
 
             # Verify Document Title & html lang dynamically updated to Korean
             title_kr = await page.title()
-            assert "부티크 하드웨어" in title_kr, f"Korean title mismatch: {title_kr}"
+            assert "하드웨어 & 임베디드" in title_kr, f"Korean title mismatch: {title_kr}"
             html_lang_kr = await page.locator("html").get_attribute("lang")
             assert html_lang_kr == "ko", f"Expected html lang='ko', got {html_lang_kr}"
             assert await kr_toggle_btn.get_attribute("aria-pressed") == "true", "KR button should have aria-pressed=true"
@@ -230,7 +230,7 @@ async def run_e2e():
             assert "하드웨어 실증 머신" in hero_eyebrow_kr
 
             assert await page.locator("#demonstrator").get_by_text("무간섭 일체형 기구 설계").first.is_visible()
-            assert await page.locator("#demonstrator").get_by_text("베어메탈 Rust", exact=True).is_visible()
+            assert await page.locator("#demonstrator").get_by_text("초저지연 펌웨어", exact=True).is_visible()
             print("✓ Language toggle to KR: Hero updated dynamically to Korean.")
 
             # Verify Teardown updated to Korean
@@ -257,6 +257,7 @@ async def run_e2e():
             inquire_h2_kr = await page.locator("#inquire h2").inner_text()
             assert "프로젝트 의뢰 및 기술 상담." in inquire_h2_kr
             assert await page.locator("#inquire").get_by_text("개발 분야 선택").first.is_visible()
+            assert await page.locator("#inquire").get_by_text("턴키 하드웨어 개발").first.is_visible()
             print("✓ Language toggle to KR: Inquire section updated dynamically to Korean.")
 
             # Verify localStorage persistence of language preference
@@ -318,7 +319,7 @@ async def run_e2e():
             # Verify Teardown tabs at 768px: ZERO truncation
             tablet_tabs = page_tablet.locator("#teardown button[type='button']")
             for i in range(4):
-                title_el = tablet_tabs.nth(i).locator("div:has-text('MCAD'), div:has-text('ECAD'), div:has-text('Rust'), div:has-text('Interface')").last
+                title_el = tablet_tabs.nth(i).locator("div:has-text('MCAD'), div:has-text('ECAD'), div:has-text('Firmware'), div:has-text('Interface')").last
                 scroll_w = await title_el.evaluate("el => el.scrollWidth")
                 client_w = await title_el.evaluate("el => el.clientWidth")
                 txt = await title_el.inner_text()
@@ -373,13 +374,18 @@ async def run_e2e():
             assert overlap_x == 0 or overlap_y == 0, f"Tags overlap on mobile: overlap_x={overlap_x}, overlap_y={overlap_y}"
             print("✓ Mobile 375px: Subsystem layer tag and verification badge zero overlap.")
 
+            # Take a mobile screenshot of the new contact section before fill
+            mobile_contact_el = mobile_page.locator("#inquire")
+            mobile_contact_shot = os.path.join(OUTPUT_DIR, "mobile_contact_redesign.png")
+            await mobile_contact_el.screenshot(path=mobile_contact_shot)
+            print(f"✓ Mobile contact section redesign screenshot saved to {mobile_contact_shot}")
+
             # Test Inquiry Form Dispatch with full data intake in Korean mode
             await mobile_page.locator("#inquire input[required][type='text']").fill("넥서스 다이내믹스 / 반스 박사")
             await mobile_page.locator("#inquire input[required][type='email']").fill("vance@nexusdynamics.io")
             await mobile_page.locator("#inquire input[placeholder*='주'], #inquire input[placeholder*='weeks']").fill("작동 시제품까지 4주")
             await mobile_page.locator("#inquire input[placeholder*='원'], #inquire input[placeholder*='USD']").fill("1,500만 원 예산 범위")
-            await mobile_page.locator("#inquire input[placeholder*='ESP32-C3']").fill("ESP32-C3 RISC-V 4층 기판 + MJF PA12")
-            await mobile_page.locator("#inquire textarea[required]").fill("윈도우 95 감성 포터블 콘솔, CST816D 정전식 터치 및 60Hz GDMA 전송.")
+            await mobile_page.locator("#inquire textarea[required]").fill("윈도우 95 감성 포터블 콘솔, 4층 임피던스 제어 기판, CST816D 정전식 터치 및 60Hz GDMA 전송.")
 
             submit_btn = mobile_page.locator("#inquire button[type='submit']")
             await submit_btn.click()
@@ -388,6 +394,8 @@ async def run_e2e():
             assert await mobile_page.locator("#inquire").get_by_text("발송 버퍼 준비 완료").is_visible()
             assert await mobile_page.locator("#inquire").get_by_text("넥서스 다이내믹스").is_visible()
             assert await mobile_page.locator("#inquire").get_by_text("작동 시제품까지 4주").is_visible()
+            assert await mobile_page.locator("#inquire").get_by_text("1,500만 원 예산 범위").is_visible()
+            assert await mobile_page.locator("#inquire").get_by_text("윈도우 95 감성 포터블 콘솔").is_visible()
 
             mailto_link = await mobile_page.locator("#inquire a:has-text('메일 프로그램 열기'), #inquire a:has-text('open mail client')").get_attribute("href")
             assert "contact@holtlab.io" in mailto_link

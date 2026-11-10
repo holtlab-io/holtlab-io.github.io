@@ -1,17 +1,17 @@
 //! ## Overview
-//! Interactive selection buttons for project scope and client organization category.
-//! Provides localized options for engineering disciplines and organizational scope.
+//! Sleek minimal pill selection buttons for choosing the target engineering discipline.
+//! Displays selected and unselected pill states with zero line wrap issues on mobile devices.
 //!
 //! ## Search Tags
-//! #contact, #selectors, #scope, #buttons, #options
+//! #contact, #selectors, #discipline, #pills, #buttons
 //!
 //! ## Submodules
-//! None. This module provides atomic selector buttons components.
+//! None. This module provides atomic discipline pill selector components.
 
 use dioxus::prelude::*;
 use crate::i18n::{contact::get_contact_strings, Language};
 
-/// Selector buttons for development scope.
+/// Minimal pill buttons for selecting the engineering development discipline.
 #[component]
 pub fn ScopeButtons(mut selected: Signal<usize>) -> Element {
     let lang = use_context::<Signal<Language>>();
@@ -19,51 +19,25 @@ pub fn ScopeButtons(mut selected: Signal<usize>) -> Element {
 
     rsx! {
         div {
-            class: "space-y-2",
+            class: "space-y-2.5",
             label { class: "block text-xs font-mono text-zinc-500 lowercase", "{selectors.discipline_label}" }
             div {
-                class: "grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono lowercase",
+                class: "flex flex-wrap gap-2 text-xs",
                 for (idx, scope) in selectors.scopes.iter().enumerate() {
                     button {
                         key: "{scope}",
                         r#type: "button",
                         onclick: move |_| selected.set(idx),
                         class: if selected() == idx {
-                            "p-3 rounded-xs border-2 border-zinc-950 bg-zinc-100 text-zinc-950 font-bold text-left transition-all"
+                            "inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-zinc-950 bg-zinc-950 text-white font-medium text-xs shadow-2xs whitespace-nowrap transition-all cursor-pointer"
                         } else {
-                            "p-3 rounded-xs border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-950 text-left transition-all"
+                            "inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border border-zinc-200 bg-white hover:border-zinc-300 text-zinc-700 hover:text-zinc-950 font-normal text-xs whitespace-nowrap transition-all cursor-pointer"
                         },
-                        "{scope}"
-                    }
-                }
-            }
-        }
-    }
-}
-
-/// Selector buttons for client organizational category.
-#[component]
-pub fn TargetButtons(mut selected: Signal<usize>) -> Element {
-    let lang = use_context::<Signal<Language>>();
-    let selectors = get_contact_strings(lang()).selectors;
-
-    rsx! {
-        div {
-            class: "space-y-2",
-            label { class: "block text-xs font-mono text-zinc-500 lowercase", "{selectors.profile_label}" }
-            div {
-                class: "grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono lowercase",
-                for (idx, target) in selectors.targets.iter().enumerate() {
-                    button {
-                        key: "{target}",
-                        r#type: "button",
-                        onclick: move |_| selected.set(idx),
-                        class: if selected() == idx {
-                            "p-2.5 rounded-xs border-2 border-zinc-950 bg-zinc-100 text-zinc-950 font-bold text-center"
-                        } else {
-                            "p-2.5 rounded-xs border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-950 text-center"
-                        },
-                        "{target}"
+                        span {
+                            class: if selected() == idx { "text-white text-[11px] leading-none" } else { "text-zinc-400 text-[11px] leading-none" },
+                            if selected() == idx { "●" } else { "○" }
+                        }
+                        span { class: "tracking-tight", "{scope}" }
                     }
                 }
             }

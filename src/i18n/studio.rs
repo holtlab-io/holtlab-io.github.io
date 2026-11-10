@@ -86,7 +86,7 @@ fn turnkey_card(lang: Language) -> ComparisonCardStrings {
             badge: "HOLT LAB 1-PERSON TURNKEY",
             metric: "ZERO-REWORK GUARANTEED",
             heading: "one closed-loop lead architect",
-            body: "every millimeter of chassis geometry, copper impedance trace, and bare-metal clock cycle is engineered by a single architect. COTS 3D STEP models are locked before trace freeze. Volumetric collision checks and 0 ERC/DRC verification run deterministically before manufacturing orders.",
+            body: "every millimeter of chassis geometry, copper impedance trace, and real-time clock cycle is engineered by a single architect. COTS 3D STEP models are locked before trace freeze. Volumetric collision checks and 0 ERC/DRC verification run deterministically before manufacturing orders.",
             bullet_1: "✓ Interference-free assembly: OpenCascade B-Rep Gate 1 check",
             bullet_2: "✓ Firmware-aware ECAD: GPIO strapping & RC delays solved in design",
             bullet_3: "✓ First-spin success: working hardware boots over remote Tailscale bench",
@@ -95,7 +95,7 @@ fn turnkey_card(lang: Language) -> ComparisonCardStrings {
             badge: "홀트 랩 1인 턴키 솔루션",
             metric: "단 1회 무결 브링업",
             heading: "단일 리드 아키텍트의 완전 폐루프",
-            body: "기구 외함의 0.1밀리미터 치수부터 회로의 임피던스 배선, 베어메탈 펌웨어의 클록 사이클까지 단 한 명의 리드 아키텍트가 총괄합니다. 배선 확정 전 부품 3D STEP 모델을 100% 동기화하며, 발주 전 3D 체적 간섭 및 0 ERC/DRC를 결정론적으로 검증합니다.",
+            body: "기구 외함의 0.1밀리미터 치수부터 회로의 임피던스 배선, 고신뢰성 펌웨어의 클록 사이클까지 단 한 명의 리드 아키텍트가 총괄합니다. 배선 확정 전 부품 3D STEP 모델을 100% 동기화하며, 발주 전 3D 체적 간섭 및 0 ERC/DRC를 결정론적으로 검증합니다.",
             bullet_1: "✓ 무간섭 일체형 설계: OpenCascade B-Rep 게이트 1 사전 검증",
             bullet_2: "✓ 펌웨어 연계 회로: 스트래핑 핀 및 RC 지연을 회로 설계 단에서 해결",
             bullet_3: "✓ 단 1회 생산 성공: Tailscale 원격 환경에서 즉시 펌웨어 구동 완주",
@@ -121,9 +121,9 @@ fn pipeline_phases_en() -> [PipelinePhaseStrings; 4] {
             desc: "factory-direct precision SMT assembly & industrial MJF PA12 fabrication with live status tracking.",
         },
         PipelinePhaseStrings {
-            phase_tag: "04 // BARE-METAL BRING-UP",
+            phase_tag: "04 // EMBEDDED BRING-UP",
             title: "zero-rework firmware",
-            desc: "rust esp-hal + embassy runtime, DMA graphics, and Tailscale bench flashing.",
+            desc: "real-time esp-hal runtime, zero-copy DMA graphics, and Tailscale bench flashing.",
         },
     ]
 }
@@ -146,9 +146,9 @@ fn pipeline_phases_ko() -> [PipelinePhaseStrings; 4] {
             desc: "정밀 SMT 실장 및 산업용 MJF 나일론 시제품을 실시간 생산 추적과 함께 다이렉트 발주합니다.",
         },
         PipelinePhaseStrings {
-            phase_tag: "04 // BARE-METAL BRING-UP",
+            phase_tag: "04 // 임베디드 브링업",
             title: "재작업 없는 단번에 브링업",
-            desc: "Rust esp-hal 및 embassy 런타임, DMA 그래픽스, Tailscale 원격 벤치 플래싱으로 완벽 구동합니다.",
+            desc: "고신뢰성 esp-hal 및 embassy 런타임, 제로카피 DMA 그래픽스, Tailscale 원격 벤치 플래싱으로 완벽 구동합니다.",
         },
     ]
 }

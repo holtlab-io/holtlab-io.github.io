@@ -6,7 +6,7 @@
 //! #i18n, #localization, #bilingual, #korean, #english
 //!
 //! ## Submodules
-//! - [`contact`] (`contact.rs`): Inquiry form inputs, scopes, target profiles, and buffer texts.
+//! - [`contact`] (`contact.rs`): Inquiry form inputs, scopes, and buffer texts.
 //! - [`hero`] (`hero.rs`): Flagship hero headings, quick spec pills, and navbar/footer labels.
 //! - [`specs`] (`specs.rs`): 10-row Swiss engineering specification matrix table.
 //! - [`studio`] (`studio.rs`): Studio turnkey comparison cards and 4-phase engineering pipeline.

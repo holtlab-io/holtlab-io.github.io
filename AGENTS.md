@@ -18,7 +18,7 @@ This project strictly adheres to the compiler-enforced **Agent-Native** architec
 
 ## 2. System Architecture & Design System
 
-Holt Lab is a boutique hardware and embedded engineering studio landing page built with Rust, Dioxus 0.7 (WebAssembly), and Tailwind CSS v4.
+Holt Lab is a hardware and embedded engineering studio landing page built with Rust, Dioxus 0.7 (WebAssembly), and Tailwind CSS v4.
 
 ### Module Domains
 The root crate index (`src/main.rs`) organizes the codebase into:

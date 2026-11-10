@@ -18,10 +18,8 @@ pub fn SubmittedView(
     email: Signal<String>,
     timeline: Signal<String>,
     budget: Signal<String>,
-    cad_pcb_reqs: Signal<String>,
     project_brief: Signal<String>,
     selected_scope: Signal<usize>,
-    selected_target: Signal<usize>,
     is_submitted: Signal<bool>,
 ) -> Element {
     let lang = use_context::<Signal<Language>>();
@@ -30,7 +28,6 @@ pub fn SubmittedView(
     let is_ko = lang() == Language::Ko;
 
     let scope_text = contact_strings.selectors.scopes[selected_scope().min(3)];
-    let target_text = contact_strings.selectors.targets[selected_target().min(3)];
 
     let raw_timeline = timeline();
     let timeline_val = if raw_timeline.trim().is_empty() {
@@ -46,18 +43,11 @@ pub fn SubmittedView(
         raw_budget
     };
 
-    let raw_cad = cad_pcb_reqs();
-    let cad_val = if raw_cad.trim().is_empty() {
-        if is_ko { "표준 요구 사양".to_string() } else { "standard specifications".to_string() }
-    } else {
-        raw_cad
-    };
-
     let subject_tag = if is_ko { "Holt Lab 하드웨어 개발 의뢰" } else { "Holt Lab Commission" };
     let raw_subject = format!("[{}] {} — {}", subject_tag, name(), scope_text);
     let raw_body = format!(
-        "organization: {}\ncontact email: {}\nproject profile: {}\ndiscipline: {}\ntarget timeline: {}\ntarget budget: {}\ncad/pcb requirements: {}\nproject brief & deliverables:\n{}",
-        name(), email(), target_text, scope_text, timeline_val, budget_val, cad_val, project_brief()
+        "name / organization: {}\ncontact email: {}\ndiscipline: {}\ntarget timeline: {}\ntarget budget: {}\n\nproject brief & requirements:\n{}",
+        name(), email(), scope_text, timeline_val, budget_val, project_brief()
     );
     let mailto_url = format!(
         "mailto:contact@holtlab.io?subject={}&body={}",
@@ -67,16 +57,15 @@ pub fn SubmittedView(
 
     rsx! {
         div {
-            class: "p-8 border border-zinc-200 bg-zinc-50 text-center space-y-4 rounded-xs font-mono",
+            class: "p-6 sm:p-8 border border-zinc-200 bg-zinc-50 text-center space-y-4 rounded-xs font-mono",
             SubmittedHeader { buffer }
             SubmittedSummaryCard {
                 name: name(),
                 email: email(),
                 scope: scope_text,
-                target: target_text,
                 timeline: timeline_val,
                 budget: budget_val,
-                cad: cad_val,
+                brief: project_brief(),
                 is_ko,
             }
             SubmittedActions { mailto_url, is_submitted, buffer }
@@ -110,30 +99,31 @@ fn SubmittedSummaryCard(
     name: String,
     email: String,
     scope: &'static str,
-    target: &'static str,
     timeline: String,
     budget: String,
-    cad: String,
+    brief: String,
     is_ko: bool,
 ) -> Element {
-    let lbl_org = if is_ko { "조직/성함: " } else { "ORGANIZATION: " };
+    let lbl_org = if is_ko { "성함/기업명: " } else { "NAME/ORG: " };
     let lbl_email = if is_ko { "이메일: " } else { "EMAIL: " };
     let lbl_disc = if is_ko { "개발분야: " } else { "DISCIPLINE: " };
-    let lbl_prof = if is_ko { "프로젝트유형: " } else { "PROFILE: " };
-    let lbl_time = if is_ko { "목표일정: " } else { "TIMELINE: " };
-    let lbl_budg = if is_ko { "예산범위: " } else { "BUDGET: " };
-    let lbl_cad = if is_ko { "기구/회로: " } else { "CAD/PCB: " };
+    let lbl_time = if is_ko { "희망일정: " } else { "TIMELINE: " };
+    let lbl_budg = if is_ko { "희망예산: " } else { "BUDGET: " };
+    let lbl_brief = if is_ko { "요구사항: " } else { "REQUIREMENTS: " };
 
     rsx! {
         div {
-            class: "text-left bg-white border border-zinc-200 p-4 rounded-xs text-[11px] font-mono text-zinc-700 space-y-1 my-3",
+            class: "text-left bg-white border border-zinc-200 p-4 rounded-xs text-[11px] font-mono text-zinc-700 space-y-1.5 my-3",
             div { span { class: "text-zinc-400", "{lbl_org}" } "{name}" }
             div { span { class: "text-zinc-400", "{lbl_email}" } "{email}" }
             div { span { class: "text-zinc-400", "{lbl_disc}" } "{scope}" }
-            div { span { class: "text-zinc-400", "{lbl_prof}" } "{target}" }
             div { span { class: "text-zinc-400", "{lbl_time}" } "{timeline}" }
             div { span { class: "text-zinc-400", "{lbl_budg}" } "{budget}" }
-            div { span { class: "text-zinc-400", "{lbl_cad}" } "{cad}" }
+            div {
+                class: "pt-1 border-t border-zinc-100",
+                span { class: "text-zinc-400 block mb-0.5", "{lbl_brief}" }
+                span { class: "font-sans text-xs text-zinc-800 whitespace-pre-wrap break-words", "{brief}" }
+            }
         }
     }
 }
@@ -147,16 +137,16 @@ fn SubmittedActions(
 ) -> Element {
     rsx! {
         div {
-            class: "flex flex-col sm:flex-row items-center justify-center gap-3 pt-2",
+            class: "flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 select-none",
             a {
                 href: "{mailto_url}",
-                class: "w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-xs font-mono tracking-wider uppercase transition-colors shadow-xs",
+                class: "w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-xs font-mono tracking-wider uppercase transition-colors shadow-xs cursor-pointer",
                 "{buffer.btn_open_mail}"
             }
             button {
                 r#type: "button",
                 onclick: move |_| is_submitted.set(false),
-                class: "w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-white hover:bg-zinc-100 border border-zinc-300 text-zinc-900 font-bold text-xs font-mono tracking-wider uppercase transition-colors shadow-2xs",
+                class: "w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-white hover:bg-zinc-100 border border-zinc-300 text-zinc-900 font-bold text-xs font-mono tracking-wider uppercase transition-colors shadow-2xs cursor-pointer",
                 "{buffer.btn_edit_specs}"
             }
         }
