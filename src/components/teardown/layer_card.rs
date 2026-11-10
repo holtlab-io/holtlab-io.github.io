@@ -91,7 +91,7 @@ fn LayerSpecsGrid(layer: TeardownLayer) -> Element {
     let lang = use_context::<Signal<Language>>();
     let is_ko = lang() == Language::Ko;
     let spec_title = if is_ko { "주요 사양" } else { "PRIMARY SPEC" };
-    let tol_title = if is_ko { "보조 공차" } else { "SECONDARY TOLERANCE" };
+    let sec_title = if is_ko { "보조 제원" } else { "SECONDARY SPEC" };
 
     rsx! {
         div {
@@ -103,7 +103,7 @@ fn LayerSpecsGrid(layer: TeardownLayer) -> Element {
             }
             div {
                 class: "p-3 rounded-xs bg-zinc-50 border border-zinc-200",
-                span { class: "block text-[10px] text-zinc-400 uppercase tracking-wider mb-1", "{tol_title}" }
+                span { class: "block text-[10px] text-zinc-400 uppercase tracking-wider mb-1", "{sec_title}" }
                 span { class: "font-bold text-zinc-900", "{layer.secondary_spec}" }
             }
         }

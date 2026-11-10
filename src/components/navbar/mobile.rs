@@ -111,7 +111,7 @@ fn MobileDrawerFooter() -> Element {
     rsx! {
         div {
             class: "pt-4 mt-2 border-t border-zinc-200 flex items-center justify-between text-[10px] text-zinc-400",
-            span { "HOLT LAB // 0.00 mm³ CAD" }
+            span { "HOLT LAB // TURNKEY HARDWARE" }
             span { "ESP32-C3 RISC-V @ 160MHz" }
         }
     }

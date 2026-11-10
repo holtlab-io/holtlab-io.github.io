@@ -71,7 +71,7 @@ async def run_e2e():
             assert "HOLT LAB" in og_title or "Holt Lab" in og_title, f"og:title mismatch: {og_title}"
 
             og_desc = await page.locator("meta[property='og:description']").first.get_attribute("content")
-            assert "0.00 mm³" in og_desc, f"og:desc mismatch: {og_desc}"
+            assert "Unified Turnkey Hardware" in og_desc, f"og:desc mismatch: {og_desc}"
 
             og_image = await page.locator("meta[property='og:image']").first.get_attribute("content")
             assert "banner.png" in og_image, f"og:image mismatch: {og_image}"
@@ -160,7 +160,7 @@ async def run_e2e():
             await tab_ecad.click()
             await page.wait_for_timeout(200)
             assert await page.locator("#teardown").get_by_text("LAYER 02").first.is_visible()
-            assert await page.locator("#teardown").get_by_text("JLC04161H Stackup").is_visible()
+            assert await page.locator("#teardown").get_by_text("Controlled-Impedance Stackup").is_visible()
             assert await page.locator("#teardown").get_by_text("GATE 2 // 0 ERC · 0 DRC VERIFIED").is_visible()
             print("✓ Layer 02 (ECAD 4-Layer PCBA) interactive switch verified.")
 
@@ -220,7 +220,7 @@ async def run_e2e():
             hero_eyebrow_kr = await page.locator("#demonstrator").get_by_text("OPUS 01 // 하드웨어 실증 머신").first.inner_text()
             assert "하드웨어 실증 머신" in hero_eyebrow_kr
 
-            assert await page.locator("#demonstrator").get_by_text("0.00 mm³ 무간섭 기구 CAD").first.is_visible()
+            assert await page.locator("#demonstrator").get_by_text("무간섭 일체형 기구 설계").first.is_visible()
             assert await page.locator("#demonstrator").get_by_text("베어메탈 Rust", exact=True).is_visible()
             print("✓ Language toggle to KR: Hero updated dynamically to Korean.")
 

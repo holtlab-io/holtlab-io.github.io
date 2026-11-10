@@ -28,7 +28,7 @@ The root crate index (`src/main.rs`) organizes the codebase into:
    - Modular UI components:
      - `navbar.rs`: Sticky navigation bar with telemetry pill and mobile drawer.
      - `hero.rs`: Primary value proposition, headline, and hardware bench display.
-     - `metrics.rs`: Key engineering metrics grid (0.00 mm³, 1:1 Direct, 3~4 Weeks, 100% Audit).
+     - `metrics.rs`: Key engineering metrics grid (Unified Turnkey, 1:1 Direct, 3~4 Weeks, 100% Audit).
      - `comparison.rs`: Architecture comparison between legacy fragmented outsourcing and Holt Lab turnkey.
      - `showcase/`: In-depth engineering case study (MCAD, ECAD, Firmware) for the Win95 Minesweeper Touch Keyring.
      - `services.rs`: 4 core capability cards (ECAD, MCAD, Firmware, Factory & Assembly).

@@ -38,12 +38,12 @@ pub fn get_specs_section_strings(lang: Language) -> SpecsSectionStrings {
         Language::En => SpecsSectionStrings {
             eyebrow: "engineering reference",
             title: "technical specifications",
-            subtitle: "win95 minesweeper touch keyring // verified 0.00 mm³",
+            subtitle: "win95 minesweeper touch keyring // unified turnkey hardware",
         },
         Language::Ko => SpecsSectionStrings {
             eyebrow: "엔지니어링 기술 사양",
             title: "상세 기술 제원",
-            subtitle: "윈도우 95 터치 지뢰찾기 키링 // 0.00 mm³ 실물 검증",
+            subtitle: "윈도우 95 터치 지뢰찾기 키링 // 단일 리드 턴키 하드웨어",
         },
     }
 }
@@ -63,11 +63,11 @@ fn rows_part1_en() -> [SpecRowData; 5] {
         SpecRowData {
             key: "cad kernel & drc",
             val: "build123d 0.7.0 + OpenCascade B-Rep",
-            note: "0.00 mm³ volumetric collision check against COTS 3D STEP models",
+            note: "interference-free volumetric collision check against COTS 3D STEP models",
         },
         SpecRowData {
             key: "pcba stackup",
-            val: "JLCPCB 4-Layer JLC04161H-7628 (1.0 mm)",
+            val: "Industrial 4-Layer Controlled-Impedance Stackup (1.0 mm)",
             note: "controlled impedance: 50Ω single-ended, 90Ω differential USB",
         },
         SpecRowData {
@@ -102,7 +102,7 @@ fn rows_part2_en() -> [SpecRowData; 5] {
         },
         SpecRowData {
             key: "factory dispatch",
-            val: "JLCPCB PCBA & JLC3DP MJF Direct Dispatch",
+            val: "Factory-Direct SMT Assembly & Industrial MJF Prototyping",
             note: "zero-rework bring-up over remote Tailscale bench environment",
         },
     ]
@@ -123,11 +123,11 @@ fn rows_part1_ko() -> [SpecRowData; 5] {
         SpecRowData {
             key: "CAD 커널 및 DRC",
             val: "build123d 0.7.0 + OpenCascade B-Rep",
-            note: "COTS 3D STEP 모델 기반 0.00 mm³ 체적 간섭 완전 무결 검증",
+            note: "COTS 3D STEP 모델 기반 3D 체적 무간섭 일체형 검증",
         },
         SpecRowData {
             key: "회로 기판 적층",
-            val: "JLCPCB 4-Layer JLC04161H-7628 (1.0 mm)",
+            val: "산업용 4층 임피던스 제어 기판 (1.0 mm)",
             note: "제어 임피던스: 50Ω 싱글엔디드, 90Ω 차동 USB",
         },
         SpecRowData {
@@ -162,7 +162,7 @@ fn rows_part2_ko() -> [SpecRowData; 5] {
         },
         SpecRowData {
             key: "공장 직통 생산 및 배포",
-            val: "JLCPCB PCBA & JLC3DP MJF Direct Dispatch",
+            val: "정밀 SMT 실장 및 공장 직통 양산 시제품 납품",
             note: "Tailscale 원격 벤치 환경을 통한 리워크 없는 단번에 구동 성공",
         },
     ]

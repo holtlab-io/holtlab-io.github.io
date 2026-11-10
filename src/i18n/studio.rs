@@ -84,19 +84,19 @@ fn turnkey_card(lang: Language) -> ComparisonCardStrings {
     match lang {
         Language::En => ComparisonCardStrings {
             badge: "HOLT LAB 1-PERSON TURNKEY",
-            metric: "0.00 mm³ REWORK-FREE",
+            metric: "ZERO-REWORK GUARANTEED",
             heading: "one closed-loop lead architect",
-            body: "every millimeter of chassis geometry, copper impedance trace, and bare-metal clock cycle is engineered by a single architect. COTS 3D STEP models are locked before trace freeze. 0.000 mm³ collision and 0 ERC/DRC verification run deterministically before manufacturing orders.",
-            bullet_1: "✓ Zero-clearance interference: OpenCascade B-Rep Gate 1 check",
+            body: "every millimeter of chassis geometry, copper impedance trace, and bare-metal clock cycle is engineered by a single architect. COTS 3D STEP models are locked before trace freeze. Volumetric collision checks and 0 ERC/DRC verification run deterministically before manufacturing orders.",
+            bullet_1: "✓ Interference-free assembly: OpenCascade B-Rep Gate 1 check",
             bullet_2: "✓ Firmware-aware ECAD: GPIO strapping & RC delays solved in design",
             bullet_3: "✓ First-spin success: working hardware boots over remote Tailscale bench",
         },
         Language::Ko => ComparisonCardStrings {
             badge: "홀트 랩 1인 턴키 솔루션",
-            metric: "0.00 mm³ 리워크 제로",
+            metric: "단 1회 무결 브링업",
             heading: "단일 리드 아키텍트의 완전 폐루프",
-            body: "기구 외함의 0.1밀리미터 치수부터 회로의 임피던스 배선, 베어메탈 펌웨어의 클록 사이클까지 단 한 명의 리드 아키텍트가 총괄합니다. 배선 확정 전 부품 3D STEP 모델을 100% 동기화하며, 발주 전 0.000 mm³ 간섭 및 0 ERC/DRC를 결정론적으로 검증합니다.",
-            bullet_1: "✓ 간섭 공차 제로: OpenCascade B-Rep 게이트 1 사전 검증",
+            body: "기구 외함의 0.1밀리미터 치수부터 회로의 임피던스 배선, 베어메탈 펌웨어의 클록 사이클까지 단 한 명의 리드 아키텍트가 총괄합니다. 배선 확정 전 부품 3D STEP 모델을 100% 동기화하며, 발주 전 3D 체적 간섭 및 0 ERC/DRC를 결정론적으로 검증합니다.",
+            bullet_1: "✓ 무간섭 일체형 설계: OpenCascade B-Rep 게이트 1 사전 검증",
             bullet_2: "✓ 펌웨어 연계 회로: 스트래핑 핀 및 RC 지연을 회로 설계 단에서 해결",
             bullet_3: "✓ 단 1회 생산 성공: Tailscale 원격 환경에서 즉시 펌웨어 구동 완주",
         },
@@ -112,13 +112,13 @@ fn pipeline_phases_en() -> [PipelinePhaseStrings; 4] {
         },
         PipelinePhaseStrings {
             phase_tag: "02 // CAD & 4-LAYER ECAD",
-            title: "0.00 mm³ solid modeling",
+            title: "interference-free solid modeling",
             desc: "build123d B-Rep solids paired with KiCad 9 controlled impedance routing and full DRC.",
         },
         PipelinePhaseStrings {
             phase_tag: "03 // FACTORY DISPATCH",
             title: "direct line fabrication",
-            desc: "automated JLCPCB PCBA SMT & JLC3DP MJF PA12 dispatch with live DOM tracking.",
+            desc: "factory-direct precision SMT assembly & industrial MJF PA12 fabrication with live status tracking.",
         },
         PipelinePhaseStrings {
             phase_tag: "04 // BARE-METAL BRING-UP",
@@ -137,13 +137,13 @@ fn pipeline_phases_ko() -> [PipelinePhaseStrings; 4] {
         },
         PipelinePhaseStrings {
             phase_tag: "02 // CAD & 4-LAYER ECAD",
-            title: "0.00 mm³ 솔리드 기구 및 회로 설계",
+            title: "무간섭 일체형 기구 및 회로 설계",
             desc: "build123d B-Rep 솔리드 모델링과 KiCad 9 제어 임피던스 라우팅 및 0 DRC 검증을 동시 진행합니다.",
         },
         PipelinePhaseStrings {
             phase_tag: "03 // FACTORY DISPATCH",
             title: "공장 직통 고속 발주",
-            desc: "JLCPCB PCBA SMT 및 JLC3DP MJF 나일론 출력을 실시간 상태 추적과 함께 다이렉트 발주합니다.",
+            desc: "정밀 SMT 실장 및 산업용 MJF 나일론 시제품을 실시간 생산 추적과 함께 다이렉트 발주합니다.",
         },
         PipelinePhaseStrings {
             phase_tag: "04 // BARE-METAL BRING-UP",
