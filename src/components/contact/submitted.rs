@@ -9,6 +9,7 @@
 //! None. This module provides atomic dispatch confirmation components.
 
 use dioxus::prelude::*;
+use crate::i18n::{contact::get_contact_strings, ContactBufferStrings, Language};
 
 /// Confirmation message and email mailto dispatch trigger.
 #[component]
@@ -23,50 +24,45 @@ pub fn SubmittedView(
     selected_target: Signal<usize>,
     is_submitted: Signal<bool>,
 ) -> Element {
-    let scope_text = match selected_scope() {
-        0 => "turnkey (mcad+ecad+firmware)",
-        1 => "4-layer pcba (kicad ecad)",
-        2 => "3d enclosure (build123d mcad)",
-        _ => "bare-metal firmware (rust/c)",
-    };
+    let lang = use_context::<Signal<Language>>();
+    let contact_strings = get_contact_strings(lang());
+    let buffer = contact_strings.buffer;
+    let is_ko = lang() == Language::Ko;
 
-    let target_text = match selected_target() {
-        0 => "turnkey hardware commission",
-        1 => "early-stage startup",
-        2 => "r&d laboratory",
-        _ => "direct component bring-up",
-    };
+    let scope_text = contact_strings.selectors.scopes[selected_scope().min(3)];
+    let target_text = contact_strings.selectors.targets[selected_target().min(3)];
 
     let raw_timeline = timeline();
     let timeline_val = if raw_timeline.trim().is_empty() {
-        "standard timeline".to_string()
+        if is_ko { "표준 일정".to_string() } else { "standard timeline".to_string() }
     } else {
         raw_timeline
     };
 
     let raw_budget = budget();
     let budget_val = if raw_budget.trim().is_empty() {
-        "standard budget envelope".to_string()
+        if is_ko { "표준 예산 범위".to_string() } else { "standard budget envelope".to_string() }
     } else {
         raw_budget
     };
 
     let raw_cad = cad_pcb_reqs();
     let cad_val = if raw_cad.trim().is_empty() {
-        "standard specifications".to_string()
+        if is_ko { "표준 요구 사양".to_string() } else { "standard specifications".to_string() }
     } else {
         raw_cad
     };
 
+    let subject_tag = if is_ko { "Holt Lab 하드웨어 개발 의뢰" } else { "Holt Lab Commission" };
     let mailto_url = format!(
-        "mailto:contact@holtlab.io?subject=[Holt Lab Commission] {} — {}&body=organization: {}%0D%0Acontact email: {}%0D%0Aproject profile: {}%0D%0Adiscipline: {}%0D%0Atarget timeline: {}%0D%0Atarget budget: {}%0D%0Acad/pcb requirements: {}%0D%0Aproject brief & deliverables:%0D%0A{}",
-        name(), scope_text, name(), email(), target_text, scope_text, timeline_val, budget_val, cad_val, project_brief()
+        "mailto:contact@holtlab.io?subject=[{}] {} — {}&body=organization: {}%0D%0Acontact email: {}%0D%0Aproject profile: {}%0D%0Adiscipline: {}%0D%0Atarget timeline: {}%0D%0Atarget budget: {}%0D%0Acad/pcb requirements: {}%0D%0Aproject brief & deliverables:%0D%0A{}",
+        subject_tag, name(), scope_text, name(), email(), target_text, scope_text, timeline_val, budget_val, cad_val, project_brief()
     );
 
     rsx! {
         div {
             class: "p-8 border border-zinc-200 bg-zinc-50 text-center space-y-4 rounded-xs font-mono",
-            SubmittedHeader {}
+            SubmittedHeader { buffer }
             SubmittedSummaryCard {
                 name: name(),
                 email: email(),
@@ -75,27 +71,28 @@ pub fn SubmittedView(
                 timeline: timeline_val,
                 budget: budget_val,
                 cad: cad_val,
+                is_ko,
             }
-            SubmittedActions { mailto_url, is_submitted }
+            SubmittedActions { mailto_url, is_submitted, buffer }
         }
     }
 }
 
 /// Header message block for the dispatch confirmation buffer.
 #[component]
-fn SubmittedHeader() -> Element {
+fn SubmittedHeader(buffer: ContactBufferStrings) -> Element {
     rsx! {
         div {
             class: "space-y-2",
             div {
                 class: "inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-200 text-zinc-900 text-xs font-bold uppercase",
                 span { class: "w-1.5 h-1.5 rounded-full bg-zinc-950" }
-                "DISPATCH BUFFER READY"
+                "{buffer.buffer_badge}"
             }
-            h3 { class: "text-lg font-bold text-zinc-950 lowercase", "inquiry ready for dispatch" }
+            h3 { class: "text-lg font-bold text-zinc-950 lowercase", "{buffer.buffer_title}" }
             p {
                 class: "text-zinc-600 text-xs font-sans leading-relaxed max-w-md mx-auto",
-                "your project specifications have been formatted. click below to open your mail client and dispatch directly to holt lab engineering."
+                "{buffer.buffer_desc}"
             }
         }
     }
@@ -111,37 +108,50 @@ fn SubmittedSummaryCard(
     timeline: String,
     budget: String,
     cad: String,
+    is_ko: bool,
 ) -> Element {
+    let lbl_org = if is_ko { "조직/성함: " } else { "ORGANIZATION: " };
+    let lbl_email = if is_ko { "이메일: " } else { "EMAIL: " };
+    let lbl_disc = if is_ko { "개발분야: " } else { "DISCIPLINE: " };
+    let lbl_prof = if is_ko { "프로젝트유형: " } else { "PROFILE: " };
+    let lbl_time = if is_ko { "목표일정: " } else { "TIMELINE: " };
+    let lbl_budg = if is_ko { "예산범위: " } else { "BUDGET: " };
+    let lbl_cad = if is_ko { "기구/회로: " } else { "CAD/PCB: " };
+
     rsx! {
         div {
             class: "text-left bg-white border border-zinc-200 p-4 rounded-xs text-[11px] font-mono text-zinc-700 space-y-1 my-3",
-            div { span { class: "text-zinc-400", "ORGANIZATION: " } "{name}" }
-            div { span { class: "text-zinc-400", "EMAIL: " } "{email}" }
-            div { span { class: "text-zinc-400", "DISCIPLINE: " } "{scope}" }
-            div { span { class: "text-zinc-400", "PROFILE: " } "{target}" }
-            div { span { class: "text-zinc-400", "TIMELINE: " } "{timeline}" }
-            div { span { class: "text-zinc-400", "BUDGET: " } "{budget}" }
-            div { span { class: "text-zinc-400", "CAD/PCB: " } "{cad}" }
+            div { span { class: "text-zinc-400", "{lbl_org}" } "{name}" }
+            div { span { class: "text-zinc-400", "{lbl_email}" } "{email}" }
+            div { span { class: "text-zinc-400", "{lbl_disc}" } "{scope}" }
+            div { span { class: "text-zinc-400", "{lbl_prof}" } "{target}" }
+            div { span { class: "text-zinc-400", "{lbl_time}" } "{timeline}" }
+            div { span { class: "text-zinc-400", "{lbl_budg}" } "{budget}" }
+            div { span { class: "text-zinc-400", "{lbl_cad}" } "{cad}" }
         }
     }
 }
 
 /// Action buttons allowing email client trigger and specification editing.
 #[component]
-fn SubmittedActions(mailto_url: String, mut is_submitted: Signal<bool>) -> Element {
+fn SubmittedActions(
+    mailto_url: String,
+    mut is_submitted: Signal<bool>,
+    buffer: ContactBufferStrings,
+) -> Element {
     rsx! {
         div {
             class: "flex flex-col sm:flex-row items-center justify-center gap-3 pt-2",
             a {
                 href: "{mailto_url}",
                 class: "w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-zinc-950 hover:bg-zinc-800 text-white font-bold text-xs font-mono tracking-wider uppercase transition-colors shadow-xs",
-                "open mail client →"
+                "{buffer.btn_open_mail}"
             }
             button {
                 r#type: "button",
                 onclick: move |_| is_submitted.set(false),
                 class: "w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-white hover:bg-zinc-100 border border-zinc-300 text-zinc-900 font-bold text-xs font-mono tracking-wider uppercase transition-colors shadow-2xs",
-                "← edit specifications"
+                "{buffer.btn_edit_specs}"
             }
         }
     }

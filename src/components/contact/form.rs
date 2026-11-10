@@ -1,6 +1,6 @@
 //! ## Overview
 //! Interactive diagnostic RFQ form allowing prospective clients to submit hardware scope and specifications.
-//! Employs clean Swiss typography with quiet inputs and a direct mailto dispatcher.
+//! Employs clean Swiss typography with localized inputs and a direct mailto dispatcher.
 //!
 //! ## Search Tags
 //! #contact, #form, #rfq, #inquiry, #interactive
@@ -11,6 +11,7 @@
 use dioxus::prelude::*;
 use super::selectors::{ScopeButtons, TargetButtons};
 use super::submitted::SubmittedView;
+use crate::i18n::{contact::get_contact_strings, ContactFormStrings, Language};
 
 /// Interactive RFQ diagnostic form component with scope selector and email dispatcher.
 #[component]
@@ -25,6 +26,9 @@ pub fn ContactForm(
     project_brief: Signal<String>,
     is_submitted: Signal<bool>,
 ) -> Element {
+    let lang = use_context::<Signal<Language>>();
+    let form_strings = get_contact_strings(lang()).form;
+
     rsx! {
         div {
             class: "lg:col-span-7 rounded-xs border border-zinc-200 bg-white p-5 sm:p-8 shadow-2xs relative font-sans",
@@ -51,6 +55,7 @@ pub fn ContactForm(
                     cad_pcb_reqs,
                     project_brief,
                     is_submitted,
+                    form_strings,
                 }
             }
         }
@@ -69,6 +74,7 @@ fn FormFields(
     cad_pcb_reqs: Signal<String>,
     project_brief: Signal<String>,
     mut is_submitted: Signal<bool>,
+    form_strings: ContactFormStrings,
 ) -> Element {
     rsx! {
         form {
@@ -81,27 +87,31 @@ fn FormFields(
             },
             ScopeButtons { selected: selected_scope }
             TargetButtons { selected: selected_target }
-            ContactInputs { name, email }
-            IntakeParametersInputs { timeline, budget }
-            IntakeSpecsInputs { cad_pcb_reqs, project_brief }
-            SubmitRow {}
+            ContactInputs { name, email, form_strings }
+            IntakeParametersInputs { timeline, budget, form_strings }
+            IntakeSpecsInputs { cad_pcb_reqs, project_brief, form_strings }
+            SubmitRow { form_strings }
         }
     }
 }
 
 /// Inputs for name and contact email.
 #[component]
-fn ContactInputs(mut name: Signal<String>, mut email: Signal<String>) -> Element {
+fn ContactInputs(
+    mut name: Signal<String>,
+    mut email: Signal<String>,
+    form_strings: ContactFormStrings,
+) -> Element {
     rsx! {
         div {
             class: "grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono lowercase",
             div {
                 class: "space-y-1.5",
-                label { class: "block text-zinc-500", "name / organization" }
+                label { class: "block text-zinc-500", "{form_strings.name_label}" }
                 input {
                     r#type: "text",
                     required: true,
-                    placeholder: "e.g. acme robotics / jane doe",
+                    placeholder: "{form_strings.name_placeholder}",
                     value: "{name}",
                     oninput: move |e| name.set(e.value()),
                     class: "w-full p-3 rounded-xs border border-zinc-200 bg-white focus:border-zinc-950 focus:outline-none text-zinc-900 transition-colors"
@@ -109,11 +119,11 @@ fn ContactInputs(mut name: Signal<String>, mut email: Signal<String>) -> Element
             }
             div {
                 class: "space-y-1.5",
-                label { class: "block text-zinc-500", "contact email" }
+                label { class: "block text-zinc-500", "{form_strings.contact_email_label}" }
                 input {
                     r#type: "email",
                     required: true,
-                    placeholder: "name@domain.com",
+                    placeholder: "{form_strings.contact_email_placeholder}",
                     value: "{email}",
                     oninput: move |e| email.set(e.value()),
                     class: "w-full p-3 rounded-xs border border-zinc-200 bg-white focus:border-zinc-950 focus:outline-none text-zinc-900 transition-colors"
@@ -125,16 +135,20 @@ fn ContactInputs(mut name: Signal<String>, mut email: Signal<String>) -> Element
 
 /// Inputs for target timeline and budget envelope.
 #[component]
-fn IntakeParametersInputs(mut timeline: Signal<String>, mut budget: Signal<String>) -> Element {
+fn IntakeParametersInputs(
+    mut timeline: Signal<String>,
+    mut budget: Signal<String>,
+    form_strings: ContactFormStrings,
+) -> Element {
     rsx! {
         div {
             class: "grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono lowercase",
             div {
                 class: "space-y-1.5",
-                label { class: "block text-zinc-500", "target timeline / deadline" }
+                label { class: "block text-zinc-500", "{form_strings.timeline_label}" }
                 input {
                     r#type: "text",
-                    placeholder: "e.g. 4-6 weeks to working prototype",
+                    placeholder: "{form_strings.timeline_placeholder}",
                     value: "{timeline}",
                     oninput: move |e| timeline.set(e.value()),
                     class: "w-full p-3 rounded-xs border border-zinc-200 bg-white focus:border-zinc-950 focus:outline-none text-zinc-900 transition-colors"
@@ -142,10 +156,10 @@ fn IntakeParametersInputs(mut timeline: Signal<String>, mut budget: Signal<Strin
             }
             div {
                 class: "space-y-1.5",
-                label { class: "block text-zinc-500", "target budget envelope" }
+                label { class: "block text-zinc-500", "{form_strings.budget_label}" }
                 input {
                     r#type: "text",
-                    placeholder: "e.g. $5k-$15k USD / KRW 10M",
+                    placeholder: "{form_strings.budget_placeholder}",
                     value: "{budget}",
                     oninput: move |e| budget.set(e.value()),
                     class: "w-full p-3 rounded-xs border border-zinc-200 bg-white focus:border-zinc-950 focus:outline-none text-zinc-900 transition-colors"
@@ -157,16 +171,20 @@ fn IntakeParametersInputs(mut timeline: Signal<String>, mut budget: Signal<Strin
 
 /// Inputs for CAD/PCB requirements and project brief.
 #[component]
-fn IntakeSpecsInputs(mut cad_pcb_reqs: Signal<String>, mut project_brief: Signal<String>) -> Element {
+fn IntakeSpecsInputs(
+    mut cad_pcb_reqs: Signal<String>,
+    mut project_brief: Signal<String>,
+    form_strings: ContactFormStrings,
+) -> Element {
     rsx! {
         div {
             class: "space-y-4 text-xs font-mono lowercase",
             div {
                 class: "space-y-1.5",
-                label { class: "block text-zinc-500", "cad & pcb requirements" }
+                label { class: "block text-zinc-500", "{form_strings.cad_label}" }
                 input {
                     r#type: "text",
-                    placeholder: "e.g. ESP32-C3 / RISC-V, 4-layer impedance control, MJF enclosure...",
+                    placeholder: "{form_strings.cad_placeholder}",
                     value: "{cad_pcb_reqs}",
                     oninput: move |e| cad_pcb_reqs.set(e.value()),
                     class: "w-full p-3 rounded-xs border border-zinc-200 bg-white focus:border-zinc-950 focus:outline-none text-zinc-900 transition-colors"
@@ -174,11 +192,11 @@ fn IntakeSpecsInputs(mut cad_pcb_reqs: Signal<String>, mut project_brief: Signal
             }
             div {
                 class: "space-y-1.5",
-                label { class: "block text-zinc-500", "project brief & deliverables" }
+                label { class: "block text-zinc-500", "{form_strings.brief_label}" }
                 textarea {
                     rows: 4,
                     required: true,
-                    placeholder: "describe dimensions, interfaces, sensors, battery runtime, and key deliverables...",
+                    placeholder: "{form_strings.brief_placeholder}",
                     value: "{project_brief}",
                     oninput: move |e| project_brief.set(e.value()),
                     class: "w-full p-3 rounded-xs border border-zinc-200 bg-white focus:border-zinc-950 focus:outline-none text-zinc-900 transition-colors font-sans text-xs leading-relaxed"
@@ -190,17 +208,17 @@ fn IntakeSpecsInputs(mut cad_pcb_reqs: Signal<String>, mut project_brief: Signal
 
 /// Submit button and direct dispatch indicator.
 #[component]
-fn SubmitRow() -> Element {
+fn SubmitRow(form_strings: ContactFormStrings) -> Element {
     rsx! {
         div {
             class: "pt-2 flex items-center justify-between",
             button {
                 r#type: "submit",
                 class: "inline-flex items-center gap-2 px-6 py-3 rounded-xs bg-zinc-950 hover:bg-zinc-800 text-white font-mono text-xs font-bold tracking-wider uppercase transition-colors shadow-xs",
-                "dispatch inquiry"
+                "{form_strings.submit_button}"
                 span { "→" }
             }
-            span { class: "text-[11px] font-mono text-zinc-400 lowercase", "direct architect dispatch" }
+            span { class: "text-[11px] font-mono text-zinc-400 lowercase", "{form_strings.dispatch_note}" }
         }
     }
 }

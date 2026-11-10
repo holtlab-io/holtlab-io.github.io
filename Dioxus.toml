@@ -5,7 +5,11 @@ name = "holtlab-landing"
 title = "Holt Lab — Boutique Hardware & Embedded Engineering Studio"
 
 [web.resource]
-style = ["https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"]
+style = [
+    "assets/tailwind.css",
+    "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap",
+    "https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+]
 script = []
 
 [web.resource.dev]

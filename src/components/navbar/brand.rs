@@ -1,6 +1,6 @@
 //! ## Overview
 //! Brand logo lockup and visual identity components for the Holt Lab header.
-//! Features lowercase industrial brand typography paired with the boutique engineering studio descriptor.
+//! Features lowercase industrial brand typography paired with the localized boutique engineering studio descriptor.
 //!
 //! ## Search Tags
 //! #brand, #logo, #identity, #typography, #studio-mark
@@ -9,10 +9,14 @@
 //! None. This module provides pure leaf brand presentation components.
 
 use dioxus::prelude::*;
+use crate::i18n::{hero::get_nav_strings, Language};
 
 /// Primary brand identity lockup rendering lowercase holt lab with the studio descriptor.
 #[component]
 pub fn NavBrand() -> Element {
+    let lang = use_context::<Signal<Language>>();
+    let nav_strings = get_nav_strings(lang());
+
     rsx! {
         a {
             href: "#",
@@ -29,7 +33,7 @@ pub fn NavBrand() -> Element {
                 }
                 span {
                     class: "text-[10px] sm:text-[11px] font-mono text-zinc-400 leading-tight tracking-tight pt-0.5",
-                    "Boutique Hardware Engineering Studio"
+                    "{nav_strings.descriptor}"
                 }
             }
         }
@@ -39,11 +43,14 @@ pub fn NavBrand() -> Element {
 /// Geometric studio glyph badge indicator for desktop viewports.
 #[component]
 pub fn NavStudioBadge() -> Element {
+    let lang = use_context::<Signal<Language>>();
+    let nav_strings = get_nav_strings(lang());
+
     rsx! {
         div {
             class: "hidden 2xl:flex items-center gap-2 pl-3 border-l border-zinc-200 text-[10px] font-mono text-zinc-400 select-none",
             span { class: "w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" }
-            span { "0.00 mm³ TOLERANCE // VERIFIED" }
+            span { "{nav_strings.tolerance_badge}" }
         }
     }
 }

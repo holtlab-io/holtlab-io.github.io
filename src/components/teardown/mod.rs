@@ -16,20 +16,28 @@ pub mod data;
 pub mod exploded_hero;
 pub mod layer_card;
 
-pub use data::{TeardownLayer, TEARDOWN_LAYERS};
+pub use data::{
+    get_teardown_layers, get_teardown_section_strings, TeardownLayer,
+};
 pub use exploded_hero::ExplodedHeroBanner;
 pub use layer_card::LayerInspector;
+use crate::i18n::Language;
 
 /// Primary interactive anatomical engineering teardown section rendered at `#teardown`.
 #[component]
 pub fn TeardownSection() -> Element {
     let mut active_layer_id = use_signal(|| 0usize);
+    let lang = use_context::<Signal<Language>>();
+    let section_strings = get_teardown_section_strings(lang());
+    let layers = get_teardown_layers(lang());
 
-    let active_layer = TEARDOWN_LAYERS
+    let active_layer = layers
         .iter()
         .find(|l| l.id == active_layer_id())
         .copied()
-        .unwrap_or(TEARDOWN_LAYERS[0]);
+        .unwrap_or(layers[0]);
+
+    let active_label = if lang() == Language::Ko { "● 활성" } else { "● ACTIVE" };
 
     rsx! {
         section {
@@ -43,12 +51,12 @@ pub fn TeardownSection() -> Element {
                     class: "flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 mb-8 gap-4",
                     div {
                         class: "space-y-1.5",
-                        span { class: "text-xs font-mono text-zinc-400 lowercase", "engineering audit" }
-                        h2 { class: "text-2xl sm:text-4xl font-bold font-sans tracking-tight text-zinc-950 lowercase", "anatomical engineering teardown" }
+                        span { class: "text-xs font-mono text-zinc-400 lowercase", "{section_strings.eyebrow}" }
+                        h2 { class: "text-2xl sm:text-4xl font-bold font-sans tracking-tight text-zinc-950 lowercase", "{section_strings.title}" }
                     }
                     div {
                         class: "text-xs font-mono text-zinc-500 lowercase",
-                        "radical transparency // 4 discrete subsystems"
+                        "{section_strings.subtitle}"
                     }
                 }
 
@@ -58,11 +66,11 @@ pub fn TeardownSection() -> Element {
                 // Interactive 4-Layer Tabs Selector
                 div {
                     class: "grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-6 select-none",
-                    for layer in TEARDOWN_LAYERS.iter() {
+                    for (idx, layer) in layers.iter().enumerate() {
                         button {
                             key: "{layer.id}",
                             r#type: "button",
-                            onclick: move |_| active_layer_id.set(layer.id),
+                            onclick: move |_| active_layer_id.set(idx),
                             class: if active_layer_id() == layer.id {
                                 "p-3 sm:p-4 rounded-xs bg-zinc-950 text-white font-mono text-left transition-all border border-zinc-950 shadow-xs"
                             } else {
@@ -72,7 +80,7 @@ pub fn TeardownSection() -> Element {
                                 class: "flex items-center justify-between text-[10px] opacity-70 mb-1",
                                 span { "LAYER {layer.number}" }
                                 if active_layer_id() == layer.id {
-                                    span { class: "text-[#E64A19] font-bold", "● ACTIVE" }
+                                    span { class: "text-[#E64A19] font-bold", "{active_label}" }
                                 }
                             }
                             div {

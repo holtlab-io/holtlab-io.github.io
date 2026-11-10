@@ -9,10 +9,14 @@
 //! None. This module provides atomic footer layout components.
 
 use dioxus::prelude::*;
+use crate::i18n::{hero::get_footer_strings, Language};
 
 /// Primary footer component displaying brand information, channels, and copyright notes.
 #[component]
 pub fn Footer() -> Element {
+    let lang = use_context::<Signal<Language>>();
+    let footer_strings = get_footer_strings(lang());
+
     rsx! {
         footer {
             class: "py-12 bg-white border-t border-zinc-200 text-zinc-500 text-xs font-mono lowercase select-none",
@@ -30,7 +34,7 @@ pub fn Footer() -> Element {
                         span { class: "text-zinc-300", "//" }
                         span {
                             class: "text-zinc-500 text-xs",
-                            "boutique hardware & embedded laboratory"
+                            "{footer_strings.studio_desc}"
                         }
                     }
 
@@ -63,10 +67,10 @@ pub fn Footer() -> Element {
                 div {
                     class: "pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-zinc-400 text-[11px]",
                     div {
-                        "all systems verified 0.00 mm³ physical clearance · seoul, korea"
+                        "{footer_strings.clearance_note}"
                     }
                     div {
-                        "© 2026 holt lab. all rights reserved."
+                        "{footer_strings.copyright}"
                     }
                 }
             }

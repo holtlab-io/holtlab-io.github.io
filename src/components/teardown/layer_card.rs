@@ -10,10 +10,15 @@
 
 use dioxus::prelude::*;
 use super::data::TeardownLayer;
+use crate::i18n::Language;
 
 /// Interactive subsystem inspector displaying visual assets and verified specifications.
 #[component]
 pub fn LayerInspector(layer: TeardownLayer) -> Element {
+    let lang = use_context::<Signal<Language>>();
+    let is_ko = lang() == Language::Ko;
+    let audit_label = if is_ko { "홀트 랩 감사 통과" } else { "HOLT LAB AUDIT PASS" };
+
     rsx! {
         div {
             class: "grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-white border border-zinc-200 rounded-xs p-6 sm:p-10 shadow-2xs font-sans",
@@ -43,7 +48,7 @@ pub fn LayerInspector(layer: TeardownLayer) -> Element {
                 div {
                     class: "w-full pt-3 border-t border-zinc-200/60 flex items-center justify-between text-[10px] font-mono text-zinc-400 gap-2",
                     span { class: "truncate", "{layer.bus_or_material}" }
-                    span { class: "shrink-0", "HOLT LAB AUDIT PASS" }
+                    span { class: "shrink-0", "{audit_label}" }
                 }
             }
 
@@ -83,17 +88,22 @@ fn LayerDetailsHeader(layer: TeardownLayer) -> Element {
 /// 2-metric key telemetry grid for the layer.
 #[component]
 fn LayerSpecsGrid(layer: TeardownLayer) -> Element {
+    let lang = use_context::<Signal<Language>>();
+    let is_ko = lang() == Language::Ko;
+    let spec_title = if is_ko { "주요 사양" } else { "PRIMARY SPEC" };
+    let tol_title = if is_ko { "보조 공차" } else { "SECONDARY TOLERANCE" };
+
     rsx! {
         div {
             class: "grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono lowercase",
             div {
                 class: "p-3 rounded-xs bg-zinc-50 border border-zinc-200",
-                span { class: "block text-[10px] text-zinc-400 uppercase tracking-wider mb-1", "PRIMARY SPEC" }
+                span { class: "block text-[10px] text-zinc-400 uppercase tracking-wider mb-1", "{spec_title}" }
                 span { class: "font-bold text-zinc-900", "{layer.primary_spec}" }
             }
             div {
                 class: "p-3 rounded-xs bg-zinc-50 border border-zinc-200",
-                span { class: "block text-[10px] text-zinc-400 uppercase tracking-wider mb-1", "SECONDARY TOLERANCE" }
+                span { class: "block text-[10px] text-zinc-400 uppercase tracking-wider mb-1", "{tol_title}" }
                 span { class: "font-bold text-zinc-900", "{layer.secondary_spec}" }
             }
         }

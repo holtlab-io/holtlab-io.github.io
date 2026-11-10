@@ -1,38 +1,44 @@
 //! ## Overview
 //! Contact info and value assurance column presenting Holt Lab direct communication channels and SLAs.
-//! Employs a quiet Swiss layout with lowercase labels and clear institutional coordinates.
+//! Employs a quiet Swiss layout with localized coordinates and response commitment.
 //!
 //! ## Search Tags
 //! #contact, #info, #sla, #guarantee, #email
+//!
+//! ## Submodules
+//! None. This module provides atomic contact information components.
 
 use dioxus::prelude::*;
+use crate::i18n::{contact::get_contact_strings, Language};
 
 /// Left column displaying direct contact information and institutional coordinates.
 #[component]
 pub fn ContactInfo() -> Element {
+    let lang = use_context::<Signal<Language>>();
+    let info = get_contact_strings(lang()).info;
+
     rsx! {
         div {
             class: "lg:col-span-5 space-y-6 font-sans",
             div {
                 class: "space-y-3",
-                span { class: "text-xs font-mono text-zinc-400 lowercase", "direct inquiry" }
+                span { class: "text-xs font-mono text-zinc-400 lowercase", "{info.eyebrow}" }
                 h2 {
                     class: "text-2xl sm:text-3xl font-bold lowercase text-zinc-950 tracking-tight leading-tight",
-                    "studio inquiry."
+                    "{info.title}"
                 }
                 p {
                     class: "text-zinc-600 text-xs sm:text-sm font-sans leading-relaxed pt-1",
-                    "we accept selected turnkey hardware commissions, multi-layer pcba layout, and bare-metal firmware development. every inquiry is evaluated directly by our lead hardware architect within 24 hours."
+                    "{info.body}"
                 }
             }
 
-            // Direct Coordinates Cards
             div {
                 class: "space-y-3 text-xs font-mono lowercase pt-2",
                 div {
                     class: "p-4 rounded-xs border border-zinc-200 bg-white flex items-center justify-between shadow-2xs",
                     div {
-                        div { class: "text-zinc-400 text-[10px] uppercase font-mono", "direct contact // email" }
+                        div { class: "text-zinc-400 text-[10px] uppercase font-mono", "{info.email_label}" }
                         a {
                             href: "mailto:contact@holtlab.io",
                             class: "text-sm font-bold text-zinc-950 hover:underline transition-colors mt-0.5 block",
@@ -45,19 +51,19 @@ pub fn ContactInfo() -> Element {
                 div {
                     class: "p-4 rounded-xs border border-zinc-200 bg-white flex items-center justify-between shadow-2xs",
                     div {
-                        div { class: "text-zinc-400 text-[10px] uppercase font-mono", "studio location" }
-                        div { class: "text-xs font-semibold text-zinc-800 mt-0.5", "seoul, korea // remote worldwide" }
+                        div { class: "text-zinc-400 text-[10px] uppercase font-mono", "{info.location_label}" }
+                        div { class: "text-xs font-semibold text-zinc-800 mt-0.5", "{info.location_val}" }
                     }
-                    span { class: "text-zinc-900 text-xs font-bold font-mono", "ACTIVE" }
+                    span { class: "text-zinc-900 text-xs font-bold font-mono", "{info.location_badge}" }
                 }
 
                 div {
                     class: "p-4 rounded-xs border border-zinc-200 bg-white flex items-center justify-between shadow-2xs",
                     div {
-                        div { class: "text-zinc-400 text-[10px] uppercase font-mono", "response commitment" }
-                        div { class: "text-xs font-semibold text-zinc-800 mt-0.5", "24h initial architectural review" }
+                        div { class: "text-zinc-400 text-[10px] uppercase font-mono", "{info.sla_label}" }
+                        div { class: "text-xs font-semibold text-zinc-800 mt-0.5", "{info.sla_val}" }
                     }
-                    span { class: "text-zinc-600 text-xs font-mono font-medium", "24H" }
+                    span { class: "text-zinc-600 text-xs font-mono font-medium", "{info.sla_badge}" }
                 }
             }
         }
