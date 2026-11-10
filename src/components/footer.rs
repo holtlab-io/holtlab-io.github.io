@@ -1,9 +1,12 @@
 //! ## Overview
 //! Minimalist wireframe footer displaying brand identity, verified tolerance standards, and coordinates.
-//! Follows the Teenage Engineering understated typographic convention.
+//! Features links to GitHub organization, YouTube channel, and direct studio dispatch email.
 //!
 //! ## Search Tags
 //! #footer, #branding, #links, #copyright, #channels
+//!
+//! ## Submodules
+//! None. This module provides atomic footer layout components.
 
 use dioxus::prelude::*;
 
@@ -14,7 +17,7 @@ pub fn Footer() -> Element {
         footer {
             class: "py-12 bg-white border-t border-zinc-200 text-zinc-500 text-xs font-mono lowercase select-none",
             div {
-                class: "max-w-[1600px] mx-auto px-4 sm:px-8",
+                class: "max-w-[1500px] mx-auto px-4 sm:px-8",
                 div {
                     class: "flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-zinc-100",
                     // Brand Info
@@ -35,7 +38,7 @@ pub fn Footer() -> Element {
                     div {
                         class: "flex items-center gap-6 text-xs",
                         a {
-                            href: "https://github.com/imwoo90",
+                            href: "https://github.com/holtlab-io",
                             target: "_blank",
                             class: "text-zinc-500 hover:text-zinc-950 transition-colors flex items-center gap-1",
                             span { "github" }

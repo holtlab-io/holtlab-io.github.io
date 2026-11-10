@@ -1,21 +1,23 @@
 //! ## Overview
-//! UI components module providing modular layout sections for the Holt Lab catalog application.
+//! UI components module providing modular layout sections for the Holt Lab hardware demonstrator showcase.
 //! Encapsulates reusable design system elements conforming to the Agent-Native specification.
 //!
 //! ## Search Tags
-//! #components, #ui, #catalog, #sections, #widgets
+//! #components, #ui, #demonstrator, #sections, #widgets
 //!
 //! ## Submodules
-//! - [`navbar`] (`navbar/mod.rs`): Minimalist wireframe navigation bar and subcategory filter strip.
-//! - [`catalog`] (`catalog/mod.rs`): Flagship product catalog grid and interactive hardware spec drawer.
-//! - [`specs`] (`specs.rs`): High-density Swiss engineering specification matrix table.
-//! - [`philosophy`] (`philosophy.rs`): Studio engineering protocol and turnkey hardware philosophy.
-//! - [`contact`] (`contact/mod.rs`): Quiet studio inquiry dispatch form and contact coordinates.
+//! - [`contact`] (`contact/mod.rs`): Direct studio inquiry dispatch form and contact coordinates.
 //! - [`footer`] (`footer.rs`): Minimalist wireframe footer and studio credits.
+//! - [`hero`] (`hero.rs`): Monumental hero flagship hardware demonstrator section.
+//! - [`navbar`] (`navbar/mod.rs`): Minimalist industrial navigation bar and mobile drawer.
+//! - [`specs`] (`specs.rs`): High-density Swiss engineering specification matrix table.
+//! - [`studio`] (`studio.rs`): Studio turnkey engineering model and co-design pipeline.
+//! - [`teardown`] (`teardown/mod.rs`): Interactive exploded-view anatomical engineering teardown.
 
-pub mod navbar;
-pub mod catalog;
-pub mod specs;
-pub mod philosophy;
 pub mod contact;
 pub mod footer;
+pub mod hero;
+pub mod navbar;
+pub mod specs;
+pub mod studio;
+pub mod teardown;

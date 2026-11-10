@@ -1,34 +1,37 @@
 //! ## Overview
-//! Primary landing page view for the Holt Lab web application.
-//! Orchestrates the Teenage Engineering inspired hardware catalog, spec matrix, and inquiry dispatch.
+//! Primary landing page view for the Holt Lab hardware demonstrator showcase.
+//! Orchestrates the Framework-inspired hero demonstrator, anatomical teardown, spec matrix, studio turnkey, and inquiry dispatch.
 //!
 //! ## Search Tags
-//! #home, #landing, #catalog, #view, #layout
+//! #home, #landing, #demonstrator, #framework-style, #showcase
+//!
+//! ## Submodules
+//! None. This module provides atomic view composition.
 
 use dioxus::prelude::*;
 use crate::components::{
-    navbar::Navbar,
-    catalog::Catalog,
-    specs::SpecsMatrix,
-    philosophy::Philosophy,
     contact::Contact,
     footer::Footer,
+    hero::HeroDemonstrator,
+    navbar::Navbar,
+    specs::SpecsMatrix,
+    studio::StudioTurnkey,
+    teardown::TeardownSection,
 };
 
-/// Primary single-page catalog view composing all structural sections.
+/// Primary single-page demonstrator view composing all structural engineering sections.
 #[component]
 pub fn Home() -> Element {
-    let active_filter = use_signal(|| "all");
-
     rsx! {
         div {
             class: "min-h-screen bg-white text-zinc-900 flex flex-col selection:bg-zinc-900 selection:text-white",
-            Navbar { active_filter }
+            Navbar {}
             main {
                 class: "flex-grow",
-                Catalog { active_filter }
+                HeroDemonstrator {}
+                TeardownSection {}
                 SpecsMatrix {}
-                Philosophy {}
+                StudioTurnkey {}
                 Contact {}
             }
             Footer {}
