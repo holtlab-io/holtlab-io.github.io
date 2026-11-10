@@ -1,74 +1,69 @@
 //! ## Overview
-//! Studio brand footer presenting identity, copyright statements, and external community channels.
+//! Minimalist wireframe footer displaying brand identity, verified tolerance standards, and coordinates.
+//! Follows the Teenage Engineering understated typographic convention.
 //!
 //! ## Search Tags
 //! #footer, #branding, #links, #copyright, #channels
 
 use dioxus::prelude::*;
 
-/// Primary footer component displaying brand information, social channels, and copyright notes.
+/// Primary footer component displaying brand information, channels, and copyright notes.
 #[component]
 pub fn Footer() -> Element {
     rsx! {
         footer {
-            class: "py-12 bg-[#F4F4F5] border-t border-zinc-200 text-zinc-500 text-xs font-mono",
+            class: "py-12 bg-white border-t border-zinc-200 text-zinc-500 text-xs font-mono lowercase select-none",
             div {
-                class: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+                class: "max-w-[1600px] mx-auto px-4 sm:px-8",
                 div {
-                    class: "flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-zinc-200/80",
+                    class: "flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-zinc-100",
                     // Brand Info
                     div {
                         class: "flex items-center gap-3",
-                        img {
-                            src: "assets/branding/avatar.jpg",
-                            alt: "Holt Lab Luwim Avatar",
-                            class: "w-8 h-8 rounded-md object-cover border border-zinc-200"
+                        span {
+                            class: "font-bold text-zinc-950 font-sans tracking-tight text-sm",
+                            "holt lab"
                         }
-                        div {
-                            div {
-                                class: "text-zinc-900 font-bold text-xs tracking-wider",
-                                "HOLT LAB // BOUTIQUE HARDWARE STUDIO"
-                            }
-                            div {
-                                class: "text-zinc-500 text-[10px]",
-                                "Mechanical (MCAD) · Electronics (ECAD) · Bare-Metal Firmware"
-                            }
+                        span { class: "text-zinc-300", "//" }
+                        span {
+                            class: "text-zinc-500 text-xs",
+                            "boutique hardware & embedded laboratory"
                         }
                     }
 
-                    // Social & Channel Links
+                    // Social & Coordinates
                     div {
                         class: "flex items-center gap-6 text-xs",
                         a {
-                            href: "https://github.com/holtlab-io",
+                            href: "https://github.com/imwoo90",
                             target: "_blank",
-                            class: "text-zinc-600 hover:text-zinc-950 transition-colors flex items-center gap-1",
-                            span { "GITHUB" }
+                            class: "text-zinc-500 hover:text-zinc-950 transition-colors flex items-center gap-1",
+                            span { "github" }
                             span { class: "text-[10px] text-zinc-400", "↗" }
                         }
                         a {
                             href: "https://youtube.com/@holt-lab",
                             target: "_blank",
-                            class: "text-zinc-600 hover:text-zinc-950 transition-colors flex items-center gap-1",
-                            span { "YOUTUBE" }
+                            class: "text-zinc-500 hover:text-zinc-950 transition-colors flex items-center gap-1",
+                            span { "youtube" }
                             span { class: "text-[10px] text-zinc-400", "↗" }
                         }
                         a {
                             href: "mailto:contact@holtlab.io",
-                            class: "text-zinc-600 hover:text-zinc-950 transition-colors flex items-center gap-1",
-                            span { "contact@holtlab.io" }
+                            class: "text-zinc-500 hover:text-zinc-950 transition-colors",
+                            "contact@holtlab.io"
                         }
                     }
                 }
 
                 // Bottom Copyright
                 div {
-                    class: "pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-zinc-500 text-[10px]",
+                    class: "pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-zinc-400 text-[11px]",
                     div {
-                        "© 2026 HOLT LAB. ALL RIGHTS RESERVED. ZERO-PINGPONG HARDWARE ARCHITECTURE."
+                        "all systems verified 0.00 mm³ physical clearance · seoul, korea"
                     }
                     div {
-                        "BUILT WITH RUST & DIOXUS 0.7 (WASM) // GITHUB PAGES"
+                        "© 2026 holt lab. all rights reserved."
                     }
                 }
             }

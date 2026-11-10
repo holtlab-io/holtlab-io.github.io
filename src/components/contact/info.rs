@@ -1,47 +1,41 @@
 //! ## Overview
 //! Contact info and value assurance column presenting Holt Lab direct communication channels and SLAs.
+//! Employs a quiet Swiss layout with lowercase labels and clear institutional coordinates.
 //!
 //! ## Search Tags
 //! #contact, #info, #sla, #guarantee, #email
 
 use dioxus::prelude::*;
 
-/// Left column displaying direct contact information and institutional assurances.
+/// Left column displaying direct contact information and institutional coordinates.
 #[component]
 pub fn ContactInfo() -> Element {
     rsx! {
         div {
-            class: "lg:col-span-5 space-y-6",
+            class: "lg:col-span-5 space-y-6 font-sans",
             div {
                 class: "space-y-3",
-                div {
-                    class: "inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-600 text-xs tracking-wider uppercase",
-                    "PROJECT RFQ // DIRECT INQUIRY"
-                }
+                span { class: "text-xs font-mono text-zinc-400 lowercase", "direct inquiry" }
                 h2 {
-                    class: "text-2xl sm:text-4xl font-bold text-zinc-900 tracking-tight font-sans",
-                    "아이디어만 들고 오셔도 "
-                    br {}
-                    span { class: "text-zinc-500", "실물로 완성해 드립니다." }
+                    class: "text-2xl sm:text-3xl font-bold lowercase text-zinc-950 tracking-tight leading-tight",
+                    "studio inquiry."
                 }
                 p {
-                    class: "text-zinc-600 text-xs sm:text-sm font-sans leading-relaxed",
-                    "기획서나 도면이 완벽하지 않아도 괜찮습니다. 요구사항을 남겨주시면 "
-                    span { class: "text-zinc-900 font-medium", "24시간 이내에 리드 엔지니어가 직접" }
-                    " 물리적 실현 가능성, 부품 수급성, 예상 일정과 예산을 검토해 회신드립니다."
+                    class: "text-zinc-600 text-xs sm:text-sm font-sans leading-relaxed pt-1",
+                    "we accept selected turnkey hardware commissions, multi-layer pcba layout, and bare-metal firmware development. every inquiry is evaluated directly by our lead hardware architect within 24 hours."
                 }
             }
 
-            // Direct Info Technical Cards
+            // Direct Coordinates Cards
             div {
-                class: "space-y-3 text-xs",
+                class: "space-y-3 text-xs font-mono lowercase pt-2",
                 div {
-                    class: "p-4 rounded-xl border border-zinc-200 bg-white flex items-center justify-between shadow-2xs",
+                    class: "p-4 rounded-xs border border-zinc-200 bg-white flex items-center justify-between shadow-2xs",
                     div {
-                        div { class: "text-zinc-500 text-[10px] uppercase font-semibold", "DIRECT CONTACT // EMAIL" }
+                        div { class: "text-zinc-400 text-[10px] uppercase font-mono", "direct contact // email" }
                         a {
                             href: "mailto:contact@holtlab.io",
-                            class: "text-sm font-bold text-zinc-900 hover:text-zinc-950 hover:underline transition-colors mt-0.5 block",
+                            class: "text-sm font-bold text-zinc-950 hover:underline transition-colors mt-0.5 block",
                             "contact@holtlab.io"
                         }
                     }
@@ -49,19 +43,19 @@ pub fn ContactInfo() -> Element {
                 }
 
                 div {
-                    class: "p-4 rounded-xl border border-zinc-200 bg-white flex items-center justify-between shadow-2xs",
+                    class: "p-4 rounded-xs border border-zinc-200 bg-white flex items-center justify-between shadow-2xs",
                     div {
-                        div { class: "text-zinc-500 text-[10px] uppercase font-semibold", "GOVERNMENT GRANT // TAX COMPLIANCE" }
-                        div { class: "text-xs font-semibold text-zinc-800 mt-0.5", "전자계약 및 전자세금계산서 100% 발행 지원" }
+                        div { class: "text-zinc-400 text-[10px] uppercase font-mono", "studio location" }
+                        div { class: "text-xs font-semibold text-zinc-800 mt-0.5", "seoul, korea // remote worldwide" }
                     }
-                    span { class: "text-zinc-900 text-xs font-bold font-mono", "PASS" }
+                    span { class: "text-zinc-900 text-xs font-bold font-mono", "ACTIVE" }
                 }
 
                 div {
-                    class: "p-4 rounded-xl border border-zinc-200 bg-white flex items-center justify-between shadow-2xs",
+                    class: "p-4 rounded-xs border border-zinc-200 bg-white flex items-center justify-between shadow-2xs",
                     div {
-                        div { class: "text-zinc-500 text-[10px] uppercase font-semibold", "SLA // RESPONSE GUARANTEE" }
-                        div { class: "text-xs font-semibold text-zinc-800 mt-0.5", "영업일 기준 24시간 이내 1차 기술 검토 완료" }
+                        div { class: "text-zinc-400 text-[10px] uppercase font-mono", "response commitment" }
+                        div { class: "text-xs font-semibold text-zinc-800 mt-0.5", "24h initial architectural review" }
                     }
                     span { class: "text-zinc-600 text-xs font-mono font-medium", "24H" }
                 }

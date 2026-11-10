@@ -1,27 +1,21 @@
 //! ## Overview
-//! UI components module providing modular layout sections for the landing page.
+//! UI components module providing modular layout sections for the Holt Lab catalog application.
 //! Encapsulates reusable design system elements conforming to the Agent-Native specification.
 //!
 //! ## Search Tags
-//! #components, #ui, #sections, #widgets
+//! #components, #ui, #catalog, #sections, #widgets
 //!
 //! ## Submodules
-//! - [`navbar`] (`navbar.rs`): Sticky navigation bar with telemetry and mobile drawer.
-//! - [`hero`] (`hero.rs`): Primary studio banner, value proposition, and inspection bench.
-//! - [`metrics`] (`metrics.rs`): Quantitative engineering accuracy metrics.
-//! - [`comparison`] (`comparison.rs`): Direct comparison between split outsourcing and turnkey architecture.
-//! - [`showcase`] (`showcase/mod.rs`): Deep-dive case study tabs for Win95 Minesweeper Touch Keyring.
-//! - [`services`] (`services.rs`): 4 core turnkey hardware engineering capabilities.
-//! - [`process`] (`process.rs`): 4-stage deterministic engineering verification gates.
-//! - [`contact`] (`contact/mod.rs`): Interactive diagnostic RFQ form and SLA assurances.
-//! - [`footer`] (`footer.rs`): Studio branding, copyright, and external channel links.
+//! - [`navbar`] (`navbar/mod.rs`): Minimalist wireframe navigation bar and subcategory filter strip.
+//! - [`catalog`] (`catalog/mod.rs`): Flagship product catalog grid and interactive hardware spec drawer.
+//! - [`specs`] (`specs.rs`): High-density Swiss engineering specification matrix table.
+//! - [`philosophy`] (`philosophy.rs`): Studio engineering protocol and turnkey hardware philosophy.
+//! - [`contact`] (`contact/mod.rs`): Quiet studio inquiry dispatch form and contact coordinates.
+//! - [`footer`] (`footer.rs`): Minimalist wireframe footer and studio credits.
 
 pub mod navbar;
-pub mod hero;
-pub mod metrics;
-pub mod comparison;
-pub mod showcase;
-pub mod services;
-pub mod process;
+pub mod catalog;
+pub mod specs;
+pub mod philosophy;
 pub mod contact;
 pub mod footer;

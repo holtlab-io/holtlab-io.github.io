@@ -1,5 +1,6 @@
 //! ## Overview
 //! Interactive selection buttons for project scope and client organization category.
+//! Provides quiet lowercase options for engineering disciplines and organizational scope.
 //!
 //! ## Search Tags
 //! #contact, #selectors, #scope, #buttons, #options
@@ -9,51 +10,30 @@ use dioxus::prelude::*;
 /// Selector buttons for development scope.
 #[component]
 pub fn ScopeButtons(mut selected: Signal<usize>) -> Element {
+    let scopes = [
+        "01 // turnkey product (mcad+ecad+fw)",
+        "02 // 4-layer pcba (kicad ecad)",
+        "03 // 3d chassis & enclosure (mcad)",
+        "04 // bare-metal firmware (rust/c)",
+    ];
+
     rsx! {
         div {
             class: "space-y-2",
-            label { class: "block text-[11px] font-semibold uppercase tracking-wider text-zinc-700", "01 // 희망 개발 범위 (PROJECT SCOPE)" }
+            label { class: "block text-xs font-mono text-zinc-500 lowercase", "engineering discipline" }
             div {
-                class: "grid grid-cols-2 gap-2",
-                button {
-                    r#type: "button",
-                    onclick: move |_| selected.set(0),
-                    class: if selected() == 0 {
-                        "p-2.5 rounded-md border-2 border-zinc-900 bg-zinc-100 text-zinc-900 font-semibold text-left transition-all"
-                    } else {
-                        "p-2.5 rounded-md border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 text-left transition-all"
-                    },
-                    "턴키 완주 (기구+회로+펌웨어)"
-                }
-                button {
-                    r#type: "button",
-                    onclick: move |_| selected.set(1),
-                    class: if selected() == 1 {
-                        "p-2.5 rounded-md border-2 border-zinc-900 bg-zinc-100 text-zinc-900 font-semibold text-left transition-all"
-                    } else {
-                        "p-2.5 rounded-md border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 text-left transition-all"
-                    },
-                    "회로 & 4/6층 PCB (ECAD)"
-                }
-                button {
-                    r#type: "button",
-                    onclick: move |_| selected.set(2),
-                    class: if selected() == 2 {
-                        "p-2.5 rounded-md border-2 border-zinc-900 bg-zinc-100 text-zinc-900 font-semibold text-left transition-all"
-                    } else {
-                        "p-2.5 rounded-md border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 text-left transition-all"
-                    },
-                    "3D 기구 & 외함 (MCAD)"
-                }
-                button {
-                    r#type: "button",
-                    onclick: move |_| selected.set(3),
-                    class: if selected() == 3 {
-                        "p-2.5 rounded-md border-2 border-zinc-900 bg-zinc-100 text-zinc-900 font-semibold text-left transition-all"
-                    } else {
-                        "p-2.5 rounded-md border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 text-left transition-all"
-                    },
-                    "임베디드 펌웨어 개발"
+                class: "grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono lowercase",
+                for (idx, scope) in scopes.iter().enumerate() {
+                    button {
+                        r#type: "button",
+                        onclick: move |_| selected.set(idx),
+                        class: if selected() == idx {
+                            "p-3 rounded-xs border-2 border-zinc-950 bg-zinc-100 text-zinc-950 font-bold text-left transition-all"
+                        } else {
+                            "p-3 rounded-xs border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-950 text-left transition-all"
+                        },
+                        "{scope}"
+                    }
                 }
             }
         }
@@ -63,51 +43,30 @@ pub fn ScopeButtons(mut selected: Signal<usize>) -> Element {
 /// Selector buttons for client organizational category.
 #[component]
 pub fn TargetButtons(mut selected: Signal<usize>) -> Element {
+    let targets = [
+        "turnkey hardware commission",
+        "early-stage startup",
+        "r&d laboratory",
+        "direct component bring-up",
+    ];
+
     rsx! {
         div {
             class: "space-y-2",
-            label { class: "block text-[11px] font-semibold uppercase tracking-wider text-zinc-700", "02 // 고객 유형 (CLIENT TYPE)" }
+            label { class: "block text-xs font-mono text-zinc-500 lowercase", "project profile" }
             div {
-                class: "grid grid-cols-2 sm:grid-cols-4 gap-2",
-                button {
-                    r#type: "button",
-                    onclick: move |_| selected.set(0),
-                    class: if selected() == 0 {
-                        "p-2 rounded-md border-2 border-zinc-900 bg-zinc-100 text-zinc-900 font-semibold text-center"
-                    } else {
-                        "p-2 rounded-md border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 text-center"
-                    },
-                    "예창패/청창사"
-                }
-                button {
-                    r#type: "button",
-                    onclick: move |_| selected.set(1),
-                    class: if selected() == 1 {
-                        "p-2 rounded-md border-2 border-zinc-900 bg-zinc-100 text-zinc-900 font-semibold text-center"
-                    } else {
-                        "p-2 rounded-md border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 text-center"
-                    },
-                    "초기 스타트업"
-                }
-                button {
-                    r#type: "button",
-                    onclick: move |_| selected.set(2),
-                    class: if selected() == 2 {
-                        "p-2 rounded-md border-2 border-zinc-900 bg-zinc-100 text-zinc-900 font-semibold text-center"
-                    } else {
-                        "p-2 rounded-md border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 text-center"
-                    },
-                    "기업 연구소"
-                }
-                button {
-                    r#type: "button",
-                    onclick: move |_| selected.set(3),
-                    class: if selected() == 3 {
-                        "p-2 rounded-md border-2 border-zinc-900 bg-zinc-100 text-zinc-900 font-semibold text-center"
-                    } else {
-                        "p-2 rounded-md border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 text-center"
-                    },
-                    "개인/기타"
+                class: "grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono lowercase",
+                for (idx, target) in targets.iter().enumerate() {
+                    button {
+                        r#type: "button",
+                        onclick: move |_| selected.set(idx),
+                        class: if selected() == idx {
+                            "p-2.5 rounded-xs border-2 border-zinc-950 bg-zinc-100 text-zinc-950 font-bold text-center"
+                        } else {
+                            "p-2.5 rounded-xs border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-950 text-center"
+                        },
+                        "{target}"
+                    }
                 }
             }
         }
