@@ -36,14 +36,14 @@ pub struct SpecRowData {
 pub fn get_specs_section_strings(lang: Language) -> SpecsSectionStrings {
     match lang {
         Language::En => SpecsSectionStrings {
-            eyebrow: "engineering reference",
-            title: "technical specifications",
-            subtitle: "win95 minesweeper touch keyring // unified turnkey hardware",
+            eyebrow: "engineering reference // benchmark metrics",
+            title: "technical specifications & verification metrics",
+            subtitle: "win95 minesweeper touch keyring // verified benchmark telemetry",
         },
         Language::Ko => SpecsSectionStrings {
-            eyebrow: "엔지니어링 기술 사양",
-            title: "상세 기술 제원",
-            subtitle: "윈도우 95 터치 지뢰찾기 키링 // 통합 턴키 하드웨어",
+            eyebrow: "엔지니어링 제원 // 검증 메트릭",
+            title: "상세 기술 제원 및 검증 메트릭",
+            subtitle: "윈도우 95 터치 지뢰찾기 키링 // 검증 벤치 텔레메트리",
         },
     }
 }

@@ -6,18 +6,21 @@
 //! #i18n, #localization, #bilingual, #korean, #english
 //!
 //! ## Submodules
+//! - [`capabilities`] (`capabilities.rs`): Studio engineering capability cards and discipline models.
 //! - [`contact`] (`contact.rs`): Inquiry form inputs, scopes, and buffer texts.
 //! - [`hero`] (`hero.rs`): Flagship hero headings, quick spec pills, and navbar/footer labels.
 //! - [`specs`] (`specs.rs`): 10-row Swiss engineering specification matrix table.
 //! - [`studio`] (`studio.rs`): Studio turnkey comparison cards and 4-phase engineering pipeline.
 //! - [`teardown`] (`teardown/mod.rs`): 4-layer anatomical engineering teardown models and telemetry.
 
+pub mod capabilities;
 pub mod contact;
 pub mod hero;
 pub mod specs;
 pub mod studio;
 pub mod teardown;
 
+pub use capabilities::{CapabilitiesStrings, CapabilityCard};
 pub use contact::{ContactBufferStrings, ContactFormStrings, ContactInfoStrings, ContactSelectorStrings, ContactStrings};
 pub use hero::{HeroStrings, NavStrings};
 pub use specs::SpecRowData;

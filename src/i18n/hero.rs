@@ -1,16 +1,16 @@
 //! ## Overview
-//! Localized strings for the flagship hero section, navigation headers, and footer credits.
-//! Provides complete bilingual parity between English and Korean presentation.
+//! Localized strings for the flagship studio hero section, navigation headers, and footer credits.
+//! Repositions Holt Lab as a hardware engineering studio and provides complete bilingual parity.
 //!
 //! ## Search Tags
-//! #i18n, #hero, #navbar, #footer, #branding
+//! #i18n, #hero, #navbar, #footer, #branding, #studio
 //!
 //! ## Submodules
 //! None. This module provides atomic presentation text models.
 
 use super::Language;
 
-/// Localized string bundle for the hero demonstrator section.
+/// Localized string bundle for the hero studio section.
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct HeroStrings {
     /// Top eyebrow badge text.
@@ -19,18 +19,22 @@ pub struct HeroStrings {
     pub title: &'static str,
     /// Engineering subtitle paragraph.
     pub subtitle: &'static str,
-    /// 5 quick specification pills.
-    pub pills: [&'static str; 5],
+    /// 4 discipline telemetry pills.
+    pub pills: [&'static str; 4],
     /// Primary visual boundary width indicator.
     pub width_label: &'static str,
     /// Center visual material indicator.
     pub material_label: &'static str,
     /// Visual boundary height indicator.
     pub height_label: &'static str,
-    /// Teardown jump CTA button text.
-    pub cta_teardown: &'static str,
-    /// Specs jump CTA button text.
-    pub cta_specs: &'static str,
+    /// Case study jump CTA button text.
+    pub cta_casestudy: &'static str,
+    /// Inquiry jump CTA button text.
+    pub cta_inquire: &'static str,
+    /// Console workbench status banner.
+    pub console_status: &'static str,
+    /// Console demonstrator caption.
+    pub console_sub: &'static str,
 }
 
 /// Localized string bundle for navigation bar elements.
@@ -59,43 +63,53 @@ pub struct FooterStrings {
     pub copyright: &'static str,
 }
 
-/// Returns the hero string bundle for the requested language.
+fn hero_en() -> HeroStrings {
+    HeroStrings {
+        eyebrow: "HARDWARE ENGINEERING & RAPID PROTOTYPING STUDIO",
+        title: "From Silicon to Screen. We Engineer Physical Hardware.",
+        subtitle: "Unified Turnkey Hardware R&D — Mechanical CAD, 4-Layer ECAD, and Low-Latency Embedded Firmware co-designed without agency ping-pong.",
+        pills: [
+            "01 // MCAD Parametric B-Rep",
+            "02 // ECAD 4-Layer Controlled-Z",
+            "03 // Embedded 60Hz Async Actors",
+            "04 // DFM Rapid SMT Dispatch",
+        ],
+        width_label: "DIMENSION: 43.40 × 69.20 mm",
+        material_label: "MJF PA12 // 4-LAYER PCBA",
+        height_label: "STACKUP: 13.78 mm",
+        cta_casestudy: "explore case study // 실증 사례 보기",
+        cta_inquire: "inquire project // 턴키 의뢰하기",
+        console_status: "SYSTEM ARCHITECTURE: UNIFIED CO-DESIGN // TAILSCALE BENCH PASS",
+        console_sub: "FLAGSHIP DEMONSTRATOR // OPUS 01 TOUCH GAMING MACHINE",
+    }
+}
+
+fn hero_ko() -> HeroStrings {
+    HeroStrings {
+        eyebrow: "턴키 하드웨어 엔지니어링 & 프로토타이핑 랩",
+        title: "실리콘 칩셋부터 외함까지, 실물로 작동하는 하드웨어를 설계합니다.",
+        subtitle: "기구 CAD, 4층 임피던스 제어 회로, 초저지연 임베디드 펌웨어를 단일 루프로 코디자인하여 외주 핑퐁 없이 단 1회에 실물로 구동시킵니다.",
+        pills: [
+            "01 // MCAD 파라메트릭 B-Rep",
+            "02 // ECAD 4층 제어 임피던스",
+            "03 // 펌웨어 60Hz 비동기 액터",
+            "04 // DFM 양산 SMT 직통 발주",
+        ],
+        width_label: "외형 규격: 43.40 × 69.20 mm",
+        material_label: "MJF PA12 // 4층 회로 기판",
+        height_label: "두께 규격: 13.78 mm",
+        cta_casestudy: "실증 사례 보기 // case study",
+        cta_inquire: "턴키 의뢰하기 // inquire",
+        console_status: "시스템 아키텍처: 통합 코디자인 // 원격 벤치 검증 통과",
+        console_sub: "플래그십 실증 머신 // OPUS 01 터치 게임 콘솔",
+    }
+}
+
+/// Returns the studio hero string bundle for the requested language.
 pub fn get_hero_strings(lang: Language) -> HeroStrings {
     match lang {
-        Language::En => HeroStrings {
-            eyebrow: "OPUS 01 // HARDWARE DEMONSTRATOR",
-            title: "win95 minesweeper touch keyring",
-            subtitle: "Interference-free mechanical assembly, 4-layer controlled-impedance PCBA, and real-time 60Hz embedded graphics engine. A living proof of unified turnkey hardware execution from silicon to screen.",
-            pills: [
-                "43.4×69.2×13.78mm",
-                "ESP32-C3 160MHz",
-                "2.0\" 60Hz IPS",
-                "HP MJF PA12",
-                "Real-Time Firmware",
-            ],
-            width_label: "WIDTH: 43.40 mm",
-            material_label: "MJF PA12 // BEZEL-LESS",
-            height_label: "HEIGHT: 69.20 mm",
-            cta_teardown: "explore teardown",
-            cta_specs: "technical specs",
-        },
-        Language::Ko => HeroStrings {
-            eyebrow: "OPUS 01 // 하드웨어 실증 머신",
-            title: "win95 minesweeper touch keyring",
-            subtitle: "무간섭 일체형 기구 설계, 4층 임피던스 제어 PCBA, 고신뢰성 실시간 60Hz 그래픽스 엔진. 실리콘 칩셋부터 외함과 화면까지 통합 턴키 하드웨어 엔지니어링의 정점을 증명합니다.",
-            pills: [
-                "43.4×69.2×13.78mm",
-                "ESP32-C3 160MHz",
-                "2.0\" 60Hz IPS",
-                "HP MJF PA12",
-                "초저지연 펌웨어",
-            ],
-            width_label: "가로: 43.40 mm",
-            material_label: "MJF PA12 // 초슬림 베젤",
-            height_label: "세로: 69.20 mm",
-            cta_teardown: "하드웨어 분해 보기",
-            cta_specs: "상세 기술 사양",
-        },
+        Language::En => hero_en(),
+        Language::Ko => hero_ko(),
     }
 }
 
@@ -107,15 +121,15 @@ pub fn get_nav_strings(lang: Language) -> NavStrings {
             turnkey_badge: "UNIFIED TURNKEY // VERIFIED",
             cta_inquire: "inquire // 의뢰하기",
             nav_items: [
-                ("#demonstrator", "demonstrator", "01"),
-                ("#teardown", "teardown", "02"),
+                ("#capabilities", "capabilities", "01"),
+                ("#case-study", "case study", "02"),
                 ("#specs", "specs", "03"),
-                ("#studio", "studio", "04"),
+                ("#studio", "turnkey", "04"),
                 ("#inquire", "inquire", "05"),
             ],
             mobile_items: [
-                ("#demonstrator", "demonstrator", "flagship hardware machine"),
-                ("#teardown", "teardown", "4-layer engineering teardown"),
+                ("#capabilities", "capabilities", "4 core engineering disciplines"),
+                ("#case-study", "case study", "flagship hardware demonstrator"),
                 ("#specs", "specs", "monospaced swiss spec matrix"),
                 ("#studio", "studio", "unified turnkey model"),
                 ("#inquire", "inquire // 의뢰하기", "direct architect dispatch"),
@@ -126,15 +140,15 @@ pub fn get_nav_strings(lang: Language) -> NavStrings {
             turnkey_badge: "통합 턴키 // 검증 완료",
             cta_inquire: "inquire // 의뢰하기",
             nav_items: [
-                ("#demonstrator", "실증 기기", "01"),
-                ("#teardown", "하드웨어 분해", "02"),
+                ("#capabilities", "엔지니어링 역량", "01"),
+                ("#case-study", "실증 사례", "02"),
                 ("#specs", "기술 사양", "03"),
                 ("#studio", "턴키 모델", "04"),
                 ("#inquire", "의뢰하기", "05"),
             ],
             mobile_items: [
-                ("#demonstrator", "실증 기기", "플래그십 하드웨어 실증 머신"),
-                ("#teardown", "하드웨어 분해", "4계층 엔지니어링 분해 분석"),
+                ("#capabilities", "엔지니어링 역량", "4대 핵심 턴키 엔지니어링 역량"),
+                ("#case-study", "실증 사례", "플래그십 하드웨어 실증 머신"),
                 ("#specs", "기술 사양", "스위스 정밀 기술 사양 매트릭스"),
                 ("#studio", "턴키 모델", "통합 턴키 코디자인 모델"),
                 ("#inquire", "의뢰하기", "리드 아키텍트 직통 의뢰"),

@@ -20,7 +20,8 @@ pub fn StudioTurnkey() -> Element {
     rsx! {
         section {
             id: "studio",
-            class: "bg-[#FAFAFA] py-16 sm:py-24 border-t border-zinc-200 font-sans scroll-mt-20",
+            class: "bg-[#FAFAFA] py-16 sm:py-24 border-t border-zinc-200 font-sans scroll-mt-20 relative",
+            div { id: "turnkey", class: "absolute -top-20" }
             div {
                 class: "max-w-[1500px] mx-auto px-4 sm:px-8",
                 div {
@@ -52,7 +53,7 @@ fn StudioComparisonGrid(strings: StudioStrings) -> Element {
 
             // Fragmented Multi-Agency Model
             div {
-                class: "p-6 sm:p-8 rounded-xs bg-white border border-zinc-200 border-l-4 border-l-red-400 space-y-4 shadow-2xs",
+                class: "studio-card p-6 sm:p-8 rounded-xs bg-white border border-zinc-200 border-l-4 border-l-red-400 space-y-4 shadow-2xs hover:border-zinc-300",
                 div {
                     class: "flex items-center justify-between font-mono text-xs",
                     span { class: "text-red-600 font-bold uppercase", "{strings.traditional.badge}" }
@@ -73,7 +74,7 @@ fn StudioComparisonGrid(strings: StudioStrings) -> Element {
 
             // Holt Lab Turnkey Model
             div {
-                class: "p-6 sm:p-8 rounded-xs bg-white border border-zinc-200 border-l-4 border-l-[#E64A19] space-y-4 shadow-2xs",
+                class: "studio-card p-6 sm:p-8 rounded-xs bg-white border border-zinc-200 border-l-4 border-l-[#E64A19] space-y-4 shadow-2xs hover:border-zinc-300",
                 div {
                     class: "flex items-center justify-between font-mono text-xs",
                     span { class: "text-[#E64A19] font-bold uppercase", "{strings.turnkey.badge}" }
@@ -104,7 +105,7 @@ fn TurnkeyPipelineGrid(strings: StudioStrings) -> Element {
             for phase in strings.pipeline.iter() {
                 div {
                     key: "{phase.phase_tag}",
-                    class: "p-5 rounded-xs bg-white border border-zinc-200 space-y-2",
+                    class: "studio-card p-5 rounded-xs bg-white border border-zinc-200 hover:border-zinc-300 space-y-2 select-none",
                     span { class: "text-[#E64A19] font-bold block", "{phase.phase_tag}" }
                     h4 { class: "text-sm font-bold text-zinc-950", "{phase.title}" }
                     p { class: "text-zinc-600 font-sans leading-relaxed text-xs", "{phase.desc}" }

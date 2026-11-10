@@ -92,13 +92,14 @@ async def run_e2e():
 
             # Wait for Dioxus WASM to mount all sections
             await page.wait_for_selector("header")
-            await page.wait_for_selector("#demonstrator")
-            await page.wait_for_selector("#teardown")
+            await page.wait_for_selector("#hero")
+            await page.wait_for_selector("#capabilities")
+            await page.wait_for_selector("#case-study")
             await page.wait_for_selector("#specs")
             await page.wait_for_selector("#studio")
             await page.wait_for_selector("#inquire")
             await page.wait_for_selector("footer")
-            print("✓ All 6 core structural sections mounted in DOM.")
+            print("✓ All 7 core structural sections mounted in DOM.")
 
             # Verify Dynamic Title & html lang in English mode
             title_en = await page.title()
@@ -117,69 +118,85 @@ async def run_e2e():
             # Verify Desktop Navigation contains all 5 anchors
             nav_links = await page.locator("header nav a").all_inner_texts()
             print(f"Desktop nav links: {nav_links}")
-            assert any("demonstrator" in l for l in nav_links), "demonstrator anchor missing"
-            assert any("teardown" in l for l in nav_links), "teardown anchor missing"
+            assert any("capabilities" in l for l in nav_links), "capabilities anchor missing"
+            assert any("case study" in l for l in nav_links), "case study anchor missing"
             assert any("specs" in l for l in nav_links), "specs anchor missing"
-            assert any("studio" in l for l in nav_links), "studio anchor missing"
+            assert any("turnkey" in l for l in nav_links), "turnkey anchor missing"
             assert any("inquire" in l for l in nav_links), "inquire anchor missing"
 
             cta_text = await page.locator("header a:has-text('inquire // 의뢰하기')").inner_text()
             assert "inquire // 의뢰하기" in cta_text, f"CTA missing: {cta_text}"
             print("✓ Header brand lockup, all 5 navigation anchors, and CTA button verified.")
 
-            # Verify Hero Demonstrator in English
-            hero_title = await page.locator("#demonstrator h1").inner_text()
-            assert "win95 minesweeper touch keyring" in hero_title, f"Hero title mismatch: {hero_title}"
+            # Verify Studio Hero in English
+            hero_title = await page.locator("#hero h1").inner_text()
+            assert "From Silicon to Screen. We Engineer Physical Hardware." in hero_title, f"Hero title mismatch: {hero_title}"
 
-            hero_eyebrow = await page.locator("#demonstrator").get_by_text("OPUS 01 // HARDWARE DEMONSTRATOR").inner_text()
-            assert "OPUS 01" in hero_eyebrow
+            hero_eyebrow = await page.locator("#hero").get_by_text("HARDWARE ENGINEERING & RAPID PROTOTYPING STUDIO").inner_text()
+            assert "HARDWARE ENGINEERING" in hero_eyebrow
 
-            # Verify 5 Quick Spec Pills
-            pill_texts = await page.locator("#demonstrator").locator("span:has-text('ESP32'), span:has-text('43.4'), span:has-text('60Hz'), span:has-text('MJF'), span:has-text('Firmware')").all_inner_texts()
-            expected_pills = ["43.4×69.2×13.78mm", "ESP32-C3 160MHz", "2.0\" 60Hz IPS", "HP MJF PA12", "Real-Time Firmware"]
+            # Verify Studio Discipline Pills
+            pill_texts = await page.locator("#hero").locator("span:has-text('MCAD'), span:has-text('ECAD'), span:has-text('Async'), span:has-text('SMT')").all_inner_texts()
+            expected_pills = ["01 // MCAD", "02 // ECAD", "03 // Embedded", "04 // DFM"]
             print(f"Pills found: {pill_texts}")
             for exp in expected_pills:
                 assert any(exp in pt for pt in pill_texts), f"Pill {exp} missing in {pill_texts}"
-            print("✓ Hero demonstrator title, eyebrow, and all 5 spec pills verified.")
+            print("✓ Studio hero title, eyebrow, and all 4 discipline pills verified.")
 
-            # Verify Teardown Section & Exploded Banner
-            teardown_heading = await page.locator("#teardown h2").inner_text()
-            assert "anatomical engineering teardown" in teardown_heading
+            # Verify Studio Workbench Console
+            assert await page.locator("#hero").get_by_text("SYSTEM ARCHITECTURE: UNIFIED CO-DESIGN // TAILSCALE BENCH PASS").is_visible()
+            print("✓ Studio workbench console telemetry verified.")
 
-            exploded_heading = await page.locator("#teardown h3").first.inner_text()
+            # Verify Capabilities Section
+            cap_heading = await page.locator("#capabilities h2").inner_text()
+            assert "4 pillars of unified turnkey hardware" in cap_heading
+            assert await page.locator("#capabilities").get_by_text("Mechanical CAD & Enclosures").is_visible()
+            assert await page.locator("#capabilities").get_by_text("Electrical PCBA & High-Speed Routing").is_visible()
+            assert await page.locator("#capabilities").get_by_text("Embedded Firmware & DMA Engine").is_visible()
+            assert await page.locator("#capabilities").get_by_text("DFM & Rapid Bench Verification").is_visible()
+            print("✓ Studio engineering capabilities 4 disciplines verified.")
+
+            # Verify Case Study Flagship Demonstrator Section & Exploded Banner
+            case_eyebrow = await page.locator("#case-study").get_by_text("FLAGSHIP DEMONSTRATOR // CASE STUDY 01").first.inner_text()
+            assert "FLAGSHIP DEMONSTRATOR" in case_eyebrow.upper()
+
+            case_title = await page.locator("#case-study h2").inner_text()
+            assert "win95 minesweeper touch keyring" in case_title
+
+            exploded_heading = await page.locator("#case-study h3").first.inner_text()
             assert "pulled apart to the bare copper." in exploded_heading
-            print("✓ Exploded teardown banner verified.")
+            print("✓ Exploded teardown banner in flagship case study verified.")
 
             # Test Interactive Subsystem Tabs:
             # Layer 01 default active
-            assert await page.locator("#teardown").get_by_text("LAYER 01").first.is_visible()
-            assert await page.locator("#teardown").get_by_text("MCAD Enclosure").first.is_visible()
+            assert await page.locator("#case-study").get_by_text("LAYER 01").first.is_visible()
+            assert await page.locator("#case-study").get_by_text("MCAD Enclosure").first.is_visible()
 
             # Switch to Layer 02 (ECAD 4-Layer PCBA)
-            tab_ecad = page.locator("#teardown button:has-text('ECAD 4-Layer PCBA')")
+            tab_ecad = page.locator("#case-study button:has-text('ECAD 4-Layer PCBA')")
             await tab_ecad.click()
             await page.wait_for_timeout(200)
-            assert await page.locator("#teardown").get_by_text("LAYER 02").first.is_visible()
-            assert await page.locator("#teardown").get_by_text("Controlled-Impedance Stackup").is_visible()
-            assert await page.locator("#teardown").get_by_text("GATE 2 // 0 ERC · 0 DRC VERIFIED").is_visible()
+            assert await page.locator("#case-study").get_by_text("LAYER 02").first.is_visible()
+            assert await page.locator("#case-study").get_by_text("Controlled-Impedance Stackup").is_visible()
+            assert await page.locator("#case-study").get_by_text("GATE 2 // 0 ERC · 0 DRC VERIFIED").is_visible()
             print("✓ Layer 02 (ECAD 4-Layer PCBA) interactive switch verified.")
 
             # Switch to Layer 03 (High-Reliability Embedded Firmware Engine)
-            tab_rust = page.locator("#teardown button:has-text('High-Reliability Embedded Firmware Engine')")
+            tab_rust = page.locator("#case-study button:has-text('High-Reliability Embedded Firmware Engine')")
             await tab_rust.click()
             await page.wait_for_timeout(200)
-            assert await page.locator("#teardown").get_by_text("LAYER 03").first.is_visible()
-            assert await page.locator("#teardown").get_by_text("AHB GDMA CH0 Zero-Copy Pipeline").is_visible()
-            assert await page.locator("#teardown").get_by_text("BENCH // ZERO-COPY 60Hz DMA PASS").is_visible()
+            assert await page.locator("#case-study").get_by_text("LAYER 03").first.is_visible()
+            assert await page.locator("#case-study").get_by_text("AHB GDMA CH0 Zero-Copy Pipeline").is_visible()
+            assert await page.locator("#case-study").get_by_text("BENCH // ZERO-COPY 60Hz DMA PASS").is_visible()
             print("✓ Layer 03 (High-Reliability Embedded Firmware Engine) interactive switch verified.")
 
             # Switch to Layer 04 (Human Interface & Haptics)
-            tab_haptics = page.locator("#teardown button:has-text('Human Interface & Haptics')")
+            tab_haptics = page.locator("#case-study button:has-text('Human Interface & Haptics')")
             await tab_haptics.click()
             await page.wait_for_timeout(200)
-            assert await page.locator("#teardown").get_by_text("LAYER 04").first.is_visible()
-            assert await page.locator("#teardown").get_by_text("CST816D Capacitive Touch").is_visible()
-            assert await page.locator("#teardown").get_by_text("TELEMETRY // FEED-FORWARD PWM PASS").is_visible()
+            assert await page.locator("#case-study").get_by_text("LAYER 04").first.is_visible()
+            assert await page.locator("#case-study").get_by_text("CST816D Capacitive Touch").is_visible()
+            assert await page.locator("#case-study").get_by_text("TELEMETRY // FEED-FORWARD PWM PASS").is_visible()
             print("✓ Layer 04 (Human Interface & Haptics) interactive switch verified.")
 
             # Verify Specs Matrix
@@ -210,11 +227,9 @@ async def run_e2e():
             for term in forbidden_terms:
                 assert term not in body_text_en, f"Forbidden term '{term}' found in English body text"
                 assert term not in dom_html_en, f"Forbidden term '{term}' found in English DOM HTML"
-                # Case-insensitive check for ASCII phrases
                 if term.isascii() and term.isalpha():
                     assert term.lower() not in body_text_en.lower(), f"Forbidden term '{term}' (case-insensitive) found in English body text"
                     assert term.lower() not in dom_html_en.lower(), f"Forbidden term '{term}' (case-insensitive) found in English DOM HTML"
-            # Explicit case-insensitive check for solo terms
             for solo_phrase in ["1-person", "single architect", "one-person", "single-threaded"]:
                 assert solo_phrase not in body_text_en.lower(), f"Forbidden solo phrase '{solo_phrase}' (case-insensitive) found in English body text"
                 assert solo_phrase not in dom_html_en.lower(), f"Forbidden solo phrase '{solo_phrase}' (case-insensitive) found in English DOM HTML"
@@ -222,7 +237,9 @@ async def run_e2e():
 
             # Capture Desktop EN Screenshot
             desktop_full_en = os.path.join(OUTPUT_DIR, "desktop_full_en.png")
+            await page.evaluate("() => { const h = document.querySelector('header'); if (h) h.style.position = 'static'; }")
             await page.screenshot(path=desktop_full_en, full_page=True)
+            await page.evaluate("() => { const h = document.querySelector('header'); if (h) h.style.position = ''; }")
 
             # -------------------------------------------------------------
             # 2. Test Language Switcher: Toggle to KR
@@ -240,19 +257,25 @@ async def run_e2e():
             print("✓ Dynamic document title, html lang='ko', and aria-pressed verified in Korean.")
 
             # Verify Hero updated to Korean
-            hero_eyebrow_kr = await page.locator("#demonstrator").get_by_text("OPUS 01 // 하드웨어 실증 머신").first.inner_text()
-            assert "하드웨어 실증 머신" in hero_eyebrow_kr
+            hero_title_kr = await page.locator("#hero h1").inner_text()
+            assert "실리콘 칩셋부터 외함까지" in hero_title_kr
 
-            assert await page.locator("#demonstrator").get_by_text("무간섭 일체형 기구 설계").first.is_visible()
-            assert await page.locator("#demonstrator").get_by_text("초저지연 펌웨어", exact=True).is_visible()
-            print("✓ Language toggle to KR: Hero updated dynamically to Korean.")
+            hero_eyebrow_kr = await page.locator("#hero").get_by_text("턴키 하드웨어 엔지니어링").first.inner_text()
+            assert "하드웨어 엔지니어링" in hero_eyebrow_kr
+            print("✓ Language toggle to KR: Studio hero updated dynamically to Korean.")
 
-            # Verify Teardown updated to Korean
-            teardown_h2_kr = await page.locator("#teardown h2").inner_text()
-            assert "엔지니어링 해부학적 분해" in teardown_h2_kr
-            assert await page.locator("#teardown").get_by_text("순수 구리 패턴까지 완벽히 분해하다.").first.is_visible()
-            assert await page.locator("#teardown").get_by_text("MCAD 정밀 기구 외함").first.is_visible()
-            print("✓ Language toggle to KR: Teardown updated dynamically to Korean.")
+            # Verify Capabilities updated to Korean
+            cap_h2_kr = await page.locator("#capabilities h2").inner_text()
+            assert "4대 턴키 하드웨어 엔지니어링 역량" in cap_h2_kr
+            assert await page.locator("#capabilities").get_by_text("정밀 기구 CAD 및 산업용 외함 설계").is_visible()
+            print("✓ Language toggle to KR: Capabilities updated dynamically to Korean.")
+
+            # Verify Case Study updated to Korean
+            case_eyebrow_kr = await page.locator("#case-study").get_by_text("플래그십 실증 사례 // 케이스 스터디 01").first.inner_text()
+            assert "플래그십 실증 사례" in case_eyebrow_kr
+            assert await page.locator("#case-study").get_by_text("순수 구리 패턴까지 완벽히 분해하다.").first.is_visible()
+            assert await page.locator("#case-study").get_by_text("MCAD 정밀 기구 외함").first.is_visible()
+            print("✓ Language toggle to KR: Flagship case study updated dynamically to Korean.")
 
             # Verify Specs Matrix updated to Korean
             specs_h2_kr = await page.locator("#specs h2").inner_text()
@@ -285,7 +308,6 @@ async def run_e2e():
             for term in forbidden_terms:
                 assert term not in body_text_kr, f"Forbidden term '{term}' found in Korean body text"
                 assert term not in dom_html_kr, f"Forbidden term '{term}' found in Korean DOM HTML"
-            # Explicit case-insensitive check for solo terms
             for solo_phrase in ["1-person", "single architect", "one-person", "single-threaded"]:
                 assert solo_phrase not in body_text_kr.lower(), f"Forbidden solo phrase '{solo_phrase}' (case-insensitive) found in Korean body text"
                 assert solo_phrase not in dom_html_kr.lower(), f"Forbidden solo phrase '{solo_phrase}' (case-insensitive) found in Korean DOM HTML"
@@ -294,28 +316,29 @@ async def run_e2e():
 
             # Capture Desktop KR Screenshot
             desktop_full_kr = os.path.join(OUTPUT_DIR, "desktop_full_kr.png")
+            await page.evaluate("() => { const h = document.querySelector('header'); if (h) h.style.position = 'static'; }")
             await page.screenshot(path=desktop_full_kr, full_page=True)
+            await page.evaluate("() => { const h = document.querySelector('header'); if (h) h.style.position = ''; }")
 
             # Test reload remembers Korean preference
             await page.reload(wait_until="networkidle")
             await page.wait_for_selector("header")
-            assert await page.locator("#demonstrator").get_by_text("하드웨어 실증 머신").is_visible()
+            assert await page.locator("#hero").get_by_text("턴키 하드웨어 엔지니어링").is_visible()
             print("✓ Reload persistence verified: Page initialized in Korean from localStorage.")
 
             # Toggle back to EN
             en_toggle_btn = page.locator("header button:has-text('EN')").first
             await en_toggle_btn.click()
             await page.wait_for_timeout(300)
-            assert await page.locator("#demonstrator").get_by_text("HARDWARE DEMONSTRATOR").is_visible()
+            assert await page.locator("#hero").get_by_text("HARDWARE ENGINEERING & RAPID PROTOTYPING STUDIO").is_visible()
             saved_lang_en = await page.evaluate("localStorage.getItem('holtlab_lang')")
             assert saved_lang_en == "en", f"Expected localStorage holtlab_lang to be 'en', got {saved_lang_en}"
             print("✓ Language toggle to EN: Successfully returned to English and saved to localStorage.")
 
             # Test URL query parameter precedence over existing localStorage
-            # With localStorage currently set to 'en', navigate directly to ?lang=ko
             await page.goto(f"http://localhost:{PORT}/?lang=ko", wait_until="networkidle")
             await page.wait_for_selector("header")
-            assert await page.locator("#demonstrator").get_by_text("하드웨어 실증 머신").is_visible(), "URL ?lang=ko failed to override localStorage 'en'"
+            assert await page.locator("#hero").get_by_text("턴키 하드웨어 엔지니어링").is_visible(), "URL ?lang=ko failed to override localStorage 'en'"
             saved_after_url = await page.evaluate("localStorage.getItem('holtlab_lang')")
             assert saved_after_url == "ko", f"Expected localStorage to sync to 'ko' from URL parameter, got {saved_after_url}"
             # Reset back to EN for remaining tests
@@ -335,7 +358,7 @@ async def run_e2e():
             print("✓ Tablet 768px: Clean responsive header with hamburger drawer.")
 
             # Verify Teardown tabs at 768px: ZERO truncation
-            tablet_tabs = page_tablet.locator("#teardown button[type='button']")
+            tablet_tabs = page_tablet.locator("#case-study button[type='button']")
             for i in range(4):
                 title_el = tablet_tabs.nth(i).locator("div:has-text('MCAD'), div:has-text('ECAD'), div:has-text('Firmware'), div:has-text('Interface')").last
                 scroll_w = await title_el.evaluate("el => el.scrollWidth")
@@ -345,7 +368,9 @@ async def run_e2e():
             print("✓ Tablet 768px: All 4 teardown tab titles fit with zero truncation.")
 
             tablet_full = os.path.join(OUTPUT_DIR, "tablet_768_showcase.png")
+            await page_tablet.evaluate("() => { const h = document.querySelector('header'); if (h) h.style.position = 'static'; }")
             await page_tablet.screenshot(path=tablet_full, full_page=True)
+            await page_tablet.evaluate("() => { const h = document.querySelector('header'); if (h) h.style.position = ''; }")
 
             # -------------------------------------------------------------
             # 4. Test Mobile Viewport (375x812 iPhone) & Mobile Language Switcher
@@ -360,8 +385,8 @@ async def run_e2e():
             await mobile_page.wait_for_timeout(300)
 
             # Verify Mobile Drawer items
-            assert await mobile_page.locator("header a[href='#demonstrator']").last.is_visible()
-            assert await mobile_page.locator("header a[href='#teardown']").last.is_visible()
+            assert await mobile_page.locator("header a[href='#capabilities']").last.is_visible()
+            assert await mobile_page.locator("header a[href='#case-study']").last.is_visible()
             assert await mobile_page.locator("header a[href='#specs']").last.is_visible()
             assert await mobile_page.locator("header a[href='#studio']").last.is_visible()
             assert await mobile_page.locator("header a[href='#inquire']").last.is_visible()
@@ -372,7 +397,8 @@ async def run_e2e():
             await mobile_page.wait_for_timeout(300)
 
             # Drawer labels should now be in Korean
-            assert await mobile_page.locator("header a[href='#demonstrator']").get_by_text("실증 기기").last.is_visible()
+            assert await mobile_page.locator("header a[href='#capabilities']").get_by_text("엔지니어링 역량").last.is_visible()
+            assert await mobile_page.locator("header a[href='#case-study']").get_by_text("실증 사례").last.is_visible()
             print("✓ Mobile drawer language toggle verified.")
 
             mobile_drawer_shot = os.path.join(OUTPUT_DIR, "mobile_drawer_kr.png")
@@ -383,8 +409,8 @@ async def run_e2e():
             await mobile_page.wait_for_timeout(200)
 
             # Verify Subsystem Inspector badge non-overlapping on mobile
-            layer_tag = mobile_page.locator("#teardown div:has-text('LAYER 01')").last
-            badge_tag = mobile_page.locator("#teardown div:has-text('게이트 1'), #teardown div:has-text('GATE 1')").last
+            layer_tag = mobile_page.locator("#case-study div:has-text('LAYER 01')").last
+            badge_tag = mobile_page.locator("#case-study div:has-text('게이트 1'), #case-study div:has-text('GATE 1')").last
             b1 = await layer_tag.bounding_box()
             b2 = await badge_tag.bounding_box()
             overlap_x = max(0, min(b1['x'] + b1['width'], b2['x'] + b2['width']) - max(b1['x'], b2['x']))
@@ -392,7 +418,7 @@ async def run_e2e():
             assert overlap_x == 0 or overlap_y == 0, f"Tags overlap on mobile: overlap_x={overlap_x}, overlap_y={overlap_y}"
             print("✓ Mobile 375px: Subsystem layer tag and verification badge zero overlap.")
 
-            # Take a mobile screenshot of the new contact section before fill (temporarily hide sticky header)
+            # Take a mobile screenshot of the contact section before fill
             mobile_contact_el = mobile_page.locator("#inquire")
             mobile_contact_shot = os.path.join(OUTPUT_DIR, "mobile_contact_redesign.png")
             await mobile_page.evaluate("() => { const h = document.querySelector('header'); if (h) h.style.display = 'none'; }")
@@ -422,7 +448,6 @@ async def run_e2e():
             assert "vance@nexusdynamics.io" in mailto_link
             assert "subject=" in mailto_link
             assert "body=" in mailto_link
-            # RFC 3986 / RFC 6068: query part must contain zero raw spaces and use percent-encoding
             query_str = mailto_link.split("?", 1)[1]
             assert " " not in query_str, f"Mailto query contains raw unencoded space: {query_str}"
             assert "%20" in query_str, "Mailto query missing percent-encoded spaces (%20)"
@@ -438,7 +463,9 @@ async def run_e2e():
 
             # Mobile Full Page Screenshot
             mobile_full = os.path.join(OUTPUT_DIR, "mobile_full_showcase.png")
+            await mobile_page.evaluate("() => { const h = document.querySelector('header'); if (h) h.style.position = 'static'; }")
             await mobile_page.screenshot(path=mobile_full, full_page=True)
+            await mobile_page.evaluate("() => { const h = document.querySelector('header'); if (h) h.style.position = ''; }")
             print(f"✓ Mobile full page screenshot saved to {mobile_full}")
 
             # Verify Footer

@@ -15,7 +15,7 @@ pub mod ko;
 use super::Language;
 
 /// Localized string bundle for the teardown section headings and exploded banner.
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct TeardownSectionStrings {
     /// Section eyebrow badge.
     pub eyebrow: &'static str,

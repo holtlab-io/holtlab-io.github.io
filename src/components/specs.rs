@@ -41,11 +41,11 @@ pub fn SpecsMatrix() -> Element {
 
                 // Swiss 2-Column Key-Value Grid
                 div {
-                    class: "border border-zinc-200 divide-y divide-zinc-200 text-xs sm:text-sm font-mono lowercase",
+                    class: "studio-card bg-white border border-zinc-200 rounded-xs shadow-2xs divide-y divide-zinc-200 text-xs sm:text-sm font-mono lowercase overflow-hidden",
                     for row in spec_rows.iter() {
                         div {
                             key: "{row.key}",
-                            class: "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-4 sm:p-5 hover:bg-zinc-50/50 transition-colors gap-2",
+                            class: "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-4 sm:p-5 hover:bg-zinc-50 transition-colors gap-2 select-none",
                             div {
                                 class: "text-zinc-500 font-medium",
                                 "{row.key}"

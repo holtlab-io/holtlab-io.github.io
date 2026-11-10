@@ -7,7 +7,7 @@
 //!
 //! ## Submodules
 //! - [`form`] (`form.rs`): Quiet RFQ form and email dispatcher.
-//! - [`info`] (`info.rs`): Contact info and institutional coordinates.
+//! - [`info`][mod@info] (`info.rs`): Contact info and institutional coordinates.
 //! - [`selectors`] (`selectors.rs`): Engineering discipline selection pill buttons.
 //! - [`submitted`] (`submitted.rs`): Dispatch buffer confirmation and mailto trigger.
 
