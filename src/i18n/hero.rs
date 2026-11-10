@@ -79,8 +79,8 @@ fn hero_en() -> HeroStrings {
         width_label: "DIMENSION: 43.40 × 69.20 mm",
         material_label: "MJF PA12 // 4-LAYER PCBA",
         height_label: "STACKUP: 13.78 mm",
-        cta_casestudy: "explore case study // 실증 사례 보기",
-        cta_inquire: "inquire project // 턴키 의뢰하기",
+        cta_casestudy: "explore case study",
+        cta_inquire: "inquire project",
         console_status: "SYSTEM ARCHITECTURE: UNIFIED CO-DESIGN // TAILSCALE BENCH PASS",
         console_sub: "FLAGSHIP DEMONSTRATOR // OPUS 01 TOUCH GAMING MACHINE",
         console_modes: [
@@ -106,8 +106,8 @@ fn hero_ko() -> HeroStrings {
         width_label: "외형 규격: 43.40 × 69.20 mm",
         material_label: "MJF PA12 // 4층 회로 기판",
         height_label: "두께 규격: 13.78 mm",
-        cta_casestudy: "실증 사례 보기 // case study",
-        cta_inquire: "턴키 의뢰하기 // inquire",
+        cta_casestudy: "실증 사례 보기",
+        cta_inquire: "턴키 의뢰하기",
         console_status: "시스템 아키텍처: 통합 코디자인 // 원격 벤치 검증 통과",
         console_sub: "플래그십 실증 머신 // OPUS 01 터치 게임 콘솔",
         console_modes: [
@@ -133,7 +133,7 @@ pub fn get_nav_strings(lang: Language) -> NavStrings {
         Language::En => NavStrings {
             descriptor: "Hardware & Embedded Engineering Studio",
             turnkey_badge: "UNIFIED TURNKEY // VERIFIED",
-            cta_inquire: "inquire // 의뢰하기",
+            cta_inquire: "inquire",
             nav_items: [
                 ("/", "home", "01"),
                 ("/demonstrator", "demonstrator", "02"),
@@ -144,13 +144,13 @@ pub fn get_nav_strings(lang: Language) -> NavStrings {
                 ("/", "home", "studio overview & capabilities"),
                 ("/demonstrator", "demonstrator", "flagship hardware demonstrator"),
                 ("/studio", "studio", "unified turnkey model"),
-                ("/contact", "inquire // 의뢰하기", "direct architect dispatch"),
+                ("/contact", "inquire", "direct architect dispatch"),
             ],
         },
         Language::Ko => NavStrings {
             descriptor: "하드웨어 & 임베디드 엔지니어링 랩",
             turnkey_badge: "통합 턴키 // 검증 완료",
-            cta_inquire: "inquire // 의뢰하기",
+            cta_inquire: "의뢰하기",
             nav_items: [
                 ("/", "홈", "01"),
                 ("/demonstrator", "실증 머신", "02"),

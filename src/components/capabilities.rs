@@ -38,7 +38,7 @@ pub fn StudioCapabilities() -> Element {
 fn CapabilitiesHeader(strings: CapabilitiesStrings) -> Element {
     rsx! {
         div {
-            class: "flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 mb-12 gap-4",
+            class: "flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 mb-12 gap-4 reveal-on-scroll",
             div {
                 class: "space-y-1.5",
                 span { class: "text-xs font-mono text-zinc-400 lowercase", "{strings.eyebrow}" }
@@ -70,7 +70,7 @@ fn CapabilitiesGrid(cards: [CapabilityCard; 4]) -> Element {
 fn CapabilityCardItem(card: CapabilityCard) -> Element {
     rsx! {
         div {
-            class: "studio-card group p-6 sm:p-7 rounded-xs bg-[#FAFAFA] hover:bg-white border border-zinc-200/90 hover:border-zinc-400 flex flex-col justify-between space-y-6 shadow-2xs hover:shadow-md select-none relative overflow-hidden border-t-2 border-t-transparent hover:border-t-[#E64A19] transition-all",
+            class: "studio-card group p-6 sm:p-7 rounded-xs bg-[#FAFAFA] hover:bg-white border border-zinc-200/90 hover:border-zinc-400 flex flex-col justify-between space-y-6 shadow-2xs hover:shadow-md select-none relative overflow-hidden border-t-2 border-t-transparent hover:border-t-[#E64A19] transition-all reveal-on-scroll delay-100",
             div { class: "absolute top-2 right-2 text-zinc-300 font-mono text-[10px] opacity-0 group-hover:opacity-100 transition-opacity select-none", "+" }
             div {
                 class: "space-y-4",

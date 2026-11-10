@@ -19,7 +19,7 @@ pub fn ContactInfo() -> Element {
 
     rsx! {
         div {
-            class: "lg:col-span-5 space-y-6 font-sans",
+            class: "lg:col-span-5 space-y-6 font-sans reveal-on-scroll",
             div {
                 class: "space-y-3",
                 span { class: "text-xs font-mono text-zinc-400 lowercase", "{info.eyebrow}" }

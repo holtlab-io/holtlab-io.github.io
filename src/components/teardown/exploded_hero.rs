@@ -19,7 +19,7 @@ pub fn ExplodedHeroBanner() -> Element {
 
     rsx! {
         div {
-            class: "w-full rounded-xs border border-zinc-200 bg-gradient-to-b from-zinc-50 to-white p-6 sm:p-10 mb-12 sm:mb-16 shadow-2xs relative overflow-hidden",
+            class: "w-full rounded-xs border border-zinc-200 bg-gradient-to-b from-zinc-50 to-white p-6 sm:p-10 mb-12 sm:mb-16 shadow-2xs relative overflow-hidden reveal-on-scroll delay-100",
             div {
                 class: "flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200/80 pb-6 mb-8 gap-4",
                 div {

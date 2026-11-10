@@ -69,7 +69,7 @@ pub fn TeardownSection() -> Element {
 fn TeardownHeader(section_strings: TeardownSectionStrings) -> Element {
     rsx! {
         div {
-            class: "flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 mb-8 gap-4",
+            class: "flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 mb-8 gap-4 reveal-on-scroll",
             div {
                 class: "space-y-1.5",
                 span { class: "text-xs font-mono text-zinc-400 lowercase", "{section_strings.eyebrow}" }

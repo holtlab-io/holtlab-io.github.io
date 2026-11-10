@@ -43,7 +43,7 @@ fn MobileLangToggle(mut lang: Signal<Language>) -> Element {
     rsx! {
         div {
             class: "flex items-center justify-between pb-4 mb-4 border-b border-zinc-100",
-            span { class: "text-[11px] text-zinc-500 font-mono", "LANGUAGE // 언어" }
+            span { class: "text-[11px] text-zinc-500 font-mono", if lang() == Language::Ko { "언어 설정" } else { "LANGUAGE" } }
             div {
                 class: "inline-flex items-center rounded-xs border border-zinc-200 bg-zinc-50 p-0.5 font-mono text-[11px] font-semibold",
                 button {

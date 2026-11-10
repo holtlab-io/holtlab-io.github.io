@@ -101,7 +101,14 @@ fn main() {
 /// Root application component setting document metadata and rendering the router shell.
 #[component]
 fn App() -> Element {
-    let _lang = use_context_provider(|| Signal::new(Language::detect()));
+    let mut lang = use_context_provider(|| Signal::new(Language::En));
+
+    use_effect(move || {
+        let detected = Language::detect();
+        if *lang.peek() != detected {
+            lang.set(detected);
+        }
+    });
 
     rsx! {
         components::HeadMetadata {}

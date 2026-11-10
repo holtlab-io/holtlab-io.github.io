@@ -29,7 +29,7 @@ pub fn ContactForm(
 
     rsx! {
         div {
-            class: "lg:col-span-7 rounded-xs border border-zinc-200 bg-white p-5 sm:p-8 shadow-2xs relative font-sans",
+            class: "lg:col-span-7 rounded-xs border border-zinc-200 bg-white p-5 sm:p-8 shadow-2xs relative font-sans reveal-on-scroll delay-100",
             if is_submitted() {
                 SubmittedView {
                     name,

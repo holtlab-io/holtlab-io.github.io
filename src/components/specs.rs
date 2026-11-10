@@ -28,7 +28,7 @@ pub fn SpecsMatrix() -> Element {
 
                 // Header
                 div {
-                    class: "flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 mb-8 gap-4",
+                    class: "flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 mb-8 gap-4 reveal-on-scroll",
                     div {
                         class: "flex flex-col",
                         span { class: "text-xs font-mono text-zinc-400 lowercase", "{section_strings.eyebrow}" }
@@ -42,7 +42,7 @@ pub fn SpecsMatrix() -> Element {
 
                 // Swiss 2-Column Key-Value Grid
                 div {
-                    class: "studio-card bg-white border border-zinc-200 rounded-xs shadow-2xs divide-y divide-zinc-200 text-xs sm:text-sm font-mono lowercase overflow-hidden",
+                    class: "studio-card bg-white border border-zinc-200 rounded-xs shadow-2xs divide-y divide-zinc-200 text-xs sm:text-sm font-mono lowercase overflow-hidden reveal-on-scroll delay-100",
                     for row in spec_rows.iter() {
                         div {
                             key: "{row.key}",

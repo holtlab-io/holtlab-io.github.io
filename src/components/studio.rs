@@ -54,7 +54,7 @@ fn StudioComparisonGrid(strings: StudioStrings) -> Element {
 
             // Fragmented Multi-Agency Model
             div {
-                class: "studio-card p-6 sm:p-8 rounded-xs bg-white border border-zinc-200 border-l-4 border-l-red-400 space-y-4 shadow-2xs hover:border-zinc-300",
+                class: "studio-card p-6 sm:p-8 rounded-xs bg-white border border-zinc-200 border-l-4 border-l-red-400 space-y-4 shadow-2xs hover:border-zinc-300 reveal-on-scroll delay-100",
                 div {
                     class: "flex items-center justify-between font-mono text-xs",
                     span { class: "text-red-600 font-bold uppercase", "{strings.traditional.badge}" }
@@ -75,7 +75,7 @@ fn StudioComparisonGrid(strings: StudioStrings) -> Element {
 
             // Holt Lab Turnkey Model
             div {
-                class: "studio-card p-6 sm:p-8 rounded-xs bg-white border border-zinc-200 border-l-4 border-l-[#E64A19] space-y-4 shadow-2xs hover:border-zinc-300",
+                class: "studio-card p-6 sm:p-8 rounded-xs bg-white border border-zinc-200 border-l-4 border-l-[#E64A19] space-y-4 shadow-2xs hover:border-zinc-300 reveal-on-scroll delay-200",
                 div {
                     class: "flex items-center justify-between font-mono text-xs",
                     span { class: "text-[#E64A19] font-bold uppercase", "{strings.turnkey.badge}" }
@@ -106,7 +106,7 @@ fn TurnkeyPipelineGrid(strings: StudioStrings) -> Element {
             for phase in strings.pipeline.iter() {
                 div {
                     key: "{phase.phase_tag}",
-                    class: "studio-card p-5 rounded-xs bg-white border border-zinc-200 hover:border-zinc-400 hover:shadow-xs space-y-2 select-none border-t-2 border-t-transparent hover:border-t-[#E64A19] transition-all",
+                    class: "studio-card p-5 rounded-xs bg-white border border-zinc-200 hover:border-zinc-400 hover:shadow-xs space-y-2 select-none border-t-2 border-t-transparent hover:border-t-[#E64A19] transition-all reveal-on-scroll delay-100",
                     span { class: "text-[#E64A19] font-bold block", "{phase.phase_tag}" }
                     h4 { class: "text-sm font-bold text-zinc-950", "{phase.title}" }
                     p { class: "text-zinc-600 font-sans leading-relaxed text-xs", "{phase.desc}" }

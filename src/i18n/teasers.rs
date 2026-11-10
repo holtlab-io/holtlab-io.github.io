@@ -74,19 +74,19 @@ fn teasers_en() -> HomeTeaserBundle {
                 "AHB GDMA 60Hz Zero-Copy",
                 "CST816D Capacitive Touch",
             ],
-            cta: "inspect demonstrator // 실증 머신 상세 분석 →",
+            cta: "inspect demonstrator →",
         },
         studio: StudioTeaserStrings {
             eyebrow: "WHY UNIFIED TURNKEY?",
             title: "Zero agency ping-pong. Single deterministic loop.",
             subtitle: "Mechanical CAD, 4-Layer ECAD, and Embedded Firmware engineered concurrently to achieve first-spin physical bench success without intermediate agency friction.",
-            cta: "explore studio methodology // 턴키 모델 보기 →",
+            cta: "explore studio methodology →",
         },
         inquiry: InquiryBannerStrings {
             eyebrow: "DIRECT ARCHITECT DISPATCH",
             title: "Ready to engineer physical hardware?",
             subtitle: "Submit your project requirements, target schedule, and budget range for rapid feasibility assessment and architectural review within 24 hours.",
-            cta: "submit project brief // 의뢰서 작성하기 →",
+            cta: "submit project brief →",
         },
     }
 }
@@ -103,19 +103,19 @@ fn teasers_ko() -> HomeTeaserBundle {
                 "AHB GDMA 60Hz 전송",
                 "CST816D 정전식 터치",
             ],
-            cta: "실증 머신 상세 분석 // teardown →",
+            cta: "실증 머신 상세 분석 →",
         },
         studio: StudioTeaserStrings {
             eyebrow: "왜 통합 턴키인가?",
             title: "외주 핑퐁 없는 단일 결정론적 코디자인 루프.",
             subtitle: "기구 CAD, 4층 임피던스 제어 회로, 임베디드 펌웨어를 단일 팀에서 동시 설계하여 첫 번째 시제품에서 즉시 구동을 검증합니다.",
-            cta: "턴키 모델 보기 // studio →",
+            cta: "턴키 모델 보기 →",
         },
         inquiry: InquiryBannerStrings {
             eyebrow: "리드 엔지니어 직통 의뢰",
             title: "실물로 작동하는 하드웨어를 제작할 준비가 되셨습니까?",
             subtitle: "프로젝트 요구 사양, 목표 일정, 예산 범위를 전달해주시면 24시간 이내에 아키텍처 검토 의견을 회신합니다.",
-            cta: "의뢰서 작성하기 // inquire →",
+            cta: "의뢰서 작성하기 →",
         },
     }
 }

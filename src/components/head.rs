@@ -17,29 +17,58 @@ const SCROLL_REVEAL_ENGINE: &str = r#"
 (function() {
   if (typeof window === 'undefined') return;
   function initScrollReveals() {
+    function checkViewport() {
+      var targets = document.querySelectorAll('.reveal-on-scroll:not(.is-revealed)');
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      for (var i = 0; i < targets.length; i++) {
+        var rect = targets[i].getBoundingClientRect();
+        if (rect.top <= vh - 40 && rect.bottom >= 0) {
+          targets[i].classList.add('is-revealed');
+        }
+      }
+    }
+
     if (!('IntersectionObserver' in window)) {
       var all = document.querySelectorAll('.reveal-on-scroll');
       for (var i = 0; i < all.length; i++) { all[i].classList.add('is-revealed'); }
       return;
     }
+
     var observer = new IntersectionObserver(function(entries) {
       for (var i = 0; i < entries.length; i++) {
         var entry = entries[i];
         if (entry.isIntersecting) {
           entry.target.classList.add('is-revealed');
-          observer.unobserve(entry.target);
         }
       }
     }, { rootMargin: '0px 0px -40px 0px', threshold: 0.08 });
+
     function attach() {
       var targets = document.querySelectorAll('.reveal-on-scroll:not(.is-revealed)');
       for (var i = 0; i < targets.length; i++) { observer.observe(targets[i]); }
+      checkViewport();
     }
+
     window.attachScrollReveals = attach;
     attach();
+
+    window.addEventListener('scroll', checkViewport, { passive: true });
+    window.addEventListener('resize', checkViewport, { passive: true });
+
     if ('MutationObserver' in window) {
-      var mo = new MutationObserver(function() { attach(); });
-      mo.observe(document.documentElement, { childList: true, subtree: true });
+      var isMutating = false;
+      var mo = new MutationObserver(function() {
+        if (isMutating) return;
+        isMutating = true;
+        attach();
+        setTimeout(function() { isMutating = false; }, 50);
+      });
+      mo.observe(document.documentElement, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class']
+      });
     }
   }
   if (document.readyState === 'loading') {
