@@ -4,130 +4,105 @@ use dioxus::prelude::*;
 pub fn Hero() -> Element {
     rsx! {
         section {
-            class: "relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-blueprint-grid",
-            // Ambient Glow in Background
-            div {
-                class: "absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-orange-500/10 blur-[130px] rounded-full pointer-events-none"
-            }
-            div {
-                class: "absolute top-1/3 right-10 w-[400px] h-[300px] bg-sky-500/10 blur-[120px] rounded-full pointer-events-none"
-            }
-
+            class: "relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-cad-grid",
             div {
                 class: "relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
                 div {
-                    class: "text-center max-w-4xl mx-auto space-y-6",
-                    // Eyebrow Status Pill
+                    class: "max-w-4xl mx-auto text-center space-y-6",
+                    // Eyebrow Telemetry Tag
                     div {
-                        class: "inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.12] backdrop-blur-sm shadow-inner",
-                        span {
-                            class: "w-2 h-2 rounded-full bg-emerald-400 animate-pulse"
-                        }
-                        span {
-                            class: "text-xs font-mono font-medium text-slate-300 tracking-wide",
-                            "BOUTIQUE HARDWARE & EMBEDDED STUDIO"
-                        }
-                        span {
-                            class: "text-slate-500 text-xs",
-                            "|"
-                        }
-                        span {
-                            class: "text-xs font-mono text-orange-400 font-medium",
-                            "PoC / MVP Turnkey"
-                        }
+                        class: "inline-flex items-center gap-2.5 px-3 py-1 rounded bg-white/[0.03] border border-white/[0.1] text-xs font-mono tracking-widest uppercase text-zinc-400",
+                        span { class: "w-2 h-2 rounded-full bg-emerald-400 animate-pulse" }
+                        span { "BOUTIQUE HARDWARE & EMBEDDED ENGINEERING" }
+                        span { class: "text-zinc-600", "//" }
+                        span { class: "text-[#FF5722]", "0.00 mm³ TOLERANCE" }
                     }
 
-                    // Main Headline
+                    // Main Headline (Stark, Imposing, High-Contrast Typography)
                     h1 {
-                        class: "text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.12]",
+                        class: "text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08]",
                         "From Silicon to Screen."
                         br {}
                         span {
-                            class: "text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500",
+                            class: "text-zinc-400 font-medium text-3xl sm:text-5xl lg:text-6xl block mt-2",
                             "외주 핑퐁 없는 1인 턴키 하드웨어 랩"
                         }
                     }
 
-                    // Subheading
+                    // Subheading: Technical & Direct
                     p {
-                        class: "text-base sm:text-xl text-slate-300 font-normal leading-relaxed max-w-3xl mx-auto",
-                        "기구 따로, 회로 따로, 펌웨어 따로 맡기느라 시간과 예산을 날리셨습니까?"
-                        br {}
+                        class: "text-base sm:text-lg text-zinc-400 font-normal leading-relaxed max-w-2xl mx-auto pt-2",
+                        "기구 따로, 회로 따로, 펌웨어 따로 맡기느라 일정과 예산이 터지셨습니까? "
                         "Holt Lab은 "
-                        strong { class: "text-white font-semibold", "3D 기구(MCAD) · 4층 회로(ECAD) · 초저전력 펌웨어" }
-                        "를 단일 리드 아키텍트가 물리적 오차 0.00mm로 직통 설계하여, 실패 없이 손에 쥐는 동작 실물을 완성합니다."
+                        span { class: "text-white font-medium", "3D 기구(MCAD) · 4층 회로(ECAD) · 베어메탈 펌웨어" }
+                        "를 단일 리드 아키텍트가 물리 오차 0.00mm로 직통 설계하여, 실제 동작하는 완성품을 손에 쥐어드립니다."
                     }
 
-                    // CTA Buttons & Trust Indicators
+                    // Tactile Industrial CTAs
                     div {
-                        class: "pt-4 flex flex-col sm:flex-row items-center justify-center gap-4",
+                        class: "pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 font-mono text-xs",
                         a {
                             href: "#contact",
-                            class: "w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-semibold text-base shadow-xl shadow-orange-500/25 hover:shadow-orange-500/40 transition-all active:scale-[0.98]",
-                            "30분 무료 타당성 진단 신청"
-                            span { class: "font-mono text-lg", "→" }
+                            class: "w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md bg-[#FF5722] hover:bg-[#F4511E] text-white font-bold tracking-wider uppercase transition-all shadow-lg active:scale-[0.98]",
+                            "30분 기술 타당성 진단 신청"
+                            span { "→" }
                         }
                         a {
                             href: "#showcase",
-                            class: "w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 border border-white/10 hover:border-white/20 font-medium text-base backdrop-blur-sm transition-all",
-                            "1호 실물 쇼케이스 보기"
-                            span { class: "font-mono text-slate-400", "↓" }
+                            class: "w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md bg-white/[0.04] hover:bg-white/[0.08] text-zinc-300 border border-white/10 hover:border-white/20 font-medium tracking-wider uppercase transition-all",
+                            "1호 실물 쇼케이스 분석"
+                            span { "↓" }
                         }
                     }
 
-                    // Trust Taglines
+                    // Engineering Verification Standards (No emojis, crisp technical tags)
                     div {
-                        class: "pt-2 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-mono text-slate-400",
-                        span { class: "flex items-center gap-1.5", "✓ 정부지원사업(예창패·청창사) 정식 지출증빙 100%" }
-                        span { class: "flex items-center gap-1.5", "✓ JLCPCB / JLC3DP 공장 발주 완주" }
-                        span { class: "flex items-center gap-1.5", "✓ C / Arduino / Rust 맞춤 인수인계" }
+                        class: "pt-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[11px] font-mono text-zinc-500",
+                        span { class: "flex items-center gap-1.5", "[+] 정부지원사업(예창패·청창사) 정식 지출증빙 100%" }
+                        span { class: "flex items-center gap-1.5", "[+] JLCPCB PCBA & JLC3DP MJF 공장 직발주" }
+                        span { class: "flex items-center gap-1.5", "[+] C / Arduino / Rust(esp-hal) 풀스택 인수인계" }
                     }
                 }
 
-                // Interactive Visual Hero Deck
+                // Precision Hardware Blueprint Inspection Bench
                 div {
-                    class: "mt-14 max-w-5xl mx-auto relative",
+                    class: "mt-12 max-w-5xl mx-auto hardware-panel rounded-lg overflow-hidden p-3 sm:p-5 shadow-2xl bg-[#090C12]",
+                    // Top Dossier Header
                     div {
-                        class: "relative rounded-2xl overflow-hidden border border-white/[0.14] bg-[#121722]/90 shadow-2xl shadow-black/80 backdrop-blur-xl p-2 sm:p-4",
-                        // Top Telemetry Header
+                        class: "flex flex-wrap items-center justify-between pb-3 px-1 border-b border-white/[0.06] text-xs font-mono text-zinc-400 gap-2",
                         div {
-                            class: "flex items-center justify-between pb-3 px-2 border-b border-white/[0.06] text-xs font-mono text-slate-400",
-                            div {
-                                class: "flex items-center gap-2",
-                                span { class: "w-3 h-3 rounded-full bg-red-500/80 inline-block" }
-                                span { class: "w-3 h-3 rounded-full bg-yellow-500/80 inline-block" }
-                                span { class: "w-3 h-3 rounded-full bg-green-500/80 inline-block" }
-                                span { class: "ml-2 text-slate-400 hidden sm:inline", "HOLT_LAB_CORE_PIPELINE // V2_CONVERGED_TRUE_PASS" }
-                            }
-                            div {
-                                class: "flex items-center gap-3",
-                                span { class: "px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[11px]", "GATE 1 & 2 VERIFIED" }
-                                span { class: "text-slate-400", "COLLISION: 0.00 mm³" }
-                            }
+                            class: "flex items-center gap-3",
+                            span { class: "px-2 py-0.5 rounded bg-white/[0.05] border border-white/10 text-white font-bold text-[10px]", "REF // REV_A" }
+                            span { class: "text-zinc-300 font-semibold", "WIN95 MINESWEEPER TOUCH KEYRING" }
                         }
-
-                        // Hero Visual Content: Banner Showcase
                         div {
-                            class: "mt-3 relative rounded-xl overflow-hidden aspect-[16/9] sm:aspect-[21/9] bg-[#0E121A] flex items-center justify-center",
-                            img {
-                                src: "assets/branding/banner.png",
-                                alt: "Holt Lab Turnkey Engineering Showcase",
-                                class: "w-full h-full object-cover object-center transform hover:scale-[1.02] transition-transform duration-700"
-                            }
-                            // Bottom Floating Hardware Specs Overlay
+                            class: "flex items-center gap-4 text-[11px]",
+                            span { class: "text-emerald-400 font-mono", "● COLLISION: 0.00 mm³" }
+                            span { class: "text-zinc-500 hidden sm:inline", "CAD/ECAD INTEGRATED 1:1" }
+                        }
+                    }
+
+                    // Product Imagery Bench with Technical Caliper Readouts
+                    div {
+                        class: "mt-3 relative rounded overflow-hidden aspect-[16/9] sm:aspect-[21/9] bg-[#07090E] border border-white/[0.04] flex items-center justify-center",
+                        img {
+                            src: "assets/branding/banner.png",
+                            alt: "Holt Lab Turnkey Engineering Showcase",
+                            class: "w-full h-full object-cover object-center"
+                        }
+                        // Bottom Engineering Telemetry Callout Strip
+                        div {
+                            class: "absolute bottom-2 left-2 right-2 sm:bottom-3 sm:left-3 sm:right-3 p-2.5 sm:p-3 rounded bg-[#06080C]/90 backdrop-blur-md border border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono",
                             div {
-                                class: "absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 p-3 sm:p-4 rounded-xl bg-[#090D14]/85 backdrop-blur-md border border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono",
-                                div {
-                                    class: "flex flex-wrap items-center gap-2",
-                                    span { class: "px-2 py-1 rounded bg-orange-500/20 text-orange-300 border border-orange-500/40 font-semibold", "FLAGSHIP CASE" }
-                                    span { class: "text-white font-medium", "Win95 Minesweeper Touch Keyring" }
-                                }
-                                div {
-                                    class: "flex flex-wrap items-center gap-3 text-slate-300",
-                                    span { class: "text-slate-400", "• 4-Layer PCB (40.0×64.6mm)" }
-                                    span { class: "text-slate-400", "• MJF Enclosure (0.00mm clearance)" }
-                                    span { class: "text-slate-400", "• 26.67MHz SPI DMA" }
-                                }
+                                class: "flex flex-wrap items-center gap-2",
+                                span { class: "px-1.5 py-0.5 rounded bg-[#FF5722]/20 text-[#FF5722] border border-[#FF5722]/40 font-bold text-[10px]", "ACTUAL SILICON" }
+                                span { class: "text-white font-medium", "ESP32-C3 RISC-V + 2.0\" ST7789T3 IPS Touch" }
+                            }
+                            div {
+                                class: "flex flex-wrap items-center gap-3 text-zinc-400",
+                                span { "• 4-Layer 7628 Prepreg" }
+                                span { "• HP MJF Nylon PA12" }
+                                span { "• 26.67MHz SPI Zero-Copy GDMA" }
                             }
                         }
                     }
