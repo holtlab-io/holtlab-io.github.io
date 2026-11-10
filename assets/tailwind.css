@@ -435,6 +435,9 @@
   .max-w-\[180px\] {
     max-width: 180px;
   }
+  .max-w-\[280px\] {
+    max-width: 280px;
+  }
   .max-w-\[1400px\] {
     max-width: 1400px;
   }
@@ -449,6 +452,9 @@
   }
   .max-w-md {
     max-width: var(--container-md);
+  }
+  .min-w-0 {
+    min-width: 0px;
   }
   .flex-1 {
     flex: 1;
@@ -1432,6 +1438,9 @@
   @media (width >= 48rem) {
     .md\:col-span-2 {
       grid-column: span 2 / span 2;
+    }
+    .md\:max-w-none {
+      max-width: none;
     }
     .md\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -32,7 +32,7 @@ pub fn Navbar() -> Element {
             div {
                 class: "max-w-[1500px] mx-auto px-4 sm:px-8 h-16 sm:h-18 flex items-center justify-between gap-4",
                 div {
-                    class: "flex items-center gap-4",
+                    class: "flex items-center gap-4 min-w-0",
                     NavBrand {}
                     NavStudioBadge {}
                 }

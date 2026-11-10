@@ -33,7 +33,7 @@ pub fn NavBrand() -> Element {
                     "holt lab"
                 }
                 span {
-                    class: "text-[10px] sm:text-[11px] font-mono text-zinc-400 leading-tight tracking-tight pt-0.5",
+                    class: "hidden sm:inline-block text-[10px] sm:text-[11px] font-mono text-zinc-400 leading-tight tracking-tight pt-0.5 truncate max-w-[280px] md:max-w-none",
                     "{nav_strings.descriptor}"
                 }
             }
