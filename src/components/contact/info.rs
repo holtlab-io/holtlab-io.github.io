@@ -24,11 +24,11 @@ pub fn ContactInfo() -> Element {
                 class: "space-y-3",
                 span { class: "text-xs font-mono text-zinc-400 lowercase", "{info.eyebrow}" }
                 h2 {
-                    class: "text-2xl sm:text-3xl font-bold lowercase text-zinc-950 tracking-tight leading-tight",
+                    class: "text-2xl sm:text-3xl font-bold lowercase text-zinc-950 tracking-tight leading-tight break-keep",
                     "{info.title}"
                 }
                 p {
-                    class: "text-zinc-600 text-xs sm:text-sm font-sans leading-relaxed pt-1",
+                    class: "text-zinc-600 text-xs sm:text-sm font-sans leading-relaxed pt-1 break-keep",
                     "{info.body}"
                 }
             }

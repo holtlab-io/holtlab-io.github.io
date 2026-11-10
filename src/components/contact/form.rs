@@ -79,8 +79,8 @@ fn FormFields(
             },
             ScopeButtons { selected: selected_scope }
             ContactInputs { name, email, form_strings }
-            IntakeParametersInputs { timeline, budget, form_strings }
             BriefInput { project_brief, form_strings }
+            IntakeParametersInputs { timeline, budget, form_strings }
             SubmitRow { form_strings }
         }
     }
@@ -133,7 +133,7 @@ fn IntakeParametersInputs(
 ) -> Element {
     rsx! {
         div {
-            class: "grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 text-xs font-mono lowercase",
+            class: "grid grid-cols-2 gap-3 sm:gap-4 text-xs font-mono lowercase",
             div {
                 class: "space-y-1.5",
                 label { class: "block text-zinc-500", "{form_strings.timeline_label}" }

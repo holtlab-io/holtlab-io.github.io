@@ -200,7 +200,7 @@ async def run_e2e():
             # Verify Eradication of Forbidden Terms in EN mode
             body_text_en = await page.inner_text("body")
             dom_html_en = await page.content()
-            forbidden_terms = ["0.00 mm³", "0.000 mm³", "0.00mm³", "0.00 mm3", "0.000 mm3", "JLCPCB", "JLC3DP", "JLC04161H", "정밀공차", "Boutique", "boutique", "부티크"]
+            forbidden_terms = ["0.00 mm³", "0.000 mm³", "0.00mm³", "0.00 mm3", "0.000 mm3", "JLCPCB", "JLC3DP", "JLC04161H", "정밀공차", "Boutique", "boutique", "부티크", "BOUTIQUE"]
             for term in forbidden_terms:
                 assert term not in body_text_en, f"Forbidden term '{term}' found in English body text"
                 assert term not in dom_html_en, f"Forbidden term '{term}' found in English DOM HTML"
@@ -374,10 +374,12 @@ async def run_e2e():
             assert overlap_x == 0 or overlap_y == 0, f"Tags overlap on mobile: overlap_x={overlap_x}, overlap_y={overlap_y}"
             print("✓ Mobile 375px: Subsystem layer tag and verification badge zero overlap.")
 
-            # Take a mobile screenshot of the new contact section before fill
+            # Take a mobile screenshot of the new contact section before fill (temporarily hide sticky header)
             mobile_contact_el = mobile_page.locator("#inquire")
             mobile_contact_shot = os.path.join(OUTPUT_DIR, "mobile_contact_redesign.png")
+            await mobile_page.evaluate("() => { const h = document.querySelector('header'); if (h) h.style.display = 'none'; }")
             await mobile_contact_el.screenshot(path=mobile_contact_shot)
+            await mobile_page.evaluate("() => { const h = document.querySelector('header'); if (h) h.style.display = ''; }")
             print(f"✓ Mobile contact section redesign screenshot saved to {mobile_contact_shot}")
 
             # Test Inquiry Form Dispatch with full data intake in Korean mode
