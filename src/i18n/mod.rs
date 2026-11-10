@@ -35,34 +35,40 @@ pub enum Language {
 }
 
 impl Language {
-    /// Detects the target language from localStorage, URL query parameters, or browser navigator.
+    /// Detects the target language from URL query parameters, localStorage, or browser navigator.
     pub fn detect() -> Self {
         #[cfg(target_arch = "wasm32")]
         {
             if let Some(window) = web_sys::window() {
-                // 1. Check localStorage key 'holtlab_lang'
+                // 1. Explicit URL query parameters take highest priority (?lang=ko or ?lang=en)
+                if let Ok(location) = window.location().search() {
+                    let search_lower = location.to_ascii_lowercase();
+                    if search_lower.contains("lang=ko") {
+                        let detected = Language::Ko;
+                        detected.save();
+                        return detected;
+                    } else if search_lower.contains("lang=en") {
+                        let detected = Language::En;
+                        detected.save();
+                        return detected;
+                    }
+                }
+
+                // 2. Check localStorage key 'holtlab_lang'
                 if let Ok(Some(storage)) = window.local_storage() {
                     if let Ok(Some(val)) = storage.get_item("holtlab_lang") {
-                        if val.eq_ignore_ascii_case("ko") {
+                        let val_lower = val.to_ascii_lowercase();
+                        if val_lower.starts_with("ko") {
                             return Language::Ko;
-                        } else if val.eq_ignore_ascii_case("en") {
+                        } else if val_lower.starts_with("en") {
                             return Language::En;
                         }
                     }
                 }
 
-                // 2. Check URL query parameters (e.g. ?lang=ko or ?lang=en)
-                if let Ok(location) = window.location().search() {
-                    if location.contains("lang=ko") {
-                        return Language::Ko;
-                    } else if location.contains("lang=en") {
-                        return Language::En;
-                    }
-                }
-
                 // 3. Fallback to navigator.language
                 if let Some(lang) = window.navigator().language() {
-                    if lang.to_lowercase().starts_with("ko") {
+                    if lang.to_ascii_lowercase().starts_with("ko") {
                         return Language::Ko;
                     }
                 }
@@ -71,17 +77,22 @@ impl Language {
         Language::En
     }
 
-    /// Persists the selected language to localStorage under the key 'holtlab_lang'.
+    /// Persists the selected language to localStorage and updates URL query parameters.
     pub fn save(&self) {
         #[cfg(target_arch = "wasm32")]
         {
             if let Some(window) = web_sys::window() {
+                let code = match self {
+                    Language::Ko => "ko",
+                    Language::En => "en",
+                };
                 if let Ok(Some(storage)) = window.local_storage() {
-                    let code = match self {
-                        Language::Ko => "ko",
-                        Language::En => "en",
-                    };
                     let _ = storage.set_item("holtlab_lang", code);
+                }
+                if let Ok(history) = window.history() {
+                    let hash = window.location().hash().unwrap_or_default();
+                    let new_url = format!("?lang={}{}", code, hash);
+                    let _ = history.replace_state_with_url(&wasm_bindgen::JsValue::NULL, "", Some(&new_url));
                 }
             }
         }

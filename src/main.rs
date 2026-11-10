@@ -26,7 +26,31 @@ fn main() {
 /// Root application component setting document metadata and rendering the primary view.
 #[component]
 fn App() -> Element {
-    use_context_provider(|| Signal::new(Language::detect()));
+    let lang = use_context_provider(|| Signal::new(Language::detect()));
+
+    use_effect(move || {
+        let _ = lang();
+        #[cfg(target_arch = "wasm32")]
+        {
+            let current_lang = lang();
+            if let Some(window) = web_sys::window() {
+                if let Some(doc) = window.document() {
+                    let title = match current_lang {
+                        Language::En => "Holt Lab — Boutique Hardware & Embedded Engineering Studio",
+                        Language::Ko => "Holt Lab — 부티크 하드웨어 & 임베디드 엔지니어링 스튜디오",
+                    };
+                    doc.set_title(title);
+                    if let Some(html_el) = doc.document_element() {
+                        let code = match current_lang {
+                            Language::En => "en",
+                            Language::Ko => "ko",
+                        };
+                        let _ = html_el.set_attribute("lang", code);
+                    }
+                }
+            }
+        }
+    });
 
     rsx! {
         Home {}

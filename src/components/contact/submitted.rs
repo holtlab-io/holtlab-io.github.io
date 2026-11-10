@@ -54,9 +54,15 @@ pub fn SubmittedView(
     };
 
     let subject_tag = if is_ko { "Holt Lab 하드웨어 개발 의뢰" } else { "Holt Lab Commission" };
+    let raw_subject = format!("[{}] {} — {}", subject_tag, name(), scope_text);
+    let raw_body = format!(
+        "organization: {}\ncontact email: {}\nproject profile: {}\ndiscipline: {}\ntarget timeline: {}\ntarget budget: {}\ncad/pcb requirements: {}\nproject brief & deliverables:\n{}",
+        name(), email(), target_text, scope_text, timeline_val, budget_val, cad_val, project_brief()
+    );
     let mailto_url = format!(
-        "mailto:contact@holtlab.io?subject=[{}] {} — {}&body=organization: {}%0D%0Acontact email: {}%0D%0Aproject profile: {}%0D%0Adiscipline: {}%0D%0Atarget timeline: {}%0D%0Atarget budget: {}%0D%0Acad/pcb requirements: {}%0D%0Aproject brief & deliverables:%0D%0A{}",
-        subject_tag, name(), scope_text, name(), email(), target_text, scope_text, timeline_val, budget_val, cad_val, project_brief()
+        "mailto:contact@holtlab.io?subject={}&body={}",
+        percent_encode(&raw_subject),
+        percent_encode(&raw_body)
     );
 
     rsx! {
@@ -155,4 +161,23 @@ fn SubmittedActions(
             }
         }
     }
+}
+
+/// Encodes query parameters conforming to RFC 3986 and RFC 6068 mailto URI standards.
+fn percent_encode(input: &str) -> String {
+    let mut out = String::with_capacity(input.len() * 3);
+    for byte in input.as_bytes() {
+        match *byte {
+            b'a'..=b'z' | b'A'..=b'Z' | b'0'..=b'9' | b'-' | b'_' | b'.' | b'~' | b'@' => {
+                out.push(*byte as char);
+            }
+            b'\n' => out.push_str("%0D%0A"),
+            b'\r' => {},
+            b => {
+                use std::fmt::Write;
+                let _ = write!(out, "%{:02X}", b);
+            }
+        }
+    }
+    out
 }

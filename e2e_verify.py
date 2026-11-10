@@ -30,10 +30,12 @@ async def run_e2e():
     assert os.path.exists(sitemap_path), "sitemap.xml missing in public build output"
     with open(sitemap_path, "r", encoding="utf-8") as f:
         sitemap_content = f.read()
-    assert "https://holtlab-io.github.io/" in sitemap_content, "sitemap missing loc"
+    assert "https://holtlab-io.github.io/" in sitemap_content, "sitemap missing root loc"
+    assert "https://holtlab-io.github.io/?lang=ko" in sitemap_content, "sitemap missing Korean loc"
+    assert "https://holtlab-io.github.io/?lang=en" in sitemap_content, "sitemap missing English loc"
     assert "hreflang=\"ko\"" in sitemap_content, "sitemap missing Korean hreflang"
     assert "hreflang=\"en\"" in sitemap_content, "sitemap missing English hreflang"
-    print("✓ public/sitemap.xml verified with bilingual hreflang links.")
+    print("✓ public/sitemap.xml verified with all 3 multilingual entries and hreflang links.")
 
     with open(index_path, "r", encoding="utf-8") as f:
         index_html = f.read()
@@ -97,6 +99,15 @@ async def run_e2e():
             await page.wait_for_selector("#inquire")
             await page.wait_for_selector("footer")
             print("✓ All 6 core structural sections mounted in DOM.")
+
+            # Verify Dynamic Title & html lang in English mode
+            title_en = await page.title()
+            assert "Boutique Hardware" in title_en, f"Initial title mismatch: {title_en}"
+            html_lang_en = await page.locator("html").get_attribute("lang")
+            assert html_lang_en == "en", f"Expected html lang='en', got {html_lang_en}"
+            en_btn = page.locator("header button:has-text('EN')").first
+            assert await en_btn.get_attribute("aria-pressed") == "true", "EN button should have aria-pressed=true"
+            print("✓ Dynamic document title, html lang='en', and aria-pressed verified in English.")
 
             # Verify Header Brand & Navigation Anchors
             header_brand = await page.locator("header a[href='#']").inner_text()
@@ -197,6 +208,14 @@ async def run_e2e():
             await kr_toggle_btn.click()
             await page.wait_for_timeout(300)
 
+            # Verify Document Title & html lang dynamically updated to Korean
+            title_kr = await page.title()
+            assert "부티크 하드웨어" in title_kr, f"Korean title mismatch: {title_kr}"
+            html_lang_kr = await page.locator("html").get_attribute("lang")
+            assert html_lang_kr == "ko", f"Expected html lang='ko', got {html_lang_kr}"
+            assert await kr_toggle_btn.get_attribute("aria-pressed") == "true", "KR button should have aria-pressed=true"
+            print("✓ Dynamic document title, html lang='ko', and aria-pressed verified in Korean.")
+
             # Verify Hero updated to Korean
             hero_eyebrow_kr = await page.locator("#demonstrator").get_by_text("OPUS 01 // 하드웨어 실증 머신").first.inner_text()
             assert "하드웨어 실증 머신" in hero_eyebrow_kr
@@ -254,6 +273,18 @@ async def run_e2e():
             saved_lang_en = await page.evaluate("localStorage.getItem('holtlab_lang')")
             assert saved_lang_en == "en", f"Expected localStorage holtlab_lang to be 'en', got {saved_lang_en}"
             print("✓ Language toggle to EN: Successfully returned to English and saved to localStorage.")
+
+            # Test URL query parameter precedence over existing localStorage
+            # With localStorage currently set to 'en', navigate directly to ?lang=ko
+            await page.goto(f"http://localhost:{PORT}/?lang=ko", wait_until="networkidle")
+            await page.wait_for_selector("header")
+            assert await page.locator("#demonstrator").get_by_text("하드웨어 실증 머신").is_visible(), "URL ?lang=ko failed to override localStorage 'en'"
+            saved_after_url = await page.evaluate("localStorage.getItem('holtlab_lang')")
+            assert saved_after_url == "ko", f"Expected localStorage to sync to 'ko' from URL parameter, got {saved_after_url}"
+            # Reset back to EN for remaining tests
+            await page.locator("header button:has-text('EN')").first.click()
+            await page.wait_for_timeout(200)
+            print("✓ URL parameter precedence over localStorage and auto-sync verified.")
 
             # -------------------------------------------------------------
             # 3. Test Tablet Portrait Viewport (768x1024)
@@ -343,7 +374,13 @@ async def run_e2e():
             mailto_link = await mobile_page.locator("#inquire a:has-text('메일 프로그램 열기'), #inquire a:has-text('open mail client')").get_attribute("href")
             assert "contact@holtlab.io" in mailto_link
             assert "vance@nexusdynamics.io" in mailto_link
-            print("✓ Inquiry form interactive dispatch, full data fidelity, and mailto generator verified in Korean.")
+            assert "subject=" in mailto_link
+            assert "body=" in mailto_link
+            # RFC 3986 / RFC 6068: query part must contain zero raw spaces and use percent-encoding
+            query_str = mailto_link.split("?", 1)[1]
+            assert " " not in query_str, f"Mailto query contains raw unencoded space: {query_str}"
+            assert "%20" in query_str, "Mailto query missing percent-encoded spaces (%20)"
+            print("✓ Inquiry form interactive dispatch, full data fidelity, and RFC percent-encoded mailto generator verified in Korean.")
 
             # Test Edit Specifications loop
             edit_btn = mobile_page.locator("#inquire button:has-text('수정하기'), #inquire button:has-text('edit specifications')")

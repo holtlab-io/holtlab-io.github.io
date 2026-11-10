@@ -38,6 +38,7 @@ pub fn NavLinks() -> Element {
                 button {
                     r#type: "button",
                     aria_label: "Switch to Korean",
+                    aria_pressed: if lang() == Language::Ko { "true" } else { "false" },
                     onclick: move |_| {
                         lang.set(Language::Ko);
                         Language::Ko.save();
@@ -52,6 +53,7 @@ pub fn NavLinks() -> Element {
                 button {
                     r#type: "button",
                     aria_label: "Switch to English",
+                    aria_pressed: if lang() == Language::En { "true" } else { "false" },
                     onclick: move |_| {
                         lang.set(Language::En);
                         Language::En.save();
