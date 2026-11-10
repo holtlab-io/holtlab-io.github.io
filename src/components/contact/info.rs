@@ -41,7 +41,7 @@ pub fn ContactInfo() -> Element {
                         div { class: "text-zinc-500 text-[10px] uppercase font-semibold", "DIRECT CONTACT // EMAIL" }
                         a {
                             href: "mailto:contact@holtlab.io",
-                            class: "text-sm font-bold text-zinc-900 hover:text-[#EA580C] transition-colors mt-0.5 block",
+                            class: "text-sm font-bold text-zinc-900 hover:text-zinc-950 hover:underline transition-colors mt-0.5 block",
                             "contact@holtlab.io"
                         }
                     }

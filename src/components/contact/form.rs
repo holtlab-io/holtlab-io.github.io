@@ -66,7 +66,11 @@ fn SubmittedView(
     rsx! {
         div {
             class: "p-6 rounded-lg border border-zinc-200 bg-zinc-50 text-center space-y-4",
-            div { class: "text-zinc-900 text-xs font-bold tracking-wider", "[+] RFQ DISPATCH BUFFER READY" }
+            div {
+                class: "inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-200/80 text-zinc-900 text-[11px] font-bold tracking-wider uppercase",
+                span { class: "w-1.5 h-1.5 rounded-full bg-zinc-800" }
+                "RFQ DISPATCH BUFFER READY"
+            }
             h3 { class: "text-lg font-bold text-zinc-900 font-sans", "프로젝트 문의 메일이 준비되었습니다." }
             p {
                 class: "text-zinc-600 text-xs font-sans leading-relaxed",
@@ -77,7 +81,7 @@ fn SubmittedView(
                     "mailto:contact@holtlab.io?subject=[Holt Lab 의뢰] {} 님의 프로젝트 문의&body=이름/회사: {}%0D%0A연락처: {}%0D%0A이메일: {}%0D%0A의뢰유형: {}%0D%0A프로젝트 설명:%0D%0A{}",
                     name(), name(), phone(), email(), scope_text, description()
                 ),
-                class: "inline-flex items-center justify-center px-6 py-3 rounded-md bg-[#EA580C] hover:bg-[#C2410C] text-white font-bold text-xs tracking-wider uppercase transition-all shadow-xs tactile-button",
+                class: "inline-flex items-center justify-center px-6 py-3 rounded-md bg-[#E64A19] hover:bg-[#D84315] text-white font-bold text-xs tracking-wider uppercase transition-all shadow-xs tactile-button",
                 "메일 발송 창 열기 →"
             }
         }
@@ -105,7 +109,7 @@ fn FormFields(
             button {
                 r#type: "button",
                 onclick: move |_| is_submitted.set(true),
-                class: "w-full py-3.5 rounded-md bg-[#EA580C] hover:bg-[#C2410C] text-white font-bold text-xs tracking-wider uppercase transition-all shadow-xs tactile-button active:scale-[0.99]",
+                class: "w-full py-3.5 rounded-md bg-[#E64A19] hover:bg-[#D84315] text-white font-bold text-xs tracking-wider uppercase transition-all shadow-xs tactile-button active:scale-[0.99]",
                 "기술 타당성 검토 요청 →"
             }
         }

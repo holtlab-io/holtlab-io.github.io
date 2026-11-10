@@ -26,7 +26,7 @@ pub fn Navbar() -> Element {
                     class: "flex items-center gap-3",
                     a {
                         href: "#contact",
-                        class: "hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[#EA580C] hover:bg-[#C2410C] text-white text-xs font-mono font-bold tracking-wider uppercase transition-colors shadow-xs tactile-button",
+                        class: "hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[#E64A19] hover:bg-[#D84315] text-white text-xs font-mono font-bold tracking-wider uppercase transition-colors shadow-xs tactile-button",
                         "INQUIRE // 의뢰하기"
                         span { class: "font-mono", "→" }
                     }
@@ -57,14 +57,14 @@ fn NavBrand() -> Element {
             img {
                 src: "assets/branding/avatar.jpg",
                 alt: "Holt Lab Luwim Avatar",
-                class: "w-8 h-8 sm:w-9 sm:h-9 rounded-md object-cover border border-zinc-200 group-hover:border-[#EA580C] transition-colors"
+                class: "w-8 h-8 sm:w-9 sm:h-9 rounded-md object-cover border border-zinc-200 group-hover:border-zinc-400 transition-colors"
             }
             div {
                 class: "flex flex-col",
                 div {
                     class: "flex items-center gap-2",
                     span {
-                        class: "text-base sm:text-lg font-bold font-mono tracking-tight text-zinc-900 group-hover:text-[#EA580C] transition-colors",
+                        class: "text-base sm:text-lg font-bold font-mono tracking-tight text-zinc-900 group-hover:text-zinc-950 transition-colors",
                         "HOLT LAB"
                     }
                     span {
@@ -163,7 +163,7 @@ fn NavMobileDrawer(mut is_open: Signal<bool>) -> Element {
                 a {
                     href: "#contact",
                     onclick: move |_| is_open.set(false),
-                    class: "block w-full py-3 text-center rounded-md bg-[#EA580C] text-white font-bold tracking-wider uppercase shadow-xs",
+                    class: "block w-full py-3 text-center rounded-md bg-[#E64A19] hover:bg-[#D84315] text-white font-bold tracking-wider uppercase shadow-xs transition-colors",
                     "30분 기술 타당성 진단 신청 →"
                 }
             }

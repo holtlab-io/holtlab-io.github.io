@@ -74,14 +74,14 @@ fn FirmwareVisual() -> Element {
         div {
             class: "lg:col-span-5 relative rounded-xl border border-zinc-200 aspect-square sm:aspect-[4/3] flex items-center justify-center p-3 overflow-hidden shadow-2xs bg-zinc-100",
             div {
-                class: "w-full h-full rounded-lg bg-white flex items-center justify-center relative p-2 overflow-hidden border border-zinc-200",
+                class: "w-full h-full rounded-lg bg-white flex items-center justify-center relative p-3 overflow-hidden border border-zinc-200 shadow-2xs",
                 img {
                     src: "assets/showcase/mcad_drawing.png",
                     alt: "Firmware Timing Blueprint",
                     class: "w-full h-full object-contain"
                 }
                 div {
-                    class: "absolute bottom-2 right-2 px-2 py-0.5 rounded bg-white/90 border border-zinc-200 text-[10px] text-zinc-700 font-mono shadow-2xs",
+                    class: "absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded bg-white/95 backdrop-blur-xs border border-zinc-200 text-[10px] text-zinc-700 font-mono font-medium tracking-wider shadow-2xs",
                     "TIMING DIAGRAM & BLUEPRINT"
                 }
             }

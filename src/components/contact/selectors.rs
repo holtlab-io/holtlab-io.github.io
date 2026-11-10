@@ -23,7 +23,7 @@ pub fn ScopeButtons(mut selected: Signal<usize>) -> Element {
                     } else {
                         "p-2.5 rounded-md border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 text-left transition-all"
                     },
-                    "[+] 턴키 완주 (기구+회로+펌웨어)"
+                    "턴키 완주 (기구+회로+펌웨어)"
                 }
                 button {
                     r#type: "button",
@@ -33,7 +33,7 @@ pub fn ScopeButtons(mut selected: Signal<usize>) -> Element {
                     } else {
                         "p-2.5 rounded-md border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 text-left transition-all"
                     },
-                    "[+] 회로 & 4/6층 PCB (ECAD)"
+                    "회로 & 4/6층 PCB (ECAD)"
                 }
                 button {
                     r#type: "button",
@@ -43,7 +43,7 @@ pub fn ScopeButtons(mut selected: Signal<usize>) -> Element {
                     } else {
                         "p-2.5 rounded-md border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 text-left transition-all"
                     },
-                    "[+] 3D 기구 & 외함 (MCAD)"
+                    "3D 기구 & 외함 (MCAD)"
                 }
                 button {
                     r#type: "button",
@@ -53,7 +53,7 @@ pub fn ScopeButtons(mut selected: Signal<usize>) -> Element {
                     } else {
                         "p-2.5 rounded-md border border-zinc-200 bg-zinc-50/50 text-zinc-600 hover:border-zinc-300 hover:text-zinc-900 text-left transition-all"
                     },
-                    "[+] 임베디드 펌웨어 개발"
+                    "임베디드 펌웨어 개발"
                 }
             }
         }

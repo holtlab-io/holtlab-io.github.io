@@ -74,14 +74,14 @@ fn McadVisual() -> Element {
         div {
             class: "lg:col-span-5 relative rounded-xl border border-zinc-200 aspect-square sm:aspect-[4/3] flex items-center justify-center p-3 overflow-hidden shadow-2xs bg-zinc-100",
             div {
-                class: "w-full h-full rounded-lg bg-[#141820] flex items-center justify-center relative p-2 overflow-hidden",
+                class: "w-full h-full rounded-lg bg-[#141820] flex items-center justify-center relative p-3 overflow-hidden border border-zinc-800/80 shadow-2xs",
                 img {
                     src: "assets/showcase/mcad_exploded.png",
                     alt: "MCAD Exploded Assembly View",
                     class: "w-full h-full object-contain"
                 }
                 div {
-                    class: "absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/60 border border-zinc-700 text-[10px] text-zinc-300 font-mono",
+                    class: "absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded bg-zinc-900/90 backdrop-blur-xs border border-zinc-700/80 text-[10px] text-zinc-300 font-mono font-medium tracking-wider shadow-2xs",
                     "EXPLODED ASSEMBLY // STEP VERIFIED"
                 }
             }

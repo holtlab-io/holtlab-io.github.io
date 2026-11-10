@@ -67,7 +67,7 @@ fn LegacyCard() -> Element {
                     class: "space-y-4 text-xs font-sans text-zinc-700",
                     li {
                         class: "flex items-start gap-3",
-                        span { class: "text-zinc-400 font-mono font-bold text-sm mt-0.5", "[-]" }
+                        span { class: "text-zinc-400 font-mono text-sm mt-0.5 select-none", "—" }
                         div {
                             strong { class: "text-zinc-900 block font-mono text-xs", "물리적 조립 간섭 참사" }
                             span { class: "text-zinc-600 text-xs", "기구 설계자가 회로 부품의 실측 높이와 커넥터 유격을 놓쳐 뚜껑이 안 닫히고 외함 재가공만 수회 반복." }
@@ -75,7 +75,7 @@ fn LegacyCard() -> Element {
                     }
                     li {
                         class: "flex items-start gap-3",
-                        span { class: "text-zinc-400 font-mono font-bold text-sm mt-0.5", "[-]" }
+                        span { class: "text-zinc-400 font-mono text-sm mt-0.5 select-none", "—" }
                         div {
                             strong { class: "text-zinc-900 block font-mono text-xs", "끝없는 책임 핑퐁" }
                             span { class: "text-zinc-600 text-xs", "보드가 안 켜지면 펌웨어는 회로 탓, 회로는 기구 탓, 기구는 가공집 탓하며 의뢰자만 속이 타들어 감." }
@@ -83,7 +83,7 @@ fn LegacyCard() -> Element {
                     }
                     li {
                         class: "flex items-start gap-3",
-                        span { class: "text-zinc-400 font-mono font-bold text-sm mt-0.5", "[-]" }
+                        span { class: "text-zinc-400 font-mono text-sm mt-0.5 select-none", "—" }
                         div {
                             strong { class: "text-zinc-900 block font-mono text-xs", "중간 PM 및 영업 마진 거품" }
                             span { class: "text-zinc-600 text-xs", "대형 에이전시의 불필요한 중간 관리 인력과 영업 이익이 얹혀 단순 PoC 견적이 수천만 원으로 폭증." }
@@ -91,7 +91,7 @@ fn LegacyCard() -> Element {
                     }
                     li {
                         class: "flex items-start gap-3",
-                        span { class: "text-zinc-400 font-mono font-bold text-sm mt-0.5", "[-]" }
+                        span { class: "text-zinc-400 font-mono text-sm mt-0.5 select-none", "—" }
                         div {
                             strong { class: "text-zinc-900 block font-mono text-xs", "납기 4~6개월 지연" }
                             span { class: "text-zinc-600 text-xs", "3개 업체 간 도면 수정 핑퐁으로 인해 정부지원사업 마감 기한과 투자 IR 일정을 놓침." }
@@ -128,7 +128,7 @@ fn TurnkeyCard() -> Element {
                     class: "space-y-4 text-xs font-sans text-zinc-800",
                     li {
                         class: "flex items-start gap-3",
-                        span { class: "text-zinc-900 font-mono font-bold text-sm mt-0.5", "[+]" }
+                        span { class: "text-zinc-900 font-mono font-bold text-sm mt-0.5 select-none", "✓" }
                         div {
                             strong { class: "text-zinc-900 block font-mono text-xs", "0.00 mm³ 간섭 제로 동시 설계" }
                             span { class: "text-zinc-600 text-xs", "3D B-Rep CAD 모델과 4층 PCB 3D STEP을 단일 워크벤치에서 동기화하여 첫 공장 주문부터 완벽 조립 보증." }
@@ -136,7 +136,7 @@ fn TurnkeyCard() -> Element {
                     }
                     li {
                         class: "flex items-start gap-3",
-                        span { class: "text-zinc-900 font-mono font-bold text-sm mt-0.5", "[+]" }
+                        span { class: "text-zinc-900 font-mono font-bold text-sm mt-0.5 select-none", "✓" }
                         div {
                             strong { class: "text-zinc-900 block font-mono text-xs", "핑퐁 없는 단일 책임제" }
                             span { class: "text-zinc-600 text-xs", "회로와 펌웨어를 동시에 설계하는 엔지니어가 핀맵과 고속 신호 타이밍(SPI 26.67MHz)을 현장에서 즉시 해결." }
@@ -144,7 +144,7 @@ fn TurnkeyCard() -> Element {
                     }
                     li {
                         class: "flex items-start gap-3",
-                        span { class: "text-zinc-900 font-mono font-bold text-sm mt-0.5", "[+]" }
+                        span { class: "text-zinc-900 font-mono font-bold text-sm mt-0.5 select-none", "✓" }
                         div {
                             strong { class: "text-zinc-900 block font-mono text-xs", "초고속 3~4주 납품 완주" }
                             span { class: "text-zinc-600 text-xs", "중간 전달 과정이 없어 기획 논의 후 즉시 부품 수급 락을 걸고 JLCPCB/JLC3DP 직발주로 공기 60% 단축." }
@@ -152,7 +152,7 @@ fn TurnkeyCard() -> Element {
                     }
                     li {
                         class: "flex items-start gap-3",
-                        span { class: "text-zinc-900 font-mono font-bold text-sm mt-0.5", "[+]" }
+                        span { class: "text-zinc-900 font-mono font-bold text-sm mt-0.5 select-none", "✓" }
                         div {
                             strong { class: "text-zinc-900 block font-mono text-xs", "공식 증빙 & 지출 100% 적합" }
                             span { class: "text-zinc-600 text-xs", "정부지원사업(예창패·청창사) 필수 전자계약서, 세금계산서, 회로도·CAD 산출물 검수보고서 100% 제공." }

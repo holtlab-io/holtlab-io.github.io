@@ -23,7 +23,7 @@ use crate::components::{
 pub fn Home() -> Element {
     rsx! {
         div {
-            class: "min-h-screen bg-[#FAFAFA] text-zinc-900 flex flex-col selection:bg-orange-500 selection:text-white",
+            class: "min-h-screen bg-[#FAFAFA] text-zinc-900 flex flex-col selection:bg-zinc-900 selection:text-white",
             Navbar {}
             main {
                 class: "flex-grow",

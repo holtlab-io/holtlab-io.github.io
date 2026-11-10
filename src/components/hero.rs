@@ -62,7 +62,7 @@ fn HeroHeadline() -> Element {
                 class: "pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 font-mono text-xs",
                 a {
                     href: "#contact",
-                    class: "w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md bg-[#EA580C] hover:bg-[#C2410C] text-white font-bold tracking-wider uppercase transition-all shadow-xs tactile-button",
+                    class: "w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md bg-[#E64A19] hover:bg-[#D84315] text-white font-bold tracking-wider uppercase transition-all shadow-xs tactile-button",
                     "30분 기술 타당성 진단 신청"
                     span { "→" }
                 }
@@ -77,9 +77,9 @@ fn HeroHeadline() -> Element {
             // Engineering Verification Standards
             div {
                 class: "pt-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[11px] font-mono text-zinc-500",
-                span { class: "flex items-center gap-1.5", "[+] 정부지원사업(예창패·청창사) 정식 지출증빙 100%" }
-                span { class: "flex items-center gap-1.5", "[+] JLCPCB PCBA & JLC3DP MJF 공장 직발주" }
-                span { class: "flex items-center gap-1.5", "[+] C / Arduino / Rust(esp-hal) 풀스택 인수인계" }
+                span { class: "flex items-center gap-1.5", span { class: "text-zinc-400", "•" }, "정부지원사업(예창패·청창사) 정식 지출증빙 100%" }
+                span { class: "flex items-center gap-1.5", span { class: "text-zinc-400", "•" }, "JLCPCB PCBA & JLC3DP MJF 공장 직발주" }
+                span { class: "flex items-center gap-1.5", span { class: "text-zinc-400", "•" }, "C / Arduino / Rust(esp-hal) 풀스택 인수인계" }
             }
         }
     }

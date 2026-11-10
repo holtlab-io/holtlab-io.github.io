@@ -8,12 +8,7 @@
       "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-400: oklch(70.4% 0.191 22.216);
     --color-orange-500: oklch(70.5% 0.213 47.604);
-    --color-emerald-400: oklch(76.5% 0.177 163.223);
-    --color-emerald-500: oklch(69.6% 0.17 162.48);
-    --color-slate-100: oklch(96.8% 0.007 247.896);
-    --color-slate-400: oklch(70.4% 0.04 256.788);
     --color-zinc-50: oklch(98.5% 0 none);
     --color-zinc-100: oklch(96.7% 0.001 286.375);
     --color-zinc-200: oklch(92% 0.004 286.32);
@@ -61,13 +56,12 @@
     --font-weight-bold: 700;
     --tracking-tight: -0.025em;
     --tracking-wider: 0.05em;
-    --tracking-widest: 0.1em;
     --leading-tight: 1.25;
     --leading-relaxed: 1.625;
     --radius-md: 0.375rem;
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
-    --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    --blur-xs: 4px;
     --blur-md: 12px;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -245,8 +239,14 @@
   .right-2 {
     right: calc(var(--spacing) * 2);
   }
+  .right-2\.5 {
+    right: calc(var(--spacing) * 2.5);
+  }
   .bottom-2 {
     bottom: calc(var(--spacing) * 2);
+  }
+  .bottom-2\.5 {
+    bottom: calc(var(--spacing) * 2.5);
   }
   .left-0 {
     left: 0px;
@@ -286,6 +286,9 @@
   }
   .block {
     display: block;
+  }
+  .block\! {
+    display: block !important;
   }
   .contents {
     display: contents;
@@ -503,6 +506,12 @@
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
   }
+  .border-white\/10 {
+    border-color: color-mix(in srgb, #fff 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-white) 10%, transparent);
+    }
+  }
   .border-zinc-100 {
     border-color: var(--color-zinc-100);
   }
@@ -530,8 +539,17 @@
       border-color: color-mix(in oklab, var(--color-zinc-300) 80%, transparent);
     }
   }
-  .border-zinc-700 {
-    border-color: var(--color-zinc-700);
+  .border-zinc-700\/80 {
+    border-color: color-mix(in srgb, oklch(37% 0.013 285.805) 80%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-zinc-700) 80%, transparent);
+    }
+  }
+  .border-zinc-800\/80 {
+    border-color: color-mix(in srgb, oklch(27.4% 0.006 286.033) 80%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-zinc-800) 80%, transparent);
+    }
   }
   .border-zinc-900 {
     border-color: var(--color-zinc-900);
@@ -539,8 +557,8 @@
   .bg-\[\#141820\] {
     background-color: #141820;
   }
-  .bg-\[\#EA580C\] {
-    background-color: #EA580C;
+  .bg-\[\#E64A19\] {
+    background-color: #E64A19;
   }
   .bg-\[\#F4F4F5\] {
     background-color: #F4F4F5;
@@ -554,20 +572,8 @@
   .bg-\[\#FFFFFF\] {
     background-color: #FFFFFF;
   }
-  .bg-black\/60 {
-    background-color: color-mix(in srgb, #000 60%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-black) 60%, transparent);
-    }
-  }
   .bg-white {
     background-color: var(--color-white);
-  }
-  .bg-white\/90 {
-    background-color: color-mix(in srgb, #fff 90%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-white) 90%, transparent);
-    }
   }
   .bg-white\/95 {
     background-color: color-mix(in srgb, #fff 95%, transparent);
@@ -593,11 +599,26 @@
       background-color: color-mix(in oklab, var(--color-zinc-200) 60%, transparent);
     }
   }
+  .bg-zinc-200\/80 {
+    background-color: color-mix(in srgb, oklch(92% 0.004 286.32) 80%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-zinc-200) 80%, transparent);
+    }
+  }
   .bg-zinc-500 {
     background-color: var(--color-zinc-500);
   }
+  .bg-zinc-800 {
+    background-color: var(--color-zinc-800);
+  }
   .bg-zinc-900 {
     background-color: var(--color-zinc-900);
+  }
+  .bg-zinc-900\/90 {
+    background-color: color-mix(in srgb, oklch(21% 0.006 285.885) 90%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-zinc-900) 90%, transparent);
+    }
   }
   .object-contain {
     object-fit: contain;
@@ -843,6 +864,11 @@
     -webkit-backdrop-filter: var(--tw-backdrop-blur, ) var(--tw-backdrop-brightness, ) var(--tw-backdrop-contrast, ) var(--tw-backdrop-grayscale, ) var(--tw-backdrop-hue-rotate, ) var(--tw-backdrop-invert, ) var(--tw-backdrop-opacity, ) var(--tw-backdrop-saturate, ) var(--tw-backdrop-sepia, );
     backdrop-filter: var(--tw-backdrop-blur, ) var(--tw-backdrop-brightness, ) var(--tw-backdrop-contrast, ) var(--tw-backdrop-grayscale, ) var(--tw-backdrop-hue-rotate, ) var(--tw-backdrop-invert, ) var(--tw-backdrop-opacity, ) var(--tw-backdrop-saturate, ) var(--tw-backdrop-sepia, );
   }
+  .backdrop-blur-xs {
+    --tw-backdrop-blur: blur(var(--blur-xs));
+    -webkit-backdrop-filter: var(--tw-backdrop-blur, ) var(--tw-backdrop-brightness, ) var(--tw-backdrop-contrast, ) var(--tw-backdrop-grayscale, ) var(--tw-backdrop-hue-rotate, ) var(--tw-backdrop-invert, ) var(--tw-backdrop-opacity, ) var(--tw-backdrop-saturate, ) var(--tw-backdrop-sepia, );
+    backdrop-filter: var(--tw-backdrop-blur, ) var(--tw-backdrop-brightness, ) var(--tw-backdrop-contrast, ) var(--tw-backdrop-grayscale, ) var(--tw-backdrop-hue-rotate, ) var(--tw-backdrop-invert, ) var(--tw-backdrop-opacity, ) var(--tw-backdrop-saturate, ) var(--tw-backdrop-sepia, );
+  }
   .transition-all {
     transition-property: all;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
@@ -857,19 +883,23 @@
     --tw-duration: 200ms;
     transition-duration: 200ms;
   }
+  .select-none {
+    -webkit-user-select: none;
+    user-select: none;
+  }
   @media (hover: hover) {
-    :is(:where(.group):hover .group-hover\:border-\[\#EA580C\]) {
-      border-color: #EA580C;
+    :is(:where(.group):hover .group-hover\:border-zinc-400) {
+      border-color: var(--color-zinc-400);
     }
-    :is(:where(.group):hover .group-hover\:text-\[\#EA580C\]) {
-      color: #EA580C;
+    :is(:where(.group):hover .group-hover\:text-zinc-950) {
+      color: var(--color-zinc-950);
     }
   }
-  .selection\:bg-orange-500 ::selection {
-    background-color: var(--color-orange-500);
+  .selection\:bg-zinc-900 ::selection {
+    background-color: var(--color-zinc-900);
   }
-  .selection\:bg-orange-500::selection {
-    background-color: var(--color-orange-500);
+  .selection\:bg-zinc-900::selection {
+    background-color: var(--color-zinc-900);
   }
   .selection\:text-white ::selection {
     color: var(--color-white);
@@ -884,20 +914,20 @@
     .hover\:border-zinc-400:hover {
       border-color: var(--color-zinc-400);
     }
-    .hover\:bg-\[\#C2410C\]:hover {
-      background-color: #C2410C;
+    .hover\:bg-\[\#D84315\]:hover {
+      background-color: #D84315;
     }
     .hover\:bg-zinc-50:hover {
       background-color: var(--color-zinc-50);
-    }
-    .hover\:text-\[\#EA580C\]:hover {
-      color: #EA580C;
     }
     .hover\:text-zinc-900:hover {
       color: var(--color-zinc-900);
     }
     .hover\:text-zinc-950:hover {
       color: var(--color-zinc-950);
+    }
+    .hover\:underline:hover {
+      text-decoration-line: underline;
     }
   }
   .focus\:border-zinc-900:focus {
@@ -1072,7 +1102,7 @@
   --holt-ink-secondary: #52525B;
   --holt-border: #E4E4E7;
   --holt-border-strong: #D4D4D8;
-  --holt-orange: #EA580C;
+  --holt-orange: #E64A19;
 }
 body {
   background-color: var(--holt-bg);
@@ -1221,11 +1251,6 @@ body {
 @property --tw-duration {
   syntax: "*";
   inherits: false;
-}
-@keyframes pulse {
-  50% {
-    opacity: 0.5;
-  }
 }
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
