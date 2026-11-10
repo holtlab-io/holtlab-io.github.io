@@ -27,9 +27,9 @@ pub fn Navbar(active_filter: Signal<&'static str>) -> Element {
 
     rsx! {
         header {
-            class: "sticky top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-200 transition-all duration-200",
+            class: "sticky top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md transition-all duration-200",
             div {
-                class: "max-w-[1600px] mx-auto px-4 sm:px-8 py-5 flex items-start justify-between gap-4 md:gap-8",
+                class: "max-w-[1600px] mx-auto px-4 sm:px-8 pt-6 pb-2 flex items-start justify-between gap-4 md:gap-8",
                 NavBrand {}
                 NavColumns {}
                 NavKoreanManifesto {}

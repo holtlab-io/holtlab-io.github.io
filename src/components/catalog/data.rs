@@ -139,7 +139,7 @@ pub const HARDWARE_UNITS: [HardwareUnit; 8] = [
         title: "cst816d capacitive touch & 2.0\" st7789 ips",
         subtitle: "custom win95 ui · 9x9 clamping · 14px deadzone · haptic click",
         category: "keyrings",
-        image: "assets/branding/banner.png",
+        image: "assets/showcase/mcad_front.png",
         dimensions: "Dual-aperture trackpad coordinate transformation",
         silicon: "Hynitron CST816D self-capacitive single-touch chip",
         display: "Full-color IPS 178° viewing angle, 240×320 pixels",

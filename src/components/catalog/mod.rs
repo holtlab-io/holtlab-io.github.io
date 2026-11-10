@@ -34,18 +34,18 @@ pub fn Catalog(active_filter: Signal<&'static str>) -> Element {
     rsx! {
         section {
             id: "catalog",
-            class: "bg-white py-8 sm:py-12",
+            class: "bg-white pt-2 pb-16 sm:pb-24",
             div {
                 class: "max-w-[1600px] mx-auto px-4 sm:px-8",
 
                 if current_filter == "all" && filtered_units.len() >= 2 {
                     div {
-                        class: "grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-8",
+                        class: "grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-12 sm:mb-16",
                         CatalogCard { unit: filtered_units[0].clone(), on_select: move |u| selected_unit.set(Some(u)) }
                         CatalogCard { unit: filtered_units[1].clone(), on_select: move |u| selected_unit.set(Some(u)) }
                     }
                     div {
-                        class: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8",
+                        class: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12 sm:mb-16",
                         for unit in filtered_units.iter().skip(2).take(3) {
                             CatalogCard { unit: (*unit).clone(), on_select: move |u| selected_unit.set(Some(u)) }
                         }

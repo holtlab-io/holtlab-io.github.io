@@ -7,19 +7,21 @@
 
 use dioxus::prelude::*;
 
+const MANIFESTO: &str = "홀트랩은 미래의 기구와\n하드웨어를 직접 직조\n하는 엔지니어링 랩.\n우리의 단일 미션은\n0.00 mm³ 정밀 공학\n과 베어메탈 펌웨어로\n온전한 제품을 빚는것.\n공학과 미학의 조화를\n경험해 보십시오.";
+
 /// Brand logo typography with lowercase stacked lockup.
 #[component]
 pub fn NavBrand() -> Element {
     rsx! {
         a {
             href: "#",
-            class: "flex flex-col select-none group shrink-0",
+            class: "flex flex-col select-none group shrink-0 pt-0.5",
             span {
-                class: "text-2xl font-bold font-sans tracking-tighter leading-none lowercase text-zinc-950 group-hover:text-zinc-600 transition-colors",
+                class: "text-xl sm:text-[22px] font-normal font-sans tracking-tight leading-[0.92] lowercase text-zinc-950 group-hover:text-zinc-600 transition-colors",
                 "holt"
             }
             span {
-                class: "text-2xl font-bold font-sans tracking-tighter leading-none lowercase text-zinc-950 group-hover:text-zinc-600 transition-colors",
+                class: "text-xl sm:text-[22px] font-normal font-sans tracking-tight leading-[0.92] lowercase text-zinc-950 group-hover:text-zinc-600 transition-colors",
                 "lab"
             }
         }
@@ -31,8 +33,8 @@ pub fn NavBrand() -> Element {
 pub fn NavKoreanManifesto() -> Element {
     rsx! {
         div {
-            class: "hidden xl:block max-w-[170px] text-[9px] font-mono leading-[13px] text-zinc-400 select-none",
-            "홀트랩은 물리적 정밀 공학과 베어메탈 펌웨어를 직접 직조하는 독립 하드웨어 랩입니다. 3D 기구와 4층 회로, 펌웨어를 단일 비전으로 직접 설계합니다."
+            class: "hidden xl:block text-[8px] font-mono leading-[11px] text-zinc-400 select-none tracking-wider whitespace-pre",
+            "{MANIFESTO}"
         }
     }
 }
@@ -42,14 +44,18 @@ pub fn NavKoreanManifesto() -> Element {
 pub fn NavStudioMark() -> Element {
     rsx! {
         div {
-            class: "shrink-0 flex items-center select-none",
+            class: "shrink-0 flex items-start select-none relative pt-0.5",
             svg {
-                class: "w-9 h-9 fill-zinc-950",
-                view_box: "0 0 40 40",
-                rect { x: "4", y: "8", width: "6", height: "24", rx: "1" }
-                rect { x: "10", y: "17", width: "10", height: "6" }
-                rect { x: "20", y: "8", width: "6", height: "24", rx: "1" }
-                circle { cx: "32", cy: "20", r: "5" }
+                class: "w-12 h-12 fill-zinc-950",
+                view_box: "0 0 48 48",
+                rect { x: "4", y: "6", width: "8", height: "36" }
+                rect { x: "12", y: "20", width: "12", height: "8" }
+                rect { x: "24", y: "6", width: "8", height: "36" }
+                circle { cx: "40", cy: "24", r: "5.5" }
+            }
+            span {
+                class: "text-[9px] font-sans font-bold text-zinc-950 absolute -top-1 -right-2 select-none",
+                "®"
             }
         }
     }

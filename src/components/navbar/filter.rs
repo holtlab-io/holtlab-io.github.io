@@ -23,9 +23,9 @@ const CATEGORIES: [(&str, &str); 8] = [
 pub fn FilterStrip(mut active_filter: Signal<&'static str>) -> Element {
     rsx! {
         div {
-            class: "border-t border-zinc-200 bg-white px-4 sm:px-8 py-3 flex items-center justify-between text-xs sm:text-sm font-sans lowercase select-none overflow-x-auto",
+            class: "bg-white px-4 sm:px-8 py-3 flex items-center justify-between text-xs sm:text-[13px] font-sans lowercase select-none overflow-x-auto",
             div {
-                class: "flex items-center gap-6 sm:gap-8 whitespace-nowrap",
+                class: "flex items-center gap-6 sm:gap-7 whitespace-nowrap",
                 for (cat_id, label) in CATEGORIES.iter() {
                     button {
                         r#type: "button",
@@ -33,9 +33,9 @@ pub fn FilterStrip(mut active_filter: Signal<&'static str>) -> Element {
                             active_filter.set(cat_id);
                         },
                         class: if active_filter() == *cat_id {
-                            "text-zinc-950 font-semibold underline underline-offset-8 decoration-zinc-950 transition-colors"
+                            "text-zinc-950 font-medium transition-colors"
                         } else {
-                            "text-zinc-400 hover:text-zinc-950 transition-colors"
+                            "text-zinc-400 hover:text-zinc-950 transition-colors font-normal"
                         },
                         if *cat_id == "specs" {
                             a { href: "#specs", class: "block", "{label}" }
@@ -50,7 +50,7 @@ pub fn FilterStrip(mut active_filter: Signal<&'static str>) -> Element {
                 }
             }
             span {
-                class: "hidden md:inline-block text-xs font-mono text-zinc-400 whitespace-nowrap pl-4",
+                class: "hidden md:inline-block text-xs font-sans text-zinc-950 whitespace-nowrap pl-4",
                 "8 hardware units"
             }
         }
