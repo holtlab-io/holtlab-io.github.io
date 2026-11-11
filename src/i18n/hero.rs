@@ -69,7 +69,7 @@ fn hero_en() -> HeroStrings {
     HeroStrings {
         eyebrow: "HARDWARE ENGINEERING & RAPID PROTOTYPING STUDIO",
         title: "From Silicon to Screen. We Engineer Physical Hardware.",
-        subtitle: "Unified Turnkey Hardware R&D — Mechanical CAD, 4-Layer ECAD, and Low-Latency Embedded Firmware co-designed without agency ping-pong.",
+        subtitle: "Unified Turnkey Hardware R&D — Mechanical enclosures, custom circuit boards, and low-latency embedded firmware engineered without agency fragmentation.",
         pills: [
             "01 // MCAD Parametric B-Rep",
             "02 // ECAD 4-Layer Controlled-Z",
@@ -96,7 +96,7 @@ fn hero_ko() -> HeroStrings {
     HeroStrings {
         eyebrow: "턴키 하드웨어 엔지니어링 & 프로토타이핑 랩",
         title: "실리콘 칩셋부터 외함까지, 실물로 작동하는 하드웨어를 설계합니다.",
-        subtitle: "기구 CAD, 4층 임피던스 제어 회로, 초저지연 임베디드 펌웨어를 단일 루프로 통합 설계하여, 외주사 간 핑퐁 없이 실물로 작동하는 프로토타입까지 책임지고 완성합니다.",
+        subtitle: "기구 외함부터 전자 회로, 임베디드 펌웨어까지 유기적으로 통합 설계하여, 외주사 간 불일치 없이 실물로 작동하는 프로토타입까지 책임지고 완성합니다.",
         pills: [
             "01 // MCAD 파라메트릭 B-Rep",
             "02 // ECAD 4층 제어 임피던스",
@@ -172,12 +172,12 @@ pub fn get_footer_strings(lang: Language) -> FooterStrings {
     match lang {
         Language::En => FooterStrings {
             studio_desc: "hardware & embedded laboratory",
-            clearance_note: "all systems verified interference-free physical assembly · seoul, korea",
+            clearance_note: "designed & engineered in seoul, korea",
             copyright: "© 2026 holt lab. all rights reserved.",
         },
         Language::Ko => FooterStrings {
-            studio_desc: "하드웨어 및 임베디드 연구소",
-            clearance_note: "전 시스템 무간섭 물리 결합 검증 완료 · 대한민국 서울",
+            studio_desc: "하드웨어 및 임베디드 랩",
+            clearance_note: "대한민국 서울",
             copyright: "© 2026 holt lab. 판권 소유.",
         },
     }

@@ -78,8 +78,8 @@ fn teasers_en() -> HomeTeaserBundle {
         },
         studio: StudioTeaserStrings {
             eyebrow: "WHY UNIFIED TURNKEY?",
-            title: "Zero agency ping-pong. Single deterministic loop.",
-            subtitle: "Mechanical CAD, 4-Layer ECAD, and Embedded Firmware engineered concurrently to achieve first-spin physical bench success without intermediate agency friction.",
+            title: "Unified hardware engineering without agency fragmentation.",
+            subtitle: "Mechanical enclosures, custom circuit boards, and embedded firmware engineered concurrently under one roof to eliminate component mismatches and costly redesign cycles.",
             cta: "explore studio methodology →",
         },
         inquiry: InquiryBannerStrings {
@@ -107,8 +107,8 @@ fn teasers_ko() -> HomeTeaserBundle {
         },
         studio: StudioTeaserStrings {
             eyebrow: "왜 통합 턴키인가?",
-            title: "외주 핑퐁 없는 단일 결정론적 코디자인 루프.",
-            subtitle: "기구 CAD, 4층 임피던스 제어 회로, 임베디드 펌웨어를 긴밀하게 통합 설계하여, 외주사 간 불일치와 시행착오를 최소화하고 실물 동작까지 완주합니다.",
+            title: "기구·회로·소프트웨어 분절 없는 단일 통합 설계.",
+            subtitle: "기구 외함부터 전자 회로, 임베디드 펌웨어까지 한곳에서 유기적으로 설계·검증하여, 부품 간섭과 재제작 시행착오 없이 실물 동작까지 완주합니다.",
             cta: "턴키 모델 보기 →",
         },
         inquiry: InquiryBannerStrings {

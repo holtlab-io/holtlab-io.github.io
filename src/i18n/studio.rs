@@ -62,7 +62,7 @@ fn traditional_card(lang: Language) -> ComparisonCardStrings {
         Language::En => ComparisonCardStrings {
             badge: "TRADITIONAL AGENCY FRAGMENTATION",
             metric: "6–12 MONTHS SLIPPAGE",
-            heading: "the multi-vendor ping-pong trap",
+            heading: "the fragmented multi-agency trap",
             body: "mechanical teams design shells in a vacuum. electrical agencies route boards without COTS 3D models. firmware contractors receive physical prototypes with swapped pins, strapping bus lockups, and unrouted RC delays. weeks turn into months of finger-pointing and costly PCB respins.",
             bullet_1: "✕ MCAD / ECAD clearance mismatches discovered after tooling",
             bullet_2: "✕ Firmware blocked by unexpected internal module resistance",
@@ -71,7 +71,7 @@ fn traditional_card(lang: Language) -> ComparisonCardStrings {
         Language::Ko => ComparisonCardStrings {
             badge: "기존 분절형 다중 외주 모델",
             metric: "6~12개월 일정 지연",
-            heading: "다중 외주 업체의 핑퐁 딜레마",
+            heading: "다중 외주 업체의 소통 분절과 지연",
             body: "기구 설계팀은 회로를 고려하지 않고 외함을 그립니다. 회로 설계사는 실제 부품 3D 모델 없이 기판을 배선합니다. 펌웨어 외주사는 핀이 바뀌고 스트래핑 버스가 꼬이고 RC 신호 지연이 고려되지 않은 불량 보드를 전달받습니다. 책임 공방 속에 수개월이 낭비되고 수백만 원의 PCB 재제작 비용이 발생합니다.",
             bullet_1: "✕ 금형/출력 후 뒤늦게 발견되는 기구·회로 간섭 오류",
             bullet_2: "✕ 모듈 내부 저항 및 핀 충돌로 펌웨어 브링업 전면 중단",
@@ -95,7 +95,7 @@ fn turnkey_card(lang: Language) -> ComparisonCardStrings {
             badge: "홀트 랩 통합 턴키 솔루션",
             metric: "실물 프로토타입 책임 완주",
             heading: "단일 통합 엔지니어링 루프",
-            body: "기구 외함의 0.1밀리미터 치수부터 회로의 임피던스 배선, 고신뢰성 펌웨어의 클록 사이클까지 기구·회로·펌웨어를 하나의 통합된 엔지니어링 아키텍처로 총괄합니다. 배선 확정 전 부품 3D STEP 모델을 100% 동기화하며, 발주 전 3D 체적 간섭 및 0 ERC/DRC를 결정론적으로 검증합니다.",
+            body: "기구 외함의 정밀 치수부터 회로 배선, 고신뢰성 펌웨어의 클록 사이클까지 기구·회로·펌웨어를 하나의 통합된 엔지니어링 아키텍처로 총괄합니다. 배선 확정 전 부품 3D STEP 모델을 100% 동기화하며, 발주 전 3D 체적 간섭 및 0 ERC/DRC를 사전에 철저히 검증합니다.",
             bullet_1: "✓ 무간섭 일체형 설계: OpenCascade B-Rep 게이트 1 사전 검증",
             bullet_2: "✓ 펌웨어 연계 회로: 스트래핑 핀 및 RC 지연을 회로 설계 단에서 해결",
             bullet_3: "✓ 실물 벤치 검증: 가조립 실사 및 실제 펌웨어 구동까지 직접 확인 후 핸드오버",
@@ -159,13 +159,13 @@ pub fn get_studio_strings(lang: Language) -> StudioStrings {
         Language::En => (
             "studio turnkey model",
             "why unified turnkey?",
-            "eliminating agency ping-pong // silicon to screen",
+            "eliminating agency fragmentation // silicon to screen",
             pipeline_phases_en(),
         ),
         Language::Ko => (
             "스튜디오 턴키 모델",
             "왜 통합 턴키인가?",
-            "외주 핑퐁 근절 // 실리콘 칩부터 화면까지",
+            "외주사 간 소통 분절 근절 // 실리콘 칩부터 화면까지",
             pipeline_phases_ko(),
         ),
     };
