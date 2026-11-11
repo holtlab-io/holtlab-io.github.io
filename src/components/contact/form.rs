@@ -10,7 +10,7 @@
 
 use dioxus::prelude::*;
 use super::selectors::ScopeButtons;
-use super::submitted::SubmittedView;
+use super::submitted::{dispatch_rfq_intake, SubmittedView};
 use crate::i18n::{contact::get_contact_strings, ContactFormStrings, Language};
 
 /// Interactive RFQ diagnostic form component with scope selector and email dispatcher.
@@ -68,12 +68,24 @@ fn FormFields(
     mut is_submitted: Signal<bool>,
     form_strings: ContactFormStrings,
 ) -> Element {
+    let lang = use_context::<Signal<Language>>();
+    let scopes = get_contact_strings(lang()).selectors.scopes;
+
     rsx! {
         form {
             class: "space-y-4 sm:space-y-5",
             onsubmit: move |e| {
                 e.prevent_default();
                 if !email().is_empty() {
+                    let scope_label = scopes[selected_scope().min(scopes.len() - 1)];
+                    dispatch_rfq_intake(
+                        &name(),
+                        &email(),
+                        scope_label,
+                        &timeline(),
+                        &budget(),
+                        &project_brief(),
+                    );
                     is_submitted.set(true);
                 }
             },

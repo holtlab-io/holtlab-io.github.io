@@ -16,6 +16,7 @@
     --color-emerald-500: oklch(69.6% 0.17 162.48);
     --color-emerald-600: oklch(59.6% 0.145 163.225);
     --color-emerald-700: oklch(50.8% 0.118 165.612);
+    --color-emerald-900: oklch(37.8% 0.077 168.94);
     --color-zinc-50: oklch(98.5% 0 none);
     --color-zinc-100: oklch(96.7% 0.001 286.375);
     --color-zinc-200: oklch(92% 0.004 286.32);
@@ -782,9 +783,6 @@
       background-color: color-mix(in oklab, var(--color-zinc-100) 90%, transparent);
     }
   }
-  .bg-zinc-200 {
-    background-color: var(--color-zinc-200);
-  }
   .bg-zinc-800\/80 {
     background-color: color-mix(in srgb, oklch(27.4% 0.006 286.033) 80%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -1096,6 +1094,9 @@
   }
   .text-emerald-700 {
     color: var(--color-emerald-700);
+  }
+  .text-emerald-900 {
+    color: var(--color-emerald-900);
   }
   .text-red-600 {
     color: var(--color-red-600);

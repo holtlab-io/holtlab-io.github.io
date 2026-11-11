@@ -1,7 +1,7 @@
 [package]
 name = "holtlab-landing"
 version = "0.1.0"
-authors = ["Holt Lab <contact@holtlab.io>"]
+authors = ["Holt Lab <holtlab.io@gmail.com>"]
 edition = "2024"
 license = "MIT"
 

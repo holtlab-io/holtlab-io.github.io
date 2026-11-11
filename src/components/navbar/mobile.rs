@@ -123,7 +123,7 @@ fn MobileDrawerFooter() -> Element {
     rsx! {
         div {
             class: "mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-[11px] text-zinc-400 font-mono",
-            span { "contact@holtlab.io" }
+            span { "holtlab.io@gmail.com" }
             span { class: "text-zinc-500 font-medium", "SEOUL, KR" }
         }
     }

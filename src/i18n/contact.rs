@@ -141,18 +141,18 @@ fn form_en() -> ContactFormStrings {
         budget_placeholder: "e.g. $8k–$20k USD / Flexible",
         brief_label: "Project Brief & Requirements",
         brief_placeholder: "Describe your product concept, core features, target size, power source (battery or wired), cloud/server connectivity needs, and expected deliverables...",
-        submit_button: "Prepare Inquiry",
-        dispatch_note: "Direct engineering review · 24h response",
+        submit_button: "Submit Inquiry",
+        dispatch_note: "Instant web submission · 24h engineering review",
     }
 }
 
 fn buffer_en() -> ContactBufferStrings {
     ContactBufferStrings {
-        buffer_badge: "INQUIRY READY",
-        buffer_title: "Inquiry Ready to Send",
-        buffer_desc: "Your project details have been formatted into an email draft. Click below to open your mail app and send directly to Holt Lab.",
-        btn_open_mail: "Open Mail App →",
-        btn_edit_specs: "← Edit Details",
+        buffer_badge: "INQUIRY RECEIVED",
+        buffer_title: "Your Inquiry Has Been Received",
+        buffer_desc: "Your project brief has been transmitted directly to Holt Lab. Our engineering team will reply to your email within 24 business hours. To share drawings or reference files, click below to attach via email.",
+        btn_open_mail: "Attach Files via Email →",
+        btn_edit_specs: "← Edit or Resend",
     }
 }
 
@@ -160,7 +160,7 @@ fn info_ko() -> ContactInfoStrings {
     ContactInfoStrings {
         eyebrow: "협업 및 산출물 안내",
         title: "상담 안내 및 진행 방식",
-        body: "전체 턴키 시제품 제작은 물론 기구 설계, 회로·PCBA, 펌웨어, IoT 백엔드 서버 및 웹 대시보드 등 필요한 영역만 선택하여 의뢰하실 수 있습니다. 완료 시 3D STEP, 회로도·거버·BOM, 소스코드 등 원본 산출물을 인도하며 전자계약·세금계산서 및 정부지원사업 증빙에 대응합니다.",
+        body: "전체 턴키 시제품 제작은 물론 기구 설계, 회로·PCBA, 펌웨어, IoT 백엔드 서버 및 웹 대시보드 등 필요한 영역만 선택하여 의뢰하실 수 있습니다. 완료 시 3D STEP, 회로도·거버·BOM, 소스코드 등 원본 산출물을 인도하며 표준 전자계약 및 기업 정산 프로세스를 지원합니다.",
         email_label: "이메일 문의",
         location_label: "스튜디오 소재지",
         location_val: "대한민국 서울 (전국 · 글로벌 원격 협업)",
@@ -196,18 +196,18 @@ fn form_ko() -> ContactFormStrings {
         budget_placeholder: "예: 1,000만 원 내외 / 협의 가능",
         brief_label: "프로젝트 개요 및 요구사항",
         brief_placeholder: "구현하고자 하는 제품이나 시스템의 핵심 기능, 예상 크기, 전원 환경(배터리/상시전원), 서버·웹 연동 필요 여부, 희망 산출물 등을 편하게 적어주세요.",
-        submit_button: "문의 내용 정리하기",
-        dispatch_note: "담당 엔지니어 직접 검토 · 24시간 내 회신",
+        submit_button: "프로젝트 문의 접수하기",
+        dispatch_note: "별도 메일 앱 없이 즉시 접수 · 24시간 내 회신",
     }
 }
 
 fn buffer_ko() -> ContactBufferStrings {
     ContactBufferStrings {
-        buffer_badge: "메일 발송 준비 완료",
-        buffer_title: "문의 메일 초안이 준비되었습니다",
-        buffer_desc: "입력하신 프로젝트 요구사항이 메일 형식으로 정리되었습니다. 아래 버튼을 눌러 메일 앱을 열고 발송을 완료해 주세요.",
-        btn_open_mail: "메일 프로그램 열기 →",
-        btn_edit_specs: "← 내용 수정하기",
+        buffer_badge: "문의 접수 완료",
+        buffer_title: "프로젝트 문의가 정상적으로 접수되었습니다",
+        buffer_desc: "입력하신 요구사항이 스튜디오로 즉시 전달되었습니다. 담당 엔지니어가 검토 후 영업일 기준 24시간 이내에 이메일로 회신드립니다. 도면·참고 사진 등 첨부파일이 있으시면 아래 버튼으로 추가 발송하실 수 있습니다.",
+        btn_open_mail: "첨부파일 · 메일 추가 발송 →",
+        btn_edit_specs: "← 내용 수정 · 재접수",
     }
 }
 

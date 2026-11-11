@@ -304,7 +304,7 @@ async def run_e2e():
             assert page.url.endswith("/contact"), f"Expected /contact URL, got {page.url}"
 
             assert await page.locator("#contact-hero").get_by_text("CLIENT RFQ INTAKE").is_visible()
-            assert await page.locator("#inquire").get_by_text("contact@holtlab.io").first.is_visible()
+            assert await page.locator("#inquire").get_by_text("holtlab.io@gmail.com").first.is_visible()
             assert await page.locator("#inquire input[required][type='text']").is_visible()
             await assert_no_horizontal_overflow(page, "Desktop EN /contact")
             print("✓ Page 4 (/contact): Direct client consultation intake form verified.")
@@ -359,14 +359,20 @@ async def run_e2e():
 
             await page.locator("#inquire button[type='submit']").click()
             await page.wait_for_timeout(300)
-            assert await page.locator("#inquire").get_by_text("메일 발송 준비 완료").is_visible()
+            assert await page.locator("#inquire").get_by_text("문의 접수 완료").is_visible()
             assert await page.locator("#inquire").get_by_text("IoT 서버 · 웹 연동").is_visible()
 
-            mailto_link = await page.locator("#inquire a:has-text('메일 프로그램 열기')").get_attribute("href")
-            assert "contact@holtlab.io" in mailto_link
+            rfq_payload = await page.evaluate("window.__lastRfqPayload || ''")
+            assert "entry.873148717=" in rfq_payload and "entry.1570581384=minsu%40smartsensor.kr" in rfq_payload, (
+                f"Direct RFQ form payload missing or malformed: {rfq_payload}"
+            )
+
+            mailto_link = await page.locator("#inquire a:has-text('첨부파일')").get_attribute("href")
+            assert "holtlab.io@gmail.com" in mailto_link
+            assert "contact@holtlab.io" not in await page.content()
             assert "%20" in mailto_link
             assert " " not in mailto_link.split("?", 1)[1]
-            print("✓ Inquiry form 5th IoT scope selection and RFC mailto generator verified in Korean.")
+            print("✓ Inquiry form direct web dispatch + holtlab.io@gmail.com verified in Korean.")
 
             # Navigate to /demonstrator in Korean
             await page.locator("header nav a[href='/demonstrator']").first.click()

@@ -56,9 +56,9 @@ pub fn Footer() -> Element {
                             span { class: "text-[10px] text-zinc-400", "↗" }
                         }
                         a {
-                            href: "mailto:contact@holtlab.io",
+                            href: "mailto:holtlab.io@gmail.com",
                             class: "text-zinc-500 hover:text-zinc-950 transition-colors",
-                            "contact@holtlab.io"
+                            "holtlab.io@gmail.com"
                         }
                     }
                 }

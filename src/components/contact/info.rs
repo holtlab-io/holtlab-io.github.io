@@ -40,9 +40,9 @@ pub fn ContactInfo() -> Element {
                     div {
                         div { class: "text-zinc-400 text-[10px] uppercase font-mono", "{info.email_label}" }
                         a {
-                            href: "mailto:contact@holtlab.io",
+                            href: "mailto:holtlab.io@gmail.com",
                             class: "text-sm font-bold text-zinc-950 hover:underline transition-colors mt-0.5 block",
-                            "contact@holtlab.io"
+                            "holtlab.io@gmail.com"
                         }
                     }
                     span { class: "text-zinc-400 text-xs font-mono", "→" }

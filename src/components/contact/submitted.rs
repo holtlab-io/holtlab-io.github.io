@@ -1,9 +1,9 @@
 //! ## Overview
-//! Dispatch confirmation view rendering formatted intake telemetry and mailto dispatch triggers.
-//! Provides clear review of submitted specifications with an edit button to return to form editing.
+//! Dispatch confirmation view rendering formatted intake telemetry and direct web submission helpers.
+//! Transmits RFQ payloads directly to Holt Lab's intake endpoint with an optional email attachment link.
 //!
 //! ## Search Tags
-//! #contact, #dispatch, #submitted, #buffer, #mailto
+//! #contact, #dispatch, #submitted, #buffer, #mailto, #intake
 //!
 //! ## Submodules
 //! None. This module provides atomic dispatch confirmation components.
@@ -11,7 +11,45 @@
 use dioxus::prelude::*;
 use crate::i18n::{contact::get_contact_strings, ContactBufferStrings, Language};
 
-/// Confirmation message and email mailto dispatch trigger.
+const RFQ_INTAKE_ENDPOINT: &str =
+    "https://docs.google.com/forms/d/e/1FAIpQLSdGUZO1OMMLremaQt05Koyh95vzcwXP2BV2Zcy5xRMvnTGVeQ/formResponse";
+
+/// Dispatches the client RFQ payload directly from the browser without requiring a desktop mail client.
+pub fn dispatch_rfq_intake(
+    name: &str,
+    email: &str,
+    scope: &str,
+    timeline: &str,
+    budget: &str,
+    brief: &str,
+) {
+    let payload = format!(
+        "entry.873148717={}&entry.1570581384={}&entry.471223939={}&entry.152796789={}&entry.1726764419={}&entry.1289017363={}",
+        form_urlencode(name),
+        form_urlencode(email),
+        form_urlencode(scope),
+        form_urlencode(timeline),
+        form_urlencode(budget),
+        form_urlencode(brief),
+    );
+    send_intake_payload(RFQ_INTAKE_ENDPOINT, &payload);
+}
+
+#[cfg(target_arch = "wasm32")]
+fn send_intake_payload(endpoint: &str, payload: &str) {
+    let script = "window.__lastRfqPayload = body; var h = window.location.hostname; if ((h !== 'localhost' && h !== '127.0.0.1') || window.location.search.indexOf('live_rfq=1') !== -1) { fetch(url, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body }).catch(function(){}); }";
+    let func = js_sys::Function::new_with_args("url, body", script);
+    let _ = func.call2(
+        &wasm_bindgen::JsValue::NULL,
+        &wasm_bindgen::JsValue::from_str(endpoint),
+        &wasm_bindgen::JsValue::from_str(payload),
+    );
+}
+
+#[cfg(not(target_arch = "wasm32"))]
+fn send_intake_payload(_endpoint: &str, _payload: &str) {}
+
+/// Confirmation message and optional email attachment trigger.
 #[component]
 pub fn SubmittedView(
     name: Signal<String>,
@@ -43,14 +81,14 @@ pub fn SubmittedView(
         raw_budget
     };
 
-    let subject_tag = if is_ko { "Holt Lab 하드웨어 개발 의뢰" } else { "Holt Lab Commission" };
+    let subject_tag = if is_ko { "Holt Lab 첨부자료 발송" } else { "Holt Lab Attachments" };
     let raw_subject = format!("[{}] {} — {}", subject_tag, name(), scope_text);
     let raw_body = format!(
         "name / organization: {}\ncontact email: {}\ndiscipline: {}\ntarget timeline: {}\ntarget budget: {}\n\nproject brief & requirements:\n{}",
         name(), email(), scope_text, timeline_val, budget_val, project_brief()
     );
     let mailto_url = format!(
-        "mailto:contact@holtlab.io?subject={}&body={}",
+        "mailto:holtlab.io@gmail.com?subject={}&body={}",
         percent_encode(&raw_subject),
         percent_encode(&raw_body)
     );
@@ -80,13 +118,13 @@ fn SubmittedHeader(buffer: ContactBufferStrings) -> Element {
         div {
             class: "space-y-2",
             div {
-                class: "inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-200 text-zinc-900 text-xs font-bold uppercase",
-                span { class: "w-1.5 h-1.5 rounded-full bg-zinc-950" }
+                class: "inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-bold uppercase",
+                span { class: "w-1.5 h-1.5 rounded-full bg-emerald-500" }
                 "{buffer.buffer_badge}"
             }
             h3 { class: "text-lg font-bold text-zinc-950 font-sans", "{buffer.buffer_title}" }
             p {
-                class: "text-zinc-600 text-xs font-sans leading-relaxed max-w-md mx-auto",
+                class: "text-zinc-600 text-xs font-sans leading-relaxed max-w-md mx-auto break-keep",
                 "{buffer.buffer_desc}"
             }
         }
@@ -151,6 +189,23 @@ fn SubmittedActions(
             }
         }
     }
+}
+
+/// Encodes form values strictly per application/x-www-form-urlencoded (RFC 3986 unreserved set).
+fn form_urlencode(input: &str) -> String {
+    let mut out = String::with_capacity(input.len() * 3);
+    for byte in input.as_bytes() {
+        match *byte {
+            b'a'..=b'z' | b'A'..=b'Z' | b'0'..=b'9' | b'-' | b'_' | b'.' | b'~' => {
+                out.push(*byte as char);
+            }
+            b => {
+                use std::fmt::Write;
+                let _ = write!(out, "%{:02X}", b);
+            }
+        }
+    }
+    out
 }
 
 /// Encodes query parameters conforming to RFC 3986 and RFC 6068 mailto URI standards.
