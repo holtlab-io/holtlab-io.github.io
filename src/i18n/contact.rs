@@ -40,8 +40,8 @@ pub struct ContactInfoStrings {
 pub struct ContactSelectorStrings {
     /// Engineering discipline selector label.
     pub discipline_label: &'static str,
-    /// 4 discipline scopes.
-    pub scopes: [&'static str; 4],
+    /// 5 discipline scopes.
+    pub scopes: [&'static str; 5],
 }
 
 /// Localized form field labels and placeholders.
@@ -105,11 +105,11 @@ fn info_en() -> ContactInfoStrings {
     ContactInfoStrings {
         eyebrow: "direct inquiry",
         title: "studio inquiry.",
-        body: "we accept selected turnkey hardware commissions, multi-layer pcba layout, and high-reliability embedded firmware development. every inquiry is evaluated directly by our lead hardware architect within 24 hours.",
+        body: "we accept selected turnkey hardware commissions, multi-layer pcba layout, high-reliability embedded firmware, and end-to-end iot cloud integration. every inquiry is evaluated directly by our lead architect within 24 hours.",
         email_label: "direct contact // email",
-        location_label: "studio location",
-        location_val: "seoul, korea // remote worldwide",
-        location_badge: "ACTIVE",
+        location_label: "studio base",
+        location_val: "seoul, korea (remote worldwide)",
+        location_badge: "REMOTE",
         sla_label: "response commitment",
         sla_val: "24h initial architectural review",
         sla_badge: "24H",
@@ -124,6 +124,7 @@ fn selectors_en() -> ContactSelectorStrings {
             "enclosure & mechanical design",
             "electronic circuit & pcba",
             "embedded firmware",
+            "iot & cloud / web integration",
         ],
     }
 }
@@ -159,11 +160,11 @@ fn info_ko() -> ContactInfoStrings {
     ContactInfoStrings {
         eyebrow: "직통 프로젝트 의뢰",
         title: "프로젝트 의뢰 및 기술 상담.",
-        body: "엄선된 하드웨어 턴키 프로젝트, 다층 PCBA 회로 설계, 고신뢰성 임베디드 펌웨어 개발 의뢰를 진행합니다. 모든 의뢰서는 리드 하드웨어 아키텍트가 24시간 이내에 직접 기술 검토를 수행합니다.",
+        body: "엄선된 하드웨어 턴키 프로젝트, PCBA 회로 설계, 고신뢰성 임베디드 펌웨어, 기기-서버 IoT 클라우드 연동 의뢰를 진행합니다. 모든 의뢰서는 리드 하드웨어 아키텍트가 24시간 이내에 직접 기술 검토를 수행합니다.",
         email_label: "직통 연락처 // 이메일",
-        location_label: "연구소 위치",
-        location_val: "대한민국 서울 // 전 세계 원격 협업",
-        location_badge: "상시 운영",
+        location_label: "스튜디오 거점",
+        location_val: "대한민국 서울 (원격 기술 협업 지원)",
+        location_badge: "원격 지원",
         sla_label: "응답 보장 SLA",
         sla_val: "24시간 이내 1차 아키텍처 기술 검토",
         sla_badge: "24H",
@@ -178,6 +179,7 @@ fn selectors_ko() -> ContactSelectorStrings {
             "외함 기구 설계",
             "전자 회로 기판",
             "임베디드 펌웨어",
+            "IoT & 클라우드/웹 연동",
         ],
     }
 }

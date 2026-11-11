@@ -69,7 +69,7 @@ fn hero_en() -> HeroStrings {
     HeroStrings {
         eyebrow: "HARDWARE ENGINEERING & RAPID PROTOTYPING STUDIO",
         title: "From Silicon to Screen. We Engineer Physical Hardware.",
-        subtitle: "Unified Turnkey Hardware R&D — Mechanical enclosures, custom circuit boards, and low-latency embedded firmware engineered without agency fragmentation.",
+        subtitle: "Unified Turnkey Hardware R&D — Mechanical enclosures, custom circuit boards, embedded firmware, and IoT cloud connectivity engineered without agency fragmentation.",
         pills: [
             "01 // MCAD Parametric B-Rep",
             "02 // ECAD 4-Layer Controlled-Z",
@@ -96,7 +96,7 @@ fn hero_ko() -> HeroStrings {
     HeroStrings {
         eyebrow: "턴키 하드웨어 엔지니어링 & 프로토타이핑 랩",
         title: "실리콘 칩셋부터 외함까지, 실물로 작동하는 하드웨어를 설계합니다.",
-        subtitle: "기구 외함부터 전자 회로, 임베디드 펌웨어까지 유기적으로 통합 설계하여, 외주사 간 불일치 없이 실물로 작동하는 프로토타입까지 책임지고 완성합니다.",
+        subtitle: "기구 외함부터 전자 회로, 임베디드 펌웨어, IoT 클라우드 연동까지 유기적으로 통합 설계하여, 외주사 간 불일치 없이 실물로 작동하는 프로토타입까지 책임지고 완성합니다.",
         pills: [
             "01 // MCAD 파라메트릭 B-Rep",
             "02 // ECAD 4층 제어 임피던스",

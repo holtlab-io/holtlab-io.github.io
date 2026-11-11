@@ -71,7 +71,7 @@ fn cap_en_03_04() -> [CapabilityCard; 2] {
             tag: "SMT FAB & BENCH // TAILSCALE",
             title: "DFM & Rapid Bench Verification",
             desc: "Direct SMT assembly dispatch and industrial additive manufacturing. Automated bill of materials reconciliation and remote Tailscale hardware testbed bring-up with zero reset drops, guaranteeing working physical prototypes on the first iteration.",
-            metric: "first-spin bring-up · zero rework guarantee",
+            metric: "first-spin bring-up · bench-verified prototype",
         },
     ]
 }

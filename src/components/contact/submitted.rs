@@ -27,7 +27,7 @@ pub fn SubmittedView(
     let buffer = contact_strings.buffer;
     let is_ko = lang() == Language::Ko;
 
-    let scope_text = contact_strings.selectors.scopes[selected_scope().min(3)];
+    let scope_text = contact_strings.selectors.scopes[selected_scope().min(contact_strings.selectors.scopes.len() - 1)];
 
     let raw_timeline = timeline();
     let timeline_val = if raw_timeline.trim().is_empty() {
