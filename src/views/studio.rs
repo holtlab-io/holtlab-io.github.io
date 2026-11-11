@@ -35,7 +35,7 @@ pub fn StudioPage() -> Element {
             class: "w-full",
             section {
                 id: "studio-hero",
-                class: "pt-12 sm:pt-16 pb-8 bg-[#FAFAFA] border-b border-zinc-200 text-center font-sans relative overflow-hidden",
+                class: "pt-8 sm:pt-16 pb-6 sm:pb-8 bg-[#FAFAFA] border-b border-zinc-200 text-center font-sans relative overflow-hidden",
                 div { class: "absolute inset-0 bg-tech-dots opacity-35 pointer-events-none" }
                 div {
                     class: "max-w-4xl mx-auto px-4 sm:px-8 relative z-10 space-y-4 reveal-on-scroll",

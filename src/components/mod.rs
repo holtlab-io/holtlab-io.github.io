@@ -9,6 +9,7 @@
 //! - [`capabilities`] (`capabilities.rs`): Studio engineering capabilities presenting 4 core disciplines.
 //! - [`contact`] (`contact/mod.rs`): Direct studio inquiry dispatch form and contact coordinates.
 //! - [`footer`] (`footer.rs`): Minimalist wireframe footer and studio credits.
+//! - [`hardware_proof`] (`hardware_proof.rs`): Real fabricated prototype and PCBA bench verification gallery.
 //! - [`head`] (`head.rs`): Global document head metadata, styles, and script injection.
 //! - [`hero`] (`hero.rs`): Monumental hero flagship hardware demonstrator section.
 //! - [`navbar`] (`navbar/mod.rs`): Minimalist industrial navigation bar and mobile drawer.
@@ -21,6 +22,7 @@
 pub mod capabilities;
 pub mod contact;
 pub mod footer;
+pub mod hardware_proof;
 pub mod head;
 pub mod hero;
 pub mod navbar;

@@ -37,39 +37,41 @@ pub fn MobileDrawer(mut is_open: Signal<bool>) -> Element {
     }
 }
 
-/// Mobile language switch bar inside the drawer.
+/// Mobile language switch bar inside the drawer using a unified toggle pill.
 #[component]
 fn MobileLangToggle(mut lang: Signal<Language>) -> Element {
+    let is_ko = lang() == Language::Ko;
+
     rsx! {
         div {
             class: "flex items-center justify-between pb-4 mb-4 border-b border-zinc-100",
-            span { class: "text-[11px] text-zinc-500 font-mono", if lang() == Language::Ko { "언어 설정" } else { "LANGUAGE" } }
-            div {
-                class: "inline-flex items-center rounded-xs border border-zinc-200 bg-zinc-50 p-0.5 font-mono text-[11px] font-semibold",
-                button {
-                    r#type: "button",
-                    aria_label: "Switch to Korean",
-                    aria_pressed: if lang() == Language::Ko { "true" } else { "false" },
-                    onclick: move |_| {
-                        lang.set(Language::Ko);
-                        Language::Ko.save();
-                    },
-                    class: if lang() == Language::Ko {
+            span {
+                class: "text-[11px] text-zinc-500 font-mono",
+                if is_ko { "언어 설정" } else { "LANGUAGE" }
+            }
+            button {
+                r#type: "button",
+                aria_label: if is_ko { "Switch language to English" } else { "한국어로 언어 전환" },
+                onclick: move |_| {
+                    let next = if lang() == Language::Ko {
+                        Language::En
+                    } else {
+                        Language::Ko
+                    };
+                    lang.set(next);
+                    next.save();
+                },
+                class: "inline-flex items-center rounded-xs border border-zinc-200 hover:border-zinc-400 bg-zinc-50 p-0.5 font-mono text-[11px] font-semibold cursor-pointer transition-colors select-none",
+                span {
+                    class: if is_ko {
                         "px-3 py-1 rounded-2xs bg-zinc-950 text-white shadow-2xs transition-all"
                     } else {
                         "px-3 py-1 text-zinc-500 hover:text-zinc-950 transition-colors"
                     },
                     "KR"
                 }
-                button {
-                    r#type: "button",
-                    aria_label: "Switch to English",
-                    aria_pressed: if lang() == Language::En { "true" } else { "false" },
-                    onclick: move |_| {
-                        lang.set(Language::En);
-                        Language::En.save();
-                    },
-                    class: if lang() == Language::En {
+                span {
+                    class: if !is_ko {
                         "px-3 py-1 rounded-2xs bg-zinc-950 text-white shadow-2xs transition-all"
                     } else {
                         "px-3 py-1 text-zinc-500 hover:text-zinc-950 transition-colors"

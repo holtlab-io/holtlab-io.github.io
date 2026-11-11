@@ -10,6 +10,7 @@
 
 use dioxus::prelude::*;
 use crate::components::{
+    hardware_proof::HardwareProofSection,
     specs::SpecsMatrix,
     teardown::TeardownSection,
     teasers::InquiryCtaBanner,
@@ -28,7 +29,7 @@ pub fn Demonstrator() -> Element {
             class: "w-full",
             section {
                 id: "case-study-hero",
-                class: "pt-12 sm:pt-16 pb-8 bg-[#FAFAFA] border-b border-zinc-200 text-center font-sans relative overflow-hidden",
+                class: "pt-8 sm:pt-16 pb-6 sm:pb-8 bg-[#FAFAFA] border-b border-zinc-200 text-center font-sans relative overflow-hidden",
                 div { class: "absolute inset-0 bg-tech-grid opacity-40 pointer-events-none" }
                 div {
                     class: "max-w-4xl mx-auto px-4 sm:px-8 relative z-10 space-y-4 reveal-on-scroll",
@@ -59,6 +60,7 @@ pub fn Demonstrator() -> Element {
                 }
             }
 
+            HardwareProofSection {}
             TeardownSection {}
             SpecsMatrix {}
             InquiryCtaBanner {}

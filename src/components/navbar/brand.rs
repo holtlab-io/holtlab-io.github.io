@@ -23,8 +23,28 @@ pub fn NavBrand() -> Element {
             to: Route::Home {},
             class: "flex items-center gap-3 select-none group shrink-0",
             div {
-                class: "w-8 h-8 rounded-xs bg-zinc-950 flex items-center justify-center text-white font-mono font-bold text-xs shadow-2xs group-hover:bg-[#E64A19] transition-colors",
-                "H"
+                class: "w-8 h-8 rounded-xs bg-zinc-950 flex items-center justify-center text-white shadow-2xs group-hover:bg-[#E64A19] transition-colors",
+                svg {
+                    view_box: "0 0 24 24",
+                    fill: "none",
+                    class: "w-4 h-4",
+                    "aria-hidden": "true",
+                    path {
+                        d: "M5.5 4.5V19.5M18.5 4.5V19.5M5.5 12H13.5L15.5 9.5H18.5",
+                        stroke: "currentColor",
+                        stroke_width: "2.2",
+                        stroke_linecap: "square",
+                        stroke_linejoin: "miter",
+                    }
+                    rect {
+                        x: "11",
+                        y: "14.5",
+                        width: "3",
+                        height: "3",
+                        fill: "#E64A19",
+                        class: "group-hover:fill-white transition-colors",
+                    }
+                }
             }
             div {
                 class: "flex flex-col",

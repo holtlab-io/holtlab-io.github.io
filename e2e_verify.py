@@ -204,14 +204,17 @@ async def run_e2e():
             assert await page.locator("#capabilities").get_by_text("Embedded Firmware & Board Bring-Up").is_visible()
             assert await page.locator("#capabilities").get_by_text("IoT Backend Server & Web Integration").is_visible()
 
-            # Verify Showcase Teaser, Studio Teaser, and Inquiry CTA Banner
+            # Verify Showcase Teaser, Studio Teaser, Real Hardware Photos, and Inquiry CTA Banner
             assert await page.locator("section:has-text('ENGINEERING SHOWCASE // CASE STUDY 01')").is_visible()
             assert await page.locator("section:has-text('Win95 Minesweeper Touch Keyring')").is_visible()
             assert await page.locator("section:has-text('ASSEMBLED & VERIFIED')").is_visible()
+            assert await page.locator("img[src='/assets/showcase/real_front_on.jpg']").first.is_visible()
+            assert await page.locator("img[src='/assets/showcase/real_pcba_shell_iso.jpg']").first.is_visible()
+            assert await page.locator("img[src='/assets/showcase/real_knolling_top.jpg']").first.is_visible()
             assert await page.locator("section:has-text('WHY UNIFIED ENGINEERING?')").is_visible()
             assert await page.locator("section:has-text('Ready to build your custom hardware or IoT product?')").is_visible()
             await assert_no_horizontal_overflow(page, "Desktop EN /")
-            print("✓ Page 1 (/) Studio Overview: Hero, 4 Pillars (with IoT), Teasers, and CTA Banner verified.")
+            print("✓ Page 1 (/) Studio Overview: Hero, 4 Pillars (with IoT), Real Hardware Showcase, and CTA verified.")
 
             desktop_home_shot = os.path.join(OUTPUT_DIR, "desktop_full_en.png")
             await page.evaluate("() => { const h = document.querySelector('header'); if (h) h.style.position = 'static'; }")
@@ -241,6 +244,12 @@ async def run_e2e():
             await page.wait_for_timeout(200)
             assert await page.locator("text=ELEVATION: FRONT CHASSIS").first.is_visible()
             print("✓ Page 2 (/demonstrator): Interactive 4-view CAD inspection modes verified.")
+
+            assert await page.locator("#hardware-proof").get_by_text("From 3D CAD to Powered-On Hardware.").first.is_visible()
+            assert await page.locator("#hardware-proof img[src='/assets/showcase/real_front_on.jpg']").is_visible()
+            assert await page.locator("#hardware-proof img[src='/assets/showcase/real_pcba_shell_iso.jpg']").is_visible()
+            assert await page.locator("#hardware-proof img[src='/assets/showcase/real_knolling_top.jpg']").is_visible()
+            print("✓ Page 2 (/demonstrator): 3-photo Physical Prototype & Bench Bring-Up gallery verified.")
 
             assert await page.locator("#case-study").get_by_text("Four Architectural Layers, Inside and Out.").first.is_visible()
             assert await page.locator("#case-study").get_by_text("LAYER 01").first.is_visible()
@@ -306,11 +315,24 @@ async def run_e2e():
             print(f"✓ Scroll reveal motion verified: {revealed_count}/{reveal_count} elements revealed.")
 
             # -------------------------------------------------------------
-            # 6. Bilingual Toggle Synchronization Across All Subpages
+            # 6. Bilingual Whole-Pill Toggle Synchronization Across All Subpages
             # -------------------------------------------------------------
-            kr_toggle_btn = page.locator("header button:has-text('KR')").first
-            await kr_toggle_btn.click()
-            await page.wait_for_timeout(300)
+            lang_toggle_btn = page.locator("header button:has-text('KR')").first
+            # Click 1: EN -> KO
+            await lang_toggle_btn.click()
+            await page.wait_for_timeout(250)
+            assert await page.evaluate("localStorage.getItem('holtlab_lang')") == "ko"
+
+            # Click 2 on the EXACT SAME pill button (even on KR side): KO -> EN
+            await lang_toggle_btn.click(position={"x": 12, "y": 10})
+            await page.wait_for_timeout(250)
+            assert await page.evaluate("localStorage.getItem('holtlab_lang')") == "en", (
+                "Clicking active KR thumb must toggle back to EN!"
+            )
+
+            # Click 3 on the EXACT SAME pill button: EN -> KO
+            await lang_toggle_btn.click(position={"x": 12, "y": 10})
+            await page.wait_for_timeout(250)
 
             title_kr = await page.title()
             assert "하드웨어 · 임베디드 · IoT 엔지니어링 스튜디오" in title_kr, f"Korean title mismatch: {title_kr}"

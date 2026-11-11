@@ -101,12 +101,14 @@ fn HeroActionLinks(strings: HeroStrings) -> Element {
     }
 }
 
-/// Clean studio hardware visual preview with telemetry callouts and corner crosshairs.
+/// Studio hardware visual preview pairing 3D CAD design with fabricated SMT PCBA and MJF hardware.
 #[component]
 fn HeroOverviewVisual(strings: HeroStrings) -> Element {
+    let lang = use_context::<Signal<Language>>();
+
     rsx! {
         div {
-            class: "w-full max-w-4xl bg-white border border-zinc-200 rounded-xs shadow-md p-4 sm:p-6 my-2 select-none relative overflow-hidden reveal-on-scroll delay-300",
+            class: "w-full max-w-5xl bg-white border border-zinc-200 rounded-xs shadow-md p-4 sm:p-6 my-2 select-none relative overflow-hidden reveal-on-scroll delay-300",
             div {
                 class: "w-full flex items-center justify-between border-b border-zinc-200/80 pb-3 mb-4 text-[11px] font-mono text-zinc-500",
                 div {
@@ -122,27 +124,62 @@ fn HeroOverviewVisual(strings: HeroStrings) -> Element {
                     "{strings.hero_preview_tag}"
                 }
             }
+            HeroSplitPanels { lang: lang() }
             div {
-                class: "relative z-10 flex flex-col items-center py-2 bg-tech-grid rounded-xs border border-zinc-100 overflow-hidden",
-                div { class: "absolute top-2 left-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
-                div { class: "absolute top-2 right-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
-                div { class: "absolute bottom-12 left-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
-                div { class: "absolute bottom-12 right-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
+                class: "w-full flex flex-col sm:flex-row items-center justify-between text-[10px] sm:text-[11px] font-mono text-zinc-500 pt-3 mt-4 border-t border-zinc-200/80 gap-1.5 sm:gap-2 text-center sm:text-left",
+                span { class: "break-keep", "{strings.hero_preview_notes[0]}" }
+                span { class: "break-keep font-medium text-zinc-700", "{strings.hero_preview_notes[1]}" }
+                span { class: "break-keep text-right", "{strings.hero_preview_notes[2]}" }
+            }
+        }
+    }
+}
 
+/// Side-by-side 3D CAD assembly and physical 4-layer SMT PCBA / MJF PA12 enclosure panels.
+#[component]
+fn HeroSplitPanels(lang: Language) -> Element {
+    let (cad_label, real_label) = match lang {
+        Language::En => (
+            "01 // 3D CAD & ENCLOSURE GEOMETRY",
+            "02 // FABRICATED 4-LAYER PCBA & MJF PA12",
+        ),
+        Language::Ko => (
+            "01 // 3D 기구 · 적층 구조 설계",
+            "02 // 4층 SMT 기판 및 나일론 외함 실물",
+        ),
+    };
+
+    rsx! {
+        div {
+            class: "grid grid-cols-1 md:grid-cols-2 gap-4",
+            div {
+                class: "relative flex flex-col justify-between bg-tech-grid rounded-xs border border-zinc-200/80 p-4 min-h-[250px] sm:min-h-[310px] overflow-hidden",
+                span {
+                    class: "self-start px-2 py-0.5 rounded-2xs bg-white/90 border border-zinc-200 font-mono text-[10px] font-semibold text-zinc-700",
+                    "{cad_label}"
+                }
                 div {
-                    class: "w-full flex justify-center items-center py-4 min-h-[260px] sm:min-h-[340px]",
+                    class: "flex-1 flex items-center justify-center py-2",
                     img {
                         src: "/assets/showcase/mcad_iso_front.png",
-                        alt: "Holt Lab Engineering Case Study Preview",
-                        class: "w-full max-h-[360px] object-contain drop-shadow-xl transition-transform duration-500 hover:scale-[1.015]"
+                        alt: "Holt Lab 3D CAD Enclosure Design",
+                        class: "w-full max-h-[240px] sm:max-h-[260px] object-contain drop-shadow-lg transition-transform duration-500 hover:scale-[1.02]",
                     }
                 }
-
+            }
+            div {
+                class: "relative flex flex-col justify-between bg-zinc-900 rounded-xs border border-zinc-800 overflow-hidden min-h-[250px] sm:min-h-[310px] group",
+                img {
+                    src: "/assets/showcase/real_pcba_shell_iso.jpg",
+                    alt: "Holt Lab Fabricated 4-Layer PCBA and MJF PA12 Enclosure",
+                    class: "w-full h-full max-h-[310px] object-cover transition-transform duration-500 group-hover:scale-[1.02]",
+                }
                 div {
-                    class: "w-full flex flex-col sm:flex-row items-center justify-between text-[10px] sm:text-[11px] font-mono text-zinc-500 pt-2.5 sm:pt-3 border-t border-zinc-200/80 px-3 sm:px-4 gap-1.5 sm:gap-2 bg-white/80 backdrop-blur-xs text-center sm:text-left",
-                    span { class: "break-keep", "{strings.hero_preview_notes[0]}" }
-                    span { class: "break-keep font-medium text-zinc-700", "{strings.hero_preview_notes[1]}" }
-                    span { class: "break-keep text-right", "{strings.hero_preview_notes[2]}" }
+                    class: "absolute top-4 left-4",
+                    span {
+                        class: "px-2 py-0.5 rounded-2xs bg-zinc-950/85 border border-zinc-700 backdrop-blur-xs font-mono text-[10px] font-semibold text-zinc-100",
+                        "{real_label}"
+                    }
                 }
             }
         }

@@ -67,36 +67,36 @@ pub fn NavLinks() -> Element {
     }
 }
 
-/// Desktop language switch control with tactile pill styling.
+/// Single-button tactile pill toggle switching immediately between Korean and English.
 #[component]
 fn NavLangToggle(mut lang: Signal<Language>) -> Element {
+    let is_ko = lang() == Language::Ko;
+
     rsx! {
-        div {
-            class: "inline-flex items-center rounded-xs border border-zinc-200 bg-zinc-50 p-0.5 font-mono text-[11px] font-semibold",
-            button {
-                r#type: "button",
-                aria_label: "Switch to Korean",
-                aria_pressed: if lang() == Language::Ko { "true" } else { "false" },
-                onclick: move |_| {
-                    lang.set(Language::Ko);
-                    Language::Ko.save();
-                },
-                class: if lang() == Language::Ko {
+        button {
+            r#type: "button",
+            aria_label: if is_ko { "Switch language to English" } else { "한국어로 언어 전환" },
+            title: if is_ko { "Switch to English (EN)" } else { "한국어로 전환 (KR)" },
+            onclick: move |_| {
+                let next = if lang() == Language::Ko {
+                    Language::En
+                } else {
+                    Language::Ko
+                };
+                lang.set(next);
+                next.save();
+            },
+            class: "inline-flex items-center rounded-xs border border-zinc-200 hover:border-zinc-400 bg-zinc-50 p-0.5 font-mono text-[11px] font-semibold cursor-pointer transition-colors select-none",
+            span {
+                class: if is_ko {
                     "px-2 py-0.5 rounded-2xs bg-zinc-950 text-white shadow-2xs transition-all"
                 } else {
                     "px-2 py-0.5 text-zinc-500 hover:text-zinc-950 transition-colors"
                 },
                 "KR"
             }
-            button {
-                r#type: "button",
-                aria_label: "Switch to English",
-                aria_pressed: if lang() == Language::En { "true" } else { "false" },
-                onclick: move |_| {
-                    lang.set(Language::En);
-                    Language::En.save();
-                },
-                class: if lang() == Language::En {
+            span {
+                class: if !is_ko {
                     "px-2 py-0.5 rounded-2xs bg-zinc-950 text-white shadow-2xs transition-all"
                 } else {
                     "px-2 py-0.5 text-zinc-500 hover:text-zinc-950 transition-colors"
