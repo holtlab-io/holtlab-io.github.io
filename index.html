@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <meta name="description" content="Holt Lab — Hardware, Mechanical & Embedded Engineering Studio. Unified Turnkey Hardware & Embedded Execution.">
+    <title>Holt Lab — 하드웨어 · 임베디드 · IoT 엔지니어링 스튜디오</title>
+    <meta name="description" content="기구 외함 설계, 맞춤형 회로 기판(PCBA), 임베디드 펌웨어부터 IoT 백엔드 서버 및 웹 관제 연동까지 통합 수행하는 하드웨어 엔지니어링 스튜디오.">
 
     <!-- GitHub Pages Single Page Apps Routing Script -->
     <script type="text/javascript">
@@ -94,7 +94,7 @@
     </script>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="assets/branding/avatar.jpg">
+    <link rel="icon" type="image/jpeg" href="/assets/branding/avatar.jpg">
 
     <!-- Canonical & Alternate Links -->
     <link rel="canonical" href="https://holtlab-io.github.io/">
@@ -104,15 +104,15 @@
 
     <!-- OpenGraph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Holt Lab — Hardware & Embedded Engineering Studio">
-    <meta property="og:description" content="From Silicon to Enclosure to Screen. Unified Turnkey Hardware & Embedded Development.">
+    <meta property="og:title" content="Holt Lab — 하드웨어 · 임베디드 · IoT 엔지니어링 스튜디오">
+    <meta property="og:description" content="기구 외함 설계, 맞춤형 회로 기판(PCBA), 임베디드 펌웨어부터 IoT 백엔드 서버 및 웹 관제 연동까지 통합 수행하는 하드웨어 엔지니어링 스튜디오.">
     <meta property="og:image" content="https://holtlab-io.github.io/assets/branding/banner.png">
     <meta property="og:url" content="https://holtlab-io.github.io/">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Holt Lab — Hardware & Embedded Engineering Studio">
-    <meta name="twitter:description" content="From Silicon to Enclosure to Screen. Unified Turnkey Hardware & Embedded Development.">
+    <meta name="twitter:title" content="Holt Lab — 하드웨어 · 임베디드 · IoT 엔지니어링 스튜디오">
+    <meta name="twitter:description" content="기구 외함 설계, 맞춤형 회로 기판(PCBA), 임베디드 펌웨어부터 IoT 백엔드 서버 및 웹 관제 연동까지 통합 수행하는 하드웨어 엔지니어링 스튜디오.">
     <meta name="twitter:image" content="https://holtlab-io.github.io/assets/branding/banner.png">
 
     <!-- Font & Style Preconnects -->
@@ -121,7 +121,7 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
     <!-- Preload core fonts & stylesheet -->
-    <link rel="preload" as="style" href="assets/tailwind.css">
+    <link rel="preload" as="style" href="/assets/tailwind.css">
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
     <link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 
@@ -152,7 +152,7 @@
         </style>
     </noscript>
 
-    <!-- Structured Data: Organization & Product -->
+    <!-- Structured Data: Organization & Engineering Service -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -163,11 +163,12 @@
                 "name": "Holt Lab",
                 "url": "https://holtlab-io.github.io/",
                 "logo": "https://holtlab-io.github.io/assets/branding/avatar.jpg",
-                "description": "Hardware, Mechanical & Embedded Engineering Studio specializing in unified turnkey hardware execution.",
-                "founder": {
-                    "@type": "Person",
-                    "name": "Wim",
-                    "url": "https://github.com/imwoo90"
+                "email": "contact@holtlab.io",
+                "description": "Hardware, Embedded Firmware & IoT Engineering Studio specializing in unified mechanical, electronics, firmware, and backend system development.",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Seoul",
+                    "addressCountry": "KR"
                 },
                 "sameAs": [
                     "https://github.com/holtlab-io",
@@ -175,23 +176,20 @@
                 ]
             },
             {
-                "@type": "Product",
-                "@id": "https://holtlab-io.github.io/#opus01",
-                "name": "OPUS 01 // Win95 Minesweeper Touch Keyring",
-                "image": "https://holtlab-io.github.io/assets/showcase/mcad_iso_front.png",
-                "description": "Ultra-compact interactive pocket demonstrator integrating ESP32-C3, ST7789T3 2.0\" 60Hz IPS, CST816D capacitive touch, and real-time embedded firmware in a 43.4×69.2×13.78mm HP MJF PA12 enclosure.",
-                "brand": {
-                    "@type": "Brand",
-                    "name": "Holt Lab"
-                },
-                "category": "Electronics > Custom Hardware",
-                "offers": {
-                    "@type": "Offer",
-                    "availability": "https://schema.org/InStock",
-                    "priceCurrency": "USD",
-                    "price": "0",
-                    "description": "Hardware demonstrator / bespoke engineering showcase"
-                }
+                "@type": "ProfessionalService",
+                "@id": "https://holtlab-io.github.io/#service",
+                "name": "Holt Lab Engineering Studio",
+                "url": "https://holtlab-io.github.io/",
+                "image": "https://holtlab-io.github.io/assets/branding/banner.png",
+                "email": "contact@holtlab.io",
+                "areaServed": "Worldwide",
+                "serviceType": [
+                    "Turnkey Hardware Prototyping",
+                    "Mechanical Enclosure Design (MCAD)",
+                    "Custom Circuit & Multi-Layer PCBA Design (ECAD)",
+                    "Embedded Firmware & RTOS Development",
+                    "IoT Cloud, API Server & Web Dashboard Integration"
+                ]
             }
         ]
     }

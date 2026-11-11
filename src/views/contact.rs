@@ -10,13 +10,22 @@
 
 use dioxus::prelude::*;
 use crate::components::contact::Contact;
-use crate::i18n::{contact::get_contact_strings, Language};
+use crate::i18n::Language;
 
 /// Dedicated client consultation and project brief submission page view.
 #[component]
 pub fn ContactPage() -> Element {
     let lang = use_context::<Signal<Language>>();
-    let strings = get_contact_strings(lang());
+    let (hero_title, hero_sub) = match lang() {
+        Language::En => (
+            "Project Consultation & RFQ",
+            "Share your hardware or IoT product concept, required engineering scope, and target schedule. Our engineering team reviews every brief directly within 24 hours.",
+        ),
+        Language::Ko => (
+            "프로젝트 의뢰 및 기술 상담",
+            "구상 중인 하드웨어 또는 IoT 시스템의 핵심 기능, 필요한 개발 범위, 희망 일정을 남겨주세요. 담당 엔지니어가 기술 타당성을 검토해 영업일 기준 24시간 이내에 회신드립니다.",
+        ),
+    };
 
     rsx! {
         div {
@@ -31,17 +40,17 @@ pub fn ContactPage() -> Element {
                         class: "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-zinc-200 text-zinc-700 font-mono text-[11px] font-semibold tracking-wider uppercase shadow-2xs",
                         span { class: "w-2 h-2 rounded-full bg-[#E64A19] animate-pulse" }
                         match lang() {
-                            Language::En => "CLIENT RFQ INTAKE // DIRECT DISPATCH",
-                            Language::Ko => "프로젝트 의뢰 접수 // 직통 전달",
+                            Language::En => "CLIENT RFQ INTAKE // CONSULTATION",
+                            Language::Ko => "프로젝트 문의 // 기술 상담",
                         }
                     }
                     h1 {
-                        class: "text-3xl sm:text-5xl font-bold font-sans tracking-tight text-zinc-950 lowercase leading-tight",
-                        "{strings.info.title}"
+                        class: "text-3xl sm:text-5xl font-bold font-sans tracking-tight text-zinc-950 leading-tight break-keep",
+                        "{hero_title}"
                     }
                     p {
-                        class: "text-sm sm:text-base text-zinc-600 font-normal leading-relaxed max-w-2xl mx-auto",
-                        "{strings.info.body}"
+                        class: "text-sm sm:text-base text-zinc-600 font-normal leading-relaxed max-w-2xl mx-auto break-keep",
+                        "{hero_sub}"
                     }
                 }
             }

@@ -95,7 +95,7 @@ fn ContactInputs(
 ) -> Element {
     rsx! {
         div {
-            class: "grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 text-xs font-mono lowercase",
+            class: "grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 text-xs font-mono",
             div {
                 class: "space-y-1.5",
                 label { class: "block text-zinc-500", "{form_strings.name_label}" }
@@ -133,7 +133,7 @@ fn IntakeParametersInputs(
 ) -> Element {
     rsx! {
         div {
-            class: "grid grid-cols-2 gap-3 sm:gap-4 text-xs font-mono lowercase",
+            class: "grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 text-xs font-mono",
             div {
                 class: "space-y-1.5",
                 label { class: "block text-zinc-500", "{form_strings.timeline_label}" }
@@ -168,7 +168,7 @@ fn BriefInput(
 ) -> Element {
     rsx! {
         div {
-            class: "space-y-1.5 text-xs font-mono lowercase",
+            class: "space-y-1.5 text-xs font-mono",
             label { class: "block text-zinc-500", "{form_strings.brief_label}" }
             textarea {
                 rows: 5,
@@ -194,7 +194,7 @@ fn SubmitRow(form_strings: ContactFormStrings) -> Element {
                 "{form_strings.submit_button}"
                 span { "→" }
             }
-            span { class: "text-[11px] font-mono text-zinc-400 lowercase tracking-tight", "{form_strings.dispatch_note}" }
+            span { class: "text-[11px] font-mono text-zinc-400 tracking-tight", "{form_strings.dispatch_note}" }
         }
     }
 }

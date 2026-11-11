@@ -103,111 +103,111 @@ pub struct ContactStrings {
 
 fn info_en() -> ContactInfoStrings {
     ContactInfoStrings {
-        eyebrow: "direct inquiry",
-        title: "studio inquiry.",
-        body: "we accept selected turnkey hardware commissions, multi-layer pcba layout, high-reliability embedded firmware, and end-to-end iot cloud integration. every inquiry is evaluated directly by our lead architect within 24 hours.",
-        email_label: "direct contact // email",
-        location_label: "studio base",
-        location_val: "seoul, korea (remote worldwide)",
-        location_badge: "REMOTE",
-        sla_label: "response commitment",
-        sla_val: "24h initial architectural review",
+        eyebrow: "COLLABORATION & DELIVERABLES",
+        title: "Scope & Handover Guide",
+        body: "From full turnkey prototypes to individual modules (enclosure CAD, PCBA layout, firmware, or IoT backend & web dashboard), all design sources — 3D STEP, schematics, Gerbers, BOM, and software repositories — are cleanly handed over upon milestone completion.",
+        email_label: "DIRECT EMAIL",
+        location_label: "STUDIO LOCATION",
+        location_val: "Seoul, Republic of Korea (Worldwide Remote)",
+        location_badge: "SEOUL, KR",
+        sla_label: "RESPONSE TIME",
+        sla_val: "Initial engineering review within 24 hours",
         sla_badge: "24H",
     }
 }
 
 fn selectors_en() -> ContactSelectorStrings {
     ContactSelectorStrings {
-        discipline_label: "development discipline",
+        discipline_label: "Development Scope",
         scopes: [
-            "turnkey hardware development",
-            "enclosure & mechanical design",
-            "electronic circuit & pcba",
-            "embedded firmware",
-            "iot & cloud / web integration",
+            "Turnkey Hardware Prototype",
+            "Mechanical & Enclosure",
+            "Custom Circuit & PCBA",
+            "Embedded Firmware",
+            "IoT Server & Web Integration",
         ],
     }
 }
 
 fn form_en() -> ContactFormStrings {
     ContactFormStrings {
-        name_label: "name / organization",
-        name_placeholder: "e.g. Acme Robotics / Jane Doe",
-        contact_email_label: "contact email",
-        contact_email_placeholder: "name@domain.com",
-        timeline_label: "target timeline",
-        timeline_placeholder: "e.g. 4-6 weeks to working prototype",
-        budget_label: "target budget",
-        budget_placeholder: "e.g. $5k-$15k USD / KRW 10M",
-        brief_label: "project brief & requirements",
-        brief_placeholder: "describe your product concept, target dimensions, operating environment, core features, battery/power requirements, and key deliverables...",
-        submit_button: "dispatch inquiry",
-        dispatch_note: "direct architect dispatch · 24h review",
+        name_label: "Name / Organization",
+        name_placeholder: "e.g. Horizon Labs / Alex Kim",
+        contact_email_label: "Contact Email",
+        contact_email_placeholder: "name@company.com",
+        timeline_label: "Target Timeline",
+        timeline_placeholder: "e.g. 6–8 weeks to prototype",
+        budget_label: "Estimated Budget",
+        budget_placeholder: "e.g. $8k–$20k USD / Flexible",
+        brief_label: "Project Brief & Requirements",
+        brief_placeholder: "Describe your product concept, core features, target size, power source (battery or wired), cloud/server connectivity needs, and expected deliverables...",
+        submit_button: "Prepare Inquiry",
+        dispatch_note: "Direct engineering review · 24h response",
     }
 }
 
 fn buffer_en() -> ContactBufferStrings {
     ContactBufferStrings {
-        buffer_badge: "DISPATCH BUFFER READY",
-        buffer_title: "inquiry ready for dispatch",
-        buffer_desc: "your project specifications have been formatted. click below to open your mail client and dispatch directly to holt lab engineering.",
-        btn_open_mail: "open mail client →",
-        btn_edit_specs: "← edit specifications",
+        buffer_badge: "INQUIRY READY",
+        buffer_title: "Inquiry Ready to Send",
+        buffer_desc: "Your project details have been formatted into an email draft. Click below to open your mail app and send directly to Holt Lab.",
+        btn_open_mail: "Open Mail App →",
+        btn_edit_specs: "← Edit Details",
     }
 }
 
 fn info_ko() -> ContactInfoStrings {
     ContactInfoStrings {
-        eyebrow: "직통 프로젝트 의뢰",
-        title: "프로젝트 의뢰 및 기술 상담.",
-        body: "엄선된 하드웨어 턴키 프로젝트, PCBA 회로 설계, 고신뢰성 임베디드 펌웨어, 기기-서버 IoT 클라우드 연동 의뢰를 진행합니다. 모든 의뢰서는 리드 하드웨어 아키텍트가 24시간 이내에 직접 기술 검토를 수행합니다.",
-        email_label: "직통 연락처 // 이메일",
-        location_label: "스튜디오 거점",
-        location_val: "대한민국 서울 (원격 기술 협업 지원)",
-        location_badge: "원격 지원",
-        sla_label: "응답 보장 SLA",
-        sla_val: "24시간 이내 1차 아키텍처 기술 검토",
+        eyebrow: "협업 및 산출물 안내",
+        title: "상담 안내 및 진행 방식",
+        body: "전체 턴키 시제품 제작은 물론 기구 설계, 회로·PCBA, 펌웨어, IoT 백엔드 서버 및 웹 대시보드 등 필요한 영역만 선택하여 의뢰하실 수 있습니다. 완료 시 3D STEP, 회로도·거버·BOM, 소스코드 등 원본 산출물을 인도하며 전자계약·세금계산서 및 정부지원사업 증빙에 대응합니다.",
+        email_label: "이메일 문의",
+        location_label: "스튜디오 소재지",
+        location_val: "대한민국 서울 (전국 · 글로벌 원격 협업)",
+        location_badge: "SEOUL, KR",
+        sla_label: "검토 및 회신",
+        sla_val: "영업일 기준 24시간 이내 1차 기술 검토 회신",
         sla_badge: "24H",
     }
 }
 
 fn selectors_ko() -> ContactSelectorStrings {
     ContactSelectorStrings {
-        discipline_label: "개발 분야 선택",
+        discipline_label: "의뢰 분야 선택",
         scopes: [
-            "턴키 하드웨어 개발",
-            "외함 기구 설계",
-            "전자 회로 기판",
+            "턴키 시제품 개발",
+            "기구 · 외함 설계",
+            "전자 회로 · PCBA",
             "임베디드 펌웨어",
-            "IoT & 클라우드/웹 연동",
+            "IoT 서버 · 웹 연동",
         ],
     }
 }
 
 fn form_ko() -> ContactFormStrings {
     ContactFormStrings {
-        name_label: "성함 / 기업명",
-        name_placeholder: "예: 에크미 로보틱스 / 홍길동",
-        contact_email_label: "연락처 이메일",
-        contact_email_placeholder: "name@domain.com",
+        name_label: "성함 / 소속 (기업·팀명)",
+        name_placeholder: "예: (주)테크스타트업 / 홍길동",
+        contact_email_label: "회신받을 이메일",
+        contact_email_placeholder: "name@company.com",
         timeline_label: "희망 일정",
-        timeline_placeholder: "예: 4~6주 내 시제품",
-        budget_label: "희망 예산",
-        budget_placeholder: "예: 1,000만 원 내외 / $10k",
-        brief_label: "프로젝트 내용 및 요구사항",
-        brief_placeholder: "제품 컨셉, 목표 치수, 주요 기능, 배터리 구동 환경, 최종 납품 희망 품목 등 프로젝트 요구사항을 자유롭게 설명해 주세요...",
-        submit_button: "의뢰서 발송하기",
-        dispatch_note: "리드 아키텍트 직통 전달 · 24시간 내 검토",
+        timeline_placeholder: "예: 6~8주 내 1차 시제품 희망",
+        budget_label: "예상 예산 범위",
+        budget_placeholder: "예: 1,000만 원 내외 / 협의 가능",
+        brief_label: "프로젝트 개요 및 요구사항",
+        brief_placeholder: "구현하고자 하는 제품이나 시스템의 핵심 기능, 예상 크기, 전원 환경(배터리/상시전원), 서버·웹 연동 필요 여부, 희망 산출물 등을 편하게 적어주세요.",
+        submit_button: "문의 내용 정리하기",
+        dispatch_note: "담당 엔지니어 직접 검토 · 24시간 내 회신",
     }
 }
 
 fn buffer_ko() -> ContactBufferStrings {
     ContactBufferStrings {
-        buffer_badge: "발송 버퍼 준비 완료",
-        buffer_title: "의뢰서 발송 준비 완료",
-        buffer_desc: "입력하신 프로젝트 요구사항이 정리되었습니다. 아래 버튼을 눌러 메일 프로그램을 열고 홀트 랩 엔지니어링 팀으로 직접 발송해주세요.",
+        buffer_badge: "메일 발송 준비 완료",
+        buffer_title: "문의 메일 초안이 준비되었습니다",
+        buffer_desc: "입력하신 프로젝트 요구사항이 메일 형식으로 정리되었습니다. 아래 버튼을 눌러 메일 앱을 열고 발송을 완료해 주세요.",
         btn_open_mail: "메일 프로그램 열기 →",
-        btn_edit_specs: "← 요구사항 수정하기",
+        btn_edit_specs: "← 내용 수정하기",
     }
 }
 

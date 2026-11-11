@@ -432,9 +432,6 @@
   .max-w-5xl {
     max-width: var(--container-5xl);
   }
-  .max-w-\[180px\] {
-    max-width: 180px;
-  }
   .max-w-\[280px\] {
     max-width: 280px;
   }
@@ -644,12 +641,6 @@
   .border-emerald-200 {
     border-color: var(--color-emerald-200);
   }
-  .border-emerald-200\/80 {
-    border-color: color-mix(in srgb, oklch(90.5% 0.093 164.15) 80%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      border-color: color-mix(in oklab, var(--color-emerald-200) 80%, transparent);
-    }
-  }
   .border-white\/10 {
     border-color: color-mix(in srgb, #fff 10%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -802,9 +793,6 @@
   }
   .p-8 {
     padding: calc(var(--spacing) * 8);
-  }
-  .px-1 {
-    padding-inline: var(--spacing);
   }
   .px-2 {
     padding-inline: calc(var(--spacing) * 2);

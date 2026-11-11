@@ -20,7 +20,7 @@ pub fn ScopeButtons(mut selected: Signal<usize>) -> Element {
     rsx! {
         div {
             class: "space-y-2.5",
-            label { class: "block text-xs font-mono text-zinc-500 lowercase", "{selectors.discipline_label}" }
+            label { class: "block text-xs font-mono text-zinc-500 font-medium", "{selectors.discipline_label}" }
             div {
                 class: "flex flex-wrap gap-2 text-xs",
                 for (idx, scope) in selectors.scopes.iter().enumerate() {

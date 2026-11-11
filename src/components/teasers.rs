@@ -30,7 +30,7 @@ pub fn DemonstratorTeaser() -> Element {
                     div {
                         class: "grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center",
                         DemonstratorTextColumn { strings }
-                        DemonstratorVisualColumn {}
+                        DemonstratorVisualColumn { status_badge: strings.status_badge }
                     }
                 }
             }
@@ -50,11 +50,11 @@ fn DemonstratorTextColumn(strings: DemonstratorTeaserStrings) -> Element {
                 "{strings.eyebrow}"
             }
             h2 {
-                class: "text-2xl sm:text-4xl lg:text-5xl font-bold font-sans tracking-tight text-zinc-950 lowercase leading-tight",
+                class: "text-2xl sm:text-4xl lg:text-5xl font-bold font-sans tracking-tight text-zinc-950 leading-tight break-keep",
                 "{strings.title}"
             }
             p {
-                class: "text-sm sm:text-base text-zinc-600 font-normal leading-relaxed max-w-2xl",
+                class: "text-sm sm:text-base text-zinc-600 font-normal leading-relaxed max-w-2xl break-keep",
                 "{strings.subtitle}"
             }
             div {
@@ -81,21 +81,21 @@ fn DemonstratorTextColumn(strings: DemonstratorTeaserStrings) -> Element {
 
 /// Visual column displaying the exploded assembly render with telemetry badges.
 #[component]
-fn DemonstratorVisualColumn() -> Element {
+fn DemonstratorVisualColumn(status_badge: &'static str) -> Element {
     rsx! {
         div {
             class: "lg:col-span-5 flex justify-center items-center relative",
             div {
                 class: "w-full max-w-md bg-white border border-zinc-200/80 rounded-xs p-4 shadow-sm relative overflow-hidden group",
                 img {
-                    src: "assets/showcase/mcad_exploded.png",
-                    alt: "Opus 01 Exploded Assembly Teardown Visual",
+                    src: "/assets/showcase/mcad_exploded.png",
+                    alt: "Case Study 01 Exploded Assembly Visual",
                     class: "w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-md",
                 }
                 div {
                     class: "mt-3 pt-3 border-t border-zinc-100 flex items-center justify-between font-mono text-[10px] text-zinc-400",
                     span { "MJF PA12 // 4-LAYER PCBA" }
-                    span { class: "text-emerald-600 font-bold", "TAILSCALE BENCH PASS" }
+                    span { class: "text-emerald-600 font-bold", "{status_badge}" }
                 }
             }
         }
@@ -123,11 +123,11 @@ pub fn StudioTurnkeyTeaser() -> Element {
                             "{strings.eyebrow}"
                         }
                         h3 {
-                            class: "text-xl sm:text-3xl font-bold font-sans tracking-tight text-zinc-950 lowercase",
+                            class: "text-xl sm:text-3xl font-bold font-sans tracking-tight text-zinc-950 break-keep",
                             "{strings.title}"
                         }
                         p {
-                            class: "text-xs sm:text-sm text-zinc-600 font-normal leading-relaxed",
+                            class: "text-xs sm:text-sm text-zinc-600 font-normal leading-relaxed break-keep",
                             "{strings.subtitle}"
                         }
                     }

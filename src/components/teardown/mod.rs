@@ -37,7 +37,7 @@ pub fn TeardownSection() -> Element {
         .copied()
         .unwrap_or(layers[0]);
 
-    let active_label = if lang() == Language::Ko { "● 활성" } else { "● ACTIVE" };
+    let active_label = if lang() == Language::Ko { "● 선택됨" } else { "● SELECTED" };
 
     rsx! {
         section {
@@ -72,11 +72,11 @@ fn TeardownHeader(section_strings: TeardownSectionStrings) -> Element {
             class: "flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 mb-8 gap-4 reveal-on-scroll",
             div {
                 class: "space-y-1.5",
-                span { class: "text-xs font-mono text-zinc-400 lowercase", "{section_strings.eyebrow}" }
-                h2 { class: "text-2xl sm:text-4xl font-bold font-sans tracking-tight text-zinc-950 lowercase", "{section_strings.title}" }
+                span { class: "text-xs font-mono text-zinc-400 uppercase tracking-wider", "{section_strings.eyebrow}" }
+                h2 { class: "text-2xl sm:text-4xl font-bold font-sans tracking-tight text-zinc-950 break-keep", "{section_strings.title}" }
             }
             div {
-                class: "text-xs font-mono text-zinc-500 lowercase",
+                class: "text-xs sm:text-sm font-sans text-zinc-500 break-keep",
                 "{section_strings.subtitle}"
             }
         }

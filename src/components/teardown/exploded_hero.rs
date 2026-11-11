@@ -25,7 +25,7 @@ pub fn ExplodedHeroBanner() -> Element {
                 div {
                     class: "space-y-1.5",
                     span { class: "text-xs font-mono text-[#E64A19] font-semibold tracking-wider uppercase", "{strings.exploded_eyebrow}" }
-                    h3 { class: "text-2xl sm:text-3xl font-bold font-sans tracking-tight text-zinc-950 lowercase", "{strings.exploded_title}" }
+                    h3 { class: "text-2xl sm:text-3xl font-bold font-sans tracking-tight text-zinc-950 break-keep", "{strings.exploded_title}" }
                 }
                 div {
                     class: "flex flex-wrap items-center gap-2",
@@ -47,7 +47,7 @@ pub fn ExplodedHeroBanner() -> Element {
                 div { class: "absolute bottom-2 left-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
                 div { class: "absolute bottom-2 right-2 text-zinc-300 font-mono text-xs select-none pointer-events-none", "+" }
                 img {
-                    src: "assets/showcase/mcad_exploded.png",
+                    src: "/assets/showcase/mcad_exploded.png",
                     alt: "Win95 Minesweeper Touch Keyring 3D Exploded View",
                     class: "w-full max-h-[500px] object-contain drop-shadow-xl transition-transform duration-700 hover:scale-[1.01]"
                 }

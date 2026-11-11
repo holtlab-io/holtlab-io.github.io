@@ -1,51 +1,43 @@
-# Holt Lab — Official Studio Hub
+# Holt Lab — Hardware, Embedded & IoT Engineering Studio
 
-> **"From Silicon to Enclosure to Screen."**  
-> Hardware, Mechanical (MCAD), Electronics (ECAD) & Firmware Engineering Studio.
+> **"From Circuit & Enclosure to Cloud."**  
+> Mechanical CAD, Custom Electronics (PCBA), Embedded Firmware & IoT Backend Engineering Studio.
 
 [![GitHub Pages Deployment](https://github.com/holtlab-io/holtlab-io.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/holtlab-io/holtlab-io.github.io/actions/workflows/deploy.yml)
 [![Live Website](https://img.shields.io/badge/Live_Site-holtlab--io.github.io-orange)](https://holtlab-io.github.io)
 
 ---
 
-## ⚡ What is Holt Lab?
+## Overview
 
-Holt Lab is an independent hardware & embedded engineering studio specializing in **Zero-Pingpong Turnkey Hardware Development**.  
-We bridge the fatal gap between mechanical enclosures, high-density multi-layer PCBs, and low-latency embedded firmware.
+Holt Lab is an engineering studio specializing in **Unified Hardware, Firmware & IoT System Development**.  
+We bridge mechanical enclosures, custom multi-layer circuit boards, real-time embedded firmware, and connected backend/web services within a single cohesive engineering workflow.
 
-- **Interference-Free Assembly Guarantee**: Co-designed in OpenCascade B-Rep 3D solid kernel and KiCad 9 3D STEP models.
-- **Unified Turnkey Co-Design**: Eliminates cross-vendor ping-pong between PCB fabricators, mechanical molders, and firmware engineers.
-- **Rapid PoC Turnaround**: 3–4 weeks from initial schematic to working physical prototypes in hand.
-- **Government Grant Compliant**: 100% compliant electronic contracts, tax invoices, and milestone acceptance documentation for startup grants (예창패·청창사·초창패).
-
----
-
-## 🛠️ Unified Engineering Stack
-
-| Domain | Tools & Standards | Scope |
-| :--- | :--- | :--- |
-| **ECAD (Electronics)** | KiCad 9, FreeRouting, Precision SMT | 4~6 Layer Controlled Impedance, High-Speed SPI/RF, Battery PCM |
-| **MCAD (Mechanical)** | build123d (OpenCascade B-Rep), Industrial MJF | HP MJF Nylon PA12, SLA Resin, CNC 6061 Aluminum, Interference-Free Fit |
-| **Firmware & Systems** | Rust (`esp-hal`, `embassy`), C/C++, ESP-IDF | 26.67MHz Zero-Copy AHB GDMA, 60Hz UI, 3.3V Low-Power Sleep |
-| **Web Infrastructure** | Dioxus 0.7 WebAssembly, Tailwind CSS | High-Performance Studio Showcase deployed on GitHub Pages |
+- **Mechanical & Enclosure Engineering (MCAD)**: Custom 3D solid modeling verified against vendor component STEP geometry for MJF/SLA 3D printing, CNC machining, and injection molding.
+- **Custom Electronics & Multi-Layer PCBA (ECAD)**: Sensor interfaces, battery charging & hardware protection, wireless RF stages, controlled-impedance routing, and SMT assembly coordination.
+- **Embedded Firmware & Real-Time Control**: Bare-metal and RTOS firmware, DMA peripheral pipelines, ultra-low-power sleep management, and hands-on physical board bring-up.
+- **IoT Server & Web Integration**: Device-to-cloud protocols (MQTT, HTTP, WebSocket, BLE), custom backend API servers, OTA firmware update pipelines, and real-time web dashboards.
 
 ---
 
-## 🚀 Flagship Reference Case: Win95 Minesweeper Touch Keyring
+## Engineering Showcase: Case Study 01
 
-- **Dimensions**: 43.40 × 69.20 × 13.78 mm (MJF Nylon PA12 Enclosure)
-- **Circuitry**: 4-Layer Controlled-Impedance PCB (40.0 × 64.6 mm, Industrial Controlled-Impedance Stackup)
-- **SoC**: ESP32-C3-WROOM-02-N4 (RISC-V 160MHz) + 2.0" ST7789T3 IPS (240×320) + CST816D Capacitive Touch
-- **Power**: TW301525 Li-Po + DW01A/8205A 2.45V Hardware PCM Protection + TP4056
-- **Performance**: 26.67MHz SPI Bus, 0.79ms Tile Update, FallingEdge Hardware IRQ
+**Win95 Minesweeper Touch Keyring** — Compact device prototype demonstrating end-to-end mechanical, electrical, and firmware integration:
+
+- **Dimensions**: 43.40 × 69.20 × 13.78 mm (HP MJF Nylon PA12 Enclosure)
+- **Circuitry**: 4-Layer Controlled-Impedance PCBA (40.0 × 64.6 mm)
+- **Processor & Display**: ESP32-C3-WROOM-02-N4 (160 MHz) + 2.0" ST7789T3 IPS (240×320) + CST816D Capacitive Touch
+- **Power**: TW301525 LiPo + TP4054 Safe Charger + DW01A/8205A 2.45V Hardware Protection
+- **Firmware**: 3-Task Bare-Metal Async Runtime, 26.67 MHz SPI2 AHB GDMA Zero-Copy Pipeline (60Hz)
 
 ---
 
-## 📬 Contact & Inquiries
+## Contact & Inquiries
 
-- **Official Email**: [contact@holtlab.io](mailto:contact@holtlab.io)
-- **YouTube Devlog**: [@holt-lab](https://youtube.com/@holt-lab)
+- **Website**: [https://holtlab-io.github.io](https://holtlab-io.github.io)
+- **Email**: [contact@holtlab.io](mailto:contact@holtlab.io)
+- **YouTube**: [@holt-lab](https://youtube.com/@holt-lab)
 - **GitHub**: [github.com/holtlab-io](https://github.com/holtlab-io)
 
 ---
-*© 2026 Holt Lab. Built with Rust & Dioxus.*
+*© 2026 Holt Lab. All rights reserved.*

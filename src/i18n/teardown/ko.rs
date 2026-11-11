@@ -1,6 +1,6 @@
 //! ## Overview
 //! Korean localized layer specifications and telemetry strings for the anatomical teardown section.
-//! Defines exact specifications, materials, and engineering achievements in Korean.
+//! Defines exact specifications, materials, and engineering details in Korean.
 //!
 //! ## Search Tags
 //! #i18n, #teardown, #korean, #telemetry, #specifications
@@ -13,11 +13,11 @@ use super::{TeardownLayerData, TeardownSectionStrings};
 /// Returns Korean section-level headings and exploded banner strings.
 pub fn get_section_strings() -> TeardownSectionStrings {
     TeardownSectionStrings {
-        eyebrow: "엔지니어링 쇼케이스 // 케이스 스터디 01",
-        title: "win95 minesweeper touch keyring",
-        subtitle: "43mm 포켓 풋프린트에 60Hz 터치 콘솔을 집약한 턴키 엔지니어링 실증.",
-        exploded_eyebrow: "해부학적 구조",
-        exploded_title: "순수 구리 패턴까지 완벽히 분해하다.",
+        eyebrow: "SUBSYSTEM TEARDOWN // 내부 계층 분석",
+        title: "4계층 하드웨어 · 펌웨어 설계 해부",
+        subtitle: "기구 외함, 4층 기판, 실시간 펌웨어, 휴먼 인터페이스 상세 설계 내역.",
+        exploded_eyebrow: "내부 아키텍처 구조",
+        exploded_title: "외함부터 기판과 펌웨어까지, 4계층 내부 설계 구조",
         callouts: [
             ("TOP", "PA12 전면 베젤 및 강화유리"),
             ("MID-1", "2.0\" IPS 및 CST816D 터치"),
@@ -25,9 +25,9 @@ pub fn get_section_strings() -> TeardownSectionStrings {
             ("BASE", "LiPo 배터리, 모터 및 후면 외함"),
         ],
         bottom_strip: [
-            "파라메트릭 CAD // OPENCASCADE B-REP",
-            "23개 결합 검증 // 완벽한 무간섭 설계",
-            "정밀 MJF 나일론 & 산업용 SMT PCBA",
+            "파라메트릭 3D B-REP 솔리드 모델링",
+            "실제 부품 3D STEP 조립 유격 검증",
+            "HP MJF PA12 나일론 & 4층 SMT PCBA",
         ],
     }
 }
@@ -36,18 +36,18 @@ fn layer_0_ko() -> TeardownLayerData {
     TeardownLayerData {
         id: 0,
         number: "01",
-        title: "MCAD 정밀 기구 외함",
-        subtitle: "HP 멀티 젯 퓨전 PA12 나일론 및 정밀 무간섭 기구 결합",
-        image_src: "assets/showcase/mcad_drawing.png",
+        title: "MCAD 기구 외함",
+        subtitle: "HP 멀티 젯 퓨전 PA12 나일론 및 정밀 단차 베젤 구조",
+        image_src: "/assets/showcase/mcad_drawing.png",
         image_alt: "MCAD 기구 설계 도면 및 와이어프레임",
-        verification_badge: "게이트 1 // 3D 무간섭 체적 검증 통과",
+        verification_badge: "3D 조립 유격 및 체결 검증",
         primary_spec: "43.40 × 69.20 × 13.78 mm 외형 규격",
         secondary_spec: "1.20 mm 공칭 벽두께 // 0.85 mm 단차 베젤",
-        bus_or_material: "HP MJF PA12 + SLA 8001 투명 라이트파이프",
-        deep_summary: "build123d OpenCascade B-Rep 커널 기반 파라메트릭 기구 설계. 제조사 COTS 3D STEP 모델과 23개 쌍별 체적 검사를 수행하여 완벽한 무간섭 일체형 설계를 달성했습니다. ±1.50 mm 스트로크의 캡티브 T-슬라이더 스위치 캡 및 스트랩 홀 일체형 설계를 적용했습니다.",
+        bus_or_material: "HP MJF PA12 + SLA 투명 라이트파이프",
+        deep_summary: "파라메트릭 3D 솔리드 모델링을 통해 실제 조달 부품(디스플레이, 배터리, 스위치, 커넥터)의 3D STEP 형상과 체결 유격을 정밀하게 반영했습니다. ±1.50 mm 스트로크를 갖는 이탈 방지형 T-슬라이더 전원 스위치 캡과 일체형 스트랩 러그를 내장했습니다.",
         bullet_1: "코너 단차와 M2 접시머리 볼트 체결 보어가 적용된 일체형 후면 쉘",
-        bullet_2: "디스플레이 밀착형 0.85 mm 단차 릴리프로 유리 단차가 없는 플러시 전면 베젤",
-        bullet_3: "1.50 mm 초슬림 LiPo 배터리 및 1027 코인 햅틱 진동 모터 전용 크래들 내장",
+        bullet_2: "디스플레이 밀착형 0.85 mm 단차 릴리프로 유리 돌출을 억제한 플러시 전면 베젤",
+        bullet_3: "초슬림 LiPo 배터리 및 1027 코인 진동 모터를 안정적으로 고정하는 내부 크래들",
     }
 }
 
@@ -56,17 +56,17 @@ fn layer_1_ko() -> TeardownLayerData {
         id: 1,
         number: "02",
         title: "ECAD 4층 회로 기판",
-        subtitle: "산업용 4층 임피던스 제어 적층 및 499Ω 댐핑 RC 지연 보정",
-        image_src: "assets/showcase/ecad_pcb.png",
+        subtitle: "4층 제어 임피던스 적층 및 고속 신호 무결성 설계",
+        image_src: "/assets/showcase/ecad_pcb.png",
         image_alt: "ECAD 4층 라우팅 PCB 어셈블리",
-        verification_badge: "게이트 2 // 0 ERC · 0 DRC 검증 완료",
-        primary_spec: "40.00 × 64.60 × 1.51 mm 4층 기판",
+        verification_badge: "0 ERC · 0 DRC 회로 검증",
+        primary_spec: "40.00 × 64.60 × 1.00 mm 4층 기판",
         secondary_spec: "50Ω 싱글엔디드 // 90Ω 차동 USB 임피던스",
         bus_or_material: "전면신호 / 내층1 GND / 내층2 +3V3 / 후면신호",
-        deep_summary: "KiCad 9 기반 제어 임피던스 라우팅 설계. 4MB 플래시 ESP32-C3-WROOM-02-N4, TP4054 100mA 안전 LiPo 충전기, ME6211 3.3V 500mA LDO, DW01A/8205A 2.45V 하드웨어 보호 회로를 완벽 탑재했습니다. 모듈 내부 499Ω 댐핑 저항의 RC 신호 지연을 정밀 보정했습니다.",
-        bullet_1: "연속 귀환 경로와 극저노이즈를 보장하는 전면 솔리드 내층 기준 평면 (GND/3V3)",
-        bullet_2: "전용 TVS 정전기 방전 보호가 적용된 하드웨어 USB-C 2.0 풀스피드 D+/D-",
-        bullet_3: "RC 디바운스 및 표면 실장 테스트 패드가 구비된 액티브 로우 리셋 회로",
+        deep_summary: "제어 임피던스 적층 구조를 적용한 4층 맞춤형 기판입니다. 4MB 플래시 내장 ESP32-C3 무선 모듈, TP4054 100mA 리튬폴리머 충전 IC, ME6211 3.3V LDO, DW01A/8205A 2.45V 과방전 하드웨어 보호 회로를 집약했으며, 모듈 내부 499Ω 직렬 저항에 따른 고속 SPI 신호 지연을 분석해 핀 배치를 최적화했습니다.",
+        bullet_1: "연속 신호 귀환 경로와 저노이즈 특성을 확보하는 솔리드 내층 기준 평면 (GND/+3V3)",
+        bullet_2: "전용 TVS 정전기 보호 소자가 적용된 하드웨어 USB-C 2.0 풀스피드 D+/D- 인터페이스",
+        bullet_3: "RC 디바운스 리셋 회로 및 계측·브링업용 표면 실장 테스트 패드 배치",
     }
 }
 
@@ -74,18 +74,18 @@ fn layer_2_ko() -> TeardownLayerData {
     TeardownLayerData {
         id: 2,
         number: "03",
-        title: "고신뢰성 임베디드 펌웨어 엔진",
-        subtitle: "esp-hal 1.2.2 + embassy 3-태스크 비동기 액터 아키텍처",
-        image_src: "assets/showcase/firmware_logic.png",
-        image_alt: "고신뢰성 임베디드 펌웨어 아키텍처 맵",
-        verification_badge: "벤치 // 제로카피 60Hz DMA 검증 통과",
+        title: "임베디드 펌웨어",
+        subtitle: "3-태스크 비동기 멀티태스킹 & AHB GDMA 그래픽 파이프라인",
+        image_src: "/assets/showcase/firmware_logic.png",
+        image_alt: "임베디드 펌웨어 아키텍처 맵",
+        verification_badge: "제로카피 60Hz DMA 구동",
         primary_spec: "AHB GDMA CH0 제로카피 파이프라인",
-        secondary_spec: "0.79 ms 타일 렌더 // 47.04 ms 전체 프레임",
+        secondary_spec: "0.79 ms 타일 갱신 // 47.04 ms 전체 프레임",
         bus_or_material: "하드웨어 SPI2 @ 26.67 MHz (80MHz/3)",
-        deep_summary: "esp-hal 및 embassy 비동기 런타임 기반 순수 #![no_std] 고신뢰성 임베디드 펌웨어. 153.6 KB SRAM 백버퍼를 통해 렌더링 중 힙 할당(0 alloc)을 완전히 배제하여 런타임 패닉과 메모리 충돌을 원천 차단했습니다. 정전식 터치 폴링, Windows 95 상태 머신 전환, 비동기 GDMA 전송을 3개 태스크로 동시 제어합니다.",
-        bullet_1: "제로 힙 할당: 디스플레이 해상도에 1:1 매핑된 153.6 KB SRAM 직접 백버퍼",
-        bullet_2: "0Hz WFI 절전 모드에서 코어를 즉각 기상시키는 하강 에지 터치 인터럽트 (GPIO6)",
-        bullet_3: "20초 무입력 시 LEDC 자동 디밍 및 60초 경과 시 초절전 SLPIN 대기 모드 진입",
+        deep_summary: "동적 힙 메모리 할당(0 alloc)을 배제한 베어메탈 비동기 멀티태스킹 아키텍처로 장시간 구동 시에도 메모리 단편화나 런타임 오류 없이 안정적으로 동작합니다. 153.6 KB 정적 SRAM 프레임버퍼와 AHB GDMA 채널을 직결해 CPU 개입을 최소화하며 터치 입력, 상태 머신, 60Hz 화면 갱신을 동시에 처리합니다.",
+        bullet_1: "제로 힙 할당: 디스플레이 해상도에 1:1 매핑된 153.6 KB 정적 SRAM 백버퍼",
+        bullet_2: "평시 0Hz WFI 대기 상태에서 즉시 코어를 깨우는 GPIO6 하강 에지 터치 인터럽트",
+        bullet_3: "20초 무입력 시 자동 밝기 디밍 및 60초 경과 시 디스플레이 SLPIN 절전 진입",
     }
 }
 
@@ -93,18 +93,18 @@ fn layer_3_ko() -> TeardownLayerData {
     TeardownLayerData {
         id: 3,
         number: "04",
-        title: "휴먼 인터페이스 및 햅틱 시스템",
-        subtitle: "CST816D 정전식 터치 및 3.0V 정전압 공진 피드백",
-        image_src: "assets/showcase/mcad_iso.png",
+        title: "터치 인터페이스 · 햅틱",
+        subtitle: "CST816D 정전식 터치 및 3.0V 정전압 보정 진동 피드백",
+        image_src: "/assets/showcase/mcad_iso.png",
         image_alt: "휴먼 인터페이스 및 햅틱 시스템 아이소메트릭 뷰",
-        verification_badge: "원격측정 // 피드포워드 PWM 제어 통과",
+        verification_badge: "정전압 PWM 햅틱 제어",
         primary_spec: "2.0\" IPS 240×320 + CST816D 터치",
         secondary_spec: "AO3400A NMOS 구동 1027 코인 진동 모터",
         bus_or_material: "I2C 패스트모드 400kHz + 24kHz LEDC 백라이트",
-        deep_summary: "완벽한 단차 없는 글래스 전면과 즉각적인 반응의 정전식 터치, 정교한 기계적 클릭감. 400kHz I2C 패스트모드와 저지터 하강 에지 인터럽트로 터치 좌표를 샘플링합니다. AO3400A NMOS 기반 피드포워드 PWM 듀티 보정을 통해 배터리나 USB 전원 상태에 상관없이 균일한 3.0V RMS 햅틱 클릭을 제공합니다.",
-        bullet_1: "9×9 클램핑 바운드 및 14px 데드존 필터링이 적용된 듀얼 개구부 트랙패드 UI",
-        bullet_2: "피드포워드 PWM 전압 보정: D_max = min(1.0, 3.0 / V_sys)로 모터 과부하 및 편차 방지",
-        bullet_3: "고주파 24kHz LEDC PWM 백라이트 디밍으로 가청 대역 인덕터 코일 노이즈 원천 차단",
+        deep_summary: "단차 없는 전면 글래스와 즉각적인 정전식 터치 응답, 균일한 햅틱 클릭감을 결합했습니다. 400kHz I2C 인터페이스와 저지터 인터럽트로 터치 좌표를 수집하며, 배터리 잔량이나 USB 전원 연결 여부에 관계없이 일정한 3.0V 실효 진동 세기를 유지하도록 피드포워드 PWM 듀티 보정을 적용했습니다.",
+        bullet_1: "소형 화면에서의 오터치를 줄이는 9×9 커서 클램핑 및 14px 데드존 트랙패드 UI",
+        bullet_2: "전원 전압 실시간 계측 기반 피드포워드 PWM 보정으로 모터 과전압 및 클릭감 편차 방지",
+        bullet_3: "가청 주파수 대역을 벗어난 24kHz 고주파 LEDC 백라이트 제어로 코일 노이즈 제거",
     }
 }
 

@@ -17,7 +17,7 @@ use crate::i18n::Language;
 pub fn LayerInspector(layer: TeardownLayer) -> Element {
     let lang = use_context::<Signal<Language>>();
     let is_ko = lang() == Language::Ko;
-    let audit_label = if is_ko { "홀트 랩 감사 통과" } else { "HOLT LAB AUDIT PASS" };
+    let audit_label = if is_ko { "실물 구동 검증 완료" } else { "HARDWARE VERIFIED" };
 
     rsx! {
         div {
@@ -78,11 +78,11 @@ fn LayerDetailsHeader(layer: TeardownLayer) -> Element {
                 "SUBSYSTEM {layer.number}"
             }
             h3 {
-                class: "text-2xl sm:text-3xl font-bold font-sans tracking-tight text-zinc-950 lowercase",
+                class: "text-2xl sm:text-3xl font-bold font-sans tracking-tight text-zinc-950 break-keep",
                 "{layer.title}"
             }
             p {
-                class: "text-xs sm:text-sm font-mono text-zinc-500 lowercase leading-relaxed",
+                class: "text-xs sm:text-sm font-mono text-zinc-500 leading-relaxed break-keep",
                 "{layer.subtitle}"
             }
         }
@@ -99,7 +99,7 @@ fn LayerSpecsGrid(layer: TeardownLayer) -> Element {
 
     rsx! {
         div {
-            class: "grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono lowercase",
+            class: "grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono",
             div {
                 class: "p-3 rounded-xs bg-zinc-50 border border-zinc-200",
                 span { class: "block text-[10px] text-zinc-400 uppercase tracking-wider mb-1", "{spec_title}" }

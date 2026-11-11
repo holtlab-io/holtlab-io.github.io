@@ -22,9 +22,9 @@ pub fn ContactInfo() -> Element {
             class: "lg:col-span-5 space-y-6 font-sans reveal-on-scroll",
             div {
                 class: "space-y-3",
-                span { class: "text-xs font-mono text-zinc-400 lowercase", "{info.eyebrow}" }
+                span { class: "text-xs font-mono text-zinc-400 uppercase tracking-wider", "{info.eyebrow}" }
                 h2 {
-                    class: "text-2xl sm:text-3xl font-bold lowercase text-zinc-950 tracking-tight leading-tight break-keep",
+                    class: "text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight leading-tight break-keep",
                     "{info.title}"
                 }
                 p {
@@ -34,7 +34,7 @@ pub fn ContactInfo() -> Element {
             }
 
             div {
-                class: "space-y-3 text-xs font-mono lowercase pt-2",
+                class: "space-y-3 text-xs font-mono pt-2",
                 div {
                     class: "p-4 rounded-xs border border-zinc-200 bg-white flex items-center justify-between shadow-2xs",
                     div {

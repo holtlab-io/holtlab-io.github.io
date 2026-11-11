@@ -41,11 +41,11 @@ fn CapabilitiesHeader(strings: CapabilitiesStrings) -> Element {
             class: "flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 mb-12 gap-4 reveal-on-scroll",
             div {
                 class: "space-y-1.5",
-                span { class: "text-xs font-mono text-zinc-400 lowercase", "{strings.eyebrow}" }
-                h2 { class: "text-2xl sm:text-4xl font-bold font-sans tracking-tight text-zinc-950 lowercase", "{strings.title}" }
+                span { class: "text-xs font-mono text-zinc-400 uppercase tracking-wider", "{strings.eyebrow}" }
+                h2 { class: "text-2xl sm:text-4xl font-bold font-sans tracking-tight text-zinc-950 break-keep", "{strings.title}" }
             }
             div {
-                class: "text-xs font-mono text-zinc-500 max-w-md lowercase",
+                class: "text-xs sm:text-sm font-sans text-zinc-500 max-w-md break-keep",
                 "{strings.subtitle}"
             }
         }
@@ -77,14 +77,14 @@ fn CapabilityCardItem(card: CapabilityCard) -> Element {
                 div {
                     class: "flex items-center justify-between font-mono text-xs",
                     span { class: "text-lg font-bold text-zinc-950 group-hover:text-[#E64A19] transition-colors", "{card.number}" }
-                    span { class: "text-[10px] text-zinc-400 tracking-wider truncate max-w-[180px]", "{card.tag}" }
+                    span { class: "text-[10px] text-zinc-400 tracking-wider truncate", "{card.tag}" }
                 }
                 h3 {
-                    class: "text-base sm:text-lg font-bold text-zinc-950 font-sans tracking-tight lowercase leading-snug group-hover:text-zinc-800 transition-colors",
+                    class: "text-base sm:text-lg font-bold text-zinc-950 font-sans tracking-tight leading-snug break-keep group-hover:text-zinc-800 transition-colors",
                     "{card.title}"
                 }
                 p {
-                    class: "text-xs sm:text-[13px] text-zinc-600 leading-relaxed font-normal",
+                    class: "text-xs sm:text-[13px] text-zinc-600 leading-relaxed font-normal break-keep",
                     "{card.desc}"
                 }
             }
@@ -92,10 +92,9 @@ fn CapabilityCardItem(card: CapabilityCard) -> Element {
                 class: "border-t border-zinc-200/60 pt-4 flex items-center justify-between text-[11px] font-mono text-zinc-500",
                 div {
                     class: "flex items-center gap-2 truncate",
-                    span { class: "w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 group-hover:scale-125 transition-transform" }
+                    span { class: "w-1.5 h-1.5 rounded-full bg-[#E64A19] shrink-0 group-hover:scale-125 transition-transform" }
                     span { class: "truncate", "{card.metric}" }
                 }
-                span { class: "text-[9px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-1 py-0.5 rounded-2xs shrink-0", "PASS" }
             }
         }
     }

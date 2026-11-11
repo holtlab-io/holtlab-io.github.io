@@ -36,17 +36,17 @@ pub fn Demonstrator() -> Element {
                         class: "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-zinc-200 text-zinc-700 font-mono text-[11px] font-semibold tracking-wider uppercase shadow-2xs",
                         span { class: "w-2 h-2 rounded-full bg-[#E64A19] animate-pulse" }
                         match lang() {
-                            Language::En => "HARDWARE CASE STUDY // OPUS 01",
-                            Language::Ko => "하드웨어 케이스 스터디 // OPUS 01",
+                            Language::En => "ENGINEERING SHOWCASE // CASE STUDY 01",
+                            Language::Ko => "기술 쇼케이스 // 케이스 스터디 01",
                         }
                     }
                     h1 {
-                        class: "text-3xl sm:text-5xl font-bold font-sans tracking-tight text-zinc-950 lowercase leading-tight",
+                        class: "text-3xl sm:text-5xl font-bold font-sans tracking-tight text-zinc-950 leading-tight break-keep",
                         "{strings.console_sub}"
                     }
                     p {
-                        class: "text-sm sm:text-base text-zinc-600 font-normal leading-relaxed max-w-2xl mx-auto",
-                        "{strings.subtitle}"
+                        class: "text-sm sm:text-base text-zinc-600 font-normal leading-relaxed max-w-2xl mx-auto break-keep",
+                        "{strings.case_study_subtitle}"
                     }
                 }
             }

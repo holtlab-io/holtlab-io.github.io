@@ -19,7 +19,7 @@ pub fn Footer() -> Element {
 
     rsx! {
         footer {
-            class: "py-12 bg-white border-t border-zinc-200 text-zinc-500 text-xs font-mono lowercase select-none",
+            class: "py-12 bg-white border-t border-zinc-200 text-zinc-500 text-xs font-mono select-none",
             div {
                 class: "max-w-[1500px] mx-auto px-4 sm:px-8",
                 div {
@@ -28,12 +28,12 @@ pub fn Footer() -> Element {
                     div {
                         class: "flex items-center gap-3",
                         span {
-                            class: "font-bold text-zinc-950 font-sans tracking-tight text-sm",
+                            class: "font-bold text-zinc-950 font-sans tracking-tight text-sm lowercase",
                             "holt lab"
                         }
                         span { class: "text-zinc-300", "//" }
                         span {
-                            class: "text-zinc-500 text-xs",
+                            class: "text-zinc-500 text-xs font-sans",
                             "{footer_strings.studio_desc}"
                         }
                     }
@@ -45,14 +45,14 @@ pub fn Footer() -> Element {
                             href: "https://github.com/holtlab-io",
                             target: "_blank",
                             class: "text-zinc-500 hover:text-zinc-950 transition-colors flex items-center gap-1",
-                            span { "github" }
+                            span { "GitHub" }
                             span { class: "text-[10px] text-zinc-400", "↗" }
                         }
                         a {
                             href: "https://youtube.com/@holt-lab",
                             target: "_blank",
                             class: "text-zinc-500 hover:text-zinc-950 transition-colors flex items-center gap-1",
-                            span { "youtube" }
+                            span { "YouTube" }
                             span { class: "text-[10px] text-zinc-400", "↗" }
                         }
                         a {

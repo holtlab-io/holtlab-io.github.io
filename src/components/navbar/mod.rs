@@ -11,6 +11,7 @@
 //! - [`nav_links`] (`nav_links.rs`): Desktop navigation anchors and matte vermilion inquiry CTA.
 
 use dioxus::prelude::*;
+use crate::i18n::{hero::get_nav_strings, Language};
 use crate::routes::Route;
 
 pub mod brand;
@@ -25,6 +26,8 @@ pub use nav_links::NavLinks;
 #[component]
 pub fn Navbar() -> Element {
     let mut is_mobile_open = use_signal(|| false);
+    let lang = use_context::<Signal<Language>>();
+    let nav_strings = get_nav_strings(lang());
 
     rsx! {
         header {
@@ -41,8 +44,8 @@ pub fn Navbar() -> Element {
                     class: "lg:hidden flex items-center gap-2",
                     Link {
                         to: Route::ContactPage {},
-                        class: "px-2.5 py-1 rounded-xs bg-[#E64A19] text-white font-mono text-[11px] font-semibold tracking-wider",
-                        "inquire"
+                        class: "px-2.5 py-1 rounded-xs bg-[#E64A19] text-white font-mono text-[11px] font-semibold tracking-wider shrink-0",
+                        "{nav_strings.cta_inquire}"
                     }
                     button {
                         r#type: "button",

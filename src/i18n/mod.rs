@@ -32,10 +32,10 @@ pub use teardown::TeardownLayerData;
 /// Supported application localization languages.
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Default)]
 pub enum Language {
-    /// English locale (default for international visitors).
-    #[default]
+    /// English locale (selected automatically for non-Korean browsers or `?lang=en`).
     En,
-    /// Korean locale (default for Korean browser/OS environments).
+    /// Korean locale (default static pre-render and Korean browser locale).
+    #[default]
     Ko,
 }
 
@@ -76,10 +76,15 @@ impl Language {
                     if lang.to_ascii_lowercase().starts_with("ko") {
                         return Language::Ko;
                     }
+                    return Language::En;
                 }
             }
+            return Language::En;
         }
-        Language::En
+        #[cfg(not(target_arch = "wasm32"))]
+        {
+            Language::Ko
+        }
     }
 
     /// Persists the selected language to localStorage and updates URL query parameters.

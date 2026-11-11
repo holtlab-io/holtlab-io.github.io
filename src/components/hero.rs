@@ -115,11 +115,11 @@ fn HeroOverviewVisual(strings: HeroStrings) -> Element {
                         span { class: "animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" }
                         span { class: "relative inline-flex rounded-full h-2 w-2 bg-emerald-500" }
                     }
-                    span { class: "font-semibold text-zinc-800 truncate", "{strings.console_status}" }
+                    span { class: "font-semibold text-zinc-800 truncate", "{strings.hero_preview_status}" }
                 }
                 span {
-                    class: "hidden sm:inline-block text-[10px] text-zinc-400 font-mono tracking-wider",
-                    "OPUS 01 // HARDWARE DEMONSTRATOR"
+                    class: "hidden sm:inline-block text-[10px] text-zinc-400 font-mono tracking-wider shrink-0",
+                    "{strings.hero_preview_tag}"
                 }
             }
             div {
@@ -132,17 +132,17 @@ fn HeroOverviewVisual(strings: HeroStrings) -> Element {
                 div {
                     class: "w-full flex justify-center items-center py-4 min-h-[260px] sm:min-h-[340px]",
                     img {
-                        src: "assets/showcase/mcad_iso_front.png",
-                        alt: "Holt Lab Flagship Demonstrator Showcase Model",
+                        src: "/assets/showcase/mcad_iso_front.png",
+                        alt: "Holt Lab Engineering Case Study Preview",
                         class: "w-full max-h-[360px] object-contain drop-shadow-xl transition-transform duration-500 hover:scale-[1.015]"
                     }
                 }
 
                 div {
                     class: "w-full flex flex-col sm:flex-row items-center justify-between text-[10px] sm:text-[11px] font-mono text-zinc-500 pt-2.5 sm:pt-3 border-t border-zinc-200/80 px-3 sm:px-4 gap-1.5 sm:gap-2 bg-white/80 backdrop-blur-xs text-center sm:text-left",
-                    span { class: "break-keep", "{strings.width_label}" }
-                    span { class: "break-keep font-medium text-zinc-700", "{strings.material_label}" }
-                    span { class: "break-keep text-right", "{strings.height_label}" }
+                    span { class: "break-keep", "{strings.hero_preview_notes[0]}" }
+                    span { class: "break-keep font-medium text-zinc-700", "{strings.hero_preview_notes[1]}" }
+                    span { class: "break-keep text-right", "{strings.hero_preview_notes[2]}" }
                 }
             }
         }

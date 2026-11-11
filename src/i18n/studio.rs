@@ -1,9 +1,9 @@
 //! ## Overview
-//! Localized strings for the studio turnkey value proposition and co-design pipeline.
-//! Contrasts traditional fragmented multi-agency development against Holt Lab's closed-loop execution.
+//! Localized strings for the studio engineering methodology and 4-phase workflow.
+//! Contrasts fragmented multi-agency outsourcing against Holt Lab's cohesive hardware, firmware, and IoT integration.
 //!
 //! ## Search Tags
-//! #i18n, #studio, #turnkey, #pipeline, #co-design
+//! #i18n, #studio, #turnkey, #pipeline, #co-design, #iot
 //!
 //! ## Submodules
 //! None. This module provides atomic studio methodology localization models.
@@ -32,7 +32,7 @@ pub struct ComparisonCardStrings {
 /// Localized single phase step in the turnkey pipeline.
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct PipelinePhaseStrings {
-    /// Step sequence indicator (e.g. 01 // CO-DESIGN LOCK).
+    /// Step sequence indicator.
     pub phase_tag: &'static str,
     /// Phase headline title.
     pub title: &'static str,
@@ -60,22 +60,22 @@ pub struct StudioStrings {
 fn traditional_card(lang: Language) -> ComparisonCardStrings {
     match lang {
         Language::En => ComparisonCardStrings {
-            badge: "TRADITIONAL AGENCY FRAGMENTATION",
-            metric: "6–12 MONTHS SLIPPAGE",
-            heading: "the fragmented multi-agency trap",
-            body: "mechanical teams design shells in a vacuum. electrical agencies route boards without COTS 3D models. firmware contractors receive physical prototypes with swapped pins, strapping bus lockups, and unrouted RC delays. weeks turn into months of finger-pointing and costly PCB respins.",
-            bullet_1: "✕ MCAD / ECAD clearance mismatches discovered after tooling",
-            bullet_2: "✕ Firmware blocked by unexpected internal module resistance",
-            bullet_3: "✕ 3+ PCB revisions required before initial firmware bring-up",
+            badge: "FRAGMENTED MULTI-AGENCY OUTSOURCING",
+            metric: "FREQUENT REDESIGNS & DELAYS",
+            heading: "The Cost of Disconnected Contractors",
+            body: "Mechanical designers model shells without exact PCB component heights. Electronics contractors route boards without firmware pin constraints. Firmware and backend teams receive hardware with connector mismatches and signal bottlenecks — leading to finger-pointing and repeated rework cycles.",
+            bullet_1: "✕ Enclosure, connector, and battery clearance clashes found after fabrication",
+            bullet_2: "✕ Firmware and cloud integration stalled by hardware interface oversights",
+            bullet_3: "✕ Months lost coordinating revisions across three or four separate vendors",
         },
         Language::Ko => ComparisonCardStrings {
-            badge: "기존 분절형 다중 외주 모델",
-            metric: "6~12개월 일정 지연",
-            heading: "다중 외주 업체의 소통 분절과 지연",
-            body: "기구 설계팀은 회로를 고려하지 않고 외함을 그립니다. 회로 설계사는 실제 부품 3D 모델 없이 기판을 배선합니다. 펌웨어 외주사는 핀이 바뀌고 스트래핑 버스가 꼬이고 RC 신호 지연이 고려되지 않은 불량 보드를 전달받습니다. 책임 공방 속에 수개월이 낭비되고 수백만 원의 PCB 재제작 비용이 발생합니다.",
-            bullet_1: "✕ 금형/출력 후 뒤늦게 발견되는 기구·회로 간섭 오류",
-            bullet_2: "✕ 모듈 내부 저항 및 핀 충돌로 펌웨어 브링업 전면 중단",
-            bullet_3: "✕ 첫 펌웨어 동작까지 3회 이상의 PCB 재설계 및 재제작 반복",
+            badge: "기존 분절형 다중 외주 방식",
+            metric: "잦은 재설계 및 일정 지연",
+            heading: "기구·회로·소프트웨어 외주 분리로 인한 병목",
+            body: "기구 설계실은 내부 기판 높이와 커넥터 유격을 모른 채 외함을 설계하고, 회로 외주사는 펌웨어 부트 핀 제약이나 케이스 간섭을 고려하지 않고 기판을 넘깁니다. 시제품 부품을 모아 조립하는 단계에서야 규격 불일치가 드러나 책임 공방과 반복적인 재발주 비용이 발생합니다.",
+            bullet_1: "✕ 외함 출력·가공 후 뒤늦게 발견되는 기판·배터리·커넥터 간섭",
+            bullet_2: "✕ 회로와 펌웨어·서버 간 인터페이스 불일치로 인한 브링업 지연",
+            bullet_3: "✕ 업체 간 커뮤니케이션 비용 증가 및 불필요한 기판 재제작 반복",
         },
     }
 }
@@ -83,22 +83,22 @@ fn traditional_card(lang: Language) -> ComparisonCardStrings {
 fn turnkey_card(lang: Language) -> ComparisonCardStrings {
     match lang {
         Language::En => ComparisonCardStrings {
-            badge: "HOLT LAB UNIFIED TURNKEY",
-            metric: "RESPONSIVE TURNKEY EXECUTION",
-            heading: "unified co-design loop",
-            body: "every millimeter of chassis geometry, copper impedance trace, and real-time clock cycle is engineered within a single unified co-design loop. COTS 3D STEP models are locked before trace freeze. Volumetric collision checks and 0 ERC/DRC verification run deterministically before manufacturing orders.",
-            bullet_1: "✓ Interference-free assembly: OpenCascade B-Rep Gate 1 check",
-            bullet_2: "✓ Firmware-aware ECAD: GPIO strapping & RC delays solved in design",
-            bullet_3: "✓ Physical bench validation: real hardware boots with real-time firmware",
+            badge: "HOLT LAB UNIFIED ENGINEERING",
+            metric: "ALIGNED DESIGN & VALIDATION",
+            heading: "Cohesive Co-Design Through Physical Validation",
+            body: "Mechanical enclosures, multi-layer PCBs, embedded firmware, and optional IoT backend services are architected together from day one. We run 3D component clearance and electrical rule checks before ordering parts, followed by hands-on physical assembly, bench bring-up, and iterative refinement.",
+            bullet_1: "✓ Upfront 3D STEP fit checks prevent major mechanical-electrical clashes",
+            bullet_2: "✓ Firmware pin assignments, power budgets, and RF needs built into ECAD",
+            bullet_3: "✓ Hands-on prototype assembly, hardware bring-up, and system verification",
         },
         Language::Ko => ComparisonCardStrings {
-            badge: "홀트 랩 통합 턴키 솔루션",
-            metric: "실물 프로토타입 책임 완주",
-            heading: "단일 통합 엔지니어링 루프",
-            body: "기구 외함의 정밀 치수부터 회로 배선, 고신뢰성 펌웨어의 클록 사이클까지 기구·회로·펌웨어를 하나의 통합된 엔지니어링 아키텍처로 총괄합니다. 배선 확정 전 부품 3D STEP 모델을 100% 동기화하며, 발주 전 3D 체적 간섭 및 0 ERC/DRC를 사전에 철저히 검증합니다.",
-            bullet_1: "✓ 무간섭 일체형 설계: OpenCascade B-Rep 게이트 1 사전 검증",
-            bullet_2: "✓ 펌웨어 연계 회로: 스트래핑 핀 및 RC 지연을 회로 설계 단에서 해결",
-            bullet_3: "✓ 실물 벤치 검증: 가조립 실사 및 실제 펌웨어 구동까지 직접 확인 후 핸드오버",
+            badge: "HOLT LAB 통합 엔지니어링",
+            metric: "설계 일관성 및 시행착오 최소화",
+            heading: "설계부터 실물 조립·연동까지 이어지는 단일 루프",
+            body: "기구 외함, 전자 회로 기판, 임베디드 펌웨어, 그리고 필요한 경우 IoT 백엔드 서버까지 하나의 아키텍처 안에서 유기적으로 설계합니다. 발주 전 부품 3D 모델 간섭과 회로 규칙을 교차 검증하고, 시제품 수령 후 실제 가조립·계측·보완을 거쳐 검증된 결과물을 전달합니다.",
+            bullet_1: "✓ 3D 부품·외함 사전 정합성 검증으로 치명적인 기구 설계 오류 예방",
+            bullet_2: "✓ 회로 설계 단계부터 펌웨어 핀맵·전력 소모·무선 통신 규격 동시 반영",
+            bullet_3: "✓ 시제품 실물 조립, 보드 브링업 테스트 및 서버 연동 확인 후 인도",
         },
     }
 }
@@ -106,24 +106,24 @@ fn turnkey_card(lang: Language) -> ComparisonCardStrings {
 fn pipeline_phases_en() -> [PipelinePhaseStrings; 4] {
     [
         PipelinePhaseStrings {
-            phase_tag: "01 // CO-DESIGN LOCK",
-            title: "datasheets & 3d contract",
-            desc: "pinouts, power envelopes, and vendor COTS 3D STEP models frozen before drafting lines.",
+            phase_tag: "01 // ARCHITECTURE & BOM LOCK",
+            title: "System Spec & Component Selection",
+            desc: "Define functional goals, power budgets, and connectivity while locking procurable components and verified 3D STEP models.",
         },
         PipelinePhaseStrings {
-            phase_tag: "02 // CAD & 4-LAYER ECAD",
-            title: "interference-free solid modeling",
-            desc: "build123d B-Rep solids paired with KiCad 9 controlled impedance routing and full DRC.",
+            phase_tag: "02 // UNIFIED MCAD & ECAD",
+            title: "Concurrent Enclosure & PCB Design",
+            desc: "Co-design multi-layer PCB layouts and mechanical housings with cross-domain 3D clearance and ERC/DRC verification.",
         },
         PipelinePhaseStrings {
-            phase_tag: "03 // FACTORY DISPATCH",
-            title: "direct line fabrication",
-            desc: "factory-direct precision SMT assembly & industrial MJF PA12 fabrication with live status tracking.",
+            phase_tag: "03 // PROTOTYPE & FIT CHECK",
+            title: "Fabrication & Physical Assembly",
+            desc: "Produce SMT-assembled boards and prototype enclosures to inspect physical fit, tolerances, power rails, and thermal behavior.",
         },
         PipelinePhaseStrings {
-            phase_tag: "04 // REMOTE BENCH BOOT",
-            title: "bench bring-up & validation",
-            desc: "real-time esp-hal runtime, zero-copy DMA graphics, and hands-on bench verification.",
+            phase_tag: "04 // FIRMWARE & IOT INTEGRATION",
+            title: "Board Bring-Up & Cloud Link",
+            desc: "Validate real-time firmware on physical hardware and integrate custom backend APIs, web dashboards, or OTA pipelines as required.",
         },
     ]
 }
@@ -131,24 +131,24 @@ fn pipeline_phases_en() -> [PipelinePhaseStrings; 4] {
 fn pipeline_phases_ko() -> [PipelinePhaseStrings; 4] {
     [
         PipelinePhaseStrings {
-            phase_tag: "01 // CO-DESIGN LOCK",
-            title: "데이터시트 및 3D 스펙 동결",
-            desc: "선 하나 긋기 전 핀아웃, 소비 전력 한도, 부품 COTS 3D STEP 모델을 먼저 확정합니다.",
+            phase_tag: "01 // 요구사항 및 부품 확정",
+            title: "아키텍처 정의 및 핵심 부품 선정",
+            desc: "요구 기능, 목표 크기, 소비 전력, 통신 방식을 정의하고 실제 조달 가능한 부품 데이터시트와 3D 모델을 확정합니다.",
         },
         PipelinePhaseStrings {
-            phase_tag: "02 // CAD & 4-LAYER ECAD",
-            title: "무간섭 일체형 기구 및 회로 설계",
-            desc: "build123d B-Rep 솔리드 모델링과 KiCad 9 제어 임피던스 라우팅 및 0 DRC 검증을 동시 진행합니다.",
+            phase_tag: "02 // 기구 · 회로 통합 설계",
+            title: "기판 레이아웃 및 외함 동시 설계",
+            desc: "다층 회로 기판(PCBA) 배선과 기구 외함 모델링을 병행하며 커넥터 위치, 조립 유격, 전기적 설계 규칙(ERC/DRC)을 교차 검증합니다.",
         },
         PipelinePhaseStrings {
-            phase_tag: "03 // FACTORY DISPATCH",
-            title: "공장 직통 고속 발주",
-            desc: "정밀 SMT 실장 및 산업용 MJF 나일론 시제품을 실시간 생산 추적과 함께 다이렉트 발주합니다.",
+            phase_tag: "03 // 시제품 제작 및 조립 검증",
+            title: "시제품 발주 · 실물 가조립 점검",
+            desc: "SMT 실장 기판과 3D 프린팅·가공 외함을 제작하여 실제 물리적 결합 상태, 조작감, 발열 및 전원 안정성을 면밀히 점검하고 보완합니다.",
         },
         PipelinePhaseStrings {
-            phase_tag: "04 // 임베디드 브링업",
-            title: "실기 벤치 브링업 및 검증",
-            desc: "실물 보드 가조립, Tailscale 원격 벤치 플래싱, 실시간 펌웨어 구동까지 실물을 직접 검증하여 완성도를 확보합니다.",
+            phase_tag: "04 // 펌웨어 · 서버 통합 완주",
+            title: "실기 브링업 및 IoT 서버 연동",
+            desc: "실물 보드 위에서 임베디드 펌웨어를 최적화하고, 프로젝트 범위에 따라 백엔드 API 서버 및 웹 관제 대시보드까지 연동하여 인도합니다.",
         },
     ]
 }
@@ -157,15 +157,15 @@ fn pipeline_phases_ko() -> [PipelinePhaseStrings; 4] {
 pub fn get_studio_strings(lang: Language) -> StudioStrings {
     let (eyebrow, title, subtitle, pipeline) = match lang {
         Language::En => (
-            "studio turnkey model",
-            "why unified turnkey?",
-            "eliminating agency fragmentation // silicon to screen",
+            "Engineering Methodology",
+            "Why Unified Hardware Engineering?",
+            "Eliminating Multi-Vendor Silos // Co-Design to Validated Prototype",
             pipeline_phases_en(),
         ),
         Language::Ko => (
-            "스튜디오 턴키 모델",
-            "왜 통합 턴키인가?",
-            "외주사 간 소통 분절 근절 // 실리콘 칩부터 화면까지",
+            "개발 방식 및 프로세스",
+            "왜 통합 엔지니어링인가?",
+            "외주 간 소통 단절 해소 // 설계 검증부터 실물 시제품 조립·연동까지",
             pipeline_phases_ko(),
         ),
     };

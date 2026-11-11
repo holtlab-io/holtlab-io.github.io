@@ -11,7 +11,7 @@
 use dioxus::prelude::*;
 use crate::i18n::Language;
 
-const JSON_LD_ORGANIZATION: &str = r#"{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://holtlab-io.github.io/#organization","name":"Holt Lab","url":"https://holtlab-io.github.io/","logo":"https://holtlab-io.github.io/assets/branding/avatar.jpg","description":"Hardware, Mechanical & Embedded Engineering Studio specializing in unified turnkey hardware execution.","founder":{"@type":"Person","name":"Wim","url":"https://github.com/imwoo90"},"sameAs":["https://github.com/holtlab-io","https://youtube.com/@holt-lab"]},{"@type":"Product","@id":"https://holtlab-io.github.io/#opus01","name":"OPUS 01 // Win95 Minesweeper Touch Keyring","image":"https://holtlab-io.github.io/assets/showcase/mcad_iso_front.png","description":"Ultra-compact interactive pocket demonstrator integrating ESP32-C3, ST7789T3 2.0\" 60Hz IPS, CST816D capacitive touch, and real-time embedded firmware in a 43.4×69.2×13.78mm HP MJF PA12 enclosure.","brand":{"@type":"Brand","name":"Holt Lab"},"category":"Electronics > Custom Hardware","offers":{"@type":"Offer","availability":"https://schema.org/InStock","priceCurrency":"USD","price":"0","description":"Hardware demonstrator / bespoke engineering showcase"}}]}"#;
+const JSON_LD_ORGANIZATION: &str = r#"{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://holtlab-io.github.io/#organization","name":"Holt Lab","url":"https://holtlab-io.github.io/","logo":"https://holtlab-io.github.io/assets/branding/avatar.jpg","email":"contact@holtlab.io","description":"Hardware, Embedded Firmware & IoT Engineering Studio specializing in unified mechanical, electronics, firmware, and backend system development.","address":{"@type":"PostalAddress","addressLocality":"Seoul","addressCountry":"KR"},"sameAs":["https://github.com/holtlab-io","https://youtube.com/@holt-lab"]},{"@type":"ProfessionalService","@id":"https://holtlab-io.github.io/#service","name":"Holt Lab Engineering Studio","url":"https://holtlab-io.github.io/","image":"https://holtlab-io.github.io/assets/branding/banner.png","email":"contact@holtlab.io","areaServed":"Worldwide","serviceType":["Turnkey Hardware Prototyping","Mechanical Enclosure Design (MCAD)","Custom Circuit & Multi-Layer PCBA Design (ECAD)","Embedded Firmware & RTOS Development","IoT Cloud, API Server & Web Dashboard Integration"]}]}"#;
 
 const SCROLL_REVEAL_ENGINE: &str = r#"
 (function() {
@@ -152,12 +152,12 @@ pub fn HeadMetadata() -> Element {
     });
 
     let title = match lang() {
-        Language::En => "Holt Lab — Hardware & Embedded Engineering Studio",
-        Language::Ko => "Holt Lab — 하드웨어 & 임베디드 엔지니어링 랩",
+        Language::En => "Holt Lab — Hardware, Embedded & IoT Engineering Studio",
+        Language::Ko => "Holt Lab — 하드웨어 · 임베디드 · IoT 엔지니어링 스튜디오",
     };
     let desc = match lang() {
-        Language::En => "Holt Lab — Hardware, Mechanical & Embedded Engineering Studio. Unified Turnkey Hardware & Embedded Execution.",
-        Language::Ko => "Holt Lab — 하드웨어, 기구 및 임베디드 엔지니어링 랩. 통합 턴키 하드웨어 개발.",
+        Language::En => "Unified turnkey hardware R&D covering mechanical enclosures, custom multi-layer PCBA, real-time embedded firmware, and IoT backend server integration.",
+        Language::Ko => "기구 외함 설계, 맞춤형 회로 기판(PCBA), 임베디드 펌웨어부터 IoT 백엔드 서버 및 웹 관제 연동까지 통합 수행하는 하드웨어 엔지니어링 스튜디오.",
     };
 
     rsx! {

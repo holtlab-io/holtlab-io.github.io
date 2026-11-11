@@ -101,7 +101,7 @@ fn main() {
 /// Root application component setting document metadata and rendering the router shell.
 #[component]
 fn App() -> Element {
-    let mut lang = use_context_provider(|| Signal::new(Language::En));
+    let mut lang = use_context_provider(|| Signal::new(Language::Ko));
 
     use_effect(move || {
         let detected = Language::detect();

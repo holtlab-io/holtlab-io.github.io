@@ -31,18 +31,18 @@ pub fn SpecsMatrix() -> Element {
                     class: "flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 mb-8 gap-4 reveal-on-scroll",
                     div {
                         class: "flex flex-col",
-                        span { class: "text-xs font-mono text-zinc-400 lowercase", "{section_strings.eyebrow}" }
-                        h2 { class: "text-2xl sm:text-3xl font-bold lowercase text-zinc-950 tracking-tight mt-1", "{section_strings.title}" }
+                        span { class: "text-xs font-mono text-zinc-400 uppercase tracking-wider", "{section_strings.eyebrow}" }
+                        h2 { class: "text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight mt-1 break-keep", "{section_strings.title}" }
                     }
                     div {
-                        class: "text-xs font-mono text-zinc-500 lowercase",
+                        class: "text-xs font-mono text-zinc-500 break-keep",
                         "{section_strings.subtitle}"
                     }
                 }
 
                 // Swiss 2-Column Key-Value Grid
                 div {
-                    class: "studio-card bg-white border border-zinc-200 rounded-xs shadow-2xs divide-y divide-zinc-200 text-xs sm:text-sm font-mono lowercase overflow-hidden reveal-on-scroll delay-100",
+                    class: "studio-card bg-white border border-zinc-200 rounded-xs shadow-2xs divide-y divide-zinc-200 text-xs sm:text-sm font-mono overflow-hidden reveal-on-scroll delay-100",
                     for row in spec_rows.iter() {
                         div {
                             key: "{row.key}",

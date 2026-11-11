@@ -29,11 +29,11 @@ pub fn StudioTurnkey() -> Element {
                     class: "flex flex-col md:flex-row md:items-end justify-between border-b border-zinc-200 pb-6 mb-12 gap-4",
                     div {
                         class: "space-y-1.5",
-                        span { class: "text-xs font-mono text-zinc-400 lowercase", "{strings.eyebrow}" }
-                        h2 { class: "text-2xl sm:text-4xl font-bold font-sans tracking-tight text-zinc-950 lowercase", "{strings.title}" }
+                        span { class: "text-xs font-mono text-zinc-400 uppercase tracking-wider", "{strings.eyebrow}" }
+                        h2 { class: "text-2xl sm:text-4xl font-bold font-sans tracking-tight text-zinc-950 break-keep", "{strings.title}" }
                     }
                     div {
-                        class: "text-xs font-mono text-zinc-500 lowercase",
+                        class: "text-xs font-mono text-zinc-500 break-keep",
                         "{strings.subtitle}"
                     }
                 }
@@ -60,9 +60,9 @@ fn StudioComparisonGrid(strings: StudioStrings) -> Element {
                     span { class: "text-red-600 font-bold uppercase", "{strings.traditional.badge}" }
                     span { class: "text-zinc-400", "{strings.traditional.metric}" }
                 }
-                h3 { class: "text-lg font-bold text-zinc-950 lowercase font-sans", "{strings.traditional.heading}" }
+                h3 { class: "text-lg font-bold text-zinc-950 font-sans break-keep", "{strings.traditional.heading}" }
                 p {
-                    class: "text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal",
+                    class: "text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal break-keep",
                     "{strings.traditional.body}"
                 }
                 div {
@@ -81,9 +81,9 @@ fn StudioComparisonGrid(strings: StudioStrings) -> Element {
                     span { class: "text-[#E64A19] font-bold uppercase", "{strings.turnkey.badge}" }
                     span { class: "text-emerald-600 font-bold", "{strings.turnkey.metric}" }
                 }
-                h3 { class: "text-lg font-bold text-zinc-950 lowercase font-sans", "{strings.turnkey.heading}" }
+                h3 { class: "text-lg font-bold text-zinc-950 font-sans break-keep", "{strings.turnkey.heading}" }
                 p {
-                    class: "text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal",
+                    class: "text-xs sm:text-sm text-zinc-600 leading-relaxed font-normal break-keep",
                     "{strings.turnkey.body}"
                 }
                 div {
@@ -102,14 +102,14 @@ fn StudioComparisonGrid(strings: StudioStrings) -> Element {
 fn TurnkeyPipelineGrid(strings: StudioStrings) -> Element {
     rsx! {
         div {
-            class: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4 text-xs font-mono lowercase",
+            class: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4 text-xs font-mono",
             for phase in strings.pipeline.iter() {
                 div {
                     key: "{phase.phase_tag}",
                     class: "studio-card p-5 rounded-xs bg-white border border-zinc-200 hover:border-zinc-400 hover:shadow-xs space-y-2 select-none border-t-2 border-t-transparent hover:border-t-[#E64A19] transition-all reveal-on-scroll delay-100",
-                    span { class: "text-[#E64A19] font-bold block", "{phase.phase_tag}" }
-                    h4 { class: "text-sm font-bold text-zinc-950", "{phase.title}" }
-                    p { class: "text-zinc-600 font-sans leading-relaxed text-xs", "{phase.desc}" }
+                    span { class: "text-[#E64A19] font-bold block tracking-wider", "{phase.phase_tag}" }
+                    h4 { class: "text-sm font-bold text-zinc-950 font-sans break-keep", "{phase.title}" }
+                    p { class: "text-zinc-600 font-sans leading-relaxed text-xs break-keep", "{phase.desc}" }
                 }
             }
         }

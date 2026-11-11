@@ -29,7 +29,7 @@ pub fn MobileDrawer(mut is_open: Signal<bool>) -> Element {
 
     rsx! {
         div {
-            class: "lg:hidden bg-white/98 backdrop-blur-md border-b border-zinc-200 px-6 py-6 font-mono text-xs lowercase transition-all animate-fadeIn",
+            class: "lg:hidden bg-white/98 backdrop-blur-md border-b border-zinc-200 px-6 py-6 font-mono text-xs transition-all animate-fadeIn",
             MobileLangToggle { lang }
             MobileNavList { is_open, items: nav_strings.mobile_items }
             MobileDrawerFooter {}
@@ -121,8 +121,8 @@ fn MobileDrawerFooter() -> Element {
     rsx! {
         div {
             class: "mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-[11px] text-zinc-400 font-mono",
-            span { "UNIFIED TURNKEY R&D" }
-            span { class: "text-emerald-600 font-semibold", "PASS" }
+            span { "contact@holtlab.io" }
+            span { class: "text-zinc-500 font-medium", "SEOUL, KR" }
         }
     }
 }

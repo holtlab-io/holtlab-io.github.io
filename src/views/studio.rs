@@ -13,13 +13,22 @@ use crate::components::{
     studio::StudioTurnkey,
     teasers::InquiryCtaBanner,
 };
-use crate::i18n::{studio::get_studio_strings, Language};
+use crate::i18n::Language;
 
 /// Dedicated studio turnkey architecture and methodology page view.
 #[component]
 pub fn StudioPage() -> Element {
     let lang = use_context::<Signal<Language>>();
-    let strings = get_studio_strings(lang());
+    let (hero_title, hero_sub) = match lang() {
+        Language::En => (
+            "Unified Hardware & IoT Development Process",
+            "How we take hardware concepts from system specification and 3D CAD/PCBA design through physical prototype assembly, firmware bring-up, and server integration.",
+        ),
+        Language::Ko => (
+            "통합 하드웨어 · IoT 개발 프로세스",
+            "요구사항 정의와 부품 선정부터 기구·다층 기판 통합 설계, 시제품 실물 조립 점검, 펌웨어 브링업 및 백엔드 서버 연동까지 이어지는 엔지니어링 절차를 소개합니다.",
+        ),
+    };
 
     rsx! {
         div {
@@ -39,12 +48,12 @@ pub fn StudioPage() -> Element {
                         }
                     }
                     h1 {
-                        class: "text-3xl sm:text-5xl font-bold font-sans tracking-tight text-zinc-950 lowercase leading-tight",
-                        "{strings.title}"
+                        class: "text-3xl sm:text-5xl font-bold font-sans tracking-tight text-zinc-950 leading-tight break-keep",
+                        "{hero_title}"
                     }
                     p {
-                        class: "text-sm sm:text-base text-zinc-600 font-normal leading-relaxed max-w-2xl mx-auto",
-                        "{strings.subtitle}"
+                        class: "text-sm sm:text-base text-zinc-600 font-normal leading-relaxed max-w-2xl mx-auto break-keep",
+                        "{hero_sub}"
                     }
                 }
             }

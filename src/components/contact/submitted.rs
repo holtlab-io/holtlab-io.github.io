@@ -84,7 +84,7 @@ fn SubmittedHeader(buffer: ContactBufferStrings) -> Element {
                 span { class: "w-1.5 h-1.5 rounded-full bg-zinc-950" }
                 "{buffer.buffer_badge}"
             }
-            h3 { class: "text-lg font-bold text-zinc-950 lowercase", "{buffer.buffer_title}" }
+            h3 { class: "text-lg font-bold text-zinc-950 font-sans", "{buffer.buffer_title}" }
             p {
                 class: "text-zinc-600 text-xs font-sans leading-relaxed max-w-md mx-auto",
                 "{buffer.buffer_desc}"

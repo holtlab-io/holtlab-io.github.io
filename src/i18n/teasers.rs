@@ -21,6 +21,8 @@ pub struct DemonstratorTeaserStrings {
     pub subtitle: &'static str,
     /// 4 key engineering highlight badges.
     pub pills: [&'static str; 4],
+    /// Visual card status badge.
+    pub status_badge: &'static str,
     /// Call-to-action button label.
     pub cta: &'static str,
 }
@@ -54,7 +56,7 @@ pub struct InquiryBannerStrings {
 /// Complete bundle of home page teaser strings.
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct HomeTeaserBundle {
-    /// Flagship demonstrator teaser.
+    /// Showcase case study teaser.
     pub demonstrator: DemonstratorTeaserStrings,
     /// Turnkey methodology teaser.
     pub studio: StudioTeaserStrings,
@@ -65,28 +67,29 @@ pub struct HomeTeaserBundle {
 fn teasers_en() -> HomeTeaserBundle {
     HomeTeaserBundle {
         demonstrator: DemonstratorTeaserStrings {
-            eyebrow: "ENGINEERING SHOWCASE // OPUS 01",
+            eyebrow: "ENGINEERING SHOWCASE // CASE STUDY 01",
             title: "Win95 Minesweeper Touch Keyring",
-            subtitle: "Compact interactive showcase prototype integrating ESP32-C3, ST7789T3 2.0\" 60Hz IPS, CST816D capacitive touch, and bare-metal firmware into a 43.4×69.2×13.78mm HP MJF PA12 enclosure.",
+            subtitle: "A compact device case study integrating an ESP32-C3 wireless MCU, 2.0\" IPS display, capacitive touch panel, and LiPo power protection into a 43.4×69.2×13.78mm MJF PA12 enclosure — verified through physical assembly and firmware bring-up.",
             pills: [
                 "HP MJF PA12 Enclosure",
                 "4-Layer Controlled-Z PCBA",
-                "AHB GDMA 60Hz Zero-Copy",
-                "CST816D Capacitive Touch",
+                "60Hz DMA Display Pipeline",
+                "Capacitive Touch & Sleep",
             ],
-            cta: "explore case study →",
+            status_badge: "ASSEMBLED & VERIFIED",
+            cta: "Explore Case Study →",
         },
         studio: StudioTeaserStrings {
-            eyebrow: "WHY UNIFIED TURNKEY?",
-            title: "Unified hardware engineering without agency fragmentation.",
-            subtitle: "Mechanical enclosures, custom circuit boards, and embedded firmware engineered concurrently under one roof to eliminate component mismatches and costly redesign cycles.",
-            cta: "explore studio methodology →",
+            eyebrow: "WHY UNIFIED ENGINEERING?",
+            title: "Hardware, firmware, and cloud engineered without vendor silos.",
+            subtitle: "Splitting enclosures, PCBs, firmware, and backend servers across separate contractors causes interface mismatches and costly rework. We align mechanical fit, circuit design, and software protocols from day one through hands-on prototype validation.",
+            cta: "Explore Engineering Process →",
         },
         inquiry: InquiryBannerStrings {
-            eyebrow: "DIRECT ARCHITECT DISPATCH",
-            title: "Ready to engineer physical hardware?",
-            subtitle: "Submit your project requirements, target schedule, and budget range for rapid feasibility assessment and architectural review within 24 hours.",
-            cta: "submit project brief →",
+            eyebrow: "TECHNICAL CONSULTATION",
+            title: "Ready to build your custom hardware or IoT product?",
+            subtitle: "Share your concept, required scope (turnkey prototype, enclosure, PCBA, firmware, or IoT server integration), and target schedule for a direct engineering feasibility review within 24 hours.",
+            cta: "Start Project Inquiry →",
         },
     }
 }
@@ -94,28 +97,29 @@ fn teasers_en() -> HomeTeaserBundle {
 fn teasers_ko() -> HomeTeaserBundle {
     HomeTeaserBundle {
         demonstrator: DemonstratorTeaserStrings {
-            eyebrow: "기술 실증 프로젝트 // OPUS 01",
+            eyebrow: "기술 쇼케이스 // CASE STUDY 01",
             title: "Win95 마인스위퍼 터치 키링",
-            subtitle: "ESP32-C3, ST7789T3 2.0인치 60Hz IPS, CST816D 정전식 터치, 초저지연 임베디드 펌웨어를 43.4×69.2×13.78mm HP MJF PA12 외함에 집약한 턴키 엔지니어링 쇼케이스 프로토타입.",
+            subtitle: "ESP32-C3 무선 MCU, 2.0인치 IPS 디스플레이, 정전식 터치 패널, 리튬폴리머 충전·보호 회로를 43.4×69.2×13.78mm MJF 나일론 외함에 통합 설계하고 실물 조립과 펌웨어 브링업까지 완료한 소형 디바이스 제작 사례입니다.",
             pills: [
-                "MJF PA12 정밀 외함",
-                "4층 제어 임피던스 회로",
-                "AHB GDMA 60Hz 전송",
-                "CST816D 정전식 터치",
+                "MJF PA12 기구 외함",
+                "4층 제어 임피던스 기판",
+                "60Hz DMA 그래픽 처리",
+                "정전식 터치 & 저전력 슬립",
             ],
-            cta: "프로젝트 상세 분석 →",
+            status_badge: "실물 조립 · 구동 검증",
+            cta: "케이스 스터디 자세히 보기 →",
         },
         studio: StudioTeaserStrings {
-            eyebrow: "왜 통합 턴키인가?",
-            title: "기구·회로·소프트웨어 분절 없는 단일 통합 설계.",
-            subtitle: "기구 외함부터 전자 회로, 임베디드 펌웨어까지 한곳에서 유기적으로 설계·검증하여, 부품 간섭과 재제작 시행착오 없이 실물 동작까지 완주합니다.",
-            cta: "턴키 모델 보기 →",
+            eyebrow: "왜 통합 개발인가?",
+            title: "기구·회로·펌웨어·서버의 분절 없는 통합 엔지니어링",
+            subtitle: "기구, 기판, 펌웨어, 서버를 각기 다른 외주사에 맡기며 발생하는 설계 불일치와 책임 공방을 줄입니다. 설계 초기부터 부품 규격과 통신 구조를 함께 맞추고, 실물 시제품 조립·검증을 거쳐 완성도를 높입니다.",
+            cta: "개발 프로세스 보기 →",
         },
         inquiry: InquiryBannerStrings {
-            eyebrow: "리드 엔지니어 직통 의뢰",
-            title: "실물로 작동하는 하드웨어를 제작할 준비가 되셨습니까?",
-            subtitle: "프로젝트 요구 사양, 목표 일정, 예산 범위를 전달해주시면 24시간 이내에 아키텍처 검토 의견을 회신합니다.",
-            cta: "의뢰서 작성하기 →",
+            eyebrow: "프로젝트 기술 상담",
+            title: "아이디어를 실물 하드웨어로 구현할 준비가 되셨나요?",
+            subtitle: "제품 컨셉, 필요한 개발 범위(턴키 시제품·기구·회로·펌웨어·IoT 서버), 희망 일정을 남겨주시면 담당 엔지니어가 기술 검토 후 영업일 기준 24시간 이내에 회신드립니다.",
+            cta: "프로젝트 문의하기 →",
         },
     }
 }
