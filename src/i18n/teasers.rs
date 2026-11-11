@@ -108,7 +108,7 @@ fn teasers_ko() -> HomeTeaserBundle {
         studio: StudioTeaserStrings {
             eyebrow: "왜 통합 턴키인가?",
             title: "외주 핑퐁 없는 단일 결정론적 코디자인 루프.",
-            subtitle: "기구 CAD, 4층 임피던스 제어 회로, 임베디드 펌웨어를 단일 팀에서 동시 설계하여 첫 번째 시제품에서 즉시 구동을 검증합니다.",
+            subtitle: "기구 CAD, 4층 임피던스 제어 회로, 임베디드 펌웨어를 긴밀하게 통합 설계하여, 외주사 간 불일치와 시행착오를 최소화하고 실물 동작까지 완주합니다.",
             cta: "턴키 모델 보기 →",
         },
         inquiry: InquiryBannerStrings {

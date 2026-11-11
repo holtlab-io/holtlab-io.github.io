@@ -15,7 +15,8 @@ FORBIDDEN_TERMS = [
     "JLCPCB", "JLC3DP", "JLC04161H", "정밀공차", "공차",
     "Boutique", "boutique", "부티크", "BOUTIQUE",
     "1인", "1-person", "1-PERSON", "single architect", "단 한 명",
-    "단 한명", "단일 리드", "1인 턴키", "1 person", "one-person", "single-threaded"
+    "단 한명", "단일 리드", "1인 턴키", "1 person", "one-person", "single-threaded",
+    "단 1회", "단1회", "단번에", "ZERO-REWORK", "리워크 제로"
 ]
 
 async def assert_no_forbidden_terms(page, context_label: str):

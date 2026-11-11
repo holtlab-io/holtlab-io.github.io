@@ -103,7 +103,7 @@ fn rows_part2_en() -> [SpecRowData; 5] {
         SpecRowData {
             key: "factory dispatch",
             val: "Factory-Direct SMT Assembly & Industrial MJF Prototyping",
-            note: "zero-rework bring-up over remote Tailscale bench environment",
+            note: "hands-on validation over remote Tailscale bench environment",
         },
     ]
 }
@@ -163,7 +163,7 @@ fn rows_part2_ko() -> [SpecRowData; 5] {
         SpecRowData {
             key: "공장 직통 생산 및 배포",
             val: "정밀 SMT 실장 및 공장 직통 양산 시제품 납품",
-            note: "Tailscale 원격 벤치 환경을 통한 리워크 없는 단번에 구동 성공",
+            note: "Tailscale 원격 벤치 환경을 통한 실물 조립 및 펌웨어 브링업 실증",
         },
     ]
 }
