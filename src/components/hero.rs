@@ -23,10 +23,7 @@ pub fn HeroDemonstrator() -> Element {
             id: "hero",
             class: "relative bg-[#FAFAFA] pt-12 sm:pt-20 pb-16 sm:pb-24 border-b border-zinc-200 overflow-hidden font-sans scroll-mt-20",
             div {
-                class: "absolute inset-0 bg-tech-grid opacity-60 pointer-events-none"
-            }
-            div {
-                class: "absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(230,74,25,0.08),rgba(255,255,255,0))] pointer-events-none"
+                class: "absolute inset-0 bg-tech-grid opacity-40 pointer-events-none"
             }
             div {
                 class: "max-w-[1400px] mx-auto px-4 sm:px-8 flex flex-col items-center text-center relative z-10",
