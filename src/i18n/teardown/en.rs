@@ -13,7 +13,7 @@ use super::{TeardownLayerData, TeardownSectionStrings};
 /// Returns English section-level headings and exploded banner strings.
 pub fn get_section_strings() -> TeardownSectionStrings {
     TeardownSectionStrings {
-        eyebrow: "FLAGSHIP DEMONSTRATOR // CASE STUDY 01",
+        eyebrow: "ENGINEERING SHOWCASE // CASE STUDY 01",
         title: "win95 minesweeper touch keyring",
         subtitle: "How we engineered a 60Hz touch game console into a 43mm pocket footprint.",
         exploded_eyebrow: "ANATOMICAL ARCHITECTURE",

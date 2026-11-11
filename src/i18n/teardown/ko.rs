@@ -13,7 +13,7 @@ use super::{TeardownLayerData, TeardownSectionStrings};
 /// Returns Korean section-level headings and exploded banner strings.
 pub fn get_section_strings() -> TeardownSectionStrings {
     TeardownSectionStrings {
-        eyebrow: "플래그십 실증 사례 // 케이스 스터디 01",
+        eyebrow: "엔지니어링 쇼케이스 // 케이스 스터디 01",
         title: "win95 minesweeper touch keyring",
         subtitle: "43mm 포켓 풋프린트에 60Hz 터치 콘솔을 집약한 턴키 엔지니어링 실증.",
         exploded_eyebrow: "해부학적 구조",

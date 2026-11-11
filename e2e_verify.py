@@ -16,7 +16,8 @@ FORBIDDEN_TERMS = [
     "Boutique", "boutique", "부티크", "BOUTIQUE",
     "1인", "1-person", "1-PERSON", "single architect", "단 한 명",
     "단 한명", "단일 리드", "1인 턴키", "1 person", "one-person", "single-threaded",
-    "단 1회", "단1회", "단번에", "ZERO-REWORK", "리워크 제로"
+    "단 1회", "단1회", "단번에", "ZERO-REWORK", "리워크 제로",
+    "플래그십", "실증 머신", "실증머신"
 ]
 
 async def assert_no_forbidden_terms(page, context_label: str):
@@ -157,7 +158,7 @@ async def run_e2e():
             assert await page.locator("#capabilities").get_by_text("DFM & Rapid Bench Verification").is_visible()
 
             # Verify Demonstrator Teaser Card on Home
-            assert await page.locator("section:has-text('FLAGSHIP DEMONSTRATOR // OPUS 01')").is_visible()
+            assert await page.locator("section:has-text('ENGINEERING SHOWCASE // OPUS 01')").is_visible()
             assert await page.locator("section:has-text('Win95 Minesweeper Touch Keyring')").is_visible()
 
             # Verify Studio Turnkey Teaser on Home
@@ -182,7 +183,7 @@ async def run_e2e():
             assert page.url.endswith("/demonstrator"), f"Expected /demonstrator URL, got {page.url}"
 
             # Verify Demonstrator Hero
-            assert await page.locator("#case-study-hero").get_by_text("FLAGSHIP DEMONSTRATOR").first.is_visible()
+            assert await page.locator("#case-study-hero").get_by_text("ENGINEERING SHOWCASE").first.is_visible()
 
             # Verify Interactive 4-View CAD Inspection Workbench
             assert await page.locator("text=SYSTEM ARCHITECTURE: UNIFIED CO-DESIGN // TAILSCALE BENCH PASS").first.is_visible()
@@ -373,7 +374,7 @@ async def run_e2e():
             mobile_kr_btn = mobile_page.locator("header button:has-text('KR')").last
             await mobile_kr_btn.click()
             await mobile_page.wait_for_timeout(300)
-            assert await mobile_page.locator("header a[href='/demonstrator']").get_by_text("실증 머신").last.is_visible()
+            assert await mobile_page.locator("header a[href='/demonstrator']").get_by_text("쇼케이스").last.is_visible()
             print("✓ Mobile 375px: Hamburger drawer multi-page links and language switch verified.")
 
             # Click Demonstrator link in mobile drawer to test navigation

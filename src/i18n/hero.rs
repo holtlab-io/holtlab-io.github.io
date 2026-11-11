@@ -82,7 +82,7 @@ fn hero_en() -> HeroStrings {
         cta_casestudy: "explore case study",
         cta_inquire: "inquire project",
         console_status: "SYSTEM ARCHITECTURE: UNIFIED CO-DESIGN // TAILSCALE BENCH PASS",
-        console_sub: "FLAGSHIP DEMONSTRATOR // OPUS 01 TOUCH GAMING MACHINE",
+        console_sub: "ENGINEERING SHOWCASE // OPUS 01 TOUCH KEYRING",
         console_modes: [
             ("iso", "01 // 3D ISO", "PERSPECTIVE: 3D PROJECTION // PARAMETRIC B-REP", "assets/showcase/mcad_iso.png"),
             ("front", "02 // FRONT BEZEL", "ELEVATION: FRONT CHASSIS // FLUSH 0.85mm BEZEL", "assets/showcase/mcad_front.png"),
@@ -109,7 +109,7 @@ fn hero_ko() -> HeroStrings {
         cta_casestudy: "실증 사례 보기",
         cta_inquire: "턴키 의뢰하기",
         console_status: "시스템 아키텍처: 통합 코디자인 // 원격 벤치 검증 통과",
-        console_sub: "플래그십 실증 머신 // OPUS 01 터치 게임 콘솔",
+        console_sub: "기술 쇼케이스 // OPUS 01 터치 키링",
         console_modes: [
             ("iso", "01 // 3D 아이소", "투영 모드: 3D 입체 투시 // 파라메트릭 B-Rep 커널", "assets/showcase/mcad_iso.png"),
             ("front", "02 // 전면 베젤", "투영 모드: 전면 외함 // 0.85mm 플러시 단차 베젤", "assets/showcase/mcad_front.png"),
@@ -142,7 +142,7 @@ pub fn get_nav_strings(lang: Language) -> NavStrings {
             ],
             mobile_items: [
                 ("/", "home", "studio overview & capabilities"),
-                ("/demonstrator", "demonstrator", "flagship hardware demonstrator"),
+                ("/demonstrator", "demonstrator", "hardware engineering showcase"),
                 ("/studio", "studio", "unified turnkey model"),
                 ("/contact", "inquire", "direct architect dispatch"),
             ],
@@ -153,13 +153,13 @@ pub fn get_nav_strings(lang: Language) -> NavStrings {
             cta_inquire: "의뢰하기",
             nav_items: [
                 ("/", "홈", "01"),
-                ("/demonstrator", "실증 머신", "02"),
+                ("/demonstrator", "쇼케이스", "02"),
                 ("/studio", "턴키 모델", "03"),
                 ("/contact", "의뢰하기", "04"),
             ],
             mobile_items: [
                 ("/", "홈", "스튜디오 개요 및 4대 역량"),
-                ("/demonstrator", "실증 머신", "플래그십 하드웨어 실증 머신"),
+                ("/demonstrator", "쇼케이스", "하드웨어 엔지니어링 쇼케이스"),
                 ("/studio", "턴키 모델", "통합 턴키 코디자인 모델"),
                 ("/contact", "의뢰하기", "리드 아키텍트 직통 의뢰"),
             ],

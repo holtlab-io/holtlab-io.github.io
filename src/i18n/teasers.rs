@@ -65,16 +65,16 @@ pub struct HomeTeaserBundle {
 fn teasers_en() -> HomeTeaserBundle {
     HomeTeaserBundle {
         demonstrator: DemonstratorTeaserStrings {
-            eyebrow: "FLAGSHIP DEMONSTRATOR // OPUS 01",
+            eyebrow: "ENGINEERING SHOWCASE // OPUS 01",
             title: "Win95 Minesweeper Touch Keyring",
-            subtitle: "Ultra-compact interactive pocket demonstrator integrating ESP32-C3, ST7789T3 2.0\" 60Hz IPS, CST816D capacitive touch, and real-time embedded firmware in a 43.4×69.2×13.78mm HP MJF PA12 enclosure.",
+            subtitle: "Compact interactive showcase prototype integrating ESP32-C3, ST7789T3 2.0\" 60Hz IPS, CST816D capacitive touch, and bare-metal firmware into a 43.4×69.2×13.78mm HP MJF PA12 enclosure.",
             pills: [
                 "HP MJF PA12 Enclosure",
                 "4-Layer Controlled-Z PCBA",
                 "AHB GDMA 60Hz Zero-Copy",
                 "CST816D Capacitive Touch",
             ],
-            cta: "inspect demonstrator →",
+            cta: "explore case study →",
         },
         studio: StudioTeaserStrings {
             eyebrow: "WHY UNIFIED TURNKEY?",
@@ -94,16 +94,16 @@ fn teasers_en() -> HomeTeaserBundle {
 fn teasers_ko() -> HomeTeaserBundle {
     HomeTeaserBundle {
         demonstrator: DemonstratorTeaserStrings {
-            eyebrow: "플래그십 실증 머신 // OPUS 01",
+            eyebrow: "기술 실증 프로젝트 // OPUS 01",
             title: "Win95 마인스위퍼 터치 키링",
-            subtitle: "ESP32-C3, ST7789T3 2.0인치 60Hz IPS, CST816D 정전식 터치, 초저지연 임베디드 펌웨어를 43.4×69.2×13.78mm HP MJF PA12 외함에 집약한 초소형 실증 머신.",
+            subtitle: "ESP32-C3, ST7789T3 2.0인치 60Hz IPS, CST816D 정전식 터치, 초저지연 임베디드 펌웨어를 43.4×69.2×13.78mm HP MJF PA12 외함에 집약한 턴키 엔지니어링 쇼케이스 프로토타입.",
             pills: [
                 "MJF PA12 정밀 외함",
                 "4층 제어 임피던스 회로",
                 "AHB GDMA 60Hz 전송",
                 "CST816D 정전식 터치",
             ],
-            cta: "실증 머신 상세 분석 →",
+            cta: "프로젝트 상세 분석 →",
         },
         studio: StudioTeaserStrings {
             eyebrow: "왜 통합 턴키인가?",

@@ -37,7 +37,7 @@ pub fn Demonstrator() -> Element {
                         span { class: "w-2 h-2 rounded-full bg-[#E64A19] animate-pulse" }
                         match lang() {
                             Language::En => "HARDWARE CASE STUDY // OPUS 01",
-                            Language::Ko => "하드웨어 개발 실증기 // OPUS 01",
+                            Language::Ko => "하드웨어 케이스 스터디 // OPUS 01",
                         }
                     }
                     h1 {
