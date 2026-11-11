@@ -70,8 +70,8 @@ fn cap_en_03_04() -> [CapabilityCard; 2] {
             number: "04",
             tag: "CONNECTED IOT · BACKEND & WEB",
             title: "IoT Backend Server & Web Integration",
-            desc: "End-to-end connectivity from device to cloud — custom backend API servers, MQTT/HTTP/WebSocket telemetry pipelines, device provisioning, OTA firmware updates, and responsive web dashboards for real-time monitoring and control.",
-            metric: "Custom API Server · Web Dashboard · OTA",
+            desc: "End-to-end connectivity across PC and cloud — custom backend API servers, MQTT/HTTP/WebSocket/WebSerial telemetry pipelines, device provisioning, OTA firmware updates, and responsive web dashboards for real-time monitoring and control.",
+            metric: "API Server · Web & WebSerial Console · OTA",
         },
     ]
 }
@@ -108,8 +108,8 @@ fn cap_ko_03_04() -> [CapabilityCard; 2] {
             number: "04",
             tag: "IOT · 백엔드 & 웹 관제",
             title: "IoT 백엔드 서버 구축 및 클라우드·웹 연동",
-            desc: "단독 동작 기기를 넘어 서버 연동이 필요한 제품을 위해 디바이스 통신 프로토콜(MQTT·HTTP·WebSocket·BLE), 맞춤형 백엔드 API 서버 및 데이터베이스 구축, 실시간 기기 상태 관제 웹 대시보드, 원격 펌웨어 업데이트(OTA) 파이프라인까지 통합 구축합니다.",
-            metric: "맞춤형 API 서버 · 관제 웹 · OTA",
+            desc: "단독 동작 기기를 넘어 PC 및 서버 연동이 필요한 제품을 위해 디바이스 통신 프로토콜(MQTT·HTTP·WebSocket·BLE·WebSerial), 맞춤형 백엔드 API 서버 및 데이터베이스 구축, 실시간 기기 상태 관제 웹 대시보드, 원격 펌웨어 업데이트(OTA) 파이프라인까지 통합 구축합니다.",
+            metric: "맞춤형 API 서버 · WebSerial / 관제 웹 · OTA",
         },
     ]
 }
