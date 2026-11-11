@@ -124,7 +124,7 @@ fn DemonstratorVisualColumn(lang: Language, status_badge: &'static str) -> Eleme
             }
             div {
                 class: "px-3.5 py-2.5 rounded-xs bg-zinc-950/90 border border-zinc-800 flex items-center justify-between font-mono text-[11px]",
-                span { class: "text-zinc-400", "MJF PA12 // 4-LAYER SMT PCBA" }
+                span { class: "text-zinc-400", "MJF PA12 · 4-LAYER SMT PCBA" }
                 span { class: "text-emerald-400 font-semibold", "{status_badge}" }
             }
         }

@@ -40,8 +40,8 @@ pub fn ContactPage() -> Element {
                         class: "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-zinc-200 text-zinc-700 font-mono text-[11px] font-semibold tracking-wider uppercase shadow-2xs",
                         span { class: "w-2 h-2 rounded-full bg-[#E64A19] animate-pulse" }
                         match lang() {
-                            Language::En => "CLIENT RFQ INTAKE // CONSULTATION",
-                            Language::Ko => "프로젝트 문의 // 기술 상담",
+                            Language::En => "CLIENT RFQ INTAKE · CONSULTATION",
+                            Language::Ko => "프로젝트 문의 · 기술 상담",
                         }
                     }
                     h1 {

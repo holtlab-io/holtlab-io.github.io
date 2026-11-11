@@ -29,6 +29,8 @@ FORBIDDEN_TERMS = [
 async def assert_no_forbidden_terms(page, context_label: str):
     body_text = await page.inner_text("body")
     dom_html = await page.content()
+    assert "//" not in body_text, f"Double-slash '//' found in visible body text on {context_label}"
+    assert "avatar.jpg" not in dom_html, f"Legacy avatar.jpg found in DOM on {context_label}"
     for term in FORBIDDEN_TERMS:
         assert term not in body_text, f"Forbidden term '{term}' found in {context_label} body text"
         assert term not in dom_html, f"Forbidden term '{term}' found in {context_label} DOM HTML"
@@ -111,6 +113,8 @@ async def run_e2e():
     assert "background-color: #FAFAFA" in index_html, "anti-FOUC background style missing in index.html"
     assert "attachScrollReveals" in index_html, "Scroll reveal observer engine missing in index.html"
     assert "imwoo90" not in index_html, "Personal GitHub handle leaked in index.html"
+    assert "avatar.jpg" not in index_html, "Legacy avatar.jpg leaked in index.html"
+    assert "/assets/branding/favicon.svg" in index_html, "Unified geometric favicon.svg missing in index.html"
     assert "회로와 기구 외함부터 서버 연동까지" in index_html, "SSG index.html should pre-render Korean default"
     print("✓ Anti-FOUC preloads, identity isolation, and Korean SSG pre-render verified in index.html.")
 
@@ -186,12 +190,12 @@ async def run_e2e():
                 f"Hero title mismatch: {hero_title}"
             )
 
-            pill_texts = await page.locator("#hero").locator("span:has-text('01 //'), span:has-text('02 //'), span:has-text('03 //'), span:has-text('04 //')").all_inner_texts()
+            pill_texts = await page.locator("#hero").locator("span:has-text('01 ·'), span:has-text('02 ·'), span:has-text('03 ·'), span:has-text('04 ·')").all_inner_texts()
             expected_pills = [
-                "01 // Mechanical",
-                "02 // Custom Circuit",
-                "03 // Embedded Firmware",
-                "04 // IoT Server",
+                "01 · Mechanical",
+                "02 · Custom Circuit",
+                "03 · Embedded Firmware",
+                "04 · IoT Server",
             ]
             for exp in expected_pills:
                 assert any(exp in pt for pt in pill_texts), f"Pill {exp} missing in {pill_texts}"
@@ -205,7 +209,7 @@ async def run_e2e():
             assert await page.locator("#capabilities").get_by_text("IoT Backend Server & Web Integration").is_visible()
 
             # Verify Showcase Teaser, Studio Teaser, Real Hardware Photos, and Inquiry CTA Banner
-            assert await page.locator("section:has-text('ENGINEERING SHOWCASE // CASE STUDY 01')").is_visible()
+            assert await page.locator("section:has-text('ENGINEERING SHOWCASE · CASE STUDY 01')").is_visible()
             assert await page.locator("section:has-text('Win95 Minesweeper Touch Keyring')").is_visible()
             assert await page.locator("section:has-text('ASSEMBLED & VERIFIED')").is_visible()
             assert await page.locator("img[src='/assets/showcase/real_front_on.jpg']").first.is_visible()
@@ -229,18 +233,18 @@ async def run_e2e():
             await page.wait_for_timeout(300)
             assert page.url.endswith("/demonstrator"), f"Expected /demonstrator URL, got {page.url}"
 
-            assert await page.locator("#case-study-hero").get_by_text("ENGINEERING SHOWCASE // CASE STUDY 01").first.is_visible()
+            assert await page.locator("#case-study-hero").get_by_text("ENGINEERING SHOWCASE · CASE STUDY 01").first.is_visible()
             assert await page.locator("text=ARCHITECTURE STATUS: 3D FIT CHECK & PHYSICAL BRING-UP VERIFIED").first.is_visible()
-            await page.locator("button:has-text('01 // 3D ISO')").click()
+            await page.locator("button:has-text('01 · 3D ISO')").click()
             await page.wait_for_timeout(200)
             assert await page.locator("text=PERSPECTIVE: 3D PROJECTION").first.is_visible()
-            await page.locator("button:has-text('03 // INTERNAL SECTION')").click()
+            await page.locator("button:has-text('03 · INTERNAL SECTION')").click()
             await page.wait_for_timeout(200)
             assert await page.locator("text=ANATOMY: CROSS-SECTION").first.is_visible()
-            await page.locator("button:has-text('04 // CAD WIREFRAME')").click()
+            await page.locator("button:has-text('04 · CAD WIREFRAME')").click()
             await page.wait_for_timeout(200)
             assert await page.locator("text=ENGINEERING: 2D WIREFRAME").first.is_visible()
-            await page.locator("button:has-text('02 // FRONT BEZEL')").click()
+            await page.locator("button:has-text('02 · FRONT BEZEL')").click()
             await page.wait_for_timeout(200)
             assert await page.locator("text=ELEVATION: FRONT CHASSIS").first.is_visible()
             print("✓ Page 2 (/demonstrator): Interactive 4-view CAD inspection modes verified.")
@@ -282,12 +286,12 @@ async def run_e2e():
             await page.wait_for_timeout(300)
             assert page.url.endswith("/studio"), f"Expected /studio URL, got {page.url}"
 
-            assert await page.locator("#studio-hero").get_by_text("STUDIO ARCHITECTURE // METHODOLOGY").is_visible()
+            assert await page.locator("#studio-hero").get_by_text("STUDIO ARCHITECTURE · METHODOLOGY").is_visible()
             assert await page.locator("#studio").get_by_text("FRAGMENTED MULTI-AGENCY OUTSOURCING").is_visible()
             assert await page.locator("#studio").get_by_text("HOLT LAB UNIFIED ENGINEERING").is_visible()
-            assert await page.locator("#studio").get_by_text("01 // ARCHITECTURE & BOM LOCK").is_visible()
-            assert await page.locator("#studio").get_by_text("03 // PROTOTYPE & FIT CHECK").is_visible()
-            assert await page.locator("#studio").get_by_text("04 // FIRMWARE & IOT INTEGRATION").is_visible()
+            assert await page.locator("#studio").get_by_text("01 · ARCHITECTURE & BOM LOCK").is_visible()
+            assert await page.locator("#studio").get_by_text("03 · PROTOTYPE & FIT CHECK").is_visible()
+            assert await page.locator("#studio").get_by_text("04 · FIRMWARE & IOT INTEGRATION").is_visible()
             await assert_no_horizontal_overflow(page, "Desktop EN /studio")
             print("✓ Page 3 (/studio): Unified workflow and 4-phase pipeline verified.")
 
@@ -369,14 +373,14 @@ async def run_e2e():
             await page.wait_for_timeout(300)
             assert await page.locator("#case-study").get_by_text("외함부터 기판과 펌웨어까지, 4계층 내부 설계 구조").first.is_visible()
             assert await page.locator("#specs").get_by_text("상세 기술 제원 및 검증 사양").is_visible()
-            assert await page.locator("button:has-text('01 // 3D 아이소')").is_visible()
+            assert await page.locator("button:has-text('01 · 3D 아이소')").is_visible()
 
             # Navigate to /studio in Korean
             await page.locator("header nav a[href='/studio']").first.click()
             await page.wait_for_timeout(300)
             assert await page.locator("#studio").get_by_text("왜 통합 엔지니어링인가?").is_visible()
-            assert await page.locator("#studio").get_by_text("03 // 시제품 제작 및 조립 검증").is_visible()
-            assert await page.locator("#studio").get_by_text("04 // 펌웨어 · 서버 통합 완주").is_visible()
+            assert await page.locator("#studio").get_by_text("03 · 시제품 제작 및 조립 검증").is_visible()
+            assert await page.locator("#studio").get_by_text("04 · 펌웨어 및 서버 통합 완주").is_visible()
 
             # Navigate to / in Korean
             await page.locator("header nav a[href='/']").first.click()

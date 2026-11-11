@@ -19,7 +19,7 @@ pub fn NotFound(_segments: Vec<String>) -> Element {
             class: "min-h-[60vh] flex flex-col items-center justify-center text-center p-8 font-sans",
             div {
                 class: "space-y-4 max-w-md",
-                span { class: "inline-block px-3 py-1 rounded-full bg-zinc-100 text-zinc-600 font-mono text-xs font-semibold tracking-wider", "404 // NOT FOUND" }
+                span { class: "inline-block px-3 py-1 rounded-full bg-zinc-100 text-zinc-600 font-mono text-xs font-semibold tracking-wider", "404 · NOT FOUND" }
                 h1 { class: "text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950", "Specification Not Found" }
                 p { class: "text-sm text-zinc-600 leading-relaxed", "The requested hardware engineering specification or route does not exist." }
                 div {

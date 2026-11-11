@@ -13,7 +13,7 @@ use super::{TeardownLayerData, TeardownSectionStrings};
 /// Returns Korean section-level headings and exploded banner strings.
 pub fn get_section_strings() -> TeardownSectionStrings {
     TeardownSectionStrings {
-        eyebrow: "SUBSYSTEM TEARDOWN // 내부 계층 분석",
+        eyebrow: "SUBSYSTEM TEARDOWN · 내부 계층 분석",
         title: "4계층 하드웨어 · 펌웨어 설계 해부",
         subtitle: "기구 외함, 4층 기판, 실시간 펌웨어, 휴먼 인터페이스 상세 설계 내역.",
         exploded_eyebrow: "내부 아키텍처 구조",
@@ -42,7 +42,7 @@ fn layer_0_ko() -> TeardownLayerData {
         image_alt: "MCAD 기구 설계 도면 및 와이어프레임",
         verification_badge: "3D 조립 유격 및 체결 검증",
         primary_spec: "43.40 × 69.20 × 13.78 mm 외형 규격",
-        secondary_spec: "1.20 mm 공칭 벽두께 // 0.85 mm 단차 베젤",
+        secondary_spec: "1.20 mm 공칭 벽두께 · 0.85 mm 단차 베젤",
         bus_or_material: "HP MJF PA12 + SLA 투명 라이트파이프",
         deep_summary: "파라메트릭 3D 솔리드 모델링을 통해 실제 조달 부품(디스플레이, 배터리, 스위치, 커넥터)의 3D STEP 형상과 체결 유격을 정밀하게 반영했습니다. ±1.50 mm 스트로크를 갖는 이탈 방지형 T-슬라이더 전원 스위치 캡과 일체형 스트랩 러그를 내장했습니다.",
         bullet_1: "코너 단차와 M2 접시머리 볼트 체결 보어가 적용된 일체형 후면 쉘",
@@ -61,7 +61,7 @@ fn layer_1_ko() -> TeardownLayerData {
         image_alt: "ECAD 4층 라우팅 PCB 어셈블리",
         verification_badge: "0 ERC · 0 DRC 회로 검증",
         primary_spec: "40.00 × 64.60 × 1.00 mm 4층 기판",
-        secondary_spec: "50Ω 싱글엔디드 // 90Ω 차동 USB 임피던스",
+        secondary_spec: "50Ω 싱글엔디드 · 90Ω 차동 USB 임피던스",
         bus_or_material: "전면신호 / 내층1 GND / 내층2 +3V3 / 후면신호",
         deep_summary: "제어 임피던스 적층 구조를 적용한 4층 맞춤형 기판입니다. 4MB 플래시 내장 ESP32-C3 무선 모듈, TP4054 100mA 리튬폴리머 충전 IC, ME6211 3.3V LDO, DW01A/8205A 2.45V 과방전 하드웨어 보호 회로를 집약했으며, 모듈 내부 499Ω 직렬 저항에 따른 고속 SPI 신호 지연을 분석해 핀 배치를 최적화했습니다.",
         bullet_1: "연속 신호 귀환 경로와 저노이즈 특성을 확보하는 솔리드 내층 기준 평면 (GND/+3V3)",
@@ -80,7 +80,7 @@ fn layer_2_ko() -> TeardownLayerData {
         image_alt: "임베디드 펌웨어 아키텍처 맵",
         verification_badge: "제로카피 60Hz DMA 구동",
         primary_spec: "AHB GDMA CH0 제로카피 파이프라인",
-        secondary_spec: "0.79 ms 타일 갱신 // 47.04 ms 전체 프레임",
+        secondary_spec: "0.79 ms 타일 갱신 · 47.04 ms 전체 프레임",
         bus_or_material: "하드웨어 SPI2 @ 26.67 MHz (80MHz/3)",
         deep_summary: "동적 힙 메모리 할당(0 alloc)을 배제한 베어메탈 비동기 멀티태스킹 아키텍처로 장시간 구동 시에도 메모리 단편화나 런타임 오류 없이 안정적으로 동작합니다. 153.6 KB 정적 SRAM 프레임버퍼와 AHB GDMA 채널을 직결해 CPU 개입을 최소화하며 터치 입력, 상태 머신, 60Hz 화면 갱신을 동시에 처리합니다.",
         bullet_1: "제로 힙 할당: 디스플레이 해상도에 1:1 매핑된 153.6 KB 정적 SRAM 백버퍼",

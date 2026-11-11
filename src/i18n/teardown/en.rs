@@ -13,7 +13,7 @@ use super::{TeardownLayerData, TeardownSectionStrings};
 /// Returns English section-level headings and exploded banner strings.
 pub fn get_section_strings() -> TeardownSectionStrings {
     TeardownSectionStrings {
-        eyebrow: "SUBSYSTEM TEARDOWN // LAYER ANALYSIS",
+        eyebrow: "SUBSYSTEM TEARDOWN · LAYER ANALYSIS",
         title: "4-Layer Hardware & Firmware Breakdown",
         subtitle: "Detailed architecture across enclosure, 4-layer PCBA, firmware, and interface.",
         exploded_eyebrow: "INTERNAL ARCHITECTURE",
@@ -42,7 +42,7 @@ fn layer_0_en() -> TeardownLayerData {
         image_alt: "MCAD Enclosure Engineering Wireframe Drawing",
         verification_badge: "3D FIT & CLEARANCE VERIFIED",
         primary_spec: "43.40 × 69.20 × 13.78 mm Footprint",
-        secondary_spec: "1.20 mm Nominal Wall // 0.85 mm Stepped Bezel",
+        secondary_spec: "1.20 mm Nominal Wall · 0.85 mm Stepped Bezel",
         bus_or_material: "HP MJF PA12 + SLA Clear Light Pipe",
         deep_summary: "Modeled with parametric 3D B-Rep solid geometry referenced directly against vendor 3D STEP component models to verify internal clearances and assembly fit. Features a captive T-slider power switch cap with ±1.50 mm travel and an integrated lanyard lug.",
         bullet_1: "Monolithic rear shell with recessed corner terraces and M2 countersunk bores",
@@ -61,7 +61,7 @@ fn layer_1_en() -> TeardownLayerData {
         image_alt: "ECAD 4-Layer Routed PCB Assembly",
         verification_badge: "0 ERC · 0 DRC VERIFIED",
         primary_spec: "40.00 × 64.60 × 1.00 mm 4-Layer Board",
-        secondary_spec: "50Ω Single-Ended // 90Ω Differential USB",
+        secondary_spec: "50Ω Single-Ended · 90Ω Differential USB",
         bus_or_material: "F.Cu / In1.Cu GND / In2.Cu +3V3 / B.Cu",
         deep_summary: "Custom 4-layer controlled-impedance PCBA integrating an ESP32-C3 wireless MCU module (4MB flash), TP4054 100mA LiPo charger, ME6211 3.3V LDO, and DW01A/8205A 2.45V hardware cut-off protection — with SPI pin routing optimized around internal 499Ω module damping characteristics.",
         bullet_1: "Solid inner ground and power reference planes for low-noise return paths",
@@ -80,7 +80,7 @@ fn layer_2_en() -> TeardownLayerData {
         image_alt: "Embedded Firmware Architecture Map",
         verification_badge: "ZERO-COPY 60Hz DMA VERIFIED",
         primary_spec: "AHB GDMA CH0 Zero-Copy Pipeline",
-        secondary_spec: "0.79 ms Tile Blit // 47.04 ms Full Frame",
+        secondary_spec: "0.79 ms Tile Blit · 47.04 ms Full Frame",
         bus_or_material: "Hardware SPI2 @ 26.67 MHz (80MHz/3)",
         deep_summary: "Engineered on a deterministic bare-metal async multi-tasking architecture with zero dynamic heap allocations for long-term runtime stability. Pairs a static 153.6 KB SRAM framebuffer with AHB GDMA Channel 0 to concurrently handle touch interrupts, state transitions, and 60Hz display blitting.",
         bullet_1: "Zero heap allocations: static 153.6 KB SRAM backbuffer mapped to display geometry",

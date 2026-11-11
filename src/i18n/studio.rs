@@ -106,22 +106,22 @@ fn turnkey_card(lang: Language) -> ComparisonCardStrings {
 fn pipeline_phases_en() -> [PipelinePhaseStrings; 4] {
     [
         PipelinePhaseStrings {
-            phase_tag: "01 // ARCHITECTURE & BOM LOCK",
+            phase_tag: "01 · ARCHITECTURE & BOM LOCK",
             title: "System Spec & Component Selection",
             desc: "Define functional goals, power budgets, and connectivity while locking procurable components and verified 3D STEP models.",
         },
         PipelinePhaseStrings {
-            phase_tag: "02 // UNIFIED MCAD & ECAD",
+            phase_tag: "02 · UNIFIED MCAD & ECAD",
             title: "Concurrent Enclosure & PCB Design",
             desc: "Co-design multi-layer PCB layouts and mechanical housings with cross-domain 3D clearance and ERC/DRC verification.",
         },
         PipelinePhaseStrings {
-            phase_tag: "03 // PROTOTYPE & FIT CHECK",
+            phase_tag: "03 · PROTOTYPE & FIT CHECK",
             title: "Fabrication & Physical Assembly",
             desc: "Produce SMT-assembled boards and prototype enclosures to inspect physical fit, tolerances, power rails, and thermal behavior.",
         },
         PipelinePhaseStrings {
-            phase_tag: "04 // FIRMWARE & IOT INTEGRATION",
+            phase_tag: "04 · FIRMWARE & IOT INTEGRATION",
             title: "Board Bring-Up & Cloud Link",
             desc: "Validate real-time firmware on physical hardware and integrate custom backend APIs, web dashboards, or OTA pipelines as required.",
         },
@@ -131,22 +131,22 @@ fn pipeline_phases_en() -> [PipelinePhaseStrings; 4] {
 fn pipeline_phases_ko() -> [PipelinePhaseStrings; 4] {
     [
         PipelinePhaseStrings {
-            phase_tag: "01 // 요구사항 및 부품 확정",
+            phase_tag: "01 · 요구사항 및 부품 확정",
             title: "아키텍처 정의 및 핵심 부품 선정",
             desc: "요구 기능, 목표 크기, 소비 전력, 통신 방식을 정의하고 실제 조달 가능한 부품 데이터시트와 3D 모델을 확정합니다.",
         },
         PipelinePhaseStrings {
-            phase_tag: "02 // 기구 · 회로 통합 설계",
+            phase_tag: "02 · 기구 및 회로 통합 설계",
             title: "기판 레이아웃 및 외함 동시 설계",
             desc: "다층 회로 기판(PCBA) 배선과 기구 외함 모델링을 병행하며 커넥터 위치, 조립 유격, 전기적 설계 규칙(ERC/DRC)을 교차 검증합니다.",
         },
         PipelinePhaseStrings {
-            phase_tag: "03 // 시제품 제작 및 조립 검증",
+            phase_tag: "03 · 시제품 제작 및 조립 검증",
             title: "시제품 발주 · 실물 가조립 점검",
             desc: "SMT 실장 기판과 3D 프린팅·가공 외함을 제작하여 실제 물리적 결합 상태, 조작감, 발열 및 전원 안정성을 면밀히 점검하고 보완합니다.",
         },
         PipelinePhaseStrings {
-            phase_tag: "04 // 펌웨어 · 서버 통합 완주",
+            phase_tag: "04 · 펌웨어 및 서버 통합 완주",
             title: "실기 브링업 및 IoT 서버 연동",
             desc: "실물 보드 위에서 임베디드 펌웨어를 최적화하고, 프로젝트 범위에 따라 백엔드 API 서버 및 웹 관제 대시보드까지 연동하여 인도합니다.",
         },
@@ -159,13 +159,13 @@ pub fn get_studio_strings(lang: Language) -> StudioStrings {
         Language::En => (
             "Engineering Methodology",
             "Why Unified Hardware Engineering?",
-            "Eliminating Multi-Vendor Silos // Co-Design to Validated Prototype",
+            "Eliminating Multi-Vendor Silos · Co-Design to Validated Prototype",
             pipeline_phases_en(),
         ),
         Language::Ko => (
             "개발 방식 및 프로세스",
             "왜 통합 엔지니어링인가?",
-            "외주 간 소통 단절 해소 // 설계 검증부터 실물 시제품 조립·연동까지",
+            "외주 간 소통 단절 해소 · 설계 검증부터 실물 시제품 조립 및 연동까지",
             pipeline_phases_ko(),
         ),
     };

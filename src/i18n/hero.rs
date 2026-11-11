@@ -75,19 +75,19 @@ pub struct FooterStrings {
 
 fn console_modes_en() -> [(&'static str, &'static str, &'static str, &'static str); 4] {
     [
-        ("iso", "01 // 3D ISO", "PERSPECTIVE: 3D PROJECTION // SOLID ASSEMBLY", "/assets/showcase/mcad_iso.png"),
-        ("front", "02 // FRONT BEZEL", "ELEVATION: FRONT CHASSIS // FLUSH 0.85mm BEZEL", "/assets/showcase/mcad_front.png"),
-        ("section", "03 // INTERNAL SECTION", "ANATOMY: CROSS-SECTION // INTERNAL STACKUP FIT", "/assets/showcase/mcad_section.png"),
-        ("drawing", "04 // CAD WIREFRAME", "ENGINEERING: 2D WIREFRAME // 3D STEP CLEARANCE CHECK", "/assets/showcase/mcad_drawing.png"),
+        ("iso", "01 · 3D ISO", "PERSPECTIVE: 3D PROJECTION · SOLID ASSEMBLY", "/assets/showcase/mcad_iso.png"),
+        ("front", "02 · FRONT BEZEL", "ELEVATION: FRONT CHASSIS · FLUSH 0.85mm BEZEL", "/assets/showcase/mcad_front.png"),
+        ("section", "03 · INTERNAL SECTION", "ANATOMY: CROSS-SECTION · INTERNAL STACKUP FIT", "/assets/showcase/mcad_section.png"),
+        ("drawing", "04 · CAD WIREFRAME", "ENGINEERING: 2D WIREFRAME · 3D STEP CLEARANCE CHECK", "/assets/showcase/mcad_drawing.png"),
     ]
 }
 
 fn console_modes_ko() -> [(&'static str, &'static str, &'static str, &'static str); 4] {
     [
-        ("iso", "01 // 3D 아이소", "투영 모드: 3D 입체 조립도 // 외함 및 부품 배치", "/assets/showcase/mcad_iso.png"),
-        ("front", "02 // 전면 베젤", "정면도: 전면 외함 // 0.85mm 단차 플러시 베젤", "/assets/showcase/mcad_front.png"),
-        ("section", "03 // 내부 단면", "단면도: 내부 적층 구조 // 부품 간 유격 및 결합 확인", "/assets/showcase/mcad_section.png"),
-        ("drawing", "04 // CAD 도면", "도면 모드: 기구 와이어프레임 // 3D STEP 치수 검증", "/assets/showcase/mcad_drawing.png"),
+        ("iso", "01 · 3D 아이소", "투영 모드: 3D 입체 조립도 · 외함 및 부품 배치", "/assets/showcase/mcad_iso.png"),
+        ("front", "02 · 전면 베젤", "정면도: 전면 외함 · 0.85mm 단차 플러시 베젤", "/assets/showcase/mcad_front.png"),
+        ("section", "03 · 내부 단면", "단면도: 내부 적층 구조 · 부품 간 유격 및 결합 확인", "/assets/showcase/mcad_section.png"),
+        ("drawing", "04 · CAD 도면", "도면 모드: 기구 와이어프레임 · 3D STEP 치수 검증", "/assets/showcase/mcad_drawing.png"),
     ]
 }
 
@@ -97,20 +97,20 @@ fn hero_en() -> HeroStrings {
         title: "From Circuit & Enclosure to Cloud. We Engineer Physical Hardware.",
         subtitle: "Mechanical enclosures, custom multi-layer PCBA, embedded firmware, and connected backend servers engineered under one roof — reducing cross-vendor mismatches and delivering physically verified prototypes.",
         pills: [
-            "01 // Mechanical & Enclosures",
-            "02 // Custom Circuit & PCBA",
-            "03 // Embedded Firmware",
-            "04 // IoT Server & Web",
+            "01 · Mechanical & Enclosures",
+            "02 · Custom Circuit & PCBA",
+            "03 · Embedded Firmware",
+            "04 · IoT Server & Web",
         ],
-        hero_preview_status: "INTEGRATED R&D SHOWCASE // MECHANICAL · PCBA · FIRMWARE VERIFIED",
-        hero_preview_tag: "CASE STUDY 01 // COMPACT TOUCH DEVICE",
+        hero_preview_status: "INTEGRATED R&D SHOWCASE — MECHANICAL · PCBA · FIRMWARE VERIFIED",
+        hero_preview_tag: "CASE STUDY 01 · COMPACT TOUCH DEVICE",
         hero_preview_notes: [
             "3D Fit & Clearance Verified",
             "Controlled-Impedance PCBA · Custom Enclosure",
             "Real-Time Low-Power Firmware",
         ],
         width_label: "DIMENSION: 43.40 × 69.20 mm",
-        material_label: "HP MJF PA12 // 4-LAYER PCBA",
+        material_label: "HP MJF PA12 · 4-LAYER PCBA",
         height_label: "STACKUP: 13.78 mm",
         cta_casestudy: "Explore Case Study",
         cta_inquire: "Inquire Project",
@@ -127,20 +127,20 @@ fn hero_ko() -> HeroStrings {
         title: "회로와 기구 외함부터 서버 연동까지, 실물로 작동하는 하드웨어를 설계합니다.",
         subtitle: "기구 외함 설계, 맞춤형 회로 기판(PCBA), 임베디드 펌웨어, 그리고 기기와 통신하는 백엔드 서버·웹 대시보드까지 한곳에서 통합 개발합니다. 외주 분절로 인한 설계 불일치를 줄이고 실제 조립·구동 검증을 마친 시제품을 완성합니다.",
         pills: [
-            "01 // 기구 및 외함 설계",
-            "02 // 맞춤형 회로 · PCBA",
-            "03 // 임베디드 펌웨어",
-            "04 // IoT 서버 · 웹 연동",
+            "01 · 기구 및 외함 설계",
+            "02 · 맞춤형 회로 · PCBA",
+            "03 · 임베디드 펌웨어",
+            "04 · IoT 서버 · 웹 연동",
         ],
-        hero_preview_status: "통합 하드웨어 개발 실증 // 기구 · 회로 · 펌웨어 실물 구동 완료",
-        hero_preview_tag: "CASE STUDY 01 // 소형 터치 디바이스",
+        hero_preview_status: "통합 하드웨어 개발 실증 — 기구 · 회로 · 펌웨어 실물 구동 완료",
+        hero_preview_tag: "CASE STUDY 01 · 소형 터치 디바이스",
         hero_preview_notes: [
             "3D 부품 간섭 사전 검증",
             "다층 제어 임피던스 PCBA · 맞춤형 외함",
             "실시간 저전력 펌웨어 구동",
         ],
         width_label: "외형 규격: 43.40 × 69.20 mm",
-        material_label: "HP MJF PA12 // 4층 회로 기판",
+        material_label: "HP MJF PA12 · 4층 회로 기판",
         height_label: "두께 규격: 13.78 mm",
         cta_casestudy: "기술 쇼케이스 보기",
         cta_inquire: "프로젝트 문의하기",

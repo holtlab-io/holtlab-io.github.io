@@ -67,7 +67,7 @@ pub struct HomeTeaserBundle {
 fn teasers_en() -> HomeTeaserBundle {
     HomeTeaserBundle {
         demonstrator: DemonstratorTeaserStrings {
-            eyebrow: "ENGINEERING SHOWCASE // CASE STUDY 01",
+            eyebrow: "ENGINEERING SHOWCASE · CASE STUDY 01",
             title: "Win95 Minesweeper Touch Keyring",
             subtitle: "A compact device case study integrating an ESP32-C3 wireless MCU, 2.0\" IPS display, capacitive touch panel, and LiPo power protection into a 43.4×69.2×13.78mm MJF PA12 enclosure — verified through physical assembly and firmware bring-up.",
             pills: [
@@ -97,7 +97,7 @@ fn teasers_en() -> HomeTeaserBundle {
 fn teasers_ko() -> HomeTeaserBundle {
     HomeTeaserBundle {
         demonstrator: DemonstratorTeaserStrings {
-            eyebrow: "기술 쇼케이스 // CASE STUDY 01",
+            eyebrow: "기술 쇼케이스 · CASE STUDY 01",
             title: "Win95 마인스위퍼 터치 키링",
             subtitle: "ESP32-C3 무선 MCU, 2.0인치 IPS 디스플레이, 정전식 터치 패널, 리튬폴리머 충전·보호 회로를 43.4×69.2×13.78mm MJF 나일론 외함에 통합 설계하고 실물 조립과 펌웨어 브링업까지 완료한 소형 디바이스 제작 사례입니다.",
             pills: [

@@ -22,26 +22,26 @@ struct ProofCardData {
 
 fn proof_cards_en() -> (&'static str, &'static str, &'static str, [ProofCardData; 3]) {
     (
-        "PHYSICAL PROTOTYPE // BENCH BRING-UP",
+        "PHYSICAL PROTOTYPE · BENCH BRING-UP",
         "From 3D CAD to Powered-On Hardware.",
         "Fabricated enclosure, 4-layer SMT circuit board, and live 60Hz display firmware verified through hands-on bench assembly.",
         [
             ProofCardData {
-                tag: "01 // LIVE FIRMWARE & UI",
+                tag: "01 · LIVE FIRMWARE & UI",
                 title: "Assembled Device & 60Hz Display",
                 desc: "Powered-on 2.0\" IPS display and capacitive trackpad cursor running inside the matte black MJF PA12 enclosure.",
                 img_src: "/assets/showcase/real_front_on.jpg",
                 img_alt: "Powered-on Win95 Minesweeper Touch Keyring prototype",
             },
             ProofCardData {
-                tag: "02 // SMT PCBA & SHELL",
+                tag: "02 · SMT PCBA & SHELL",
                 title: "4-Layer SMT Board & PA12 Housing",
                 desc: "Custom 4-layer PCB populated with ESP32-C3 wireless module, USB-C, and dual FPC connectors beside the nylon rear shell.",
                 img_src: "/assets/showcase/real_pcba_shell_iso.jpg",
                 img_alt: "4-layer SMT PCBA beside MJF PA12 rear enclosure",
             },
             ProofCardData {
-                tag: "03 // INTERNAL FIT CHECK",
+                tag: "03 · INTERNAL FIT CHECK",
                 title: "Component Layout & Cradle Alignment",
                 desc: "Top-down inspection of the LiPo battery pocket, mounting bosses, and switch/port cutouts aligned for clean mechanical fit.",
                 img_src: "/assets/showcase/real_knolling_top.jpg",
@@ -53,26 +53,26 @@ fn proof_cards_en() -> (&'static str, &'static str, &'static str, [ProofCardData
 
 fn proof_cards_ko() -> (&'static str, &'static str, &'static str, [ProofCardData; 3]) {
     (
-        "실물 시제품 검증 // 벤치 브링업",
+        "실물 시제품 검증 · 벤치 브링업",
         "3D 설계 도면에서 실물 브링업까지",
         "기구 외함과 4층 SMT 기판을 실제 제작·조립하고, 60Hz 그래픽 UI와 정전식 터치 펌웨어 구동을 벤치에서 직접 검증한 실물 사진입니다.",
         [
             ProofCardData {
-                tag: "01 // 실기 구동 · UI 브링업",
+                tag: "01 · 실기 구동 및 UI 브링업",
                 title: "외함 조립 완료 및 60Hz 화면 구동",
                 desc: "매트 블랙 MJF PA12 나일론 외함에 조립된 2.0인치 IPS 디스플레이와 정전식 트랙패드 커서 UI의 실제 동작 화면입니다.",
                 img_src: "/assets/showcase/real_front_on.jpg",
                 img_alt: "실물 조립 및 전원 구동 중인 마인스위퍼 터치 키링",
             },
             ProofCardData {
-                tag: "02 // 다층 SMT 기판 · 외함",
+                tag: "02 · 다층 SMT 기판 및 외함",
                 title: "4층 제어 임피던스 기판과 하부 쉘",
                 desc: "ESP32-C3 무선 모듈, USB-C 충전 포트, 듀얼 FPC 커넥터가 실장된 4층 기판과 내부 지지 리브가 성형된 하부 외함입니다.",
                 img_src: "/assets/showcase/real_pcba_shell_iso.jpg",
                 img_alt: "4층 SMT 기판 및 MJF PA12 하부 외함 실물",
             },
             ProofCardData {
-                tag: "03 // 내부 안착 · 기구 결합",
+                tag: "03 · 내부 안착 및 기구 결합",
                 title: "부품 실장 배치 및 안착 구조 점검",
                 desc: "리튬폴리머 배터리 안착 포켓, 보드 체결 보스, 스위치·포트 개구부의 간섭 없는 물리 결합 구조를 확인한 평면 배치입니다.",
                 img_src: "/assets/showcase/real_knolling_top.jpg",

@@ -11,7 +11,7 @@
 use dioxus::prelude::*;
 use crate::i18n::Language;
 
-const JSON_LD_ORGANIZATION: &str = r#"{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://holtlab-io.github.io/#organization","name":"Holt Lab","url":"https://holtlab-io.github.io/","logo":"https://holtlab-io.github.io/assets/branding/avatar.jpg","email":"contact@holtlab.io","description":"Hardware, Embedded Firmware & IoT Engineering Studio specializing in unified mechanical, electronics, firmware, and backend system development.","address":{"@type":"PostalAddress","addressLocality":"Seoul","addressCountry":"KR"},"sameAs":["https://github.com/holtlab-io","https://youtube.com/@holt-lab"]},{"@type":"ProfessionalService","@id":"https://holtlab-io.github.io/#service","name":"Holt Lab Engineering Studio","url":"https://holtlab-io.github.io/","image":"https://holtlab-io.github.io/assets/branding/banner.png","email":"contact@holtlab.io","areaServed":"Worldwide","serviceType":["Turnkey Hardware Prototyping","Mechanical Enclosure Design (MCAD)","Custom Circuit & Multi-Layer PCBA Design (ECAD)","Embedded Firmware & RTOS Development","IoT Cloud, API Server & Web Dashboard Integration"]}]}"#;
+const JSON_LD_ORGANIZATION: &str = r#"{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://holtlab-io.github.io/#organization","name":"Holt Lab","url":"https://holtlab-io.github.io/","logo":"https://holtlab-io.github.io/assets/branding/logo.png","email":"contact@holtlab.io","description":"Hardware, Embedded Firmware & IoT Engineering Studio specializing in unified mechanical, electronics, firmware, and backend system development.","address":{"@type":"PostalAddress","addressLocality":"Seoul","addressCountry":"KR"},"sameAs":["https://github.com/holtlab-io","https://youtube.com/@holt-lab"]},{"@type":"ProfessionalService","@id":"https://holtlab-io.github.io/#service","name":"Holt Lab Engineering Studio","url":"https://holtlab-io.github.io/","image":"https://holtlab-io.github.io/assets/branding/banner.png","email":"contact@holtlab.io","areaServed":"Worldwide","serviceType":["Turnkey Hardware Prototyping","Mechanical Enclosure Design (MCAD)","Custom Circuit & Multi-Layer PCBA Design (ECAD)","Embedded Firmware & RTOS Development","IoT Cloud, API Server & Web Dashboard Integration"]}]}"#;
 
 const SCROLL_REVEAL_ENGINE: &str = r#"
 (function() {
@@ -163,7 +163,9 @@ pub fn HeadMetadata() -> Element {
     rsx! {
         document::Title { "{title}" }
         document::Meta { name: "description", content: "{desc}" }
-        document::Link { rel: "icon", r#type: "image/jpeg", href: "/assets/branding/avatar.jpg" }
+        document::Link { rel: "icon", r#type: "image/svg+xml", href: "/assets/branding/favicon.svg" }
+        document::Link { rel: "alternate icon", r#type: "image/png", href: "/assets/branding/favicon.png" }
+        document::Link { rel: "apple-touch-icon", href: "/assets/branding/logo.png" }
         document::Link { rel: "canonical", href: "https://holtlab-io.github.io/" }
         document::Link { rel: "alternate", hreflang: "ko", href: "https://holtlab-io.github.io/?lang=ko" }
         document::Link { rel: "alternate", hreflang: "en", href: "https://holtlab-io.github.io/?lang=en" }

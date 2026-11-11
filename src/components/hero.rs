@@ -137,12 +137,12 @@ fn HeroOverviewVisual(strings: HeroStrings) -> Element {
 fn HeroSplitPanels(lang: Language) -> Element {
     let (cad_label, real_label) = match lang {
         Language::En => (
-            "01 // 3D CAD & ENCLOSURE GEOMETRY",
-            "02 // FABRICATED 4-LAYER PCBA & MJF PA12",
+            "01 · 3D CAD & ENCLOSURE GEOMETRY",
+            "02 · FABRICATED 4-LAYER PCBA & MJF PA12",
         ),
         Language::Ko => (
-            "01 // 3D 기구 · 적층 구조 설계",
-            "02 // 4층 SMT 기판 및 나일론 외함 실물",
+            "01 · 3D 기구 및 적층 구조 설계",
+            "02 · 4층 SMT 기판 및 나일론 외함 실물",
         ),
     };
 

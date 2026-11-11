@@ -36,14 +36,14 @@ pub struct SpecRowData {
 pub fn get_specs_section_strings(lang: Language) -> SpecsSectionStrings {
     match lang {
         Language::En => SpecsSectionStrings {
-            eyebrow: "ENGINEERING REFERENCE // CASE STUDY METRICS",
+            eyebrow: "ENGINEERING REFERENCE · CASE STUDY METRICS",
             title: "Technical Specifications & Verification Metrics",
-            subtitle: "Win95 Minesweeper Touch Keyring // Assembled Hardware Parameters",
+            subtitle: "Win95 Minesweeper Touch Keyring · Assembled Hardware Parameters",
         },
         Language::Ko => SpecsSectionStrings {
-            eyebrow: "엔지니어링 제원 // 케이스 스터디 사양",
+            eyebrow: "엔지니어링 제원 · 케이스 스터디 사양",
             title: "상세 기술 제원 및 검증 사양",
-            subtitle: "Win95 마인스위퍼 터치 키링 // 실물 시제품 측정 및 설계 기준",
+            subtitle: "Win95 마인스위퍼 터치 키링 · 실물 시제품 측정 및 설계 기준",
         },
     }
 }
@@ -52,7 +52,7 @@ fn rows_part1_en() -> [SpecRowData; 5] {
     [
         SpecRowData {
             key: "Dimensions & Mass",
-            val: "43.40 × 69.20 × 13.78 mm // 38.2 g",
+            val: "43.40 × 69.20 × 13.78 mm · 38.2 g",
             note: "Fully assembled chassis including LiPo battery and 2.0\" IPS display",
         },
         SpecRowData {
@@ -112,7 +112,7 @@ fn rows_part1_ko() -> [SpecRowData; 5] {
     [
         SpecRowData {
             key: "외형 치수 및 무게",
-            val: "43.40 × 69.20 × 13.78 mm // 38.2 g",
+            val: "43.40 × 69.20 × 13.78 mm · 38.2 g",
             note: "LiPo 배터리 및 2.0\" IPS 디스플레이를 포함한 완전 조립 기준",
         },
         SpecRowData {

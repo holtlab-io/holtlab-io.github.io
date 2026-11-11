@@ -31,7 +31,7 @@ pub fn Footer() -> Element {
                             class: "font-bold text-zinc-950 font-sans tracking-tight text-sm lowercase",
                             "holt lab"
                         }
-                        span { class: "text-zinc-300", "//" }
+                        span { class: "text-zinc-300", "|" }
                         span {
                             class: "text-zinc-500 text-xs font-sans",
                             "{footer_strings.studio_desc}"
